@@ -14,9 +14,9 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 @Config
 @TeleOp(name = "Slide Teleop")
 public class SlideTeleop extends MatchOpMode {
-    public static double startPoseX = 0;
-    public static double startPoseY = 0;
-    public static double startPoseHeading = 0;
+    private static double startPoseX = 0;
+    private static double startPoseY = 0;
+    private static double startPoseHeading = 0;
 
     //Motors and Servos
     private MotorEx liftMotor1, liftMotor2;
