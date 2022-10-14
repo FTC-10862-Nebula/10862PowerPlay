@@ -16,7 +16,7 @@ import java.util.logging.Level;
 @Config
 public class ClawServos extends SubsystemBase {
     //Claw Variables
-    public static double CLOSE_POS_S1 = 0.79;//0.85
+    public static double CLOSE_POS_S1 = 0.83;//0.85
     public static double OPEN_POS_S1 = 0.7;
     //Servo 1 - No more than 0.71 and no less than 0.9
 
