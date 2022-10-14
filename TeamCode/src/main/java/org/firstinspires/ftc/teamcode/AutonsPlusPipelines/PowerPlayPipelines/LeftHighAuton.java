@@ -23,6 +23,7 @@ package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -51,7 +52,8 @@ public class LeftHighAuton extends LinearOpMode
 
     //Motors and Servos
     private MotorEx clawMotor;
-    private ServoEx clawS1, clawS2, clawS3;
+    private ServoEx clawS1, clawS3;
+    private CRServo clawS2;
     private MotorEx leftFront, leftRear, rightRear, rightFront;
     private MotorEx liftMotor1, liftMotor2;
 

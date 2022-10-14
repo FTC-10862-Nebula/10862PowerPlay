@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -28,7 +29,8 @@ public class MainTeleOp extends MatchOpMode {
 
     //Motors and Servos
     private MotorEx clawMotor;
-    private ServoEx clawS1, clawS2, clawS3;
+    private ServoEx clawS1, clawS3;
+    private CRServo clawS2;
     private MotorEx leftFront, leftRear, rightRear, rightFront;
     private MotorEx liftMotor1, liftMotor2;
 
@@ -70,14 +72,26 @@ public class MainTeleOp extends MatchOpMode {
 
     @Override
     public void configureButtons() {
-        one = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                    .whenPressed(clawMotors::moveClawGroundFront));
-        two = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                    .whenPressed(clawMotors::moveClawLowFront));
-        three = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                   .whenPressed(clawMotors::moveClawMidFront));
-        four = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                .whenPressed(clawMotors::moveClawHighFront));
+        one = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
+                .whenPressed(clawServos::intakeClaw)
+                .whenPressed(clawServos::clawClose)
+                .whenReleased(clawServos::stopClaw)
+                );
+        two = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
+                //.whenPressed(clawServos::outtakeClaw)
+                .whenPressed(clawServos::clawOpen)
+                .whenReleased(clawServos::stopClaw));
+
+        three = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
+                .whenPressed(clawServos::addClawPos));
+//        one = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
+//                    .whenPressed(clawMotors::moveClawGroundFront));
+//        two = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
+//                    .whenPressed(clawMotors::moveClawLowFront));
+//        three = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
+//                   .whenPressed(clawMotors::moveClawMidFront));
+//        four = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
+//                .whenPressed(clawMotors::moveClawHighFront));
 
         //slowmode for the drivetrain
 //            slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
