@@ -12,7 +12,7 @@ public class SlideResetFrontCommandT extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(slide::slideResting, slide),
                 new InstantCommand(clawMotors::moveClawIntakeFront, clawMotors),
-                new InstantCommand(clawServos::orgClawPos),
+                new InstantCommand(clawServos::setFClawPos),
                 new InstantCommand(clawServos::clawOpen, clawServos)
         );
     }

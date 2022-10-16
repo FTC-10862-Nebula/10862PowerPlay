@@ -4,10 +4,10 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeCommands.PickCone2Command;
-import org.firstinspires.ftc.teamcode.commands.PickConeCommands.PickCone3Command;
-import org.firstinspires.ftc.teamcode.commands.PickConeCommands.PickCone4Command;
-import org.firstinspires.ftc.teamcode.commands.PickConeCommands.PickCone5Command;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PickCone2Command;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PickCone3Command;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PickCone4Command;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PickCone5Command;
 import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideHighBackCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;

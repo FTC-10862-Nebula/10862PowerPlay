@@ -21,22 +21,10 @@
 
 package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.motors.CRServo;
-import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.autons.PowerPlayCommands.LeftHighAutonCommand;
-import org.firstinspires.ftc.teamcode.autons.PowerPlayCommands.RightIThinkHighAutonCommand;
-import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.Slide;
-import org.firstinspires.ftc.teamcode.subsystems.Vision;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -45,26 +33,8 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import java.util.ArrayList;
 
 @Autonomous
-public class RightHighAuton extends LinearOpMode
+public class EditedAprilTagAutoInitDetectionEx extends LinearOpMode
 {
-    private static double startPoseX = 0;
-    private static double startPoseY = 0;
-    private static double startPoseHeading = 0;
-
-    //Motors and Servos
-    private MotorEx clawMotor;
-    private ServoEx clawS1, clawS3;
-    private CRServo clawS2;
-    private MotorEx leftFront, leftRear, rightRear, rightFront;
-    private MotorEx liftMotor1, liftMotor2;
-
-    // Subsystems
-    private ClawMotors clawMotors;
-    private ClawServos clawServos;
-    private Drivetrain drivetrain;
-    private Slide slide;
-    private Vision vision;
-
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
@@ -82,7 +52,7 @@ public class RightHighAuton extends LinearOpMode
     // UNITS ARE METERS
     double tagsize = 0.166;
 
-    // Tag ID 1,2,3 from the 36h11 family
+     // Tag ID 1,2,3 from the 36h11 family
     int LEFT = 1;
     int MIDDLE = 2;
     int RIGHT = 3;
@@ -92,16 +62,10 @@ public class RightHighAuton extends LinearOpMode
     @Override
     public void runOpMode()
     {
-        clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
-        drivetrain.init();
-        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
+
         camera.setPipeline(aprilTagDetectionPipeline);
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
@@ -203,11 +167,11 @@ public class RightHighAuton extends LinearOpMode
 
         /* Actually do something useful */
         if(tagOfInterest == null || tagOfInterest.id == LEFT){
-            new RightIThinkHighAutonCommand(drivetrain, slide, clawMotors, clawServos);
-        } else if(tagOfInterest.id == MIDDLE){
-            new RightIThinkHighAutonCommand(drivetrain, slide, clawMotors, clawServos);
-        } else{
-            new RightIThinkHighAutonCommand(drivetrain, slide, clawMotors, clawServos);
+            //trajectory
+        }else if(tagOfInterest.id == MIDDLE){
+            //trajectory
+        }else{
+            //trajectory
         }
 
 

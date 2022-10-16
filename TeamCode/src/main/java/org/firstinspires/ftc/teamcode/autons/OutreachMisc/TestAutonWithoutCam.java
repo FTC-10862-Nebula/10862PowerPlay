@@ -59,7 +59,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
     public void matchStart() {
         schedule(
                 new SequentialCommandGroup(
-                        new InstantCommand(clawServos::clawOpen, clawServos)
+//                        new InstantCommand(clawServos::clawOpen, clawServos)
                 )
         );
     }

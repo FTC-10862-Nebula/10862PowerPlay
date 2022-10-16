@@ -53,7 +53,6 @@ public class ClawServos extends SubsystemBase {
         Util.logger(this, telemetry, Level.INFO, "Claw Servo 3 Pos: ", clawS3.getPosition());
     }
 
-
     public void setClawS1(double clawServo1Pos) {
         clawS1.setPosition(clawServo1Pos);
     }
@@ -62,18 +61,27 @@ public class ClawServos extends SubsystemBase {
     }
 
 
+
+
     public void clawClose() {
         setClawS1(CLOSE_POS_S1);
     }
     public void clawOpen() {
         setClawS1(OPEN_POS_S1);
     }
-    public void addClawPos() {
-        setClawS1(clawS1.getPosition()+0.05);
+    public void addClaw1Pos() {
+        if (clawS1.getPosition()>(CLOSE_POS_S1+0.05)) {
+            setClawS1(clawS1.getPosition() + 0.05);
+        }
+        else return;
     }
-    public void subClawPos() {
-        setClawS1(clawS1.getPosition()-0.05);
+    public void subClaw1Pos() {
+        if (clawS1.getPosition()<(OPEN_POS_S1-0.05)) {
+            setClawS1(clawS1.getPosition() - 0.05);
+        }
+        else return;
     }
+
 
     public void intakeClaw() {
         clawS2.set(INTAKE_POWER);
@@ -84,23 +92,15 @@ public class ClawServos extends SubsystemBase {
     public void stopClaw() {
         clawS2.stop();
     }
-
-
-
     public void addClaw3Pos() {
-        if (clawS3.getPosition()>(CLOSE_POS_S1+0.05)) {
             setClawS3(clawS3.getPosition() + 0.05);
-        }
-        else return;
     }
     public void subClaw3Pos() {
-        if (clawS3.getPosition()<(OPEN_POS_S1-0.05)) {
             setClawS3(clawS3.getPosition() - 0.05);
-        }
-        else return;
     }
-    public void orgClawPos(){
-        setClawS3(FRONT_POS_S3);
-    }
+
+
+    public void setFClawPos(){setClawS3(FRONT_POS_S3);}
+    public void setBClawPos(){setClawS3(BACK_POS_S3);}
 
 }
