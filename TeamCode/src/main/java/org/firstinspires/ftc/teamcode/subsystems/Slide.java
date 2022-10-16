@@ -18,7 +18,7 @@ public class Slide extends SubsystemBase {
     private MotorEx slideMotor1;
     private MotorEx slideMotor2;
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(1.8, 0.05, 0, 0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.5, 0.05, 0, 0);
     //I = 0.0008
     public static double ARM_OFFSET = 0;
     private PIDFController controller;

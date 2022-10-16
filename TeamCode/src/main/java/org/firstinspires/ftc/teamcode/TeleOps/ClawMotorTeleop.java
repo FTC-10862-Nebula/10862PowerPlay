@@ -38,6 +38,7 @@ public class ClawMotorTeleop extends MatchOpMode {
     //Buttons
     public Button intakeF, groundF, lowF, midF, highF;
     public Button intakeB, groundB, lowB, midB, highB;
+    public Button clawMotorResetButton;
 
     @Override
     public void configureButtons() {
@@ -62,6 +63,9 @@ public class ClawMotorTeleop extends MatchOpMode {
                 .whenPressed(clawMotors::moveClawMidBack));
         highB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
                 .whenPressed(clawMotors::moveClawHighBack));
+
+        clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
+                .whenPressed(clawMotors::encoderReset);
     }
 
     @Override
