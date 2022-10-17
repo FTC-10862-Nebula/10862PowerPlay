@@ -9,6 +9,7 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommandforKids;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
@@ -33,6 +34,7 @@ public class DriveOnlyTeleOp extends MatchOpMode {
         operatorGamepad = new GamepadEx(gamepad2);
 
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
         drivetrain.init();
     }
 

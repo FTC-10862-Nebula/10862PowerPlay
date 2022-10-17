@@ -11,6 +11,7 @@ import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
@@ -70,7 +71,9 @@ public class MainTeleOp extends MatchOpMode {
         drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+//        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
     }
 
     //Buttons
@@ -104,7 +107,7 @@ public class MainTeleOp extends MatchOpMode {
             s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.X))
                     .whenPressed(clawServos::setFClawPos);
             s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B))
-                    .whenPressed(clawServos::setFClawPos);
+                    .whenPressed(clawServos::setBClawPos);
 
         //Claw Servo Manual Rotation
             plusClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
