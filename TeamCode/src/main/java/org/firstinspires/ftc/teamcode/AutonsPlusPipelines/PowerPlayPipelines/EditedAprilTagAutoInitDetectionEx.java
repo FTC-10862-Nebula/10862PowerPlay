@@ -72,7 +72,8 @@ public class EditedAprilTagAutoInitDetectionEx extends LinearOpMode
             @Override
             public void onOpened()
             {
-                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
+                camera.startStreaming(800,600, OpenCvCameraRotation.UPRIGHT);
+//                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
             }
 
             @Override
@@ -175,8 +176,8 @@ public class EditedAprilTagAutoInitDetectionEx extends LinearOpMode
         }
 
 
-        /* You wouldn't have this in your autonomous, this is just to prevent the sample from ending */
-        while (opModeIsActive()) {sleep(20);}
+//        /* You wouldn't have this in your autonomous, this is just to prevent the sample from ending */
+//        while (opModeIsActive()) {sleep(20);}
     }
 
     void tagToTelemetry(AprilTagDetection detection)

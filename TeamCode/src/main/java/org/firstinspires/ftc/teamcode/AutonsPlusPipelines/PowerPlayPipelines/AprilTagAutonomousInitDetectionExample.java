@@ -180,18 +180,18 @@ public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
              */
 
             // e.g.
-            if(tagOfInterest.pose.x <= 20)
-            {
-                // do something
-            }
-            else if(tagOfInterest.pose.x >= 20 && tagOfInterest.pose.x <= 50)
-            {
-                // do something else
-            }
-            else if(tagOfInterest.pose.x >= 50)
-            {
-                // do something else
-            }
+//            if(tagOfInterest.pose.x <= 20)
+//            {
+//                // do something
+//            }
+//            else if(tagOfInterest.pose.x >= 20 && tagOfInterest.pose.x <= 50)
+//            {
+//                // do something else
+//            }
+//            else if(tagOfInterest.pose.x >= 50)
+//            {
+//                // do something else
+//            }
         }
 
 
