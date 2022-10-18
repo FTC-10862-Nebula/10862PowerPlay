@@ -64,8 +64,8 @@ public class ClawMotors extends SubsystemBase {
         this.telemetry = tl;
         automatic = false;
         setOffset();
-
-        this.telemetry = tl;
+//
+//        this.telemetry = tl;
     }
 
     @Override
@@ -178,6 +178,9 @@ public class ClawMotors extends SubsystemBase {
         return controller.atSetPoint();
     }
 
+    public void setPower(){
+        clawMotor.set(5);
+    }
 
     public void setOffset() {
         resetEncoder();

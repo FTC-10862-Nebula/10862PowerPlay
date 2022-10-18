@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @Config
-@TeleOp(name = "Motor/ServoTest")
+@TeleOp(name = "Motor Test")
 public class MotorTest extends OpMode {
     // Gamepads
     private GamepadEx driverGamepad;
@@ -34,12 +34,11 @@ public class MotorTest extends OpMode {
         telemetry.update();
     }
 
-//    @Override
-//    public void matchLoop() { }
-//    @Override
-//    public void disabledPeriodic() { }
-//    @Override
-//    public void matchStart() { }
-//    @Override
-//    public void robotPeriodic() { }
+    public void matchLoop() { }
+
+    public void disabledPeriodic() { }
+
+    public void matchStart() { }
+
+    public void robotPeriodic() { }
 }

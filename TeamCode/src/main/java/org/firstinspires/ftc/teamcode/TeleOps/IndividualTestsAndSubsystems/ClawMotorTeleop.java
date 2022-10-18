@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.TeleOps.GamepadTrigger;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
@@ -39,9 +40,13 @@ public class ClawMotorTeleop extends MatchOpMode {
     public Button intakeF, groundF, lowF, midF, highF;
     public Button intakeB, groundB, lowB, midB, highB;
     public Button clawMotorResetButton;
+    public Button one, two;
 
     @Override
     public void configureButtons() {
+        one = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
+                .whenPressed(clawMotors::setPower));
+
         intakeF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
                 .whenPressed(clawMotors::moveClawIntakeFront));
         groundF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
