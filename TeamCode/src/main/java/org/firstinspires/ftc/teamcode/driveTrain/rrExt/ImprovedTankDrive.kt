@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.rrExt
+package org.firstinspires.ftc.teamcode.driveTrain.rrExt
 
 
 import com.acmerobotics.roadrunner.drive.Drive
@@ -38,8 +38,8 @@ abstract class ImprovedTankDrive constructor(
      * @param useExternalHeading use external heading provided by an external sensor (e.g., IMU, gyroscope)
      */
     class TankLocalizer @JvmOverloads constructor(
-            private val drive: ImprovedTankDrive,
-            private val useExternalHeading: Boolean = true
+        private val drive: ImprovedTankDrive,
+        private val useExternalHeading: Boolean = true
     ) : Localizer {
         private var _poseEstimate = Pose2d()
         override var poseEstimate: Pose2d
