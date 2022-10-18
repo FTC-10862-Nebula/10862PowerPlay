@@ -1,34 +1,21 @@
-package org.firstinspires.ftc.teamcode.Tests;
-
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
+package org.firstinspires.ftc.teamcode.TeleOps.IndividualTestsAndSubsystems.Tests;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.arcrobotics.ftclib.command.button.Button;
-import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.arcrobotics.ftclib.gamepad.GamepadKeys;
-import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Servo;
-
-import org.firstinspires.ftc.teamcode.TeleOps.GamepadTrigger;
-import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 
 @Config
 @TeleOp(name = "Motor/ServoTest")
 public class MotorAndServoTest extends OpMode {
-    // Gamepads
-    private GamepadEx driverGamepad;
     // Motors and Servos
     private MotorEx motor;
 
     @Override
     public void init() {
-        driverGamepad = new GamepadEx(gamepad1);
-        motor = hardwareMap.get(MotorEx.class, "leftRear");
+        GamepadEx driverGamepad = new GamepadEx(gamepad1);
+        motor = hardwareMap.get(MotorEx.class, "clawM");
     }
 
 

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TeleOps;
+package org.firstinspires.ftc.teamcode.TeleOps.IndividualTestsAndSubsystems;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.button.Button;
@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 @Config
 @TeleOp(name = "Slide Teleop")
 public class SlideTeleop extends MatchOpMode {
-    private static double startPoseX = 0;
+    private static final double startPoseX = 0;
     private static double startPoseY = 0;
     private static double startPoseHeading = 0;
 
