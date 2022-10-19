@@ -53,11 +53,11 @@ public class SlideTeleop extends MatchOpMode {
             groundSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
                     .whenPressed(slide::slideGround));
             lowSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                    .whenPressed(slide::slideGround));
+                    .whenPressed(slide::slideLow));
             midSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                    .whenPressed(slide::slideGround));
+                    .whenPressed(slide::slideMid));
             highSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                    .whenPressed(slide::slideGround));
+                    .whenPressed(slide::slideHigh));
 
         //reset everything
             resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))
