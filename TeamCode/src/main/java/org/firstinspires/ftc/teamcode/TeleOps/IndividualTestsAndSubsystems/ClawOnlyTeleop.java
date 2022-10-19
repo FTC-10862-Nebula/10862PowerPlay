@@ -11,6 +11,8 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.TeleOps.GamepadTrigger;
+import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
+import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
@@ -21,8 +23,7 @@ public class ClawOnlyTeleop extends MatchOpMode {
 
     //Motors and Servos
     private MotorEx clawMotor;
-    private ServoEx clawS1, clawS3;
-    private CRServo clawS2;
+    private ServoEx clawS1, clawS2, clawS3;
 
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
@@ -55,14 +56,9 @@ public class ClawOnlyTeleop extends MatchOpMode {
     @Override
     public void configureButtons() {
         one = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
-                .whenPressed(clawServos::intakeClaw)
-                .whenPressed(clawServos::clawClose)
-                .whenReleased(clawServos::stopClaw)
-                );
+                .whenPressed( new DropConeCommand(clawServos)));
         two = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
-                //.whenPressed(clawServos::outtakeClaw)
-                .whenPressed(clawServos::clawOpen)
-                .whenReleased(clawServos::stopClaw));
+                .whenPressed( new PickConeCommand(clawServos)));
 
         three = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
                 .whenPressed(clawServos::addClaw1Pos));

@@ -18,15 +18,17 @@ public class Slide extends SubsystemBase {
     private MotorEx slideMotor1;
     private MotorEx slideMotor2;
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.05, 0.05, 0, 0);
+    public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(0.01, 0.02, 0, 0);
+//    public static PIDFCoefficients pidfDownCoefficients = new PIDFCoefficients(0.01, 0.00, 0, 0);
+
     //I = 0.0008
     public static double ARM_OFFSET = 0;
-    private PIDFController controller;
+    private PIDFController upController, downController;
     private boolean automatic;
 
     public static double CPR = 751.8;
-    public static double UP_SPEED = -0.25;
-    public static double DOWN_SPEED = 0.25;
+    public static double UP_SPEED = -0.2;
+    public static double DOWN_SPEED = 0.2;
 
     private double encoderOffset = 0;
     private double encoderOffset2 = 0;
@@ -66,9 +68,11 @@ public class Slide extends SubsystemBase {
         this.slideMotor1.setDistancePerPulse(360 / CPR);
         this.slideMotor2.setDistancePerPulse(360 / CPR);
 
-        controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
-        controller.setTolerance(10);
+        upController = new PIDFController(pidfUpCoefficients.p, pidfUpCoefficients.i, pidfUpCoefficients.d, pidfUpCoefficients.f, getAngle(), getAngle());
+        upController.setTolerance(10);
 
+//        downController = new PIDFController(pidfDownCoefficients.p, pidfDownCoefficients.i, pidfDownCoefficients.d, pidfDownCoefficients.f, getAngle(), getAngle());
+//        downController.setTolerance(10);
         this.telemetry = tl;
         automatic = false;
         setOffset();
@@ -84,13 +88,18 @@ public class Slide extends SubsystemBase {
     @Override
     public void periodic() {
         if (automatic) {
-            controller.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
+            upController.setF(pidfUpCoefficients.f * Math.cos(Math.toRadians(upController.getSetPoint())));
 
-            double output = controller.calculate(getAngle());
+            double output = upController.calculate(getAngle());
+
+//            downController.setF(pidfDownCoefficients.f * Math.cos(Math.toRadians(downController.getSetPoint())));
+//
+//            output = downController.calculate(getAngle());
 
             slideMotor1.set(output);
             slideMotor2.set(output);
         }
+
         Util.logger(this, telemetry, Level.INFO, "lift encoder pos 1: ", slideMotor1.getCurrentPosition());
         Util.logger(this, telemetry, Level.INFO, "lift encoder pos 2: ", slideMotor2.getCurrentPosition());
     }
@@ -117,7 +126,7 @@ public class Slide extends SubsystemBase {
 
     public void stopSlide() {
         slideMotor1.stopMotor();
-        controller.setSetPoint(getAngle());
+        upController.setSetPoint(getAngle());
         slideMotor2.stopMotor();
         automatic = false;
     }
@@ -143,7 +152,9 @@ public class Slide extends SubsystemBase {
 
     public void slideResting() {
         automatic = true;
-        controller.setSetPoint(RESTING_POS);
+//        downController.setSetPoint(RESTING_POS);
+          upController.setSetPoint(RESTING_POS);
+
         liftPosition = 0;
     }
 
@@ -154,47 +165,47 @@ public class Slide extends SubsystemBase {
 
     public void slideGround() {
         automatic = true;
-        controller.setSetPoint(GROUND_POS);
+        upController.setSetPoint(GROUND_POS);
         liftPosition = 1;
     }
     public void slideLow() {
         automatic = true;
-        controller.setSetPoint(LOW_POS);
+        upController.setSetPoint(LOW_POS);
         liftPosition = 2;
     }
     public void slideMid() {
         automatic = true;
-        controller.setSetPoint(MID_POS);
+        upController.setSetPoint(MID_POS);
         liftPosition = 3;
     }
     public void slideHigh() {
         automatic = true;
-        controller.setSetPoint(HIGH_POS);
+        upController.setSetPoint(HIGH_POS);
         liftPosition = 4;
     }
     public void slideCone5() {
         automatic = true;
-        controller.setSetPoint(CONE_5_POS);
+        upController.setSetPoint(CONE_5_POS);
         liftPosition = 5;
     }
     public void slideCone4() {
         automatic = true;
-        controller.setSetPoint(CONE_4_POS);
+        upController.setSetPoint(CONE_4_POS);
         liftPosition = 6;
     }
     public void slideCone3() {
         automatic = true;
-        controller.setSetPoint(CONE_3_POS);
+        upController.setSetPoint(CONE_3_POS);
         liftPosition = 7;
     }
     public void slideCone2() {
         automatic = true;
-        controller.setSetPoint(CONE_2_POS);
+        upController.setSetPoint(CONE_2_POS);
         liftPosition = 8;
     }
     public void slideCone1() {
         automatic = true;
-        controller.setSetPoint(CONE_1_POS);
+        upController.setSetPoint(CONE_1_POS);
         liftPosition = 9;
     }
 
@@ -205,17 +216,17 @@ public class Slide extends SubsystemBase {
 
     public void setLift(double angle) {
         automatic = true;
-        controller.setSetPoint(angle);
+        upController.setSetPoint(angle);
     }
 
     public boolean atTargetAngle() {
-        return controller.atSetPoint();
+        return upController.atSetPoint();
     }
 
 
     public void setOffset() {
         resetEncoder();
-        controller.setSetPoint(getAngle());
+        upController.setSetPoint(getAngle());
     }
 
 //    public void moveUp() {

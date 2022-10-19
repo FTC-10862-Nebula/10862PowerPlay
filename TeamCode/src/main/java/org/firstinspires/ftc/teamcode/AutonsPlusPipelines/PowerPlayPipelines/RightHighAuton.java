@@ -53,8 +53,7 @@ public class RightHighAuton extends LinearOpMode
 
     //Motors and Servos
     private MotorEx clawMotor;
-    private ServoEx clawS1, clawS3;
-    private CRServo clawS2;
+    private ServoEx clawS1, clawS2, clawS3;
     private MotorEx leftFront, leftRear, rightRear, rightFront;
     private MotorEx liftMotor1, liftMotor2;
 

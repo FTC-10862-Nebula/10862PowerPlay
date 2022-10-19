@@ -16,7 +16,7 @@ import java.util.logging.Level;
 @Config
 public class ClawMotors extends SubsystemBase {
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.05, 0.008, 0, 0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.01, 0.01, 0, 0);
     //I = 0.0008
     private PIDFController controller;
     private boolean automatic;
