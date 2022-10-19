@@ -32,7 +32,10 @@ public class DefaultDriveCommand extends CommandBase {
 //      drive.tankDrive(driverGamepad.getLeftY() * multiplier, driverGamepad.getRightY() * multiplier)
 
 //      Mecanum drive
-        drive.mecDrive(-driverGamepad.getLeftY(), driverGamepad.getLeftX() * multiplier, driverGamepad.getRightX());
+        drive.mecDrive(
+                -driverGamepad.getLeftY(),
+                driverGamepad.getLeftX() * multiplier,
+                driverGamepad.getRightX());
     }
 
     @Override

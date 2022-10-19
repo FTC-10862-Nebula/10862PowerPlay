@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
@@ -13,7 +14,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommandfor
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-//@Disabled
+@Disabled
 @Config
 @TeleOp(name = "DriveOnlyTeleOp")
 public class DriveOnlyTeleOp extends MatchOpMode {

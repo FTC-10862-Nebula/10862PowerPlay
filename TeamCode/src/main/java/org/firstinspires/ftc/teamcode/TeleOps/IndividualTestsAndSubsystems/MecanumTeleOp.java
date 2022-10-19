@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOps.IndividualTestsAndSubsystems;
 
+import static com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior.BRAKE;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -18,8 +20,14 @@ public class MecanumTeleOp extends LinearOpMode {
 
         // Reverse the right side motors
         // Reverse left motors if you are using NeveRests
-        motorFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        motorBackRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        motorBackRight.setZeroPowerBehavior(BRAKE);
+        motorFrontRight.setZeroPowerBehavior(BRAKE);
+        motorBackLeft.setZeroPowerBehavior(BRAKE);
+        motorFrontLeft.setZeroPowerBehavior(BRAKE);
+
 
         waitForStart();
 
@@ -27,7 +35,7 @@ public class MecanumTeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
             double y = -gamepad1.left_stick_y; // Remember, this is reversed!
-            double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
+            double x = gamepad1.left_stick_x; //* 1.1; // Counteract imperfect strafing
             double rx = gamepad1.right_stick_x;
 
             // Denominator is the largest motor power (absolute value) or 1
