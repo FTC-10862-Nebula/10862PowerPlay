@@ -23,6 +23,7 @@ import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.kA;
 import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.kStatic;
 import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.kV;
 
+import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
 
 @Disabled
@@ -48,7 +49,6 @@ public class ManualFeedforwardTuner extends LinearOpMode {
 
     private FtcDashboard dashboard = FtcDashboard.getInstance();
 
-    private SampleTankDrive drive;
 
     enum Mode {
         DRIVER_MODE,
@@ -72,7 +72,7 @@ public class ManualFeedforwardTuner extends LinearOpMode {
 
         telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
 
-        drive = new SampleTankDrive(hardwareMap);
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         mode = Mode.TUNING_MODE;
 

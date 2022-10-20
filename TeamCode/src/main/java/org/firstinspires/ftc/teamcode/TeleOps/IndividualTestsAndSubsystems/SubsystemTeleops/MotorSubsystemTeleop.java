@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TeleOps.IndividualTestsAndSubsystems;
+package org.firstinspires.ftc.teamcode.TeleOps.IndividualTestsAndSubsystems.SubsystemTeleops;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.button.Button;
