@@ -9,6 +9,9 @@ import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.checkerframework.checker.units.qual.C;
+import org.firstinspires.ftc.teamcode.autons.PowerPlayCommands.RightIThinkHighAutonCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
@@ -32,7 +35,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
     private MotorEx liftMotor1, liftMotor2;
 
     // Gamepad
-    private GamepadEx driverGamepad;
+//    private GamepadEx driverGamepad;
 
     // Subsystems
     private ClawMotors clawMotors;
@@ -45,10 +48,11 @@ public class TestAutonWithoutCam extends MatchOpMode {
     @Override
     public void robotInit() {
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
+        clawMotors = new ClawMotors(clawMotor, telemetry, hardwareMap);
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
         drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+//        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
 //        tagDetector = new ATDetector();
@@ -58,6 +62,8 @@ public class TestAutonWithoutCam extends MatchOpMode {
     public void matchStart() {
         schedule(
                 new SequentialCommandGroup(
+                        new RightIThinkHighAutonCommand(drivetrain, slide, clawMotors, clawServos),
+                        new DriveForwardCommand(drivetrain, 30)
 //                        new InstantCommand(clawServos::clawOpen, clawServos)
                 )
         );

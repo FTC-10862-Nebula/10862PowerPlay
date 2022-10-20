@@ -23,28 +23,28 @@ public class LeftHighAutonCommand extends SequentialCommandGroup{
                 new SlideHighBackCommand(slide, clawMotors, clawServos),
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 30),
-                new PickCone5Command(slide, clawServos),
+                new PickCone5Command(slide, clawServos, clawMotors),
 
                 new DriveForwardCommand(drivetrain, -30),
                 new TurnToCommand(drivetrain, 135),
                 new SlideHighBackCommand(slide, clawMotors, clawServos),
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 30),
-                new PickCone4Command(slide, clawServos),
+                new PickCone4Command(slide, clawServos, clawMotors),
 
                 new DriveForwardCommand(drivetrain, -30),
                 new TurnToCommand(drivetrain, 135),
                 new SlideHighBackCommand(slide, clawMotors, clawServos),
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 30),
-                new PickCone3Command(slide, clawServos),
+                new PickCone3Command(slide, clawServos, clawMotors),
 
                 new DriveForwardCommand(drivetrain, -30),
                 new TurnToCommand(drivetrain, 135),
                 new SlideHighBackCommand(slide, clawMotors, clawServos),
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 30),
-                new PickCone2Command(slide, clawServos)
+                new PickCone2Command(slide, clawServos, clawMotors)
         );
     }
 }

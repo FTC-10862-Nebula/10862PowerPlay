@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.autons.PowerPlayCommands;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
@@ -18,35 +19,37 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 public class RightIThinkHighAutonCommand extends SequentialCommandGroup{
     public RightIThinkHighAutonCommand(Drivetrain drivetrain, Slide slide, ClawMotors clawMotors, ClawServos clawServos){
         addCommands(
-                new DriveForwardCommand(drivetrain, 30),
-                new TurnToCommand(drivetrain, 225),
-                new SlideHighBackCommand(slide, clawMotors, clawServos),
-                new TurnToCommand(drivetrain, 270),
-                new DriveForwardCommand(drivetrain, 30),
-                new PickCone5Command(slide, clawServos),
+                //Couter Clockwise Angles
+                new DriveForwardCommand(drivetrain, 100),
+                new TurnToCommand(drivetrain, 50),
+//                new SlideHighFrontCommand(slide, clawMotors, clawServos),
+                new TurnToCommand(drivetrain, 90),
+                new DriveForwardCommand(drivetrain, -40),
+//                new PickCone5Command(slide, clawServos, clawMotors),
 
 
-                new DriveForwardCommand(drivetrain, -30),
-                new TurnToCommand(drivetrain, 225),
-                new SlideHighBackCommand(slide, clawMotors, clawServos),
-                new TurnToCommand(drivetrain, 270),
-                new DriveForwardCommand(drivetrain, 30),
-                new PickCone4Command(slide, clawServos),
+                new DriveForwardCommand(drivetrain, 40),
+                new TurnToCommand(drivetrain, 50),
+//                new SlideHighBackCommand(slide, clawMotors, clawServos),
+                new TurnToCommand(drivetrain, 90),
+                new DriveForwardCommand(drivetrain, -40),
+//                new PickCone4Command(slide, clawServos, clawMotors),
 
 
-                new DriveForwardCommand(drivetrain, -30),
-                new TurnToCommand(drivetrain, 225),
-                new SlideHighBackCommand(slide, clawMotors, clawServos),
-                new TurnToCommand(drivetrain, 270),
-                new DriveForwardCommand(drivetrain, 30),
-                new PickCone3Command(slide, clawServos),
+                new DriveForwardCommand(drivetrain, 40),
+                new TurnToCommand(drivetrain, 50),
+//                new SlideHighBackCommand(slide, clawMotors, clawServos),
+                new TurnToCommand(drivetrain, 90),
+                new DriveForwardCommand(drivetrain, -40),
+//                new PickCone3Command(slide, clawServos, clawMotors),
 
-                new DriveForwardCommand(drivetrain, -30),
-                new TurnToCommand(drivetrain, 225),
-                new SlideHighBackCommand(slide, clawMotors, clawServos),
-                new TurnToCommand(drivetrain, 270),
-                new DriveForwardCommand(drivetrain, 30),
-                new PickCone2Command(slide, clawServos)
+                new DriveForwardCommand(drivetrain, 40),
+                new TurnToCommand(drivetrain, 50),
+//                new SlideHighBackCommand(slide, clawMotors, clawServos),
+                new TurnToCommand(drivetrain, 90),
+                new DriveForwardCommand(drivetrain, -40),
+//                new PickCone2Command(slide, clawServos, clawMotors)
+                new TurnToCommand(drivetrain, 90)
         );
     }
 }

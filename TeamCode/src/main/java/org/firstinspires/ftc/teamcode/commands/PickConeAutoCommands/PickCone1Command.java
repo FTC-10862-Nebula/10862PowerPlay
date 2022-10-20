@@ -4,11 +4,12 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
+import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class PickCone1Command extends SequentialCommandGroup{
-    public PickCone1Command(Slide slide, ClawServos clawServos){
+    public PickCone1Command(Slide slide, ClawServos clawServos, ClawMotors clawMotors){
         addCommands(
                 new InstantCommand(slide::slideCone1),
                 new InstantCommand(clawServos::clawClose),
