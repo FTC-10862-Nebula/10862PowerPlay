@@ -41,6 +41,8 @@ import java.util.List;
 
 import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.*;
 
+import dk.sgjesse.r8api.FileOrigin;
+
 /*
  * Simple mecanum drive hardware implementation for REV hardware.
  */
@@ -135,10 +137,10 @@ public class SampleMecanumDrive extends MecanumDrive {
 
         // TODO: reverse any motors using DcMotor.setDirection()
 //TODO: Test motor directions
-        leftFront.setDirection(REVERSE);
-        leftRear.setDirection(REVERSE);
-        rightFront.setDirection(FORWARD);
-        rightRear.setDirection(FORWARD);
+        leftFront.setDirection(FORWARD);
+        leftRear.setDirection(FORWARD);
+        rightFront.setDirection(REVERSE);
+        rightRear.setDirection(REVERSE);
 
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));

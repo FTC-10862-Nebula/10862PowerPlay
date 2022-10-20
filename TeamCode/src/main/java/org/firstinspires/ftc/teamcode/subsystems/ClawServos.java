@@ -27,7 +27,7 @@ public class ClawServos extends SubsystemBase {
     public static double OUTTAKE_POWER = 1;
 
     public static double FRONT_POS_S3 = 0.05;
-    public static double BACK_POS_S3 = 0.78;
+    public static double BACK_POS_S3 = 0.85;
 
 
     Telemetry telemetry;

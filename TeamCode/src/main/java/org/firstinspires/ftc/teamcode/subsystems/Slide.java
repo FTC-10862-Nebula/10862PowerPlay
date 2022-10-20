@@ -6,7 +6,9 @@ import com.arcrobotics.ftclib.controller.PIDFController;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.qualcomm.robotcore.util.Range;
 
+import org.apache.commons.math3.util.IntegerSequence;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Util;
 
@@ -15,8 +17,8 @@ import java.util.logging.Level;
 @Config
 public class Slide extends SubsystemBase {
     private Telemetry telemetry;
-    private MotorEx slideMotor1;
-    private MotorEx slideMotor2;
+    private MotorEx slideM1;
+    private MotorEx slideM2;
 
     public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(0.01, 0.02, 0, 0);
 //    public static PIDFCoefficients pidfDownCoefficients = new PIDFCoefficients(0.01, 0.00, 0, 0);
@@ -51,22 +53,22 @@ public class Slide extends SubsystemBase {
 
     private int liftPosition = 0;
 
-    public Slide(MotorEx slideMotor1, MotorEx slideMotor2, Telemetry tl, HardwareMap hw) {
-        this.slideMotor1 = slideMotor1;
-        this.slideMotor2 = slideMotor2;
+    public Slide(MotorEx slideM1, MotorEx slideM2, Telemetry tl, HardwareMap hw) {
+        this.slideM1 = slideM1;
+        this.slideM2 = slideM2;
 
-        this.slideMotor1 = new MotorEx(hw, "lift");
-        this.slideMotor2 = new MotorEx(hw, "lift2");
+        this.slideM1 = new MotorEx(hw, "lift");
+        this.slideM2 = new MotorEx(hw, "lift2");
 
         //Reverse lift motor
-        this.slideMotor1.setInverted(true);
+        this.slideM1.setInverted(true);
         //this.slideMotor2.setInverted(true);
 
-        this.slideMotor1.resetEncoder();
-        this.slideMotor2.resetEncoder();
+        this.slideM1.resetEncoder();
+        this.slideM2.resetEncoder();
 
-        this.slideMotor1.setDistancePerPulse(360 / CPR);
-        this.slideMotor2.setDistancePerPulse(360 / CPR);
+        this.slideM1.setDistancePerPulse(360 / CPR);
+        this.slideM2.setDistancePerPulse(360 / CPR);
 
         upController = new PIDFController(pidfUpCoefficients.p, pidfUpCoefficients.i, pidfUpCoefficients.d, pidfUpCoefficients.f, getAngle(), getAngle());
         upController.setTolerance(10);
@@ -95,39 +97,44 @@ public class Slide extends SubsystemBase {
 //            downController.setF(pidfDownCoefficients.f * Math.cos(Math.toRadians(downController.getSetPoint())));
 //
 //            output = downController.calculate(getAngle());
+            //Output Testing
+            if (liftPosition == 0)
+            {
+                slideM1.set(Range.clip(output, 0.1, 0.45));
+            }
 
-            slideMotor1.set(output);
-            slideMotor2.set(output);
+            slideM1.set(output);
+            slideM2.set(output);
         }
 
-        Util.logger(this, telemetry, Level.INFO, "lift encoder pos 1: ", slideMotor1.getCurrentPosition());
-        Util.logger(this, telemetry, Level.INFO, "lift encoder pos 2: ", slideMotor2.getCurrentPosition());
+        Util.logger(this, telemetry, Level.INFO, "lift encoder pos 1: ", slideM1.getCurrentPosition());
+        Util.logger(this, telemetry, Level.INFO, "lift encoder pos 2: ", slideM2.getCurrentPosition());
     }
 
     private double getEncoderDistance() {
-        return slideMotor1.getDistance() - encoderOffset;
+        return slideM1.getDistance() - encoderOffset;
     }
 
     private double getEncoderDistance2(){
-        return slideMotor2.getDistance() -encoderOffset2;
+        return slideM2.getDistance() -encoderOffset2;
     }
 
     public void upSlideManual() {
         automatic = false;
-        slideMotor1.set(UP_SPEED);
-        slideMotor2.set(UP_SPEED);
+        slideM1.set(UP_SPEED);
+        slideM2.set(UP_SPEED);
     }
 
     public void downSlideManual() {
         automatic = false;
-        slideMotor1.set(DOWN_SPEED);
-        slideMotor2.set(DOWN_SPEED);
+        slideM1.set(DOWN_SPEED);
+        slideM2.set(DOWN_SPEED);
     }
 
     public void stopSlide() {
-        slideMotor1.stopMotor();
+        slideM1.stopMotor();
         upController.setSetPoint(getAngle());
-        slideMotor2.stopMotor();
+        slideM2.stopMotor();
         automatic = false;
     }
 
@@ -152,15 +159,15 @@ public class Slide extends SubsystemBase {
 
     public void slideResting() {
         automatic = true;
-//        downController.setSetPoint(RESTING_POS);
-          upController.setSetPoint(RESTING_POS);
+//      downController.setSetPoint(RESTING_POS);
+//      upController.setSetPoint(RESTING_POS);
 
         liftPosition = 0;
     }
 
     public void encoderReset() {
-        slideMotor1.resetEncoder();
-        slideMotor2.resetEncoder();
+        slideM1.resetEncoder();
+        slideM2.resetEncoder();
     }
 
     public void slideGround() {
