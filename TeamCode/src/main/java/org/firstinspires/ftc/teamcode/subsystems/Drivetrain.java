@@ -28,6 +28,7 @@ public class Drivetrain extends SubsystemBase {
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drive.setMotorPowers(0, 0, 0, 0);
         drive.setPoseEstimate(new Pose2d());
+
     }
     @Override
     public void periodic() {
@@ -75,6 +76,7 @@ public class Drivetrain extends SubsystemBase {
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
+
         double frontLPower = (y + x + rx) / denominator;
         double backLPower = (y - x + rx) / denominator;
         double frontRPower = (y - x - rx) / denominator;

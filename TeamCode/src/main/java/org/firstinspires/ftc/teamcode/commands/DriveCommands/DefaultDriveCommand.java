@@ -33,9 +33,9 @@ public class DefaultDriveCommand extends CommandBase {
 
 //      Mecanum drive
         drive.mecDrive(
-                -driverGamepad.getLeftY(),
+                driverGamepad.getLeftY(), //Removed - from driverr gamepad
                 driverGamepad.getLeftX() * multiplier,
-                driverGamepad.getRightX());
+                driverGamepad.getRightX());//Changed from -driverGamepad.getLeftY(), so the drive mturns right
     }
 
     @Override
