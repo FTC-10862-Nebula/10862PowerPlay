@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class SlideHighBackCommand extends SequentialCommandGroup {
-    public SlideHighBackCommand(Slide slide, ClawMotors clawMotors, ClawServos clawServos){
+    public SlideHighBackCommand(Slide slide, ClawMotors clawMotors){
         addCommands(
                 new InstantCommand(slide::slideHigh, slide),
                 new InstantCommand(clawMotors::moveClawHighBack, clawMotors)

@@ -94,7 +94,7 @@ public class RightHighAuton extends LinearOpMode
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
         drivetrain.init();
-        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
+//        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 

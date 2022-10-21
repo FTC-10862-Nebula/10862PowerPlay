@@ -22,31 +22,31 @@ public class RightIThinkHighAutonCommand extends SequentialCommandGroup{
                 //Couter Clockwise Angles
                 new DriveForwardCommand(drivetrain, 100),
                 new TurnToCommand(drivetrain, 50),
-//                new SlideHighFrontCommand(slide, clawMotors, clawServos),
-                new TurnToCommand(drivetrain, 90),
+//                new SlideHighFrontCommand(slide, clawMotors),
+                new TurnToCommand(drivetrain, 95),
                 new DriveForwardCommand(drivetrain, -40),
 //                new PickCone5Command(slide, clawServos, clawMotors),
 
 
                 new DriveForwardCommand(drivetrain, 40),
                 new TurnToCommand(drivetrain, 50),
-//                new SlideHighBackCommand(slide, clawMotors, clawServos),
-                new TurnToCommand(drivetrain, 90),
+//                new SlideHighBackCommand(slide, clawMotors),
+                new TurnToCommand(drivetrain, 95),
                 new DriveForwardCommand(drivetrain, -40),
 //                new PickCone4Command(slide, clawServos, clawMotors),
 
 
                 new DriveForwardCommand(drivetrain, 40),
                 new TurnToCommand(drivetrain, 50),
-//                new SlideHighBackCommand(slide, clawMotors, clawServos),
-                new TurnToCommand(drivetrain, 90),
+//                new SlideHighBackCommand(slide, clawMotors),
+                new TurnToCommand(drivetrain, 95),
                 new DriveForwardCommand(drivetrain, -40),
 //                new PickCone3Command(slide, clawServos, clawMotors),
 
                 new DriveForwardCommand(drivetrain, 40),
                 new TurnToCommand(drivetrain, 50),
-//                new SlideHighBackCommand(slide, clawMotors, clawServos),
-                new TurnToCommand(drivetrain, 90),
+//                new SlideHighBackCommand(slide, clawMotors),
+                new TurnToCommand(drivetrain, 95),
                 new DriveForwardCommand(drivetrain, -40),
 //                new PickCone2Command(slide, clawServos, clawMotors)
                 new TurnToCommand(drivetrain, 90)

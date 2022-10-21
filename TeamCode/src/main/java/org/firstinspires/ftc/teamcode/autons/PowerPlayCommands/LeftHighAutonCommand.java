@@ -20,31 +20,31 @@ public class LeftHighAutonCommand extends SequentialCommandGroup{
         addCommands(
                 new DriveForwardCommand(drivetrain, 30),
                 new TurnToCommand(drivetrain, 135),
-                new SlideHighBackCommand(slide, clawMotors, clawServos),
+//                new SlideHighBackCommand(slide, clawMotors),
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 30),
-                new PickCone5Command(slide, clawServos, clawMotors),
+//                new PickCone5Command(slide, clawServos, clawMotors),
 
                 new DriveForwardCommand(drivetrain, -30),
                 new TurnToCommand(drivetrain, 135),
-                new SlideHighBackCommand(slide, clawMotors, clawServos),
+//                new SlideHighBackCommand(slide, clawMotors),
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 30),
-                new PickCone4Command(slide, clawServos, clawMotors),
+//                new PickCone4Command(slide, clawServos, clawMotors),
 
                 new DriveForwardCommand(drivetrain, -30),
                 new TurnToCommand(drivetrain, 135),
-                new SlideHighBackCommand(slide, clawMotors, clawServos),
+//                new SlideHighBackCommand(slide, clawMotors),
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 30),
-                new PickCone3Command(slide, clawServos, clawMotors),
+//                new PickCone3Command(slide, clawServos, clawMotors),
 
                 new DriveForwardCommand(drivetrain, -30),
                 new TurnToCommand(drivetrain, 135),
-                new SlideHighBackCommand(slide, clawMotors, clawServos),
+//                new SlideHighBackCommand(slide, clawMotors),
                 new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, 30),
-                new PickCone2Command(slide, clawServos, clawMotors)
+                new DriveForwardCommand(drivetrain, 30)
+//                new PickCone2Command(slide, clawServos, clawMotors)
         );
     }
 }

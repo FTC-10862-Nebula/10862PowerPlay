@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TeleOps.IndividualTestsAndSubsystems.Tests;
+package org.firstinspires.ftc.teamcode.TeleOps.IndividualTestsAndSubsystems.SubsystemTeleops;
 
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -11,6 +11,18 @@ public class ClawServoTest extends OpMode {
     Servo servo1;
     CRServo clawS2;
     double pos = 0.6;
+
+    public static double CLOSE_POS_S1 = 0.9;
+    public static double OPEN_POS_S1 = 0.75;
+
+    public static double CLOSE_POS_S2 = 0.83;
+    public static double OPEN_POS_S2 = 0.7;
+
+    public static double INTAKE_POWER = -1;
+    public static double OUTTAKE_POWER = 1;
+
+    public static double FRONT_POS_S3 = 0.16;
+    public static double BACK_POS_S3 = 0.83;
 
     /**
      * User defined init method
@@ -30,23 +42,27 @@ public class ClawServoTest extends OpMode {
      */
     @Override
     public void loop() {
-        if(gamepad1.a){
-            pos -= 0.001;
-        }
-        else if(gamepad1.b){
-            pos += 0.001;
-        }
-
-
-        if(gamepad1.right_bumper){
-            clawS2.set(1);
-        }
-        else if(gamepad1.left_bumper){
-            clawS2.set(-1);
-        }
-        else{
-            clawS2.stop();
-        }
+//        if(gamepad1.a){
+//            pos -= 0.001;
+//        }
+//        else if(gamepad1.b){
+//            pos += 0.001;
+//        }
+//
+//
+//        if(gamepad1.right_bumper){
+//            clawS2.set(1);
+//            telemetry.addData("Se21: ", servo1.getPosition());
+//
+//        }
+//        else if(gamepad1.left_bumper){
+//            clawS2.set(-1);
+//            telemetry.addData("Sev-1: ", servo1.getPosition());
+//
+//        }
+//        else{
+//            clawS2.stop();
+//        }
 
 
         pos = Math.min(Math.max(pos, 0), 1);
