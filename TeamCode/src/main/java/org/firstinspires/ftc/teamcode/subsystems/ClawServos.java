@@ -32,7 +32,6 @@ public class ClawServos extends SubsystemBase {
     Telemetry telemetry;
     private ServoEx clawS1;
     private ServoEx clawS2;
-
     //    private CRServo clawS2;     //Super SPeed that is CR
     private ServoEx clawS3;     //Servo that turns claw
 

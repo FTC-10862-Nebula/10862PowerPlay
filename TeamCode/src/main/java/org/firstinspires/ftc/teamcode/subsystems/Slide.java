@@ -23,12 +23,12 @@ public class Slide extends SubsystemBase {
     public boolean liftTime;
     int liftError = 0, liftTargetPos = 0, setPos;
 
-    public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(.005, 0.05, 0,0);//.0075, 0., .003, 0)
+    public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(.005, 0.02, 0,0);//.0075, 0., .003, 0)
 //    public static PIDFCoefficients pidfDownCoefficients = new PIDFCoefficients(0.01, 0.00, 0, 0);
 
     //I = 0.0008
     public static double ARM_OFFSET = 0;
-    private PIDFController upController, downController;
+    private PIDFController upController;//, downController;
     private boolean automatic;
 
     public static double CPR = 751.8;
@@ -39,17 +39,17 @@ public class Slide extends SubsystemBase {
     private double encoderOffset2 = 0;
 
     public static int RESTING_POS = -2;
-    public static int GROUND_POS = -400;
-    public static int LOW_POS = -800;
-    public static int MID_POS = -1500;
-    public static int HIGH_POS = -1800;
+    public static int GROUND_POS = -30;
+    public static int LOW_POS = -450;
+    public static int MID_POS = -950;
+    public static int HIGH_POS = -1300;
 
     //Auto Slide Positions
-    public static int CONE_5_POS = -800;
-    public static int CONE_4_POS = -700;
-    public static int CONE_3_POS = -600;
-    public static int CONE_2_POS = -500;
-    public static int CONE_1_POS = -400;
+    public static int CONE_5_POS = -500;
+    public static int CONE_4_POS = -400;
+    public static int CONE_3_POS = -300;
+    public static int CONE_2_POS = -250;
+    public static int CONE_1_POS = -100;
 
     public static int CAP_POSITION = 0;
 
@@ -179,10 +179,9 @@ public class Slide extends SubsystemBase {
 
     public void slideResting() {
         automatic = true;
-//      downController.setSetPoint(RESTING_POS);
-//      upController.setSetPoint(RESTING_POS);
-
+        upController.setSetPoint(RESTING_POS);
         liftPosition = 0;
+//      downController.setSetPoint(RESTING_POS);
     }
 
     public void encoderReset() {

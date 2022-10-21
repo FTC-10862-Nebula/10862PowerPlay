@@ -2,13 +2,11 @@ package org.firstinspires.ftc.teamcode.TeleOps;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -94,14 +92,6 @@ public class MainTeleOp extends MatchOpMode {
 
     @Override
     public void configureButtons() {
-//        one = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-//                .whenPressed(new PickConeCommand(clawServos))
-//                .whenPressed(new InstantCommand(clawMotors::moveClawLowFront));
-//        two = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-//                .whenPressed(new DropConeCommand(clawServos))
-//                .whenPressed(new InstantCommand(clawMotors::moveClawLowFront));
-
-
         //Slowmode - D1
             slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                     .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
@@ -117,16 +107,26 @@ public class MainTeleOp extends MatchOpMode {
             s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B))
                     .whenPressed(clawServos::setBClawPos);
 
+        //reset everything
+            resetBackButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
+                    .whenPressed(new SlideResetBackCommandT(slide, clawMotors, clawServos));
+            resetFrontButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
+                    .whenPressed(new SlideResetFrontCommandT(slide, clawMotors, clawServos));
+
         //Claw Servo Manual Rotation
             plusClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
                     .whenPressed(clawServos::addClaw3Pos);
             subClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN))
                     .whenPressed(clawServos::subClaw3Pos);
+
         //Claw Servo Manual In/Out
             plusClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT))
                     .whenPressed(clawServos::addClaw1Pos);
             subClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT))
                     .whenPressed(clawServos::subClaw1Pos);
+
+
+
 
 
         //Slide Manual - D2
@@ -163,12 +163,6 @@ public class MainTeleOp extends MatchOpMode {
                     .whenPressed(new SlideMidFrontCommand(slide, clawMotors)));
             highFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
                     .whenPressed(new SlideHighFrontCommand(slide, clawMotors)));
-
-        //reset everything
-            resetBackButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT))
-                    .whenPressed(new SlideResetBackCommandT(slide, clawMotors, clawServos));
-            resetFrontButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT))
-                    .whenPressed(new SlideResetFrontCommandT(slide, clawMotors, clawServos));
 
         //PIDF Controllers Resets
             clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
