@@ -20,7 +20,7 @@ public class RightIThinkHighAutonCommand extends SequentialCommandGroup{
     public RightIThinkHighAutonCommand(Drivetrain drivetrain, Slide slide, ClawMotors clawMotors, ClawServos clawServos){
         addCommands(
                 //Couter Clockwise Angles
-                new DriveForwardCommand(drivetrain, 100),
+                new DriveForwardCommand(drivetrain, 130),
                 new TurnToCommand(drivetrain, 50),
 //                new SlideHighFrontCommand(slide, clawMotors),
                 new TurnToCommand(drivetrain, 95),

@@ -10,6 +10,7 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.checkerframework.checker.units.qual.C;
+import org.firstinspires.ftc.teamcode.autons.PowerPlayCommands.LeftHighAutonCommand;
 import org.firstinspires.ftc.teamcode.autons.PowerPlayCommands.RightIThinkHighAutonCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
@@ -62,7 +63,8 @@ public class TestAutonWithoutCam extends MatchOpMode {
     public void matchStart() {
         schedule(
                 new SequentialCommandGroup(
-                        new RightIThinkHighAutonCommand(drivetrain, slide, clawMotors, clawServos),
+//                        new RightIThinkHighAutonCommand(drivetrain, slide, clawMotors, clawServos),
+                        new LeftHighAutonCommand(drivetrain,slide,clawMotors, clawServos),
                         new DriveForwardCommand(drivetrain, 30)
 //                        new InstantCommand(clawServos::clawOpen, clawServos)
                 )
