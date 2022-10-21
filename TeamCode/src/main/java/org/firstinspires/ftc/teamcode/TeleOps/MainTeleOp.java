@@ -97,21 +97,23 @@ public class MainTeleOp extends MatchOpMode {
                     .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
         //Claw Servo Intake/Outtake - D1
-            intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+            intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
                     .whenPressed(new PickConeCommand(clawServos));
-            outtakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
+            outtakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
                     .whenPressed(new DropConeCommand(clawServos));
         //Claw Servo 3 Buttons - D1
-            s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.X))
+            s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
                     .whenPressed(clawServos::setFClawPos);
-            s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B))
+            s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
                     .whenPressed(clawServos::setBClawPos);
 
         //reset everything
-            resetBackButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
-                    .whenPressed(new SlideResetBackCommandT(slide, clawMotors, clawServos));
-            resetFrontButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
-                    .whenPressed(new SlideResetFrontCommandT(slide, clawMotors, clawServos));
+            resetBackButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.X))
+                    .whenPressed(slide::slideResting);
+//                    .whenPressed(new SlideResetBackCommandT(slide, clawMotors, clawServos));
+            resetFrontButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B))
+                    .whenPressed(slide::slideResting);
+//                    .whenPressed(new SlideResetFrontCommandT(slide, clawMotors, clawServos));
 
         //Claw Servo Manual Rotation
             plusClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
@@ -147,22 +149,22 @@ public class MainTeleOp extends MatchOpMode {
 
         //Slide positions
             groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
-                    .whenPressed(new SlideGroundBackCommand(slide, clawMotors)));
+                    .whenPressed(new SlideGroundBackCommand(slide, clawMotors, clawServos)));
             lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
-                    .whenPressed(new SlideLowBackCommand(slide, clawMotors)));
+                    .whenPressed(new SlideLowBackCommand(slide, clawMotors, clawServos)));
             midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
-                    .whenPressed(new SlideMidBackCommand(slide, clawMotors)));
+                    .whenPressed(new SlideMidBackCommand(slide, clawMotors, clawServos)));
             highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                    .whenPressed(new SlideHighBackCommand(slide, clawMotors)));
+                    .whenPressed(new SlideHighBackCommand(slide, clawMotors, clawServos)));
 
             groundFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                    .whenPressed(new SlideGroundFrontCommand(slide, clawMotors)));
+                    .whenPressed(new SlideGroundFrontCommand(slide, clawMotors, clawServos)));
             lowFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                    .whenPressed(new SlideLowFrontCommand(slide, clawMotors)));
+                    .whenPressed(new SlideLowFrontCommand(slide, clawMotors, clawServos)));
             midFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                    .whenPressed(new SlideMidFrontCommand(slide, clawMotors)));
+                    .whenPressed(new SlideMidFrontCommand(slide, clawMotors, clawServos)));
             highFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                    .whenPressed(new SlideHighFrontCommand(slide, clawMotors)));
+                    .whenPressed(new SlideHighFrontCommand(slide, clawMotors, clawServos)));
 
         //PIDF Controllers Resets
             clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))

@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.TeleOps.GamepadTrigger;
@@ -16,31 +17,31 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickCon
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-
+@Disabled
 @Config
 @TeleOp(name = "ClawOnlyTeleop")
 public class ClawOnlyTeleop extends MatchOpMode {
-
-    //Motors and Servos
-    private MotorEx clawMotor;
-    private ServoEx clawS1, clawS2, clawS3;
-
-    // Gamepad
-    private GamepadEx driverGamepad, operatorGamepad;
-
-
-    // Subsystems
-    private ClawMotors clawMotors;
-    private ClawServos clawServos;
+//
+//    //Motors and Servos
+//    private MotorEx clawMotor;
+//    private ServoEx clawS1, clawS2, clawS3;
+//
+//    // Gamepad
+//    private GamepadEx driverGamepad, operatorGamepad;
+//
+//
+//    // Subsystems
+//    private ClawMotors clawMotors;
+//    private ClawServos clawServos;
 
 
     @Override
     public void robotInit() {
-        driverGamepad = new GamepadEx(gamepad1);
-        operatorGamepad = new GamepadEx(gamepad2);
-
-        clawMotors = new ClawMotors(clawMotor, telemetry, hardwareMap);
-        clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
+//        driverGamepad = new GamepadEx(gamepad1);
+//        operatorGamepad = new GamepadEx(gamepad2);
+//
+//        clawMotors = new ClawMotors(clawMotor, telemetry, hardwareMap);
+//        clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
     }
 
     //Buttons
@@ -55,13 +56,16 @@ public class ClawOnlyTeleop extends MatchOpMode {
 
     @Override
     public void configureButtons() {
-        one = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
-                .whenPressed( new DropConeCommand(clawServos)));
-        two = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
-                .whenPressed( new PickConeCommand(clawServos)));
+//        one = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
+//                .whenPressed( new DropConeCommand(clawServos)));
+//        two = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
+//                .whenPressed( new PickConeCommand(clawServos)));
+//
+//        three = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
+//                .whenPressed(clawServos::addClaw1Pos));
 
-        three = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                .whenPressed(clawServos::addClaw1Pos));
+
+
 //        one = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
 //                    .whenPressed(clawMotors::moveClawGroundFront));
 //        two = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
