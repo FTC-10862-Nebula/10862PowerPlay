@@ -16,7 +16,7 @@ import java.util.logging.Level;
 @Config
 public class ClawMotors extends SubsystemBase {
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.00002, 0, 0, 0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.001, 1, 0, 0);
     //I = 0.0008
     private PIDFController controller;
     private boolean automatic;
@@ -35,11 +35,11 @@ public class ClawMotors extends SubsystemBase {
 
     public static int INIT_POS = 0;
 
-    public static int INTAKE_POS_BACK = -300;
-    public static int GROUND_POS_BACK = -300;
-    public static int LOW_POS_BACK = -280;
-    public static int MID_POS_BACK = -350;
-    public static int HIGH_POS_BACK = -350;
+    public static int INTAKE_POS_BACK = -400;
+    public static int GROUND_POS_BACK = -500;
+    public static int LOW_POS_BACK = -600;
+    public static int MID_POS_BACK = -680;
+    public static int HIGH_POS_BACK = -550;
 
 
     private int clawPos = 0;
@@ -139,27 +139,27 @@ public class ClawMotors extends SubsystemBase {
 
     public void moveClawIntakeBack() {
         automatic = true;
-        controller.setSetPoint(INTAKE_POS_FRONT);
+        controller.setSetPoint(INTAKE_POS_BACK);
         clawPos = 5;
     }
     public void moveClawGroundBack() {
         automatic = true;
-        controller.setSetPoint(GROUND_POS_FRONT);
+        controller.setSetPoint(GROUND_POS_BACK);
         clawPos = 6;
     }
     public void moveClawLowBack() {
         automatic = true;
-        controller.setSetPoint(LOW_POS_FRONT);
+        controller.setSetPoint(LOW_POS_BACK);
         clawPos = 7;
     }
     public void moveClawMidBack() {
         automatic = true;
-        controller.setSetPoint(MID_POS_FRONT);
+        controller.setSetPoint(MID_POS_BACK);
         clawPos = 8;
     }
     public void moveClawHighBack() {
         automatic = true;
-        controller.setSetPoint(HIGH_POS_FRONT);
+        controller.setSetPoint(HIGH_POS_BACK);
         clawPos = 9;
     }
     public void encoderReset() {

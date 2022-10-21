@@ -9,11 +9,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class ClawServoTest extends OpMode {
     //hardware initialization stuff
     Servo servo1;
-    CRServo clawS2;
-    double pos = 0.6;
+    Servo servo2;
+    double pos = 0.5, pos2 = 0.5;
 
-    public static double CLOSE_POS_S1 = 0.9;
-    public static double OPEN_POS_S1 = 0.75;
+    public static double CLOSE_POS_S1 = 0.6;
+    public static double OPEN_POS_S1 = 0.35;
 
     public static double CLOSE_POS_S2 = 0.83;
     public static double OPEN_POS_S2 = 0.7;
@@ -32,7 +32,7 @@ public class ClawServoTest extends OpMode {
     @Override
     public void init() {
         servo1 = hardwareMap.get(Servo.class, "clawS1");
-        clawS2 = hardwareMap.get(CRServo.class, "clawS2");
+        servo2 = hardwareMap.get(Servo.class, "clawS2");
     }
 
     /**
@@ -42,14 +42,21 @@ public class ClawServoTest extends OpMode {
      */
     @Override
     public void loop() {
-//        if(gamepad1.a){
-//            pos -= 0.001;
-//        }
-//        else if(gamepad1.b){
-//            pos += 0.001;
-//        }
-//
-//
+        if(gamepad1.a){
+            pos -= 0.001;
+        }
+        else if(gamepad1.b){
+            pos += 0.001;
+        }
+
+        if(gamepad1.dpad_right){
+            pos2 -= 0.001;
+        }
+        else if(gamepad1.dpad_down){
+            pos2 += 0.001;
+        }
+
+
 //        if(gamepad1.right_bumper){
 //            clawS2.set(1);
 //            telemetry.addData("Se21: ", servo1.getPosition());
@@ -67,8 +74,13 @@ public class ClawServoTest extends OpMode {
 
         pos = Math.min(Math.max(pos, 0), 1);
         servo1.setPosition(Math.min(Math.max(pos, 0), 1));
-        telemetry.addData("Servo pos: ",servo1.getPosition());
-        telemetry.addData("Desired pos: ", pos);
+        telemetry.addData("Servo pos1: ",servo1.getPosition());
+        telemetry.addData("Desired pos1: ", pos);
+
+        pos = Math.min(Math.max(pos2, 0), 1);
+        servo1.setPosition(Math.min(Math.max(pos2, 0), 1));
+        telemetry.addData("Servo pos2: ",servo2.getPosition());
+        telemetry.addData("Desired pos2: ", pos2);
         telemetry.update();
 
     }
