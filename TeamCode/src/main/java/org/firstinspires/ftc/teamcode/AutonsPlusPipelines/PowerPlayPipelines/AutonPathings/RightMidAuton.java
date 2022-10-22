@@ -19,18 +19,19 @@
  * SOFTWARE.
  */
 
-package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines;
+package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.autons.PowerPlayCommands.LeftHighAutonCommand;
-import org.firstinspires.ftc.teamcode.autons.PowerPlayCommands.RightIThinkHighAutonCommand;
+import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AprilTagDetectionPipeline;
+import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands.LeftMidAutonCommand;
+import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands.RightMidAutonCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
@@ -45,7 +46,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import java.util.ArrayList;
 
 @Autonomous
-public class RightHighAuton extends LinearOpMode
+public class RightMidAuton extends LinearOpMode
 {
     private static double startPoseX = 0;
     private static double startPoseY = 0;
@@ -94,21 +95,22 @@ public class RightHighAuton extends LinearOpMode
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
         drivetrain.init();
-//        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
+        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
+
         camera.setPipeline(aprilTagDetectionPipeline);
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
             @Override
             public void onOpened()
             {
-                camera.startStreaming(800,600, OpenCvCameraRotation.UPRIGHT);
-//                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
+//                camera.setViewportRenderer(OpenCvCamera.ViewportRenderer.GPU_ACCELERATED);
+                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
             }
 
             @Override
@@ -203,11 +205,14 @@ public class RightHighAuton extends LinearOpMode
 
         /* Actually do something useful */
         if(tagOfInterest == null || tagOfInterest.id == LEFT){
-            new RightIThinkHighAutonCommand(drivetrain, slide, clawMotors, clawServos);
+            new RightMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
+            new DriveForwardCommand(drivetrain, 30);
         } else if(tagOfInterest.id == MIDDLE){
-            new RightIThinkHighAutonCommand(drivetrain, slide, clawMotors, clawServos);
+            new RightMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
+            new DriveForwardCommand(drivetrain, 18);
         } else{
-            new RightIThinkHighAutonCommand(drivetrain, slide, clawMotors, clawServos);
+            new RightMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
+            new DriveForwardCommand(drivetrain, 6);
         }
 
 

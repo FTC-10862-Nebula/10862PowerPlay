@@ -13,7 +13,7 @@ public class SlideHighFrontCommand extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(slide::slideHigh, slide),
                 new InstantCommand(clawMotors::moveClawHighFront, clawMotors),
-                new WaitCommand(20),
+                new WaitCommand(100),
                 new InstantCommand(clawServos::setFClawPos)
                 );
     }   

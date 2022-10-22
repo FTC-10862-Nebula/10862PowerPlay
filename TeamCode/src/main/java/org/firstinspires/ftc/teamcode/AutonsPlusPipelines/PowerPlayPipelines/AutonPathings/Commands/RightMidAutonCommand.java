@@ -1,25 +1,19 @@
-package org.firstinspires.ftc.teamcode.autons.PowerPlayCommands;
+package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnToCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PickCone2Command;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PickCone3Command;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PickCone4Command;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PickCone5Command;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideHighBackCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
-public class RightIThinkHighAutonCommand extends SequentialCommandGroup{
-    public RightIThinkHighAutonCommand(Drivetrain drivetrain, Slide slide, ClawMotors clawMotors, ClawServos clawServos){
+public class RightMidAutonCommand extends SequentialCommandGroup{
+    public RightMidAutonCommand(Drivetrain drivetrain, Slide slide, ClawMotors clawMotors, ClawServos clawServos){
         addCommands(
-                //Couter Clockwise Angles
+                //Counter Clockwise Angles
                 new DriveForwardCommand(drivetrain, 130),
                 new TurnToCommand(drivetrain, 50),
 //                new SlideHighFrontCommand(slide, clawMotors),

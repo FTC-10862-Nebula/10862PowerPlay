@@ -13,7 +13,7 @@ public class SlideHighBackCommand extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(slide::slideHigh, slide),
                 new InstantCommand(clawMotors::moveClawHighBack, clawMotors),
-                new WaitCommand(20),
+                new WaitCommand(100),
                 new InstantCommand(clawServos::setBClawPos)
         );
     }   
