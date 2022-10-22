@@ -25,7 +25,7 @@ public class ClawServos extends SubsystemBase {
 //    public static double INTAKE_POWER = -1;
 //    public static double OUTTAKE_POWER = 1;
 
-    public static double FRONT_POS_S3 = 0.83;
+    public static double FRONT_POS_S3 = 0.82;
     public static double BACK_POS_S3 = 0.16;
 
 

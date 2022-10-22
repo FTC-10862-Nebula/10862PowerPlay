@@ -22,25 +22,23 @@ public class ClawMotors extends SubsystemBase {
     private boolean automatic;
 
     public static double CPR = 384.5;
-    public static double UP_SPEED = -0.2;
-    public static double DOWN_SPEED = 0.2;
+    public static double UP_SPEED = -0.5;
+    public static double DOWN_SPEED = 0.5;
 
     private double encoderOffset = 0;
-
-    public static int INTAKE_POS_FRONT = -273;
-    public static int GROUND_POS_FRONT = -27;
-    public static int LOW_POS_FRONT = -270;
-    public static int MID_POS_FRONT = -240;
-    public static int HIGH_POS_FRONT = -200;
-
     public static int INIT_POS = 0;
 
-    public static int INTAKE_POS_BACK = -INTAKE_POS_FRONT;
-    public static int GROUND_POS_BACK = -GROUND_POS_FRONT;
-    public static int LOW_POS_BACK = -LOW_POS_FRONT;
-    public static int MID_POS_BACK = -MID_POS_FRONT;
-    public static int HIGH_POS_BACK = -HIGH_POS_FRONT;
+    public static int INTAKE_POS_BACK = -273;
+    public static int GROUND_POS_BACK = -267;
+    public static int LOW_POS_BACK = -270;
+    public static int MID_POS_BACK = -240;
+    public static int HIGH_POS_BACK = -200;
 
+    public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK;
+    public static int GROUND_POS_FRONT = -GROUND_POS_BACK;
+    public static int LOW_POS_FRONT = -LOW_POS_BACK;
+    public static int MID_POS_FRONT = -MID_POS_BACK;
+    public static int HIGH_POS_FRONT = -HIGH_POS_BACK;
 
     private int clawPos = 0;
 
@@ -64,8 +62,6 @@ public class ClawMotors extends SubsystemBase {
         this.telemetry = tl;
         automatic = false;
         setOffset();
-//
-//        this.telemetry = tl;
     }
 
     @Override

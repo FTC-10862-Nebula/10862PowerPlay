@@ -14,16 +14,9 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideGroundBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideHighBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideLowBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideMidBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideResetBackCommandT;
 import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideGroundFrontCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideHighFrontCommand;
 import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideLowFrontCommand;
 import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideMidFrontCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideResetFrontCommandT;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 
@@ -84,7 +77,7 @@ public class MainTeleOp extends MatchOpMode {
     public Button s3FButton, s3BButton;
 
 
-    public Button slideUpButton, slideDownButton, clawRaiseButton, clawLowerButton;
+    public Button slideUpButton, slideDownButton, clawRaiseTrigger, clawLowerTrigger;
     public Button groundBSlideButton, lowBSlideButton, midBSlideButton, highBSlideButton;
     public Button groundFSlideButton, lowFSlideButton, midFSlideButton, highFSlideButton;
     public Button clawMotorResetButton, slideEncoderResetButton;
@@ -131,10 +124,10 @@ public class MainTeleOp extends MatchOpMode {
 
 
         //Intake Button - D2
-        intakeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
-                .whenPressed(new PickConeCommand(clawServos));
-        outtakeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                .whenPressed(new DropConeCommand(clawServos));
+            intakeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
+                    .whenPressed(new PickConeCommand(clawServos));
+            outtakeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
+                    .whenPressed(new DropConeCommand(clawServos));
 
 //        //Slide Manual - D2
 //            slideUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
@@ -145,20 +138,20 @@ public class MainTeleOp extends MatchOpMode {
 //                    .whenReleased(slide::stopSlide));
 
         //Claw Manual - D2
-            clawRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
+            clawRaiseTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
                     .whenPressed(clawMotors::raiseClawManual)
                     .whenReleased(clawMotors::stopClaw));
-            clawLowerButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
+            clawLowerTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
                     .whenPressed(clawMotors::lowerClawManual)
                     .whenReleased(clawMotors::stopClaw));
 
         //Slide positions
-            groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
-                    .whenPressed(new SlideGroundBackCommand(slide, clawMotors, clawServos)));
-            lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
-                    .whenPressed(new SlideLowBackCommand(slide, clawMotors, clawServos)));
-            midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
-                    .whenPressed(new SlideMidBackCommand(slide, clawMotors, clawServos)));
+//            groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
+//                    .whenPressed(new SlideGroundBackCommand(slide, clawMotors, clawServos)));
+//            lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
+//                    .whenPressed(new SlideLowBackCommand(slide, clawMotors, clawServos)));
+//            midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
+//                    .whenPressed(new SlideMidBackCommand(slide, clawMotors, clawServos)));
 //            highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
 //                    .whenPressed(new SlideHighBackCommand(slide, clawMotors, clawServos)));
 
