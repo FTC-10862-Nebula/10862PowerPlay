@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands.LeftMidAutonCommand;
 import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands.RightHighAutonCommand;
 import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands.RightMidAutonCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
@@ -37,16 +38,13 @@ public class VisionTest2  extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-
-
         VisionSubsystem vision = new VisionSubsystem(this);
+        ClawServos clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
+        Drivetrain drivetrain =new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
+        Slide slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
 
 
         //Subsytem Init
-        clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
-        drivetrain.init();
-        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
         vision.init();
@@ -59,14 +57,14 @@ public class VisionTest2  extends LinearOpMode {
         }
         switch (vision.getTagOfInterest().id) {
             case 1: {
-                new RightMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
+                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
             }
             case 2: {
-                new RightMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
+                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
 
             }
             case 3: {
-                new RightMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
+                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
 
             }
         }

@@ -95,7 +95,7 @@ public class LeftMidAuton extends LinearOpMode
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
         drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+//        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
