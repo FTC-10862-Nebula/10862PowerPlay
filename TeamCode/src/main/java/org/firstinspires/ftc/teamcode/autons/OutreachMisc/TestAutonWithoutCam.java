@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-import org.firstinspires.ftc.teamcode.subsystems.Vision;
+import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.NewVisionStuff.Vision;
 
 @Autonomous(name = "TestAutonWithoutCam", group = "RED/BLUE")
 public class TestAutonWithoutCam extends MatchOpMode {
