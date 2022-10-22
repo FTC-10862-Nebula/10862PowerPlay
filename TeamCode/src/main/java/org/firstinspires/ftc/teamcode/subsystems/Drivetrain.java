@@ -79,7 +79,7 @@ public class Drivetrain extends SubsystemBase {
         double backLPower = (y - x + rx) / denominator;
         double frontRPower = (y - x - rx) / denominator;
         double backRPower = (y + x - rx) / denominator;
-
+//Make it -y and change gamepad to -leftstickx
         drive.setMotorPowers(frontLPower, backLPower, frontRPower, backRPower);
     }
 
