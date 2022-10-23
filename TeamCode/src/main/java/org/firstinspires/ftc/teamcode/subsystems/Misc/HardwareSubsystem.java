@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.subsystems.Stuff;
+package org.firstinspires.ftc.teamcode.subsystems.Misc;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;

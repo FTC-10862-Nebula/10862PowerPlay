@@ -35,7 +35,6 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.NewVisionStuff.Vision;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -61,7 +60,6 @@ public class RightHighAuton extends LinearOpMode
     private ClawServos clawServos;
     private Drivetrain drivetrain;
     private Slide slide;
-    private Vision vision;
 
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
@@ -93,8 +91,7 @@ public class RightHighAuton extends LinearOpMode
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
         drivetrain.init();
-//        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -216,12 +213,12 @@ public class RightHighAuton extends LinearOpMode
 
     void tagToTelemetry(AprilTagDetection detection)
     {
-        telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
-        telemetry.addLine(String.format("Translation X: %.2f feet", detection.pose.x*FEET_PER_METER));
-        telemetry.addLine(String.format("Translation Y: %.2f feet", detection.pose.y*FEET_PER_METER));
-        telemetry.addLine(String.format("Translation Z: %.2f feet", detection.pose.z*FEET_PER_METER));
-        telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(detection.pose.yaw)));
-        telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
-        telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));
+        telemetry.addData("\nDetected tag ID=%d", detection.id);
+        telemetry.addData("Translation X: %.2f feet", detection.pose.x*FEET_PER_METER);
+        telemetry.addData("Translation Y: %.2f feet", detection.pose.y*FEET_PER_METER);
+        telemetry.addData("Translation Z: %.2f feet", detection.pose.z*FEET_PER_METER);
+        telemetry.addData("Rotation Yaw: %.2f degrees", Math.toDegrees(detection.pose.yaw));
+        telemetry.addData("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch));
+        telemetry.addData("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll));
     }
 }

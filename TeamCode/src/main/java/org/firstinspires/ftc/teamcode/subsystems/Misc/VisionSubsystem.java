@@ -1,11 +1,11 @@
-package org.firstinspires.ftc.teamcode.subsystems.Stuff;
+package org.firstinspires.ftc.teamcode.subsystems.Misc;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 //import org.firstinspires.ftc.teamcode.subsystems.pipelines.AprilTagDetectionPipeline;
 import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AprilTagDetectionPipeline;
-import org.firstinspires.ftc.teamcode.subsystems.Stuff.HardwareSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.HardwareSubsystem;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -67,8 +67,7 @@ public class VisionSubsystem extends HardwareSubsystem {
 
     @Override
     public void init() {
-        // TODO: we might want to do this
-        //  telemetry.setMsTransmissionInterval(50);
+        telemetry.setMsTransmissionInterval(50);
 
         // Obtain camera id to allow for camera preview
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -84,7 +83,6 @@ public class VisionSubsystem extends HardwareSubsystem {
             @Override
             public void onOpened() {
                 camera.setViewportRenderer(OpenCvCamera.ViewportRenderer.GPU_ACCELERATED);
-
                 camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
             }
 
@@ -107,7 +105,7 @@ public class VisionSubsystem extends HardwareSubsystem {
         if (currentDetections.size() == 0) return;
 
         for(AprilTagDetection tag : currentDetections) {
-            if(tag.id == LEFT || tag.id == MIDDLE || tag.id ==RIGHT) {
+            if(tag.id == LEFT || tag.id == MIDDLE || tag.id == RIGHT) {
                 tagFound = true;
                 tagOfInterest = tag;
             }

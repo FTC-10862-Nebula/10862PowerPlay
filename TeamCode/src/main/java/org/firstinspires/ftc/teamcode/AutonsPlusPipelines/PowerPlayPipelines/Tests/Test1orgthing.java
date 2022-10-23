@@ -19,12 +19,13 @@
  * SOFTWARE.
  */
 
-package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines;
+package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.Tests;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AprilTagDetectionPipeline;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -33,7 +34,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import java.util.ArrayList;
 
 @Autonomous
-public class EditedAprilTagAutoInitDetectionEx extends LinearOpMode
+public class Test1orgthing extends LinearOpMode
 {
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
@@ -52,7 +53,7 @@ public class EditedAprilTagAutoInitDetectionEx extends LinearOpMode
     // UNITS ARE METERS
     double tagsize = 0.166;
 
-     // Tag ID 1,2,3 from the 36h11 family
+    // Tag ID 1,2,3 from the 36h11 family
     int LEFT = 1;
     int MIDDLE = 2;
     int RIGHT = 3;

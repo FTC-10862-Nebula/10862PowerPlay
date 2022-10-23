@@ -1,26 +1,30 @@
-package org.firstinspires.ftc.teamcode.autons.OutreachMisc;
+package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.Tests;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.arcrobotics.ftclib.command.SelectCommand;
+import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
-@Autonomous(name = "TestAutonWithoutCam", group = "RED/BLUE")
-public class TestAutonWithoutCam extends MatchOpMode {
+import java.util.HashMap;
+
+@Autonomous(name = "Test2Mine", group = "RED")
+public class Test2 extends MatchOpMode {
 //    private ATDetector tagDetector;
 
-    private static double startPoseX = 0;
-    private static double startPoseY = 0;
-    private static double startPoseHeading = 0;
+    private static final double startPoseX = 0;
+    private static final double startPoseY = 0;
+    private static final double startPoseHeading = 0;
 
     //Motors and Servos
     private MotorEx clawMotor;
@@ -36,6 +40,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
     private ClawServos clawServos;
     private Drivetrain drivetrain;
     private Slide slide;
+    private Vision vision;
 
 
     @Override
@@ -47,17 +52,24 @@ public class TestAutonWithoutCam extends MatchOpMode {
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
-//        tagDetector = new ATDetector();
-//        tagDetector.init();
+        vision.init();
     }
 
     public void matchStart() {
         schedule(
-                new SequentialCommandGroup(
-                        new DriveForwardCommand(drivetrain, 30)
-//                        new LeftMidAutonCommand(drivetrain,slide,clawMotors, clawServos)
-//                        new DriveForwardCommand(drivetrain, 30)
-                )
+                new SelectCommand(new HashMap<Object, Command>() {{
+
+                    put(1, new SequentialCommandGroup(
+                            //Low
+                    ));
+                    put(2, new SequentialCommandGroup(
+                            //Mid
+
+                    ));
+                    put(3, new SequentialCommandGroup(
+                            //High
+                    ));
+                }}, vision::getTag)
         );
     }
-};
+}

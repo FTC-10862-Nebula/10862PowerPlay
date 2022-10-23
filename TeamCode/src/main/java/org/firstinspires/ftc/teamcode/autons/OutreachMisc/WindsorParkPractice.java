@@ -16,7 +16,6 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.NewVisionStuff.Vision;
 
 @Disabled
 @Autonomous(name = "WindsorParkPRACTICE", group = "RED/BLUE")
@@ -41,7 +40,6 @@ public class WindsorParkPractice extends MatchOpMode {
     private ClawServos clawServos;
     private Drivetrain drivetrain;
     private Slide slide;
-    private Vision vision;
 
 
     @Override
@@ -51,7 +49,6 @@ public class WindsorParkPractice extends MatchOpMode {
 
         drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
 

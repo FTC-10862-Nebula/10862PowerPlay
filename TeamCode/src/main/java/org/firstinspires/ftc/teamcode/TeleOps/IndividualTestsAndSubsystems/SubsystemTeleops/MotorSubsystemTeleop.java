@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.TeleOps.GamepadTrigger;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
-import org.firstinspires.ftc.teamcode.subsystems.MotorSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.MotorSubsystem;
 
 //@Disabled
 @Config

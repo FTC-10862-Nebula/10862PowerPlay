@@ -234,6 +234,17 @@ public class Slide extends SubsystemBase {
         upController.setSetPoint(CONE_1_POS);
         liftPosition = 9;
     }
+    public void autoPickSlideUp() {
+        automatic = true;
+        upController.setSetPoint(slideM1.getCurrentPosition()+150);
+        liftPosition = 10;
+    }
+    public void autoDropSlideUp() {
+        automatic = true;
+        upController.setSetPoint(slideM1.getCurrentPosition()-150);
+        liftPosition = 11;
+    }
+
 
 
     public void liftEncoderReset() {
@@ -292,6 +303,10 @@ public class Slide extends SubsystemBase {
             slideCone2();
         } else if(liftPosition == 9) {
             slideCone1();
+        } else if(liftPosition == 10) {
+            autoPickSlideUp();
+        } else if(liftPosition == 11) {
+            autoDropSlideUp();
         }
     }
 }
