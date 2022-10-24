@@ -32,11 +32,20 @@ public class DefaultDriveCommand extends CommandBase {
 //      drive.tankDrive(driverGamepad.getLeftY() * multiplier, driverGamepad.getRightY() * multiplier)
 
 //      Mecanum drive
-        drive.mecDrive(
-                driverGamepad.getLeftY(), //Removed - from drivergamepad
-                driverGamepad.getLeftX() * multiplier,
-                driverGamepad.getRightX());//Changed from -driverGamepad.getLeftY(), so the drive mturns right
+//        drive.mecDrive(
+//                -driverGamepad.getLeftY(), //Removed - from drivergamepad
+//                driverGamepad.getLeftX() * multiplier,
+//                -driverGamepad.getRightX() //Changed from -driverGamepad.getLeftY(), so the drive mturns right
+//        );
+
+//        FieldCentric
+        drive.fieldCentric(
+                -gamepad1.left_stick_x,
+                gamepad1.right_stick_x,
+                -gamepad1.right_stick_y
+        );
     }
+
 
     @Override
     public void end(boolean interrupted) {

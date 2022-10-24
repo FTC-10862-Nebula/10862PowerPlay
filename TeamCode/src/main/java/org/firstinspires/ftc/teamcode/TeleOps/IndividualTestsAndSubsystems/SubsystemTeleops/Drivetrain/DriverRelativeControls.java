@@ -4,7 +4,7 @@
  So, feel free to add onto this and make it better
  */
 
-package org.firstinspires.ftc.teamcode.subsystems.Misc;
+package org.firstinspires.ftc.teamcode.TeleOps.IndividualTestsAndSubsystems.SubsystemTeleops.Drivetrain;
 
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -26,7 +26,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 /**
  * feel free to change the name or group of your class to better fit your robot
  */
-@TeleOp (name = "DriverRelativeControl", group = "tutorial")
+@TeleOp (name = "FieldCentricDriveTest", group = "Test")
 public class DriverRelativeControls extends LinearOpMode {
 
     /**
@@ -95,9 +95,9 @@ public class DriverRelativeControls extends LinearOpMode {
             driveTurn = -gamepad1.left_stick_x;
             //driveVertical = -gamepad1.right_stick_y;
             //driveHorizontal = gamepad1.right_stick_x;
-
             gamepadXCoordinate = gamepad1.right_stick_x; //this simply gives our x value relative to the driver
             gamepadYCoordinate = -gamepad1.right_stick_y; //this simply gives our y vaue relative to the driver
+
             gamepadHypot = Range.clip(Math.hypot(gamepadXCoordinate, gamepadYCoordinate), 0, 1);
             //finds just how much power to give the robot based on how much x and y given by gamepad
             //range.clip helps us keep our power within positive 1
@@ -113,9 +113,6 @@ public class DriverRelativeControls extends LinearOpMode {
             gamepadYControl = Math.sin(Math.toRadians(movementDegree)) * gamepadHypot;
             //by finding the opposite side, we can get our needed y value to power our motors
 
-            /**
-             * again, make sure you've changed the motor names and variables to fit your team
-             */
 
             //by mulitplying the gamepadYControl and gamepadXControl by their respective absolute values, we can guarantee that our motor powers will not exceed 1 without any driveTurn
             //since we've maxed out our hypot at 1, the greatest possible value of x+y is (1/sqrt(2)) + (1/sqrt(2)) = sqrt(2)

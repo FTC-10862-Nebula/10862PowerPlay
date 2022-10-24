@@ -5,9 +5,14 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
 import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -18,6 +23,7 @@ public class Drivetrain extends SubsystemBase {
 
     private final SampleMecanumDrive drive;
     private Telemetry telemetry;
+    private BNO055IMU imu;
 
     public Drivetrain(SampleMecanumDrive drive, Telemetry tl) {
         this.drive = drive;
@@ -75,13 +81,49 @@ public class Drivetrain extends SubsystemBase {
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
+//        double frontLPower = (y + x - rx) / denominator;
+//        double backLPower = (y - x - rx) / denominator;
+//        double frontRPower = (y - x + rx) / denominator;
+//        double backRPower = (y + x + rx) / denominator;
+
         double frontLPower = (y + x + rx) / denominator;
         double backLPower = (y - x + rx) / denominator;
         double frontRPower = (y - x - rx) / denominator;
         double backRPower = (y + x - rx) / denominator;
-//Make it -y and change gamepad to -leftstickx
+        //Make it -y and change gamepad to -leftstickx
         drive.setMotorPowers(frontLPower, backLPower, frontRPower, backRPower);
     }
+
+    public void  fieldCentric(double driveTurn, double gamepadXCord, double gamepadYCord){
+        double gamepadHypot = Range.clip(Math.hypot(gamepadXCord, gamepadYCord), 0, 1);
+        //finds just how much power to give the robot based on how much x and y given by gamepad
+        //range.clip helps us keep our power within positive 1
+        // also helps set maximum possible value of 1/sqrt(2) for x and y controls if at a 45 degree angle (which yields greatest possible value for y+x)
+        double gamepadDegree = Math.atan2(gamepadYCord, gamepadXCord);
+        //the inverse tangent of opposite/adjacent gives us our gamepad degree
+        double robotDegree = getAngle();
+        //gives us the angle our robot is at
+        double movementDegree = gamepadDegree - robotDegree;
+
+        //adjust the angle we need to move at by finding needed movement degree based on gamepad and robot angles
+        double gamepadXControl = Math.cos(Math.toRadians(movementDegree)) * gamepadHypot;
+        //by finding the adjacent side, we can get our needed x value to power our motors
+        double gamepadYControl = Math.sin(Math.toRadians(movementDegree)) * gamepadHypot;
+        //by finding the opposite side, we can get our needed y value to power our motors
+
+        //by mulitplying the gamepadYControl and gamepadXControl by their respective absolute values,
+        //we can guarantee that our motor powers will not exceed 1 without any driveTurn
+        //since we've maxed out our hypot at 1, the greatest possible value of x+y is (1/sqrt(2)) + (1/sqrt(2)) = sqrt(2)
+        //since (1/sqrt(2))^2 = 1/2 = .5, we know that we will not exceed a power of 1 (with no turn), giving us more precision for our driving
+
+        double frontRPower=(gamepadYControl * Math.abs(gamepadYControl) - gamepadXControl * Math.abs(gamepadXControl) + driveTurn);
+        double backRPower=(gamepadYControl * Math.abs(gamepadYControl) + gamepadXControl * Math.abs(gamepadXControl) + driveTurn);
+        double frontLPower=(gamepadYControl * Math.abs(gamepadYControl) + gamepadXControl * Math.abs(gamepadXControl) - driveTurn);
+        double backLPower=(gamepadYControl * Math.abs(gamepadYControl) - gamepadXControl * Math.abs(gamepadXControl) - driveTurn);
+
+        drive.setMotorPowers(frontLPower, backLPower, frontRPower, backRPower);
+    }
+
 
 
     public void setDrivePower(Pose2d drivePower) {
@@ -97,6 +139,9 @@ public class Drivetrain extends SubsystemBase {
     }
     public double getHeading() {
         return Math.toDegrees(drive.getExternalHeading());
+    }
+    public double getAngle() {
+        return imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
