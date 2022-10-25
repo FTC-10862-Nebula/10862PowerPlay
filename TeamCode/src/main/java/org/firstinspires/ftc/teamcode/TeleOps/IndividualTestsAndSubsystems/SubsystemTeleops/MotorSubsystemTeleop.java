@@ -40,9 +40,13 @@ public class MotorSubsystemTeleop extends MatchOpMode {
     @Override
     public void configureButtons() {
         one = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
-                .whenPressed(motorSubsystem::raiseClawManual));
+                .whenPressed(motorSubsystem::setUpSpeed)
+                .whenReleased(motorSubsystem::stopClaw)
+        );
         two = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
-                .whenPressed(motorSubsystem::lowerClawManual));
+                .whenPressed(motorSubsystem::setDownSpeed)
+                .whenReleased(motorSubsystem::stopClaw)
+        );
 
     }
 

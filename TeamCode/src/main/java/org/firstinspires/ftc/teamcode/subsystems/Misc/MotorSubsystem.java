@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystems.Misc;
 
 
+import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.REVERSE;
+
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
@@ -15,8 +17,8 @@ import java.util.logging.Level;
 public class MotorSubsystem extends SubsystemBase {
 
 
-    public static double UP_SPEED = -1;
-    public static double DOWN_SPEED = 1;
+    public static double UP_SPEED = 1;
+    public static double DOWN_SPEED = -1;
 
     private int clawPos = 0;
 
@@ -25,10 +27,12 @@ public class MotorSubsystem extends SubsystemBase {
 
     public MotorSubsystem(MotorEx testMotor, Telemetry tl, HardwareMap hw) {
         this.testMotor = testMotor;
-        this.testMotor = new MotorEx(hw, "leftFront");
+        this.testMotor = new MotorEx(hw, "rightFront");
 
         //Reverse claw motor
-//        this.testMotor.setInverted(false);
+//        testMotor.setDirection(REVERSE);
+
+//        this.testMotor.setInverted(true);
 
 
         this.telemetry = tl;
@@ -44,10 +48,10 @@ public class MotorSubsystem extends SubsystemBase {
 
     /****************************************************************************************/
 
-    public void raiseClawManual() {
+    public void setUpSpeed() {
         testMotor.set(UP_SPEED);
     }
-    public void lowerClawManual() {
+    public void setDownSpeed() {
         testMotor.set(DOWN_SPEED);
     }
 

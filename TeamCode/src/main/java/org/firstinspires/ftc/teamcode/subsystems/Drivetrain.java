@@ -92,11 +92,38 @@ public class Drivetrain extends SubsystemBase {
 //        double frontRPower = (y - x + rx) / denominator;
 //        double backRPower = (y + x + rx) / denominator;
 
-        double frontLPower = (y + x + rx) / denominator;
-        double backLPower = (y - x + rx) / denominator;
+//        double frontLPower = (y + x + rx) / denominator;
+//        double backLPower = (y - x + rx) / denominator;
+//        double frontRPower = (y + x - rx) / denominator;
+//        double backRPower = (y - x - rx) / denominator;
+        //Strafes (up/down) forward (right/left), turns opposite
+
+//        double frontLPower = (y - x - rx) / denominator;
+//        double backLPower = (y - x - rx) / denominator;
+//        double frontRPower = (y - x + rx) / denominator;
+//        double backRPower = (y - x + rx) / denominator;
+
+//        double frontLPower =    (y - x - rx) / denominator;
+//        double backLPower =     (y + x - rx) / denominator;
+//        double frontRPower =    (y - x + rx) / denominator;
+//        double backRPower =     (y + x + rx) / denominator;
+
+//        double frontLPower =    (-y - x + rx) / denominator;
+//        double backLPower =     (y - x + rx) / denominator;
+//        double frontRPower =    (-y - x - rx) / denominator;
+//        double backRPower =     (y - x - rx) / denominator;
+        //Everthing but turning works
+
+//        double frontLPower = (y + x + rx) / denominator;
+//        double backLPower = (y - x + rx) / denominator;
+//        double frontRPower = (y - x - rx) / denominator;
+//        double backRPower = (y + x - rx) / denominator;
+
+        double frontLPower = (-y - x - rx) / denominator;
         double frontRPower = (y - x - rx) / denominator;
+        double backLPower = (-y + x - rx) / denominator;
+
         double backRPower = (y + x - rx) / denominator;
-        //Make it -y and change gamepad to -leftstickx
         drive.setMotorPowers(frontLPower, backLPower, frontRPower, backRPower);
     }
 
