@@ -10,6 +10,10 @@ import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.util.Encoder;
+
+
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
@@ -20,10 +24,13 @@ import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideMidFrontC
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 
+import org.firstinspires.ftc.teamcode.driveTrain.StandardTrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+
+import java.util.logging.Level;
 
 @Config
 @TeleOp(name = "MainTeleop")
@@ -39,6 +46,8 @@ public class MainTeleOp extends MatchOpMode {
     private MotorEx leftFront, leftRear, rightRear, rightFront;
     private MotorEx liftMotor1, liftMotor2;
 
+//    private Encoder leftEncoder, rightEncoder, frontEncoder;
+
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
 
@@ -48,7 +57,8 @@ public class MainTeleOp extends MatchOpMode {
     private ClawServos clawServos;
     private Drivetrain drivetrain;
     private Slide slide;
-//    private Vision vision;
+//    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
+    //    private Vision vision;
 
 
     @Override
@@ -64,7 +74,10 @@ public class MainTeleOp extends MatchOpMode {
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
+
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad));
+
+//        standardTrackingWheelLocalizer = new StandardTrackingWheelLocalizer(leftEncoder, rightEncoder, frontEncoder, hardwareMap);
     }
 
     //Buttons
@@ -178,5 +191,7 @@ public class MainTeleOp extends MatchOpMode {
     @Override
     public void matchStart() { }
     @Override
-    public void robotPeriodic(){ }
+    public void robotPeriodic(){
+//        standardTrackingWheelLocalizer.periodic();
+    }
 }

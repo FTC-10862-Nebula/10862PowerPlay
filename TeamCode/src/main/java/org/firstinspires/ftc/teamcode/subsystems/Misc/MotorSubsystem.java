@@ -12,8 +12,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class MotorSubsystem extends SubsystemBase {
 
 
-    public static double UP_SPEED = -0.2;
-    public static double DOWN_SPEED = 0.2;
+    public static double UP_SPEED = -1;
+    public static double DOWN_SPEED = 1;
 
     private int clawPos = 0;
 
@@ -22,7 +22,7 @@ public class MotorSubsystem extends SubsystemBase {
 
     public MotorSubsystem(MotorEx testMotor, Telemetry tl, HardwareMap hw) {
         this.testMotor = testMotor;
-        this.testMotor = new MotorEx(hw, "clawM");
+        this.testMotor = new MotorEx(hw, "leftFront");
 
         //Reverse claw motor
         this.testMotor.setInverted(true);

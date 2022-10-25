@@ -13,10 +13,13 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 
 
 public class Drivetrain extends SubsystemBase {
@@ -28,12 +31,15 @@ public class Drivetrain extends SubsystemBase {
     public Drivetrain(SampleMecanumDrive drive, Telemetry tl) {
         this.drive = drive;
         this.telemetry = tl;
+        //Add imu?
     }
 
     public void init() {
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drive.setMotorPowers(0, 0, 0, 0);
         drive.setPoseEstimate(new Pose2d());
+
+        //init the imu
     }
     @Override
     public void periodic() {
@@ -142,6 +148,7 @@ public class Drivetrain extends SubsystemBase {
     }
     public double getAngle() {
         return imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+        //works
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
@@ -242,6 +249,5 @@ public class Drivetrain extends SubsystemBase {
                 wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude);
             }
         }
-
     }
 }
