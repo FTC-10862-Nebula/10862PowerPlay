@@ -1,19 +1,19 @@
 package org.firstinspires.ftc.teamcode.subsystems.Misc;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 //import org.firstinspires.ftc.teamcode.subsystems.pipelines.AprilTagDetectionPipeline;
 import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AprilTagDetectionPipeline;
-import org.firstinspires.ftc.teamcode.subsystems.Misc.HardwareSubsystem;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
-
-public class VisionSubsystem extends HardwareSubsystem {
+@Disabled
+public class VisionSubsystemNOUSE extends HardwareSubsystem {
     public AprilTagDetection tagOfInterest = null;
 
     private OpenCvCamera camera;
@@ -61,7 +61,7 @@ public class VisionSubsystem extends HardwareSubsystem {
         }
     }
 
-    public VisionSubsystem(OpMode opMode) {
+    public VisionSubsystemNOUSE(OpMode opMode) {
         super(opMode);
     }
 
@@ -95,7 +95,9 @@ public class VisionSubsystem extends HardwareSubsystem {
 
     @Override
     public void periodic() {
+        updateTagOfInterest();
         printTagData();
+        telemetry.update();
     }
 
     public void updateTagOfInterest() {

@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
@@ -15,6 +16,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
+import org.openftc.apriltag.AprilTagDetection;
 
 import java.util.HashMap;
 
@@ -52,24 +54,62 @@ public class Test2 extends MatchOpMode {
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
-        vision.init();
+        vision = new Vision(hardwareMap, "Webcam 1");
+//        vision.init(hardwareMap);
     }
 
     public void matchStart() {
-        schedule(
-                new SelectCommand(new HashMap<Object, Command>() {{
-
-                    put(1, new SequentialCommandGroup(
+        if(vision.getTag()==1)
+        {
+            new SequentialCommandGroup(
                             //Low
-                    ));
-                    put(2, new SequentialCommandGroup(
-                            //Mid
+                            new DriveForwardCommand(drivetrain, 12)
+                    );
+        }
+        else if(vision.getTag()==2)
+        {
+            new SequentialCommandGroup(
+                    //Low
+                    new DriveForwardCommand(drivetrain, 12)
+            );
+        }
+        else if(vision.getTag()==3)
+        {
+            new SequentialCommandGroup(
+                    //Low
+                    new DriveForwardCommand(drivetrain, 12)
+            );
+        }
+        else
+        {
+            new SequentialCommandGroup(
+                    //Low
+                    new DriveForwardCommand(drivetrain, 12)
+            );
+        }
+//        schedule(
+//                new SelectCommand(new HashMap<Object, Command>() {{
+//
+//                    put(1, new SequentialCommandGroup(
+//                            //Low
+//                            new DriveForwardCommand(drivetrain, 12)
+//                    ));
+//                    put(2, new SequentialCommandGroup(
+//                            //Mid
+//                            new DriveForwardCommand(drivetrain, 30)
+//
+//
+//                    ));
+//                    put(3, new SequentialCommandGroup(
+//                            //High
+//                            new DriveForwardCommand(drivetrain, 30)
+//
+//                    ));
+//                }}, vision::getTag)
+//        );
+    }
 
-                    ));
-                    put(3, new SequentialCommandGroup(
-                            //High
-                    ));
-                }}, vision::getTag)
-        );
+    public void periodic(){
+//        vision.tagToTelemetry();
     }
 }

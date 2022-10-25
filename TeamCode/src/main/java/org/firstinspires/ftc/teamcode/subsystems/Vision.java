@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AprilTagDetectionPipeline;
 import org.openftc.apriltag.AprilTagDetection;
@@ -37,10 +38,10 @@ public class Vision extends SubsystemBase {
 
     AprilTagDetection tagOfInterest = null;
 
-    public void init()
+    public Vision (HardwareMap hardwareMap, String webCamName)//, Telemetry tl)
     {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, webCamName), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
 
         camera.setPipeline(aprilTagDetectionPipeline);
@@ -59,7 +60,30 @@ public class Vision extends SubsystemBase {
 
             }
         });
-        telemetry.setMsTransmissionInterval(50);
+
+//        public void init(HardwareMap hardwareMap)
+//        {
+//            int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+//            camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+//            aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
+//
+//            camera.setPipeline(aprilTagDetectionPipeline);
+//            camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+//            {
+//                @Override
+//                public void onOpened()
+//                {
+//                    camera.startStreaming(800,600, OpenCvCameraRotation.UPRIGHT);
+////                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
+//                }
+//
+//                @Override
+//                public void onError(int errorCode)
+//                {
+//
+//                }
+//            });
+//        telemetry.setMsTransmissionInterval(50);
 
     }
 

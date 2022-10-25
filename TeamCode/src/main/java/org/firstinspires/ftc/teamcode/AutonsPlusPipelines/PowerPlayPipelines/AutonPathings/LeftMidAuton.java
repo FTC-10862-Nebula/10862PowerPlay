@@ -36,7 +36,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-import org.firstinspires.ftc.teamcode.subsystems.Misc.VisionSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.VisionSubsystemNOUSE;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -62,7 +62,7 @@ public class LeftMidAuton extends LinearOpMode
     private ClawServos clawServos;
     private Drivetrain drivetrain;
     private Slide slide;
-    private VisionSubsystem visionSub;
+    private VisionSubsystemNOUSE visionSub;
 
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
@@ -95,7 +95,7 @@ public class LeftMidAuton extends LinearOpMode
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
         drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        visionSub = new VisionSubsystem( this);
+        visionSub = new VisionSubsystemNOUSE( this);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());

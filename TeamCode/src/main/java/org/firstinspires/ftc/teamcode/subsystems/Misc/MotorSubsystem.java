@@ -7,6 +7,9 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Util;
+
+import java.util.logging.Level;
 
 @Config
 public class MotorSubsystem extends SubsystemBase {
@@ -25,7 +28,7 @@ public class MotorSubsystem extends SubsystemBase {
         this.testMotor = new MotorEx(hw, "leftFront");
 
         //Reverse claw motor
-        this.testMotor.setInverted(true);
+//        this.testMotor.setInverted(false);
 
 
         this.telemetry = tl;
@@ -33,7 +36,7 @@ public class MotorSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-//        Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", clawMotor.getCurrentPosition());
+        Util.logger(this, telemetry, Level.INFO, "speed ", testMotor.getAcceleration());
 //        Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", clawPos);
     }
 

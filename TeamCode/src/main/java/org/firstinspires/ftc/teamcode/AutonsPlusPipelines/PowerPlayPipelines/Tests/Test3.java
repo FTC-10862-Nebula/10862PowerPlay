@@ -1,18 +1,19 @@
 package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.Tests;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands.LeftMidAutonCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-import org.firstinspires.ftc.teamcode.subsystems.Misc.VisionSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.VisionSubsystemNOUSE;
 
 @Autonomous
 public class Test3 extends LinearOpMode {
@@ -35,13 +36,13 @@ public class Test3 extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        VisionSubsystem vision = new VisionSubsystem(this);
+        VisionSubsystemNOUSE vision = new VisionSubsystemNOUSE(this);
         ClawServos clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         Drivetrain drivetrain =new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
         Slide slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        vision.init();
+//        vision.init();
 
         while (!isStarted() && !isStopRequested())
         {
@@ -49,16 +50,29 @@ public class Test3 extends LinearOpMode {
            vision.printTagData();
            telemetry.update();
         }
+
         switch (vision.getTagOfInterest().id) {
             case 1: {
-                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
+                new SequentialCommandGroup(
+                        new DriveForwardCommand(drivetrain, 30)
+                );
+
+//                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
             }
             case 2: {
-                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
+                new SequentialCommandGroup(
+                        new DriveForwardCommand(drivetrain, 30)
+                );
+
+//                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
 
             }
             case 3: {
-                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
+                new SequentialCommandGroup(
+                        new DriveForwardCommand(drivetrain, 30)
+                );
+
+//                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
 
             }
         }
