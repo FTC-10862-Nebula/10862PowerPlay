@@ -36,7 +36,7 @@ public class MotorTeleop extends MatchOpMode {
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
 
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
+        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
     }
 

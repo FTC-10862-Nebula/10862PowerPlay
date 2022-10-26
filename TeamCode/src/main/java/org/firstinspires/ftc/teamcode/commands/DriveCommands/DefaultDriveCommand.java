@@ -44,8 +44,9 @@ public class DefaultDriveCommand extends CommandBase {
 //        FieldCentric
 //        drive.fieldCentric(
 //                -driverGamepad.getLeftY(),
-//                driverGamepad.getRightX(),
-//                -driverGamepad.getRightX()
+//                driverGamepad.getLeftX(),
+//                driverGamepad.getRightX()
+//
 //        );
     }
 

@@ -28,6 +28,7 @@ public class Test2 extends MatchOpMode {
     private static final double startPoseX = 0;
     private static final double startPoseY = 0;
     private static final double startPoseHeading = 0;
+    private int tagNum = 0;
 
     //Motors and Servos
     private MotorEx clawMotor;
@@ -52,7 +53,7 @@ public class Test2 extends MatchOpMode {
     public void robotInit() {
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         clawMotors = new ClawMotors(clawMotor, telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
+        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
@@ -62,32 +63,33 @@ public class Test2 extends MatchOpMode {
     }
 
     public void matchStart() {
-        if(vision.getTag()==1)
+        tagNum = vision.getTag();
+        if(tagNum==1)
         {
             new SequentialCommandGroup(
                             //Low
-                            new DriveForwardCommand(drivetrain, 12)
+//                            new DriveForwardCommand(drivetrain, 12)
                     );
         }
-        else if(vision.getTag()==2)
+        else if(tagNum==2)
         {
             new SequentialCommandGroup(
                     //Low
-                    new DriveForwardCommand(drivetrain, 12)
+//                    new DriveForwardCommand(drivetrain, 12)
             );
         }
-        else if(vision.getTag()==3)
+        else if(tagNum==3)
         {
             new SequentialCommandGroup(
                     //Low
-                    new DriveForwardCommand(drivetrain, 12)
+//                    new DriveForwardCommand(drivetrain, 12)
             );
         }
         else
         {
             new SequentialCommandGroup(
                     //Low
-                    new DriveForwardCommand(drivetrain, 12)
+//                    new DriveForwardCommand(drivetrain, 12)
             );
         }
 //        schedule(

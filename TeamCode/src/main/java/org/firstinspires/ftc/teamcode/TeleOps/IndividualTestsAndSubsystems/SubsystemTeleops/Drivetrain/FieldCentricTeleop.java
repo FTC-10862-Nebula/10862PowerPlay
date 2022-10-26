@@ -14,7 +14,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.util.Range;
 
@@ -30,7 +29,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
  * feel free to change the name or group of your class to better fit your robot
  */
 @TeleOp (name = "FieldCentricDriveTest", group = "Test")
-public class DriverRelativeControls extends LinearOpMode {
+public class FieldCentricTeleop extends LinearOpMode {
 
     /**
      * make sure to change these motors to your team's preference and configuration
@@ -73,8 +72,8 @@ public class DriverRelativeControls extends LinearOpMode {
 //        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
 //        leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
         leftFront.setDirection(REVERSE);
-        leftRear.setDirection(REVERSE);
-        rightFront.setDirection(FORWARD);
+        leftRear.setDirection(FORWARD);
+        rightFront.setDirection(REVERSE);
         rightRear.setDirection(FORWARD);
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -99,18 +98,11 @@ public class DriverRelativeControls extends LinearOpMode {
 
 
         while (opModeIsActive()) {
-            driveTurn = -gamepad1.left_stick_x;
-            //driveVertical = -gamepad1.right_stick_y;
+            gpYCord = -gamepad1.left_stick_y; //this simply gives our y vaue relative to the driver
+            gpXCord = gamepad1.left_stick_x; //this simply gives our x value relative to the driver
+            driveTurn = -gamepad1.right_stick_x;
+            //driveVertical = -gamepad1.righft_stick_y;
             //driveHorizontal = gamepad1.right_stick_x;
-            gpXCord = gamepad1.right_stick_x; //this simply gives our x value relative to the driver
-            gpYCord = -gamepad1.right_stick_y; //this simply gives our y vaue relative to the driver
-
-            driveTurn = -gamepad1.left_stick_x;
-            //driveVertical = -gamepad1.right_stick_y;
-            //driveHorizontal = gamepad1.right_stick_x;
-
-            gpXCord = gamepad1.right_stick_x; //this simply gives our x value relative to the driver
-            gpYCord = -gamepad1.right_stick_y; //this simply gives our y vaue relative to the driver
 
             gamepadHypot = Range.clip(Math.hypot(gpXCord, gpYCord), 0, 1);
             //finds just how much power to give the robot based on how much x and y given by gamepad
@@ -131,10 +123,11 @@ public class DriverRelativeControls extends LinearOpMode {
             //by mulitplying the gpYControl and gamepadXControl by their respective absolute values, we can guarantee that our motor powers will not exceed 1 without any driveTurn
             //since we've maxed out our hypot at 1, the greatest possible value of x+y is (1/sqrt(2)) + (1/sqrt(2)) = sqrt(2)
             //since (1/sqrt(2))^2 = 1/2 = .5, we know that we will not exceed a power of 1 (with no turn), giving us more precision for our driving
-            double frontRPower=(gpYControl * Math.abs(gpYControl) - gpXControl * Math.abs(gpXControl) + driveTurn);
-            double backRPower=(gpYControl * Math.abs(gpYControl) + gpXControl * Math.abs(gpXControl) + driveTurn);
-            double frontLPower=(gpYControl * Math.abs(gpYControl) + gpXControl * Math.abs(gpXControl) - driveTurn);
-            double backLPower=(gpYControl * Math.abs(gpYControl) - gpXControl * Math.abs(gpXControl) - driveTurn);
+
+            double frontLPower=( -gpYControl * Math.abs(gpYControl) - gpXControl * Math.abs(gpXControl) + driveTurn);
+            double backLPower=(gpYControl * Math.abs(gpYControl) - gpXControl * Math.abs(gpXControl) + driveTurn);
+            double frontRPower=(-gpYControl * Math.abs(gpYControl) - gpXControl * Math.abs(gpXControl) - driveTurn);
+            double backRPower=(gpYControl * Math.abs(gpYControl) - gpXControl * Math.abs(gpXControl) - driveTurn);
 
             rightFront.setPower(frontRPower);
             rightRear.setPower(backRPower);

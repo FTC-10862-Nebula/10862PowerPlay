@@ -41,7 +41,7 @@ public class Test3 extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         VisionSubsystemNOUSE vision = new VisionSubsystemNOUSE(this);
         ClawServos clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
-        Drivetrain drivetrain =new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
+        Drivetrain drivetrain =new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         Slide slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
@@ -57,14 +57,14 @@ public class Test3 extends LinearOpMode {
         switch (vision.getTagOfInterest().id) {
             case 1: {
                 new SequentialCommandGroup(
-                        new DriveForwardCommand(drivetrain, 30)
+//                        new DriveForwardCommand(drivetrain, 30)
                 );
 
 //                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
             }
             case 2: {
                 new SequentialCommandGroup(
-                        new DriveForwardCommand(drivetrain, 30)
+//                        new DriveForwardCommand(drivetrain, 30)
                 );
 
 //                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
@@ -72,7 +72,7 @@ public class Test3 extends LinearOpMode {
             }
             case 3: {
                 new SequentialCommandGroup(
-                        new DriveForwardCommand(drivetrain, 30)
+//                        new DriveForwardCommand(drivetrain, 30)
                 );
 
 //                new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);

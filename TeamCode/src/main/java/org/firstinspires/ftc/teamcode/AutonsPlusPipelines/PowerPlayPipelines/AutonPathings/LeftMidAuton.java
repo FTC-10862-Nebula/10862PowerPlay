@@ -95,7 +95,7 @@ public class LeftMidAuton extends LinearOpMode
     public void runOpMode()
     {
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry);
+        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         visionSub = new VisionSubsystemNOUSE( this);

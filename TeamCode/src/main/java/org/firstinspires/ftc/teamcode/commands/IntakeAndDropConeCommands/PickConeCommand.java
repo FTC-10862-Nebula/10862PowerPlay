@@ -12,7 +12,7 @@ public class PickConeCommand extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(clawServos::clawClose),
                 new InstantCommand(clawServos::intakeClaw),
-                new WaitCommand(10),
+                new WaitCommand(1000),
                 new InstantCommand(clawServos::stopClaw)
         );
     }
