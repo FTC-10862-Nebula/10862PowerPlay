@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.Te
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -22,7 +23,9 @@ public class Test3 extends LinearOpMode {
     private static double startPoseHeading = 0;
     //Motors and Servos
     MotorEx clawMotor;
-    ServoEx clawS1, clawS2, clawS3;
+    ServoEx clawS1, clawS3;
+    //    private ServoEx clawS2;
+    private CRServo clawS2;
     MotorEx leftFront, leftRear, rightRear, rightFront;
     MotorEx liftMotor1, liftMotor2;
 

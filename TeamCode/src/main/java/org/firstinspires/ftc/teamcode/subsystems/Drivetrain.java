@@ -87,44 +87,32 @@ public class Drivetrain extends SubsystemBase {
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
-//        double frontLPower = (y + x - rx) / denominator;
-//        double backLPower = (y - x - rx) / denominator;
-//        double frontRPower = (y - x + rx) / denominator;
-//        double backRPower = (y + x + rx) / denominator;
 
-//        double frontLPower = (y + x + rx) / denominator;
+        double powers[] = new double[4];
+//        powers [1] = (y + x + rx) / denominator;    //fLPower
+//        powers [2] = (y - x + rx) / denominator;    //bLPower
+//        powers [3] = (y - x - rx) / denominator;    //fRPower
+//        powers [4] = (y + x - rx) / denominator;    //bRPower
+//        Orginal Comp1
+
+//        double fLPower = (y + x + rx) / denominator;
 //        double backLPower = (y - x + rx) / denominator;
 //        double frontRPower = (y + x - rx) / denominator;
 //        double backRPower = (y - x - rx) / denominator;
         //Strafes (up/down) forward (right/left), turns opposite
 
-//        double frontLPower = (y - x - rx) / denominator;
-//        double backLPower = (y - x - rx) / denominator;
-//        double frontRPower = (y - x + rx) / denominator;
-//        double backRPower = (y - x + rx) / denominator;
+         powers [1] =    (-y - x + rx) / denominator;
+         powers [2] =     (y - x + rx) / denominator;
+         powers [3] =   (-y - x - rx) / denominator;
+         powers [4] =     (y - x - rx) / denominator;
+        //Everthing but turning works- Test
 
-//        double frontLPower =    (y - x - rx) / denominator;
-//        double backLPower =     (y + x - rx) / denominator;
-//        double frontRPower =    (y - x + rx) / denominator;
-//        double backRPower =     (y + x + rx) / denominator;
 
-//        double frontLPower =    (-y - x + rx) / denominator;
-//        double backLPower =     (y - x + rx) / denominator;
-//        double frontRPower =    (-y - x - rx) / denominator;
-//        double backRPower =     (y - x - rx) / denominator;
-        //Everthing but turning works
-
-//        double frontLPower = (y + x + rx) / denominator;
-//        double backLPower = (y - x + rx) / denominator;
+//        double frontLPower = (-y - x - rx) / denominator;
 //        double frontRPower = (y - x - rx) / denominator;
+//        double backLPower = (-y + x - rx) / denominator;
 //        double backRPower = (y + x - rx) / denominator;
-
-        double frontLPower = (-y - x - rx) / denominator;
-        double frontRPower = (y - x - rx) / denominator;
-        double backLPower = (-y + x - rx) / denominator;
-
-        double backRPower = (y + x - rx) / denominator;
-        drive.setMotorPowers(frontLPower, backLPower, frontRPower, backRPower);
+        drive.setMotorPowers(powers[1], powers[2], powers[3], powers[4]);
     }
 
     public void  fieldCentric(double driveTurn, double gamepadXCord, double gamepadYCord){
