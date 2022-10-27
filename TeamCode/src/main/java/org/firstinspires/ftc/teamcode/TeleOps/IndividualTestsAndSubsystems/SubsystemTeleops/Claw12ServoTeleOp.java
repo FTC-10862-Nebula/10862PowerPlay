@@ -46,7 +46,7 @@ public class Claw12ServoTeleOp extends MatchOpMode {
     private MotorEx clawMotor;
 
     private ServoEx clawS1, clawS3;
-    //    private ServoEx clawS2;
+//        private ServoEx clawS2;
     private CRServo clawS2;
 
     // Gamepad
@@ -55,7 +55,7 @@ public class Claw12ServoTeleOp extends MatchOpMode {
 
     // Subsystems
     private ClawServos clawServos;
-    private ClawMotors clawMotors;
+//    private ClawMotors clawMotors;
 
 
 
@@ -64,7 +64,7 @@ public class Claw12ServoTeleOp extends MatchOpMode {
     public void robotInit() {
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
-        clawMotors = new ClawMotors(clawMotor, telemetry, hardwareMap);
+//        clawMotors = new ClawMotors(clawMotor, telemetry, hardwareMap);
 
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
     }
@@ -89,11 +89,11 @@ public class Claw12ServoTeleOp extends MatchOpMode {
     @Override
     public void configureButtons() {
         one = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                .whenPressed(new PickConeCommand(clawServos))
-                .whenPressed(new InstantCommand(clawMotors::moveClawLowFront));
+                .whenPressed(new PickConeCommand(clawServos));
+//                .whenPressed(new InstantCommand(clawMotors::moveClawLowFront));
         two = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-                .whenPressed(new DropConeCommand(clawServos))
-                .whenPressed(new InstantCommand(clawMotors::moveClawLowFront));
+                .whenPressed(new DropConeCommand(clawServos));
+//                .whenPressed(new InstantCommand(clawMotors::moveClawLowFront));
 
 
 

@@ -42,6 +42,7 @@ public class Vision extends SubsystemBase {
 
     AprilTagDetection tagOfInterest = null;
     boolean tagFound = false;
+    int tagFoundNum = 0;
 
     public Vision (HardwareMap hardwareMap, String webCamName)//, Telemetry tl)
     {
@@ -65,31 +66,6 @@ public class Vision extends SubsystemBase {
 
             }
         });
-
-//        public void init(HardwareMap hardwareMap)
-//        {
-//            int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-//            camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
-//            aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
-//
-//            camera.setPipeline(aprilTagDetectionPipeline);
-//            camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
-//            {
-//                @Override
-//                public void onOpened()
-//                {
-//                    camera.startStreaming(800,600, OpenCvCameraRotation.UPRIGHT);
-////                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
-//                }
-//
-//                @Override
-//                public void onError(int errorCode)
-//                {
-//
-//                }
-//            });
-//        telemetry.setMsTransmissionInterval(50);
-
     }
 
     @Override
@@ -100,11 +76,11 @@ public class Vision extends SubsystemBase {
     }
 
     public int getTag() {
-        if (tagOfInterest.id == 1) {
+        if (tagFound && tagFoundNum == 1) {
             return 1;
-        } else if (tagOfInterest.id == 2) {
+        } else if (tagFound && tagFoundNum == 2) {
             return 2;
-        } else if (tagOfInterest.id == 3) {
+        } else if (tagFound && tagFoundNum == 3) {
             return 3;
         } else {
             return 1;
@@ -120,7 +96,8 @@ public class Vision extends SubsystemBase {
         for(AprilTagDetection tag : currentDetections) {
             if(tag.id == LEFT || tag.id == MIDDLE || tag.id == RIGHT) {
                 tagFound = true;
-                tagOfInterest = tag;
+                tagFoundNum = tag.id;
+//                tagOfInterest = tag;
             }
         }
     }
