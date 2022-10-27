@@ -9,20 +9,14 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
-import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Position;
-import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
-import org.firstinspires.ftc.teamcode.Util;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 
 
 public class Drivetrain extends SubsystemBase {
@@ -30,6 +24,8 @@ public class Drivetrain extends SubsystemBase {
     private final SampleMecanumDrive drive;
     private Telemetry telemetry;
     private BNO055IMU imu;
+    private final int LFVal = 0, LRVal = 1, RFVal = 2, RRVal = 3;
+
     double powers[] = new double[4];
 
 
@@ -38,8 +34,6 @@ public class Drivetrain extends SubsystemBase {
         this.drive = drive;
         this.telemetry = tl;
         imu = hardwareMap.get(BNO055IMU.class, "imu");
-
-        //Add imu?
     }
 
     public void init() {
@@ -53,8 +47,6 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         update();
-//        imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
-//Test
     }
 
     public void setMode(DcMotor.RunMode mode) {
@@ -99,22 +91,22 @@ public class Drivetrain extends SubsystemBase {
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
 
-//        powers [0] = (y + x + rx) / denominator;    //fLPower
-//        powers [1] = (y - x + rx) / denominator;    //bLPower
-//        powers [2] = (y - x - rx) / denominator;    //fRPower
-//        powers [3] = (y + x - rx) / denominator;    //bRPower
+//        powers [FLVal] = (y + x + rx) / denominator;    //fLPower
+//        powers [FRVal] = (y - x + rx) / denominator;    //bLPower
+//        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
+//        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
 //        Orginal Comp1
 
-//        powers [0] = (y + x + rx) / denominator;
-//        powers [1] = (y - x + rx) / denominator;
-//        powers [2] = (y + x - rx) / denominator;
-//        powers [3] = (y - x - rx) / denominator;
+//        powers [FLVal] = (y + x + rx) / denominator;
+//        powers [FRVal] = (y - x + rx) / denominator;
+//        powers [RFVal] = (y + x - rx) / denominator;
+//        powers [RRVal] = (y - x - rx) / denominator;
         //Strafes (up/down) forward (right/left), turns opposite
 
-         powers [0] =    (-y - x + rx) / denominator;
-         powers [1] =     (y - x + rx) / denominator;
-         powers [2] =   (-y - x - rx) / denominator;
-         powers [3] =     (y - x - rx) / denominator;
+         powers [LFVal] =    (-y - x + rx) / denominator;
+         powers [LRVal] =     (y - x + rx) / denominator;
+         powers [RFVal] =   (-y - x - rx) / denominator;
+         powers [RRVal] =     (y - x - rx) / denominator;
         //Everthing but turning works- Test
 
 
@@ -122,46 +114,53 @@ public class Drivetrain extends SubsystemBase {
 //        double frontRPower = (y - x - rx) / denominator;
 //        double backLPower = (-y + x - rx) / denominator;
 //        double backRPower = (y + x - rx) / denominator;
-        drive.setMotorPowers(powers[0], powers[1], powers[2], powers[3]);
+        drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
     }
 
     public void  fieldCentric(double y, double x, double rx){
-        double botHeading = -imu.getAngularOrientation().firstAngle;
+        double theta = -imu.getAngularOrientation().firstAngle;
 
-        double rotX = x * Math.cos(botHeading) - y * Math.sin(botHeading);
-        double rotY = x * Math.sin(botHeading) + y * Math.cos(botHeading);
+        double rotX = x * Math.cos(theta) - y * Math.sin(theta);
+        double rotY = x * Math.sin(theta) + y * Math.cos(theta);
 
         // Denominator is the largest motor power (absolute value) or 1
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
-        powers [0] = (rotY + rotX + rx) / denominator;
-        powers [1] = (rotY - rotX + rx) / denominator;
-        powers [2] = (rotY - rotX - rx) / denominator;
-        powers [3] = (rotY + rotX - rx) / denominator;
+        powers [LFVal] = (rotY + rotX + rx) / denominator;
+        powers [LRVal] = (rotY - rotX + rx) / denominator;
+        powers [RFVal] = (rotY - rotX - rx) / denominator;
+        powers [RRVal] = (rotY + rotX - rx) / denominator;
 
-//        powers [0] = (rotY + rotX - rx) / denominator;
-//        powers [1] = (rotY + rotX - rx) / denominator;
-//        powers [2] = (rotY - rotX + rx) / denominator;
-//        powers [3] = (rotY - rotX + rx) / denominator;
+
+
+//        powers [LFVal] = Math.sin(theta + Math.PI / 4);
+//        powers [LRVal] = Math.sin(theta - Math.PI / 4);
+//        powers [RFVal] = Math.sin(theta - Math.PI / 4);
+//        powers [RRVal] = Math.sin(theta + Math.PI / 4);
+        //Test 1
+//        powers [FLVal] = (rotY + rotX - rx) / denominator;
+//        powers [FRVal] = (rotY + rotX - rx) / denominator;
+//        powers [RFVal] = (rotY - rotX + rx) / denominator;
+//        powers [RRVal] = (rotY - rotX + rx) / denominator;
         //Test2
 
-//        powers [0] = (rotY + rotX + rx) / denominator;
-//        powers [1] = (rotY + rotX - rx) / denominator;
-//        powers [2] = (rotY - rotX - rx) / denominator;
-//        powers [3] = (rotY - rotX + rx) / denominator;
+//        powers [FLVal] = (rotY + rotX + rx) / denominator;
+//        powers [FRVal] = (rotY + rotX - rx) / denominator;
+//        powers [RFVal] = (rotY - rotX - rx) / denominator;
+//        powers [RRVal] = (rotY - rotX + rx) / denominator;
         //Test3
 
-//        powers [0] = (rotY + rotX - rx) / denominator;
-//        powers [1] = (rotY + rotX + rx) / denominator;
-//        powers [2] = (rotY - rotX + rx) / denominator;
-//        powers [3] = (rotY - rotX - rx) / denominator;
+//        powers [FLVal] = (rotY + rotX - rx) / denominator;
+//        powers [FRVal] = (rotY + rotX + rx) / denominator;
+//        powers [RFVal] = (rotY - rotX + rx) / denominator;
+//        powers [RRVal] = (rotY - rotX - rx) / denominator;
         //Test4
 
-//        powers [0] = (y + x + rx) / denominator;    //fLPower
-//        powers [1] = (y - x + rx) / denominator;    //bLPower
-//        powers [2] = (y - x - rx) / denominator;    //fRPower
-//        powers [3] = (y + x - rx) / denominator;    //bRPower
+//        powers [FLVal] = (y + x + rx) / denominator;    //fLPower
+//        powers [FRVal] = (y - x + rx) / denominator;    //bLPower
+//        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
+//        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
 //        Orginal Comp1
 
 //        double gpHypot = Range.clip(Math.hypot(gpXCord, gpYCord), 0, 1);
@@ -186,17 +185,17 @@ public class Drivetrain extends SubsystemBase {
         //since (1/sqrt(2))^2 = 1/2 = .5, we know that we will not exceed a power of 1 (with no turn), giving us more precision for our driving
 
         //Strafing ____ straight front and back __ turn
-//        powers [0]=//Math.sin(botDegree + Math.PI / 4);//(gpYCtrl * Math.abs(gpYCtrl) + gpXCtrl * Math.abs(gpXCtrl) - driveTurn);
-//        powers [1]=//Math.sin(botDegree - Math.PI / 4);//(gpYCtrl * Math.abs(gpYCtrl) - gpXCtrl * Math.abs(gpXCtrl) - driveTurn);
-//        powers [2]=//Math.sin(botDegree - Math.PI / 4);//(gpYCtrl * Math.abs(gpYCtrl) - gpXCtrl * Math.abs(gpXCtrl) + driveTurn);
-//        powers [3]=;//Math.sin(botDegree + Math.PI / 4);//(gpYCtrl * Math.abs(gpYCtrl) + gpXCtrl * Math.abs(gpXCtrl) + driveTurn);
+//        powers [FLVal]=//Math.sin(botDegree + Math.PI / 4);       //(gpYCtrl * Math.abs(gpYCtrl) + gpXCtrl * Math.abs(gpXCtrl) - driveTurn);
+//        powers [FRVal]=//Math.sin(botDegree - Math.PI / 4);       //(gpYCtrl * Math.abs(gpYCtrl) - gpXCtrl * Math.abs(gpXCtrl) - driveTurn);
+//        powers [RFVal2]=//Math.sin(botDegree - Math.PI / 4);           //(gpYCtrl * Math.abs(gpYCtrl) - gpXCtrl * Math.abs(gpXCtrl) + driveTurn);
+//        powers [3]=;//Math.sin(botDegree + Math.PI / 4);          //(gpYCtrl * Math.abs(gpYCtrl) + gpXCtrl * Math.abs(gpXCtrl) + driveTurn);
 
 //   lF     Math.sin(theta + Math.PI / 4);
 //       lR wheelSpeeds[2] = Math.sin(theta - Math.PI / 4);
 //     rF   wheelSpeeds[1] = Math.sin(theta - Math.PI / 4);
 
 //     rR   wheelSpeeds[3] = Math.sin(theta + Math.PI / 4);
-        drive.setMotorPowers(powers[0], powers[1], powers[2], powers[3]);
+        drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[3]);
     }
 
 
