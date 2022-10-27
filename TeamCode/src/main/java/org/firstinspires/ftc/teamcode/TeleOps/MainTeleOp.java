@@ -12,6 +12,9 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideGroundBackCommand;
+import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideLowBackCommand;
+import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideMidBackCommand;
 import org.firstinspires.ftc.teamcode.util.Encoder;
 
 
@@ -162,12 +165,12 @@ public class MainTeleOp extends MatchOpMode {
                     .whenReleased(clawMotors::stopClaw));
 
         //Slide positions
-//            groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
-//                    .whenPressed(new SlideGroundBackCommand(slide, clawMotors, clawServos)));
-//            lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
-//                    .whenPressed(new SlideLowBackCommand(slide, clawMotors, clawServos)));
-//            midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
-//                    .whenPressed(new SlideMidBackCommand(slide, clawMotors, clawServos)));
+            groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
+                    .whenPressed(new SlideGroundBackCommand(slide, clawMotors, clawServos)));
+            lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
+                    .whenPressed(new SlideLowBackCommand(slide, clawMotors, clawServos)));
+            midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
+                    .whenPressed(new SlideMidBackCommand(slide, clawMotors, clawServos)));
 //            highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
 //                    .whenPressed(new SlideHighBackCommand(slide, clawMotors, clawServos)));
 

@@ -24,7 +24,10 @@ public class Drivetrain extends SubsystemBase {
     private final SampleMecanumDrive drive;
     private Telemetry telemetry;
     private BNO055IMU imu;
-    private final int LFVal = 0, LRVal = 1, RFVal = 2, RRVal = 3;
+    private final int LFVal = 0,
+                    LRVal = 1,
+                    RFVal = 2,
+                    RRVal = 3;
 
     double powers[] = new double[4];
 
@@ -127,41 +130,77 @@ public class Drivetrain extends SubsystemBase {
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
-        powers [LFVal] = (rotY + rotX + rx) / denominator;
-        powers [LRVal] = (rotY - rotX + rx) / denominator;
-        powers [RFVal] = (rotY - rotX - rx) / denominator;
-        powers [RRVal] = (rotY + rotX - rx) / denominator;
-
+//        powers [LFVal] = (rotY + rotX + rx) / denominator;
+//        powers [LRVal] = (rotY - rotX + rx) / denominator;
+//        powers [RFVal] = (rotY - rotX - rx) / denominator;
+//        powers [RRVal] = (rotY + rotX - rx) / denominator;
+//not work
 
 
 //        powers [LFVal] = Math.sin(theta + Math.PI / 4);
 //        powers [LRVal] = Math.sin(theta - Math.PI / 4);
 //        powers [RFVal] = Math.sin(theta - Math.PI / 4);
 //        powers [RRVal] = Math.sin(theta + Math.PI / 4);
-        //Test 1
-//        powers [FLVal] = (rotY + rotX - rx) / denominator;
-//        powers [FRVal] = (rotY + rotX - rx) / denominator;
+        //Test 1 - suddenly turns to one direction without any input
+//        powers [LFVal] = (rotY + rotX - rx) / denominator;
+//        powers [LRVal] = (rotY + rotX - rx) / denominator;
 //        powers [RFVal] = (rotY - rotX + rx) / denominator;
 //        powers [RRVal] = (rotY - rotX + rx) / denominator;
-        //Test2
+        //Test2 - stafes when front/back; tueninf and strafing is badd
 
-//        powers [FLVal] = (rotY + rotX + rx) / denominator;
-//        powers [FRVal] = (rotY + rotX - rx) / denominator;
+//        powers [LFVal] = (rotY + rotX + rx) / denominator;
+//        powers [LRVal] = (rotY + rotX - rx) / denominator;
 //        powers [RFVal] = (rotY - rotX - rx) / denominator;
 //        powers [RRVal] = (rotY - rotX + rx) / denominator;
-        //Test3
+        //Test3 - everything but back and forth works
 
-//        powers [FLVal] = (rotY + rotX - rx) / denominator;
-//        powers [FRVal] = (rotY + rotX + rx) / denominator;
+//        powers [LFVal] = (rotY + rotX - rx) / denominator;
+//        powers [LRVal] = (rotY + rotX + rx) / denominator;
 //        powers [RFVal] = (rotY - rotX + rx) / denominator;
 //        powers [RRVal] = (rotY - rotX - rx) / denominator;
-        //Test4
+        //Test4 - turing is opp; y control makes bot strafe;
 
-//        powers [FLVal] = (y + x + rx) / denominator;    //fLPower
-//        powers [FRVal] = (y - x + rx) / denominator;    //bLPower
+//        powers [LFVal] = (rotY + rotX + rx) / denominator;
+//        powers [LRVal] = (rotY - rotX + rx) / denominator;
+//        powers [RFVal] = (rotY - rotX - rx) / denominator;
+//        powers [RRVal] = (rotY + rotX - rx) / denominator;
+
+//        powers [LFVal] = Math.sin(theta + Math.PI / 4)+rx;
+//        powers [LRVal] = Math.sin(theta - Math.PI / 4)-rx;
+//        powers [RFVal] = Math.sin(theta - Math.PI / 4)+rx;
+//        powers [RRVal] = Math.sin(theta + Math.PI / 4)-rx;
+        //Tes just no - turns wih no inout
+
+//        powers [LFVal] = (rotY + rotX + rx) / denominator;
+//        powers [LRVal] = (rotY + rotX +   rx) / denominator;
+//        powers [RFVal] = (rotY + rotX + rx) / denominator;
+//        powers [RRVal] = (rotY + rotX + rx) / denominator;
+//just strafes
+        powers [LFVal] = (-rotY -rotX- rx) / denominator;
+        powers [LRVal] = (-rotY + rotX -   rx) / denominator;
+        powers [RFVal] = (-rotY - rotX + rx) / denominator;
+        powers [RRVal] = (-rotY + rotX + rx) / denominator;
+        //WORKS!!!!!!!!!!!!!!!!
+
+//        powers [LFVal] = (-rotY +rotX+ rx) / denominator;
+//        powers [LRVal] = (-rotY - rotX +   rx) / denominator;
+//        powers [RFVal] = (-rotY + rotX - rx) / denominator;
+//        powers [RRVal] = (-rotY - rotX - rx) / denominator;
+
+
+
+
+
+
+
+
+
+
+//        powers [LFVal] = (y + x + rx) / denominator;    //fLPower
+//        powers [LRVal] = (y - x + rx) / denominator;    //bLPower
 //        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
 //        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
-//        Orginal Comp1
+////        Orginal Comp1 for noral mec drive
 
 //        double gpHypot = Range.clip(Math.hypot(gpXCord, gpYCord), 0, 1);
 //        //finds just how much power to give the robot based on how much x and y given by gamepad
