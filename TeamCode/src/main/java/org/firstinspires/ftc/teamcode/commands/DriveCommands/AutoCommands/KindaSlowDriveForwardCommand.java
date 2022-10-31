@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands.DriveCommands;
+package org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;

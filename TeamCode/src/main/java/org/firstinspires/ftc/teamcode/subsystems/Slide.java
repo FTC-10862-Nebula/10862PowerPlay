@@ -32,8 +32,8 @@ public class Slide extends SubsystemBase {
     private boolean automatic;
 
     public static double CPR = 751.8;
-    public static double UP_SPEED = -0.5;
-    public static double DOWN_SPEED = 0.5;
+    public static double UP_SPEED = -0.8;
+    public static double DOWN_SPEED = 0.8;
 
     private double encoderOffset = 0;
     private double encoderOffset2 = 0;

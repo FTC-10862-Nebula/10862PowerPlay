@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands.DriveCommands;
+package org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Trajectories;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 @Config
-public class SlowSplineCommand extends CommandBase{
+public class SplineCommand extends CommandBase{
 
     Drivetrain drive;
     Trajectory trajectory;
@@ -20,7 +20,7 @@ public class SlowSplineCommand extends CommandBase{
     double endHeading;
 
     MinVelocityConstraint maxVelConstraint;
-    public SlowSplineCommand(Drivetrain drive, MinVelocityConstraint constraint, boolean reverse, Vector2d splinePos, double endHeading) {
+    public SplineCommand(Drivetrain drive, MinVelocityConstraint constraint, boolean reverse, Vector2d splinePos, double endHeading) {
         this.drive = drive;
         this.reverse = reverse;
         this.splinePos = splinePos;
@@ -29,12 +29,12 @@ public class SlowSplineCommand extends CommandBase{
         this.addRequirements(drive);
     }
 
-    public SlowSplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading) {
-        this(drive, Trajectories.kindaSlowVelConstraint, false, splinePos, endHeading);
+    public SplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading) {
+        this(drive, Trajectories.velConstraint, false, splinePos, endHeading);
     }
 
-    public SlowSplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading, boolean reverse) {
-        this(drive, Trajectories.kindaSlowVelConstraint, reverse, splinePos, endHeading);
+    public SplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading, boolean reverse) {
+        this(drive, Trajectories.velConstraint, reverse, splinePos, endHeading);
     }
 
 

@@ -32,7 +32,7 @@ public class ClawServos extends SubsystemBase {
     Telemetry telemetry;
     private ServoEx clawS1;
 //    private ServoEx clawS2;
-    private CRServo clawS2;     //Super SPeed that is CR
+    private CRServo clawS2;     //Super Speed that is CR
     private ServoEx clawS3;     //Servo that turns claw
 
     public ClawServos(ServoEx clawS1, CRServo clawS2, ServoEx clawS3, Telemetry tl, HardwareMap hw) {
@@ -54,8 +54,8 @@ public class ClawServos extends SubsystemBase {
 
     @Override
     public void periodic() {
-//        Util.logger(this, telemetry, Level.INFO, "Claw Servo 1 Pos: ", clawS1.getPosition());
-//        Util.logger(this, telemetry, Level.INFO, "Claw Servo 3 Pos: ", clawS3.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Claw Servo 1 Pos: ", clawS1.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Claw Servo 3 Pos: ", clawS3.getPosition());
     }
 
     public void setClawS1(double clawServo1Pos) {

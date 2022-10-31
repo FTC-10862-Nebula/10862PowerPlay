@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands.DriveCommands;
+package org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
@@ -10,21 +10,20 @@ import org.firstinspires.ftc.teamcode.Trajectories;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 @Config
-public class SlowDriveForwardCommand extends CommandBase{
+public class DriveForwardCommand extends CommandBase{
 
     Drivetrain drive;
     double distance;
     Trajectory trajectory;
     MinVelocityConstraint constraint;
-
-    public SlowDriveForwardCommand(Drivetrain drive, double distance) {
+    public DriveForwardCommand(Drivetrain drive, double distance) {
         this.drive = drive;
         this.distance = distance;
-        constraint = Trajectories.slowVelConstraint;
+        constraint = Trajectories.velConstraint;
         this.addRequirements(drive);
     }
 
-    public SlowDriveForwardCommand(Drivetrain drive, double distance, MinVelocityConstraint constraint) {
+    public DriveForwardCommand(Drivetrain drive, double distance, MinVelocityConstraint constraint) {
         this.drive = drive;
         this.distance = distance;
         this.constraint = constraint;
@@ -33,10 +32,10 @@ public class SlowDriveForwardCommand extends CommandBase{
 
     @Override
     public void initialize() {
-        if (distance > 0)
-            trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).forward(distance).build();
-        else
+        if (distance < 0)
             trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).back(-distance).build();
+        else
+            trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).forward(distance).build();
 
         drive.followTrajectory(trajectory);
 

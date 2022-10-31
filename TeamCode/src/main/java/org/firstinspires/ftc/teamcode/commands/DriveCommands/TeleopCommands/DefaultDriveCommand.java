@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands.DriveCommands;
+package org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
 
@@ -12,24 +12,42 @@ public class DefaultDriveCommand extends CommandBase {
     private GamepadEx driverGamepad;
 
     protected double multiplier;
+    boolean mecDrive = true;
 
-    public DefaultDriveCommand(Drivetrain drive, GamepadEx driverGamepad) {
+    public DefaultDriveCommand(Drivetrain drive, GamepadEx driverGamepad, boolean mecDrive) {
 
         this.drive = drive;
         this.driverGamepad = driverGamepad;
 
         this.multiplier = 1.1;
         addRequirements(this.drive);
+
+        this.mecDrive = mecDrive;
     }
 
     @Override
     public void execute() {
+        if(mecDrive)
+        {
+            drive.mecDrive(
+                -driverGamepad.getLeftY(), //Removed - from drivergamepad
+                -driverGamepad.getLeftX() * multiplier,
+                -driverGamepad.getRightX() //Changed from -driverGamepad.getLeftY(), so the drive mturns right
+            );
+        } else{
+            drive.fieldCentric(
+                    -driverGamepad.getLeftY(),
+                    -driverGamepad.getLeftX(),
+                    -driverGamepad.getRightX()
+            );
+        }
+
 //      Arcade Drive
 //      drive.arcadeDrive(driverGamepad.getLeftY() * multiplier, driverGamepad.getRightX() * multiplier);
-
 //      Tank Drive
 //      https://github.com/FTCLib/RoadRunner-FTCLib-Quickstart/blob/main/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/commands/MecanumDriveCommand.java
 //      drive.tankDrive(driverGamepad.getLeftY() * multiplier, driverGamepad.getRightY() * multiplier)
+
 
 //      Mecanum drive
 //        drive.mecDrive(
@@ -38,16 +56,13 @@ public class DefaultDriveCommand extends CommandBase {
 //                -driverGamepad.getRightX() //Changed from -driverGamepad.getLeftY(), so the drive mturns right
 //        );
 
-
-
-
 //        FieldCentric
-        drive.fieldCentric(
-                -driverGamepad.getLeftY(),
-                -driverGamepad.getLeftX(),
-                -driverGamepad.getRightX()
-
-        );
+//        drive.fieldCentric(
+//                -driverGamepad.getLeftY(),
+//                -driverGamepad.getLeftX(),
+//                -driverGamepad.getRightX()
+//
+//        );
     }
 
 
