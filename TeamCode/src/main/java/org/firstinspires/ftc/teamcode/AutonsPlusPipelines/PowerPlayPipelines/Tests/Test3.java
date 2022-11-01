@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Misc.VisionSubsystemNOUSE;
+import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 @Autonomous
 public class Test3 extends LinearOpMode {
@@ -33,12 +34,12 @@ public class Test3 extends LinearOpMode {
     ClawServos clawServos;
     Drivetrain drivetrain;
     Slide slide;
-    //       Vision vision;
+           Vision vision;
 
 
     @Override
     public void runOpMode() throws InterruptedException {
-        VisionSubsystemNOUSE vision = new VisionSubsystemNOUSE(this);
+        Vision vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         ClawServos clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         Drivetrain drivetrain =new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         Slide slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
@@ -49,11 +50,11 @@ public class Test3 extends LinearOpMode {
         while (!isStarted() && !isStopRequested())
         {
            vision.updateTagOfInterest();
-           vision.printTagData();
+           vision.tagToTelemetry();
            telemetry.update();
         }
 
-        switch (vision.getTagOfInterest().id) {
+        switch (vision.getTag()) {
             case 1: {
                 new SequentialCommandGroup(
 //                        new DriveForwardCommand(drivetrain, 30)

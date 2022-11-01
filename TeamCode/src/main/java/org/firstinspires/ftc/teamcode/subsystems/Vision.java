@@ -79,7 +79,7 @@ public class Vision extends SubsystemBase {
     {
         telemetry.addLine("before updateTagOfInterest");
 
-        updateTagOfInterest();
+//        updateTagOfInterest();
         telemetry.addLine("periodic before tagtotelemetry");
 
         tagToTelemetry();
@@ -113,6 +113,8 @@ public class Vision extends SubsystemBase {
         if (currentDetections.size() == 0) return;
 
         for(AprilTagDetection tag : currentDetections) {
+            telemetry.addLine("for AprilTagDetection tag:currentDetections");
+
             if(tag.id == LEFT || tag.id == MIDDLE || tag.id == RIGHT) {
                 tagFound = true;
                 tagFoundNum = tag.id;
@@ -136,9 +138,9 @@ public class Vision extends SubsystemBase {
         }
         else if (tagFoundNum != 0)
         {
-//            telemetry.addData("Tag In Sight: ", tagFoundNum);
+            telemetry.addData("Tag In Sight: ", tagFoundNum);
 
-//            telemetry.addData("Detected tag ID", tagFoundNum);
+            telemetry.addData("Detected tag ID", tagFoundNum);
 //            telemetry.addData("Translation X in meters", tagOfInterest.pose.x);
 //            telemetry.addData("Translation Y in meters", tagOfInterest.pose.y);
 //            telemetry.addData("Translation Z in meters", tagOfInterest.pose.z);
@@ -147,9 +149,23 @@ public class Vision extends SubsystemBase {
 //            telemetry.addData("Rotation Roll degrees", Math.toDegrees(tagOfInterest.pose.roll));
         }
 //        else telemetry.addLine("Tag seen before but not in sight");
+        telemetry.addLine();
+    }
 
-//        telemetry.addLine();
+    public void getNumandsend(String string){
+        telemetry.addLine(string);
+//        telemetry.addData("Detected tag ID", tagFoundNum);
 
+
+    }
+
+    public void getNumandsend() {
+        telemetry.addLine("in one of the command htins");
+
+    }
+
+    public void getsend() {
+        telemetry.addLine("before commands");
 
     }
 }

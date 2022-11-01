@@ -57,70 +57,80 @@ public class Test2 extends MatchOpMode {
 
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 //        vision.init(hardwareMap);
+        while (!isStarted() && !isStopRequested())
+        {
+            vision.updateTagOfInterest();
+            vision.tagToTelemetry();
+//            telemetry.update();
+            new InstantCommand(vision::getsend, vision);
+
+        }
+        this.matchStart();
     }
 
     public void matchStart() {
+        new InstantCommand(vision::getsend, vision);
         tagNum = vision.getTag();
-        if(tagNum==1)
-        {
-            new SequentialCommandGroup(
-                            //Low
-//                            new DriveForwardCommand(drivetrain, 30)
-//                    (Command) telemetry.addLine("tag1")
+        new InstantCommand(vision::getsend, vision);
 
-            );
-        }
-        else if(tagNum==2)
-        {
-            new SequentialCommandGroup(
-                    //Low
-//                    new DriveForwardCommand(drivetrain, 23)
-//                    (Command) telemetry.addLine("tag2")
-
-
-            );
-        }
-        else if(tagNum==3)
-        {
-            new SequentialCommandGroup(
-                    //Low
-//                    new DriveForwardCommand(drivetrain, -10)
-//                    (Command) telemetry.addLine("tag3")
-
-            );
-        }
-        else
-        {
-            new SequentialCommandGroup(
-                    //Low
-//                    new DriveForwardCommand(drivetrain, -19)
-//                    (Command) telemetry.addLine("else")
-
-            );
-        }
-//        schedule(
-//                new SelectCommand(new HashMap<Object, Command>() {{
-//
-//                    put(1, new SequentialCommandGroup(
+//        if(tagNum==1)
+//        {
+//            new SequentialCommandGroup(
 //                            //Low
-//                            new DriveForwardCommand(drivetrain, 12)
-//                    ));
-//                    put(2, new SequentialCommandGroup(
-//                            //Mid
-//                            new DriveForwardCommand(drivetrain, 30)
+//                            new DriveForwardCommand(drivetrain, 30),
+//            new InstantCommand(vision::getNumandsend, vision)
 //
 //
-//                    ));
-//                    put(3, new SequentialCommandGroup(
-//                            //High
-//                            new DriveForwardCommand(drivetrain, 30)
+//            );
+//        }
+//        else if(tagNum==2)
+//        {
+//            new SequentialCommandGroup(
+//                    //Low
+//                    new DriveForwardCommand(drivetrain, 23),
+//            new InstantCommand(vision::getNumandsend, vision)
 //
-//                    ));
-//                }}, vision::getTag)
-//        );
-    }
+//
+//            );
+//        }
+//        else if(tagNum==3)
+//        {
+//            new SequentialCommandGroup(
+//                    //Low
+//                    new DriveForwardCommand(drivetrain, -10),
+//                    new InstantCommand(vision::getNumandsend, vision)
+//
+//            );
+//        }
+//        else
+//        {
+//            new SequentialCommandGroup(
+//                    //Low
+//                    new DriveForwardCommand(drivetrain, -19),
+//                    new InstantCommand(vision::getNumandsend, vision)
+//            );
+//        }
 
-    public void periodic(){
-//        vision.tagToTelemetry();
+        switch (vision.getTag()) {
+            case 1: {
+                new SequentialCommandGroup(
+                        new DriveForwardCommand(drivetrain, -19),
+                        new InstantCommand(vision::getNumandsend, vision)
+                );
+            }
+            case 2: {
+                new SequentialCommandGroup(
+                        new DriveForwardCommand(drivetrain, -19),
+                        new InstantCommand(vision::getNumandsend, vision)
+                );
+
+            }
+            case 3: {
+                new SequentialCommandGroup(
+                        new DriveForwardCommand(drivetrain, -19),
+                        new InstantCommand(vision::getNumandsend, vision)
+                );
+            }
+         }
     }
 }
