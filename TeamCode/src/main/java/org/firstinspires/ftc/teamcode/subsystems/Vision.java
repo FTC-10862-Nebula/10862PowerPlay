@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class Vision extends SubsystemBase {
     OpenCvCamera camera;
+    private Telemetry telemetry;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
     static final double FEET_PER_METER = 3.28084;
@@ -44,8 +45,10 @@ public class Vision extends SubsystemBase {
     boolean tagFound = false;
     int tagFoundNum = 0;
 
-    public Vision (HardwareMap hardwareMap, String webCamName)//, Telemetry tl)
+    public Vision (HardwareMap hardwareMap, String webCamName, Telemetry telemetry)//, Telemetry tl)
     {
+        this.telemetry=telemetry;
+
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, webCamName), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
@@ -66,28 +69,43 @@ public class Vision extends SubsystemBase {
 
             }
         });
+
+//        updateTagOfInterest();
+//        tagToTelemetry();
     }
 
     @Override
     public void periodic()
     {
         updateTagOfInterest();
+        telemetry.addLine("Test1");
+
         tagToTelemetry();
+        telemetry.addLine("Test2");
     }
 
     public int getTag() {
         if (tagFound && tagFoundNum == 1) {
+            telemetry.addLine("return1 found");
             return 1;
+
         } else if (tagFound && tagFoundNum == 2) {
+            telemetry.addLine("return1 found");
+
             return 2;
         } else if (tagFound && tagFoundNum == 3) {
             return 3;
+
         } else {
+            telemetry.addLine("returning 1 not found");
+
             return 1;
         }
     }
 
     public void updateTagOfInterest() {
+        telemetry.addLine("in tagofinterest update");
+
         ArrayList<AprilTagDetection> currentDetections = aprilTagDetectionPipeline.getLatestDetections();
 
         tagFound = false;
@@ -104,25 +122,29 @@ public class Vision extends SubsystemBase {
 
     public void tagToTelemetry()
     {
-//        if (tagOfInterest == null) {
-//            telemetry.addLine("Tag not found");
-//            return;
-//        }
-//
-//        if (tagOfInterest != null)
-//        {
-//            telemetry.addData("Tag In Sight: ", tagOfInterest.id);
-//        }
-//        else telemetry.addLine("Tag seen before but not in sight");
-//
+        telemetry.addLine("enter tagtelem");
+
+//        telemetry
+        if (tagFoundNum == 0) {
+            telemetry.addLine("Tag not found");
+            return;
+        }
+        else if (tagFoundNum != 0)
+        {
+            telemetry.addData("Tag In Sight: ", tagFoundNum);
+
+            telemetry.addData("Detected tag ID", tagFoundNum);
+            telemetry.addData("Translation X in meters", tagOfInterest.pose.x);
+            telemetry.addData("Translation Y in meters", tagOfInterest.pose.y);
+            telemetry.addData("Translation Z in meters", tagOfInterest.pose.z);
+            telemetry.addData("Rotation Yaw in degrees", Math.toDegrees(tagOfInterest.pose.yaw));
+            telemetry.addData("Rotation Pitch degrees", Math.toDegrees(tagOfInterest.pose.pitch));
+            telemetry.addData("Rotation Roll degrees", Math.toDegrees(tagOfInterest.pose.roll));
+        }
+        else telemetry.addLine("Tag seen before but not in sight");
+
 //        telemetry.addLine();
-//
-//        telemetry.addData("Detected tag ID", tagOfInterest.id);
-//        telemetry.addData("Translation X in meters", tagOfInterest.pose.x);
-//        telemetry.addData("Translation Y in meters", tagOfInterest.pose.y);
-//        telemetry.addData("Translation Z in meters", tagOfInterest.pose.z);
-//        telemetry.addData("Rotation Yaw in degrees", Math.toDegrees(tagOfInterest.pose.yaw));
-//        telemetry.addData("Rotation Pitch degrees", Math.toDegrees(tagOfInterest.pose.pitch));
-//        telemetry.addData("Rotation Roll degrees", Math.toDegrees(tagOfInterest.pose.roll));
+
+
     }
 }

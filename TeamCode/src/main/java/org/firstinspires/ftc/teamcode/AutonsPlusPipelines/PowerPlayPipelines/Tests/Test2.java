@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
@@ -52,7 +53,7 @@ public class Test2 extends MatchOpMode {
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
-        vision = new Vision(hardwareMap, "Webcam 1");
+        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 //        vision.init(hardwareMap);
     }
 
@@ -62,28 +63,28 @@ public class Test2 extends MatchOpMode {
         {
             new SequentialCommandGroup(
                             //Low
-//                            new DriveForwardCommand(drivetrain, 12)
+                            new DriveForwardCommand(drivetrain, 30)
                     );
         }
         else if(tagNum==2)
         {
             new SequentialCommandGroup(
                     //Low
-//                    new DriveForwardCommand(drivetrain, 12)
+                    new DriveForwardCommand(drivetrain, 23)
             );
         }
         else if(tagNum==3)
         {
             new SequentialCommandGroup(
                     //Low
-//                    new DriveForwardCommand(drivetrain, 12)
+                    new DriveForwardCommand(drivetrain, -10)
             );
         }
         else
         {
             new SequentialCommandGroup(
                     //Low
-//                    new DriveForwardCommand(drivetrain, 12)
+                    new DriveForwardCommand(drivetrain, -19)
             );
         }
 //        schedule(

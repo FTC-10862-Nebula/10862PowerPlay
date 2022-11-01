@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class ServoTest extends OpMode {
     //hardware initialization stuff
     Servo servo;
-    double pos = 0.83;
+    double pos = 0.84;
 
     /**
      * User defined init method

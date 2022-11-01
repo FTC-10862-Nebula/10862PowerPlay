@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideHighBackCommand;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -15,28 +16,28 @@ public class LeftHighAutonCommand extends SequentialCommandGroup{
         addCommands(
                 new DriveForwardCommand(drivetrain, 130),
                 new TurnToCommand(drivetrain, 135),
-//                new SlideHighBackCommand(slide, clawMotors),
+                new SlideHighBackCommand(slide, clawMotors, clawServos),
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 30),
 //                new PickCone5Command(slide, clawServos, clawMotors),
 
                 new DriveForwardCommand(drivetrain, -30),
                 new TurnToCommand(drivetrain, 135),
-//                new SlideHighBackCommand(slide, clawMotors),
+//                new SlideHighBackCommand(slide, clawMotors, clawServos),
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 30),
 //                new PickCone4Command(slide, clawServos, clawMotors),
 
                 new DriveForwardCommand(drivetrain, -30),
                 new TurnToCommand(drivetrain, 135),
-//                new SlideHighBackCommand(slide, clawMotors),
+//                new SlideHighBackCommand(slide, clawMotors, clawServos),
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 30),
 //                new PickCone3Command(slide, clawServos, clawMotors),
 
                 new DriveForwardCommand(drivetrain, -30),
                 new TurnToCommand(drivetrain, 135),
-//                new SlideHighBackCommand(slide, clawMotors),
+//                new SlideHighBackCommand(slide, clawMotors, clawServos),
                 new TurnToCommand(drivetrain, 90),
                 new DriveForwardCommand(drivetrain, 30)
 //                new PickCone2Command(slide, clawServos, clawMotors)

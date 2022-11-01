@@ -16,29 +16,31 @@ import java.util.logging.Level;
 @Config
 public class ClawMotors extends SubsystemBase {
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.002, 1, 0, 0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.002, 0.2, 0, 0.0);
     //I = 0.0008
     private PIDFController controller;
     private boolean automatic;
 
     public static double CPR = 384.5;
-    public static double UP_SPEED = -0.5;
-    public static double DOWN_SPEED = 0.5;
+    public static double UP_SPEED = -0.55;
+    public static double DOWN_SPEED = 0.55;
 
     private double encoderOffset = 0;
     public static int INIT_POS = 0;
 
     public static int INTAKE_POS_BACK = -273;
     public static int GROUND_POS_BACK = -267;
-    public static int LOW_POS_BACK = -270;
+    public static int LOW_POS_BACK = -250;
     public static int MID_POS_BACK = -240;
-    public static int HIGH_POS_BACK = -200;
+    public static int HIGH_POS_BACK = -180;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK;
     public static int GROUND_POS_FRONT = -GROUND_POS_BACK;
     public static int LOW_POS_FRONT = -LOW_POS_BACK;
     public static int MID_POS_FRONT = -MID_POS_BACK;
     public static int HIGH_POS_FRONT = -HIGH_POS_BACK;
+
+    private static double POWER = 0.8;
 
     private int clawPos = 0;
 
@@ -70,8 +72,11 @@ public class ClawMotors extends SubsystemBase {
             controller.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
 
             double output = controller.calculate(getAngle());
+            if (output >= 1) output = 1;
+            if (output <= -1) output = -1;
 
-            clawMotor.set(output);
+
+            clawMotor.set(output * POWER);
         }
         Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", clawMotor.getCurrentPosition());
         Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", clawPos);
@@ -107,53 +112,55 @@ public class ClawMotors extends SubsystemBase {
 
     /****************************************************************************************/
 
-    public void moveClawIntakeFront() {
+    public void moveIntakeF() {
         automatic = true;
         controller.setSetPoint(INTAKE_POS_FRONT);
         clawPos = 0;
     }
-    public void moveClawGroundFront() {
+    public void moveGroundF() {
         automatic = true;
         controller.setSetPoint(GROUND_POS_FRONT);
         clawPos = 1;
     }
-    public void moveClawLowFront() {
+    public void moveLowF() {
         automatic = true;
         controller.setSetPoint(LOW_POS_FRONT);
         clawPos = 2;
     }
-    public void moveClawMidFront() {
+    public void moveMidF() {
         automatic = true;
         controller.setSetPoint(MID_POS_FRONT);
         clawPos = 3;
     }
-    public void moveClawHighFront() {
+    public void moveHighF() {
         automatic = true;
         controller.setSetPoint(HIGH_POS_FRONT);
         clawPos = 4;
     }
 
-    public void moveClawIntakeBack() {
+
+
+    public void moveIntakeB() {
         automatic = true;
         controller.setSetPoint(INTAKE_POS_BACK);
         clawPos = 5;
     }
-    public void moveClawGroundBack() {
+    public void moveGroundB() {
         automatic = true;
         controller.setSetPoint(GROUND_POS_BACK);
         clawPos = 6;
     }
-    public void moveClawLowBack() {
+    public void moveLowB() {
         automatic = true;
         controller.setSetPoint(LOW_POS_BACK);
         clawPos = 7;
     }
-    public void moveClawMidBack() {
+    public void moveMidB() {
         automatic = true;
         controller.setSetPoint(MID_POS_BACK);
         clawPos = 8;
     }
-    public void moveClawHighBack() {
+    public void moveHighB() {
         automatic = true;
         controller.setSetPoint(HIGH_POS_BACK);
         clawPos = 9;
@@ -174,9 +181,9 @@ public class ClawMotors extends SubsystemBase {
         return controller.atSetPoint();
     }
 
-    public void setPower(){
-        clawMotor.set(5);
-    }
+//    public void setPower(){
+//        clawMotor.set(5);
+//    }
 
     public void setOffset() {
         resetEncoder();
@@ -191,25 +198,25 @@ public class ClawMotors extends SubsystemBase {
 
     public void moveClawToCorrectHeight() {
         if(clawPos == 0) {
-            moveClawIntakeFront();
+            moveIntakeF();
         } else if(clawPos == 1) {
-            moveClawGroundFront();
+            moveGroundF();
         } else if(clawPos == 2) {
-            moveClawLowFront();
+            moveLowF();
         } else if(clawPos == 3) {
-            moveClawMidFront();
+            moveMidF();
         } else if(clawPos == 4) {
-            moveClawHighFront();
+            moveHighF();
         } else if(clawPos == 5) {
-            moveClawIntakeBack();
+            moveIntakeB();
         } else if(clawPos == 6) {
-            moveClawGroundBack();
+            moveGroundB();
         } else if(clawPos == 7) {
-            moveClawLowBack();
+            moveLowB();
         } else if(clawPos == 8) {
-            moveClawMidBack();
+            moveMidB();
         } else if(clawPos == 9) {
-            moveClawHighBack();
+            moveHighB();
         }
     }
 }

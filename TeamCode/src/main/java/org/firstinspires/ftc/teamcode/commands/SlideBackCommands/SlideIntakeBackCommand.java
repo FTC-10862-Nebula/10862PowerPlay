@@ -12,9 +12,9 @@ public class SlideIntakeBackCommand extends SequentialCommandGroup {
     public SlideIntakeBackCommand(Slide slide, ClawMotors clawMotors, ClawServos clawServos){
         addCommands(
                 new InstantCommand(slide::slideResting, slide),
-                new InstantCommand(clawMotors::moveClawIntakeBack, clawMotors),
+                new InstantCommand(clawMotors::moveIntakeB, clawMotors),
                 new WaitCommand(100),
-                new InstantCommand(clawServos::clawOpen, clawServos),
+//                new InstantCommand(clawServos::clawOpen, clawServos),
                 new InstantCommand(clawServos::setBClawPos)
         );
     }

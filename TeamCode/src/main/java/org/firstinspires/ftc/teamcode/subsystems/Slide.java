@@ -23,7 +23,7 @@ public class Slide extends SubsystemBase {
     public boolean liftTime;
     int liftError = 0, liftTargetPos = 0, setPos;
 
-    public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(.005, 0.02, 0,0);//.0075, 0., .003, 0)
+    public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(.005, 0.00, 0,0);//.0075, 0., .003, 0)
 //    public static PIDFCoefficients pidfDownCoefficients = new PIDFCoefficients(0.01, 0.00, 0, 0);
 
     //I = 0.0008
@@ -40,9 +40,9 @@ public class Slide extends SubsystemBase {
 
     public static int RESTING_POS = 2;
     public static int GROUND_POS = -23;
-    public static int LOW_POS = -760;
+    public static int LOW_POS = -600;
     public static int MID_POS = -1000;
-    public static int HIGH_POS = -1100;
+    public static int HIGH_POS = -1150;
 
     //Auto Slide Positions
     public static int CONE_5_POS = -500;
@@ -53,6 +53,7 @@ public class Slide extends SubsystemBase {
 
     public static int CAP_POSITION = 0;
 
+    private static double POWER = 0.93;
 
     private int liftPosition = 0;
 
@@ -96,35 +97,11 @@ public class Slide extends SubsystemBase {
             upController.setF(pidfUpCoefficients.f * Math.cos(Math.toRadians(upController.getSetPoint())));
 
             double output = upController.calculate(getAngle());
+            if (output >= 1) output = 1;
+            if (output <= -1) output = -1;
 
-//            downController.setF(pidfDownCoefficients.f * Math.cos(Math.toRadians(downController.getSetPoint())));
-
-//            liftError = liftTargetPos - slideM1.getCurrentPosition();
-//            slideM1.set(Range.clip(liftPID.getCorrection(liftError), -.7, 1));
-//            if ( slideM1.getCurrentPosition() > .4) {
-//                liftTargetPos = setPos;
-//                slideM1.setPositionCoefficient(0.83);
-//                slideM2.setPositionCoefficient(.83);
-//                liftTime = true;
-//            }
-//            if (toggleDown.nowTrue()) {
-//                liftTargetPos = 0;
-//               slideM1.setPositionCoefficient(.5);
-//               slideM2.setPositionCoefficient(.5);
-//                liftTime = false;
-//            }
-//            if(liftTime){
-//                liftTargetPos = setPos;
-//            }
-//            output = downController.calculate(getAngle());
-//            //Output Testing
-//            if (liftPosition == 0)
-//            {
-//                slideM1.set(Range.clip(output, 0.1, 0.45));
-//            }
-
-            slideM1.set(output);
-            slideM2.set(output);
+            slideM1.set(output* POWER);
+            slideM2.set(output* POWER);
         }
 
         Util.logger(this, telemetry, Level.INFO, "lift encoder pos 1: ", slideM1.getCurrentPosition());

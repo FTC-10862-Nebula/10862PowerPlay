@@ -25,8 +25,8 @@ public class ClawServos extends SubsystemBase {
     public static double INTAKE_POWER = -1;
     public static double OUTTAKE_POWER = 1;
 
-    public static double FRONT_POS_S3 = 0.82;
-    public static double BACK_POS_S3 = 0.16;
+    public static double F_POS_S3 = 0.843;
+    public static double B_POS_S3 = 0.215;
 
 
     Telemetry telemetry;
@@ -40,14 +40,14 @@ public class ClawServos extends SubsystemBase {
         this.clawS2 = clawS2;
         this.clawS3 = clawS3;
 
-
         this.clawS1 = new SimpleServo(hw,"clawS1",0,360);
         this.clawS1.setPosition(CLOSE_POS_S1);
+
 //        this.clawS2 = new SimpleServo(hw,"clawS2", 0, 360);
 //        this.clawS2.setPosition(CLOSE_POS_S2);
         this.clawS2 = new CRServo(hw, "clawS2");
         this.clawS3 = new SimpleServo(hw,"clawS3",0,360);
-        this.clawS3.setPosition(FRONT_POS_S3);
+        this.clawS3.setPosition(F_POS_S3);
 
         this.telemetry = tl;
     }
@@ -111,7 +111,7 @@ public class ClawServos extends SubsystemBase {
     }
 
 
-    public void setFClawPos(){setClawS3(FRONT_POS_S3);}
-    public void setBClawPos(){setClawS3(BACK_POS_S3);}
+    public void setFClawPos(){setClawS3(F_POS_S3);}
+    public void setBClawPos(){setClawS3(B_POS_S3);}
 
 }

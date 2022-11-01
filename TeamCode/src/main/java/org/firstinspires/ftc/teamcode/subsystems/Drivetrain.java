@@ -37,6 +37,7 @@ public class Drivetrain extends SubsystemBase {
         this.drive = drive;
         this.telemetry = tl;
         imu = hardwareMap.get(BNO055IMU.class, "imu");
+//        imu.close();
     }
 
     public void init() {
@@ -45,11 +46,15 @@ public class Drivetrain extends SubsystemBase {
         drive.setPoseEstimate(new Pose2d());
 //        imu = hardwareMap.get(BNO055IMU.class, "imu");
 
-        //init the imu
     }
     @Override
     public void periodic() {
         update();
+    }
+
+    public void resetImu(){
+//        imu.close();
+//        imu.initialize("imu");
     }
 
     public void setMode(DcMotor.RunMode mode) {

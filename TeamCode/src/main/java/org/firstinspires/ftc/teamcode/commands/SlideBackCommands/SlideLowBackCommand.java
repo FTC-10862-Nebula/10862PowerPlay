@@ -12,7 +12,7 @@ public class SlideLowBackCommand extends SequentialCommandGroup {
     public SlideLowBackCommand(Slide slide, ClawMotors clawMotors, ClawServos clawServos) {
         addCommands(
                 new InstantCommand(slide::slideLow, slide),
-                new InstantCommand(clawMotors::moveClawLowBack, clawMotors),
+                new InstantCommand(clawMotors::moveLowB, clawMotors),
                 new WaitCommand(100),
                 new InstantCommand(clawServos::setBClawPos)
         );

@@ -44,30 +44,30 @@ public class ClawMotorTeleop extends MatchOpMode {
 
     @Override
     public void configureButtons() {
-        one = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
-                .whenPressed(clawMotors::setPower));
+//        one = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
+//                .whenPressed(clawMotors::setPower));
 
         intakeF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
-                .whenPressed(clawMotors::moveClawIntakeFront));
+                .whenPressed(clawMotors::moveIntakeF));
         groundF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                .whenPressed(clawMotors::moveClawGroundFront));
+                .whenPressed(clawMotors::moveGroundF));
         lowF= (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                .whenPressed(clawMotors::moveClawLowFront));
+                .whenPressed(clawMotors::moveLowF));
         midF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                .whenPressed(clawMotors::moveClawMidFront));
+                .whenPressed(clawMotors::moveMidF));
         highF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                .whenPressed(clawMotors::moveClawHighFront));
+                .whenPressed(clawMotors::moveHighF));
 
         intakeB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
-                .whenPressed(clawMotors::moveClawIntakeBack));
+                .whenPressed(clawMotors::moveIntakeB));
         groundB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
-                .whenPressed(clawMotors::moveClawGroundBack));
+                .whenPressed(clawMotors::moveGroundB));
         lowB= (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
-                .whenPressed(clawMotors::moveClawLowBack));
+                .whenPressed(clawMotors::moveLowB));
         midB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
-                .whenPressed(clawMotors::moveClawMidBack));
+                .whenPressed(clawMotors::moveMidB));
         highB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                .whenPressed(clawMotors::moveClawHighBack));
+                .whenPressed(clawMotors::moveHighB));
 
         clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
                 .whenPressed(clawMotors::encoderReset);

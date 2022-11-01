@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.TeleOps;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -145,12 +146,6 @@ public class MainTeleOp extends MatchOpMode {
                     .whenPressed(clawServos::subClaw1Pos);
 
 
-
-        //Intake Button - D2
-            intakeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
-                    .whenPressed(new PickConeCommand(clawServos));
-            outtakeButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                    .whenPressed(new DropConeCommand(clawServos));
 
 //        //Slide Manual - D2
             slideUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
