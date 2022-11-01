@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.Tests;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.arcrobotics.ftclib.command.Command;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
@@ -63,28 +65,37 @@ public class Test2 extends MatchOpMode {
         {
             new SequentialCommandGroup(
                             //Low
-                            new DriveForwardCommand(drivetrain, 30)
-                    );
+//                            new DriveForwardCommand(drivetrain, 30)
+//                    (Command) telemetry.addLine("tag1")
+
+            );
         }
         else if(tagNum==2)
         {
             new SequentialCommandGroup(
                     //Low
-                    new DriveForwardCommand(drivetrain, 23)
+//                    new DriveForwardCommand(drivetrain, 23)
+//                    (Command) telemetry.addLine("tag2")
+
+
             );
         }
         else if(tagNum==3)
         {
             new SequentialCommandGroup(
                     //Low
-                    new DriveForwardCommand(drivetrain, -10)
+//                    new DriveForwardCommand(drivetrain, -10)
+//                    (Command) telemetry.addLine("tag3")
+
             );
         }
         else
         {
             new SequentialCommandGroup(
                     //Low
-                    new DriveForwardCommand(drivetrain, -19)
+//                    new DriveForwardCommand(drivetrain, -19)
+//                    (Command) telemetry.addLine("else")
+
             );
         }
 //        schedule(

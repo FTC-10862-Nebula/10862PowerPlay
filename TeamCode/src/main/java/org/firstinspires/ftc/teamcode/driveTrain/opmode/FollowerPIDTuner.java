@@ -23,7 +23,7 @@ import org.firstinspires.ftc.teamcode.driveTrain.SampleTankDrive;
  * These coefficients can be tuned live in dashboard.
  */
 @Config
-//@Disabled
+@Disabled
 @Autonomous(group = "drive")
 
 public class FollowerPIDTuner extends LinearOpMode {

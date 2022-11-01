@@ -77,28 +77,29 @@ public class Vision extends SubsystemBase {
     @Override
     public void periodic()
     {
+        telemetry.addLine("before updateTagOfInterest");
+
         updateTagOfInterest();
-        telemetry.addLine("Test1");
+        telemetry.addLine("periodic before tagtotelemetry");
 
         tagToTelemetry();
-        telemetry.addLine("Test2");
+        telemetry.addLine("periodic aftere tagtotelemetry");
+
     }
 
     public int getTag() {
         if (tagFound && tagFoundNum == 1) {
-            telemetry.addLine("return1 found");
+            telemetry.addLine("1 found");
             return 1;
 
         } else if (tagFound && tagFoundNum == 2) {
-            telemetry.addLine("return1 found");
-
+            telemetry.addLine("2 found");
             return 2;
         } else if (tagFound && tagFoundNum == 3) {
+            telemetry.addLine("3 found");
             return 3;
-
         } else {
             telemetry.addLine("returning 1 not found");
-
             return 1;
         }
     }
@@ -115,9 +116,13 @@ public class Vision extends SubsystemBase {
             if(tag.id == LEFT || tag.id == MIDDLE || tag.id == RIGHT) {
                 tagFound = true;
                 tagFoundNum = tag.id;
+                telemetry.addLine("changed tag.id/found");
+
 //                tagOfInterest = tag;
             }
         }
+        telemetry.addLine("end of updatetagofinterest ");
+
     }
 
     public void tagToTelemetry()
@@ -131,17 +136,17 @@ public class Vision extends SubsystemBase {
         }
         else if (tagFoundNum != 0)
         {
-            telemetry.addData("Tag In Sight: ", tagFoundNum);
+//            telemetry.addData("Tag In Sight: ", tagFoundNum);
 
-            telemetry.addData("Detected tag ID", tagFoundNum);
-            telemetry.addData("Translation X in meters", tagOfInterest.pose.x);
-            telemetry.addData("Translation Y in meters", tagOfInterest.pose.y);
-            telemetry.addData("Translation Z in meters", tagOfInterest.pose.z);
-            telemetry.addData("Rotation Yaw in degrees", Math.toDegrees(tagOfInterest.pose.yaw));
-            telemetry.addData("Rotation Pitch degrees", Math.toDegrees(tagOfInterest.pose.pitch));
-            telemetry.addData("Rotation Roll degrees", Math.toDegrees(tagOfInterest.pose.roll));
+//            telemetry.addData("Detected tag ID", tagFoundNum);
+//            telemetry.addData("Translation X in meters", tagOfInterest.pose.x);
+//            telemetry.addData("Translation Y in meters", tagOfInterest.pose.y);
+//            telemetry.addData("Translation Z in meters", tagOfInterest.pose.z);
+//            telemetry.addData("Rotation Yaw in degrees", Math.toDegrees(tagOfInterest.pose.yaw));
+//            telemetry.addData("Rotation Pitch degrees", Math.toDegrees(tagOfInterest.pose.pitch));
+//            telemetry.addData("Rotation Roll degrees", Math.toDegrees(tagOfInterest.pose.roll));
         }
-        else telemetry.addLine("Tag seen before but not in sight");
+//        else telemetry.addLine("Tag seen before but not in sight");
 
 //        telemetry.addLine();
 
