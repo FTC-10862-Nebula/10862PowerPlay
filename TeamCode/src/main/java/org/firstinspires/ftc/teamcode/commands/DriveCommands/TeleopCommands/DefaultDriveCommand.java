@@ -11,7 +11,7 @@ public class DefaultDriveCommand extends CommandBase {
     private Drivetrain drive;
     private GamepadEx driverGamepad;
 
-    protected double multiplier;
+    protected double multiplier = 1.1;
     boolean mecDrive = true;
 
     public DefaultDriveCommand(Drivetrain drive, GamepadEx driverGamepad, boolean mecDrive) {
@@ -19,7 +19,7 @@ public class DefaultDriveCommand extends CommandBase {
         this.drive = drive;
         this.driverGamepad = driverGamepad;
 
-        this.multiplier = 1.1;
+//        this.multiplier = 1.1;
         addRequirements(this.drive);
 
         this.mecDrive = mecDrive;

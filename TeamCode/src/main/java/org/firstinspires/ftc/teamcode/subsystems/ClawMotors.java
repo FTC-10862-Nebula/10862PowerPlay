@@ -79,6 +79,7 @@ public class ClawMotors extends SubsystemBase {
 
             clawMotor.set(output * POWER);
         }
+
         Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", clawMotor.getCurrentPosition());
         Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", clawPos);
     }
@@ -138,20 +139,28 @@ public class ClawMotors extends SubsystemBase {
     public void moveLowF(boolean FLIP) {
         automatic = true;
         if(FLIP){
+            telemetry.addLine("NEG LOWPOSF");
             controller.setSetPoint(-LOW_POS_FRONT);
             clawPos = 7;
         } else {
+            telemetry.addLine("POS LOWPOSF");
             controller.setSetPoint(LOW_POS_FRONT);
             clawPos = 2;
         }
     }
     public void moveMidF(boolean FLIP) {
         automatic = true;
+        telemetry.addLine("in moveMid");
+
         if(FLIP){
+            telemetry.addLine("NEG MIDPOSF");
+
             controller.setSetPoint(-MID_POS_FRONT);
             clawPos = 8;
         } else{
-        controller.setSetPoint(MID_POS_FRONT);
+            telemetry.addLine("POS MIDPOSF");
+
+            controller.setSetPoint(MID_POS_FRONT);
         clawPos = 3;
         }
     }
@@ -178,11 +187,13 @@ public class ClawMotors extends SubsystemBase {
 
     public void setFlipTrue(){
         FLIP = true;
+        telemetry.addLine("FLIP = true");
         //True means Back
     }
 
     public void setFlipFalse(){
         FLIP = false;
+        telemetry.addLine("FLIP = false");
         //False means Front
     }
 

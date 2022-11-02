@@ -119,10 +119,10 @@ public class MainTeleOp extends MatchOpMode {
             s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
                     .whenPressed(clawServos::setBClawPos);
 
-        //reset everything
-            resetFrontButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B))
-//                    .whenPressed(slide::slideResting);
-                    .whenPressed(new SlideResetFrontCommandT(slide, clawMotors, clawServos, clawMotors.getFlip()));
+        //reset everything - MOVE TO DRIVER2
+//            resetFrontButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B))
+////                    .whenPressed(slide::slideResting);
+//                    .whenPressed(new SlideResetFrontCommandT(slide, clawMotors, clawServos, clawMotors.getFlip()));
 
         //Claw Servo Manual Rotation
             plusClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
