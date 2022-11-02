@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropCon
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
+import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 @Config
 @TeleOp(name = "Claw1/2 Servo Teleop")
@@ -27,43 +28,27 @@ public class Claw12ServoTeleOp extends MatchOpMode {
     private MotorEx clawMotor;
 
     private ServoEx clawS1, clawS3;
-//        private ServoEx clawS2;
+//  private ServoEx clawS2;
     private CRServo clawS2;
+    private MotorEx liftMotor1, liftMotor2;
 
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
 
-
     // Subsystems
+    private Slide slide;
     private ClawServos clawServos;
-//    private ClawMotors clawMotors;
-
-
 
 
     @Override
     public void robotInit() {
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
-//        clawMotors = new ClawMotors(clawMotor, telemetry, hardwareMap);
-
+        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
     }
 
     //Buttons
-    private Button intakeTrigger, outtakeTrigger;
-    private Button slowModeBumper;
-    public Button resetFrontButton, resetBackButton;
-    public Button plusClaw3Button, subClaw3Button;
-    public Button plusClaw1Button, subClaw1Button;
-    public Button s3FButton, s3BButton;
-
-
-    public Button slideUpButton, slideDownButton, clawRaiseButton, clawLowerButton;
-    public Button groundBSlideButton, lowBSlideButton, midBSlideButton, highBSlideButton;
-    public Button groundFSlideButton, lowFSlideButton, midFSlideButton, highFSlideButton;
-    public Button clawMotorResetButton, slideEncoderResetButton;
-
     public Button one, two, three, four, five;
 
 
@@ -73,7 +58,7 @@ public class Claw12ServoTeleOp extends MatchOpMode {
                 .whenPressed(new PickConeCommand(clawServos));
 //                .whenPressed(new InstantCommand(clawMotors::moveClawLowFront));
         two = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-                .whenPressed(new DropConeCommand(clawServos));
+                .whenPressed(new DropConeCommand(clawServos, slide));
 //                .whenPressed(new InstantCommand(clawMotors::moveClawLowFront));
 
 

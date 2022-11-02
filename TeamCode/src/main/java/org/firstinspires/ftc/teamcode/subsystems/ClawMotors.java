@@ -28,19 +28,20 @@ public class ClawMotors extends SubsystemBase {
     private double encoderOffset = 0;
     public static int INIT_POS = 0;
 
-    public static int INTAKE_POS_BACK = -273;
-    public static int GROUND_POS_BACK = -267;
-    public static int LOW_POS_BACK = -250;
-    public static int MID_POS_BACK = -240;
-    public static int HIGH_POS_BACK = -180;
+//    public static int INTAKE_POS_BACK = -273;
+//    public static int GROUND_POS_BACK = -267;
+//    public static int LOW_POS_BACK = -250;
+//    public static int MID_POS_BACK = -240;
+//    public static int HIGH_POS_BACK = -180;
 
-    public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK;
-    public static int GROUND_POS_FRONT = -GROUND_POS_BACK;
-    public static int LOW_POS_FRONT = -LOW_POS_BACK;
-    public static int MID_POS_FRONT = -MID_POS_BACK;
-    public static int HIGH_POS_FRONT = -HIGH_POS_BACK;
+    public static int INTAKE_POS_FRONT = 273;
+    public static int GROUND_POS_FRONT = 267;
+    public static int LOW_POS_FRONT = 250;
+    public static int MID_POS_FRONT = 240;
+    public static int HIGH_POS_FRONT = 180;
 
     private static double POWER = 0.8;
+    private static boolean FLIP = false;
 
     private int clawPos = 0;
 
@@ -53,7 +54,6 @@ public class ClawMotors extends SubsystemBase {
 
         //Reverse claw motor
         this.clawMotor.setInverted(true);
-
         this.clawMotor.resetEncoder();
 
         this.clawMotor.setDistancePerPulse(360 / CPR);
@@ -64,6 +64,7 @@ public class ClawMotors extends SubsystemBase {
         this.telemetry = tl;
         automatic = false;
         setOffset();
+        FLIP = false;
     }
 
     @Override
@@ -112,65 +113,78 @@ public class ClawMotors extends SubsystemBase {
 
     /****************************************************************************************/
 
-    public void moveIntakeF() {
+    public void moveIntakeF(boolean FLIP) {
         automatic = true;
-        controller.setSetPoint(INTAKE_POS_FRONT);
-        clawPos = 0;
+        if(FLIP){
+            controller.setSetPoint(-INTAKE_POS_FRONT);
+            clawPos = 5;
+        } else{
+            controller.setSetPoint(INTAKE_POS_FRONT);
+            clawPos = 0;
+        }
+
+
     }
-    public void moveGroundF() {
+    public void moveGroundF(boolean FLIP) {
         automatic = true;
-        controller.setSetPoint(GROUND_POS_FRONT);
-        clawPos = 1;
+        if(FLIP){
+            controller.setSetPoint(-GROUND_POS_FRONT);
+            clawPos = 6;
+        } else {
+            controller.setSetPoint(GROUND_POS_FRONT);
+            clawPos = 1;
+        }
     }
-    public void moveLowF() {
+    public void moveLowF(boolean FLIP) {
         automatic = true;
-        controller.setSetPoint(LOW_POS_FRONT);
-        clawPos = 2;
+        if(FLIP){
+            controller.setSetPoint(-LOW_POS_FRONT);
+            clawPos = 7;
+        } else {
+            controller.setSetPoint(LOW_POS_FRONT);
+            clawPos = 2;
+        }
     }
-    public void moveMidF() {
+    public void moveMidF(boolean FLIP) {
         automatic = true;
+        if(FLIP){
+            controller.setSetPoint(-MID_POS_FRONT);
+            clawPos = 8;
+        } else{
         controller.setSetPoint(MID_POS_FRONT);
         clawPos = 3;
+        }
     }
-    public void moveHighF() {
+    public void moveHighF(boolean FLIP) {
         automatic = true;
-        controller.setSetPoint(HIGH_POS_FRONT);
-        clawPos = 4;
+        if(FLIP){
+            controller.setSetPoint(-HIGH_POS_FRONT);
+            clawPos = 9;
+        } else {
+            controller.setSetPoint(HIGH_POS_FRONT);
+            clawPos = 4;
+        }
     }
 
-
-
-    public void moveIntakeB() {
-        automatic = true;
-        controller.setSetPoint(INTAKE_POS_BACK);
-        clawPos = 5;
-    }
-    public void moveGroundB() {
-        automatic = true;
-        controller.setSetPoint(GROUND_POS_BACK);
-        clawPos = 6;
-    }
-    public void moveLowB() {
-        automatic = true;
-        controller.setSetPoint(LOW_POS_BACK);
-        clawPos = 7;
-    }
-    public void moveMidB() {
-        automatic = true;
-        controller.setSetPoint(MID_POS_BACK);
-        clawPos = 8;
-    }
-    public void moveHighB() {
-        automatic = true;
-        controller.setSetPoint(HIGH_POS_BACK);
-        clawPos = 9;
-    }
     public void encoderReset() {
         clawMotor.resetEncoder();
     }
 
     /****************************************************************************************/
 
+    public boolean getFlip(){
+        return FLIP;
+    }
+
+    public void setFlipTrue(){
+        FLIP = true;
+        //True means Back
+    }
+
+    public void setFlipFalse(){
+        FLIP = false;
+        //False means Front
+    }
 
 //    public void setLift(double angle) {
 //        automatic = true;
@@ -180,10 +194,6 @@ public class ClawMotors extends SubsystemBase {
     public boolean atTargetAngle() {
         return controller.atSetPoint();
     }
-
-//    public void setPower(){
-//        clawMotor.set(5);
-//    }
 
     public void setOffset() {
         resetEncoder();
@@ -198,25 +208,26 @@ public class ClawMotors extends SubsystemBase {
 
     public void moveClawToCorrectHeight() {
         if(clawPos == 0) {
-            moveIntakeF();
+            moveIntakeF(false);
         } else if(clawPos == 1) {
-            moveGroundF();
+            moveGroundF(false);
         } else if(clawPos == 2) {
-            moveLowF();
+            moveLowF(false);
         } else if(clawPos == 3) {
-            moveMidF();
+            moveMidF(false);
         } else if(clawPos == 4) {
-            moveHighF();
+            moveHighF(false);
+
         } else if(clawPos == 5) {
-            moveIntakeB();
+            moveIntakeF(true);
         } else if(clawPos == 6) {
-            moveGroundB();
+            moveGroundF(true);
         } else if(clawPos == 7) {
-            moveLowB();
+            moveLowF(true);
         } else if(clawPos == 8) {
-            moveMidB();
+            moveMidF(true);
         } else if(clawPos == 9) {
-            moveHighB();
+            moveHighF(true);
         }
     }
 }

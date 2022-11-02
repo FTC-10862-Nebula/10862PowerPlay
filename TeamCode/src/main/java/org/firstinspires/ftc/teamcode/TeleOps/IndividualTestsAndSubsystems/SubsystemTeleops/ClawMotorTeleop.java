@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOps.IndividualTestsAndSubsystems.SubsystemTeleops;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -48,26 +49,15 @@ public class ClawMotorTeleop extends MatchOpMode {
 //                .whenPressed(clawMotors::setPower));
 
         intakeF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
-                .whenPressed(clawMotors::moveIntakeF));
+                .whenPressed(new InstantCommand(()->clawMotors.moveIntakeF(clawMotors.getFlip()))));
         groundF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                .whenPressed(clawMotors::moveGroundF));
+                .whenPressed(new InstantCommand(()->clawMotors.moveGroundF(clawMotors.getFlip()))));
         lowF= (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                .whenPressed(clawMotors::moveLowF));
+                .whenPressed(new InstantCommand(()->clawMotors.moveLowF(clawMotors.getFlip()))));
         midF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                .whenPressed(clawMotors::moveMidF));
+                .whenPressed(new InstantCommand(()->clawMotors.moveMidF(clawMotors.getFlip()))));
         highF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                .whenPressed(clawMotors::moveHighF));
-
-        intakeB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
-                .whenPressed(clawMotors::moveIntakeB));
-        groundB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
-                .whenPressed(clawMotors::moveGroundB));
-        lowB= (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
-                .whenPressed(clawMotors::moveLowB));
-        midB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
-                .whenPressed(clawMotors::moveMidB));
-        highB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                .whenPressed(clawMotors::moveHighB));
+                .whenPressed(new InstantCommand(()->clawMotors.moveHighF(clawMotors.getFlip()))));
 
         clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
                 .whenPressed(clawMotors::encoderReset);

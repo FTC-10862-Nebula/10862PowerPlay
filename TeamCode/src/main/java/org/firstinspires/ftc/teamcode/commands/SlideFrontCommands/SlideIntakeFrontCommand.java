@@ -9,13 +9,13 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class SlideIntakeFrontCommand extends SequentialCommandGroup {
-    public SlideIntakeFrontCommand(Slide slide, ClawMotors clawMotors, ClawServos clawServos){
+    public SlideIntakeFrontCommand(Slide slide, ClawMotors clawMotors, ClawServos clawServos, boolean FLIP){
         addCommands(
                 new InstantCommand(slide::slideResting, slide),
-                new InstantCommand(clawMotors::moveIntakeF, clawMotors),
+                new InstantCommand(() -> clawMotors.moveIntakeF(FLIP)),
                 new WaitCommand(100),
 //                new InstantCommand(clawServos::clawOpen, clawServos),
-                new InstantCommand(clawServos::setFClawPos)
-        );
+                new InstantCommand(()-> clawServos.setClaw3Pos(FLIP))
+                );
     }
 }

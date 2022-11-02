@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 
 import com.acmerobotics.dashboard.config.Config;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
@@ -93,15 +94,15 @@ public class ClawServos extends SubsystemBase {
     }
 
 
-    public void intakeClaw() {
-        clawS2.set(INTAKE_POWER);
-    }
-    public void outtakeClaw() {
-        clawS2.set(OUTTAKE_POWER);
-    }
-    public void stopClaw() {
-        clawS2.stop();
-    }
+//    public void intakeClaw() {
+//        clawS2.set(INTAKE_POWER);
+//    }
+//    public void outtakeClaw() {
+//        clawS2.set(OUTTAKE_POWER);
+//    }
+//    public void stopClaw() {
+//        clawS2.stop();
+//    }
 
     public void addClaw3Pos() {
             setClawS3(clawS3.getPosition() + 0.05);
@@ -113,5 +114,15 @@ public class ClawServos extends SubsystemBase {
 
     public void setFClawPos(){setClawS3(F_POS_S3);}
     public void setBClawPos(){setClawS3(B_POS_S3);}
+
+    public void setClaw3Pos(boolean clawFlip){
+        if (clawFlip)
+        {
+            new InstantCommand(() ->setClawS3(F_POS_S3));
+        } else {
+            new InstantCommand(() ->setClawS3(B_POS_S3));
+        }
+    }
+//    public void setFClawPos(){setClawS3(B_POS_S3);}
 
 }

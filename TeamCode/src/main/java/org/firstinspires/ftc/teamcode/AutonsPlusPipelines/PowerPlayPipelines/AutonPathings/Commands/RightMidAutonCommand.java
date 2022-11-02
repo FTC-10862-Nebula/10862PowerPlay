@@ -17,7 +17,7 @@ public class RightMidAutonCommand extends SequentialCommandGroup{
                 //Counter Clockwise Angles
                 new DriveForwardCommand(drivetrain, 65),
                 new TurnToCommand(drivetrain, 50),
-                new SlideMidFrontCommand(slide, clawMotors, clawServos),
+                new SlideMidFrontCommand(slide, clawMotors, clawServos, clawMotors.getFlip()),
                 new TurnToCommand(drivetrain, 95),
                 new DriveForwardCommand(drivetrain, -40)
         );
