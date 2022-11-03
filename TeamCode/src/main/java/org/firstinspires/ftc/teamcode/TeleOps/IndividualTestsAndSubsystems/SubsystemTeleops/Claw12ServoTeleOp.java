@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOps.IndividualTestsAndSubsystems.SubsystemTeleops;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
@@ -70,10 +71,13 @@ public class Claw12ServoTeleOp extends MatchOpMode {
     @Override
     public void configureButtons() {
         one = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                .whenPressed(new PickConeCommand(clawServos));
+                .whenPressed(new InstantCommand(clawServos::clawClose));
+//                .whenPressed(new PickConeCommand(clawServos));
 //                .whenPressed(new InstantCommand(clawMotors::moveClawLowFront));
         two = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-                .whenPressed(new DropConeCommand(clawServos));
+                .whenPressed(new InstantCommand(clawServos::clawOpen));
+
+//                .whenPressed(new DropConeCommand(clawServos));
 //                .whenPressed(new InstantCommand(clawMotors::moveClawLowFront));
 
 

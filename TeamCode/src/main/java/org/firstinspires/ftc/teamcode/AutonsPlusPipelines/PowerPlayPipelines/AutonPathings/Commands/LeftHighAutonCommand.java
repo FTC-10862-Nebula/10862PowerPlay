@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 public class LeftHighAutonCommand extends SequentialCommandGroup{
     public LeftHighAutonCommand(Drivetrain drivetrain, Slide slide, ClawMotors clawMotors, ClawServos clawServos){
         addCommands(
-                new DriveForwardCommand(drivetrain, 130),
+                new DriveForwardCommand(drivetrain, 90),
                 new TurnToCommand(drivetrain, 135),
                 new SlideHighBackCommand(slide, clawMotors, clawServos),
                 new TurnToCommand(drivetrain, 90),

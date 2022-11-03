@@ -32,7 +32,7 @@ public class ClawServoTest extends OpMode {
     @Override
     public void init() {
         servo1 = hardwareMap.get(Servo.class, "clawS1");
-        servo2 = hardwareMap.get(Servo.class, "clawS2");
+//        servo2 = hardwareMap.get(Servo.class, "clawS2");
     }
 
     /**
@@ -49,12 +49,12 @@ public class ClawServoTest extends OpMode {
             pos += 0.001;
         }
 
-        if(gamepad1.dpad_right){
-            pos2 -= 0.001;
-        }
-        else if(gamepad1.dpad_down){
-            pos2 += 0.001;
-        }
+//        if(gamepad1.dpad_right){
+//            pos2 -= 0.001;
+//        }
+//        else if(gamepad1.dpad_down){
+//            pos2 += 0.001;
+//        }
 
 
 //        if(gamepad1.right_bumper){
@@ -72,16 +72,16 @@ public class ClawServoTest extends OpMode {
 //        }
 
 
-        pos = Math.min(Math.max(pos, 0), 1);
-        servo1.setPosition(Math.min(Math.max(pos, 0), 1));
-        telemetry.addData("Servo pos1: ",servo1.getPosition());
-        telemetry.addData("Desired pos1: ", pos);
-
-        pos = Math.min(Math.max(pos2, 0), 1);
-        servo1.setPosition(Math.min(Math.max(pos2, 0), 1));
-        telemetry.addData("Servo pos2: ",servo2.getPosition());
-        telemetry.addData("Desired pos2: ", pos2);
-        telemetry.update();
+//        pos = Math.min(Math.max(pos, 0), 1);
+//        servo1.setPosition(Math.min(Math.max(pos, 0), 1));
+//        telemetry.addData("Servo pos1: ",servo1.getPosition());
+//        telemetry.addData("Desired pos1: ", pos);
+//
+//        pos = Math.min(Math.max(pos2, 0), 1);
+//        servo1.setPosition(Math.min(Math.max(pos2, 0), 1));
+//        telemetry.addData("Servo pos2: ",servo2.getPosition());
+//        telemetry.addData("Desired pos2: ", pos2);
+//        telemetry.update();
 
     }
 }

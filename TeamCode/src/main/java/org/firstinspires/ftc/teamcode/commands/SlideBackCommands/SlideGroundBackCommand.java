@@ -12,8 +12,8 @@ public class SlideGroundBackCommand extends SequentialCommandGroup {
     public SlideGroundBackCommand(Slide slide, ClawMotors clawMotors, ClawServos clawServos) {
         addCommands(
                 new InstantCommand(clawServos::setBClawPos),
-                new WaitCommand(100),
                 new InstantCommand(slide::slideGround, slide),
+                new WaitCommand(150),
                 new InstantCommand(clawMotors::moveGroundB, clawMotors)
         );
     }

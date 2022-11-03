@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands.LeftHighAutonCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
@@ -50,14 +51,13 @@ public class TestAutonWithoutCam extends MatchOpMode {
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
-//        tagDetector = new ATDetector();
-//        tagDetector.init();
     }
 
     public void matchStart() {
         schedule(
                 new SequentialCommandGroup(
-                        new DriveForwardCommand(drivetrain, 30)
+                        new LeftHighAutonCommand(drivetrain, slide, clawMotors, clawServos)
+//                        new DriveForwardCommand(drivetrain, 30)
 //                        new LeftMidAutonCommand(drivetrain,slide,clawMotors, clawServos)
 //                        new DriveForwardCommand(drivetrain, 30)
                 )
