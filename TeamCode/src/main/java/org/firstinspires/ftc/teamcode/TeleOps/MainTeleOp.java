@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.TeleOps;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -78,114 +77,106 @@ public class MainTeleOp extends MatchOpMode {
         drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-
-
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
-
-//        standardTrackingWheelLocalizer = new StandardTrackingWheelLocalizer(leftEncoder, rightEncoder, frontEncoder, hardwareMap);
     }
 
     //Buttons
-    private Button intakeTrigger, outtakeTrigger;
-    private Button intakeButton, outtakeButton;
-    private Button slowModeBumper;
-    public Button resetFrontButton, resetBackButton;
-    public Button plusClaw3Button, subClaw3Button;
-    public Button plusClaw1Button, subClaw1Button;
-    public Button s3FButton, s3BButton;
-
-
-    public Button slideUpButton, slideDownButton, clawRaiseTrigger, clawLowerTrigger;
-    public Button groundBSlideButton, lowBSlideButton, midBSlideButton, highBSlideButton;
-    public Button groundFSlideButton, lowFSlideButton, midFSlideButton, highFSlideButton;
-    public Button clawMotorResetButton, slideEncoderResetButton;
-    public Button robotDriveButton, fieldDriveButton;
+//    private Button intakeTrigger, outtakeTrigger;
+//    private Button intakeButton, outtakeButton;
+//    private Button slowModeBumper;
+//    public Button resetFrontButton, resetBackButton;
+//    public Button plusClaw3Button, subClaw3Button;
+//    public Button plusClaw1Button, subClaw1Button;
+//    public Button s3FButton, s3BButton;
+//
+//
+//    public Button slideUpTrigger, slideDownTrigger, clawRaiseButton, clawLowerButton;
+//    public Button groundBSlideButton, lowBSlideButton, midBSlideButton, highBSlideButton;
+//    public Button groundFSlideButton, lowFSlideButton, midFSlideButton, highFSlideButton;
+//    public Button clawMotorResetButton, slideEncoderResetButton;
+//    public Button robotDriveButton, fieldDriveButton;
 
 
     @Override
     public void configureButtons() {
-        robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,  true));
-        fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
-                .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,false));
-
+        //Drive Stuff - D1
+            Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
+                    .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,  true));
+            Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
+                    .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,false));
         //Slowmode - D1
-            slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
+            Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                     .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
-
-        //Claw Servo Intake/Outtake - D1
-            intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-                    .whenPressed(new PickConeCommand(clawServos));
-            outtakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                    .whenPressed(new DropConeCommand(clawServos));
         //Claw Servo 3 Buttons - D1
-            s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
+            Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
                     .whenPressed(clawServos::setFClawPos);
-            s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
+            Button s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
                     .whenPressed(clawServos::setBClawPos);
-
-        //reset everything
-            resetBackButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.X))
+        //reset everything - D1
+            Button resetBackButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.X))
 //                    .whenPressed(slide::slideResting);
                     .whenPressed(new SlideResetBackCommandT(slide, clawMotors, clawServos));
-            resetFrontButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B))
+            Button resetFrontButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.B))
 //                    .whenPressed(slide::slideResting);
                     .whenPressed(new SlideResetFrontCommandT(slide, clawMotors, clawServos));
-
-        //Claw Servo Manual Rotation
-            plusClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
+        //Claw Servo Manual Rotation - D1
+            Button plusClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
                     .whenPressed(clawServos::addClaw3Pos);
-            subClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN))
+            Button subClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN))
                     .whenPressed(clawServos::subClaw3Pos);
-
-        //Claw Servo Manual In/Out
-            plusClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT))
+        //Claw Servo Manual In/Out - D1
+            Button plusClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT))
                     .whenPressed(clawServos::addClaw1Pos);
-            subClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT))
+            Button subClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT))
                     .whenPressed(clawServos::subClaw1Pos);
-
-
-
-//        //Slide Manual - D2
-            slideUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
+        //Slide Manual - D1 (Temp)
+            Button slideUpTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
                     .whenPressed(slide::upSlideManual)
                     .whenReleased(slide::stopSlide));
-            slideDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
+            Button slideDownTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
                     .whenPressed(slide::downSlideManual)
                     .whenReleased(slide::stopSlide));
 
+
+
         //Claw Manual - D2
-            clawRaiseTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
+            Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
                     .whenPressed(clawMotors::raiseClawManual)
                     .whenReleased(clawMotors::stopClaw));
-            clawLowerTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
+            Button armLowerButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
                     .whenPressed(clawMotors::lowerClawManual)
                     .whenReleased(clawMotors::stopClaw));
-
-        //Slide positions
-            groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
+        //Slide positions - D2
+            Button groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
                     .whenPressed(new SlideGroundBackCommand(slide, clawMotors, clawServos)));
-            lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
+            Button lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
                     .whenPressed(new SlideLowBackCommand(slide, clawMotors, clawServos)));
-            midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
+            Button midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
                     .whenPressed(new SlideMidBackCommand(slide, clawMotors, clawServos)));
-            highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
+            Button highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
                     .whenPressed(new SlideHighBackCommand(slide, clawMotors, clawServos)));
 
-            groundFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
+            Button groundFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
                     .whenPressed(new SlideGroundFrontCommand(slide, clawMotors, clawServos)));
-            lowFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
+            Button lowFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
                     .whenPressed(new SlideLowFrontCommand(slide, clawMotors, clawServos)));
-            midFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
+            Button midFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
                     .whenPressed(new SlideMidFrontCommand(slide, clawMotors, clawServos)));
-            highFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
+            Button highFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
                     .whenPressed(new SlideHighFrontCommand(slide, clawMotors, clawServos)));
 
+        //Claw Servo Intake/Outtake - D2
+            Button intakeTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
+                    .whenPressed(new PickConeCommand(clawServos, slide));
+            Button outtakeTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+                    .whenPressed(new DropConeCommand(clawServos));
+
         //PIDF Controllers Resets
-            clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
+            Button clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
                     .whenPressed(clawMotors::encoderReset);
-            slideEncoderResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
+            Button slideEncoderResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
                     .whenPressed(slide::encoderReset);
     }
 
