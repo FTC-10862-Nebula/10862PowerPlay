@@ -30,7 +30,7 @@ public class ClawMotors extends SubsystemBase {
 
     public static int INTAKE_POS_BACK = -273;
     public static int GROUND_POS_BACK = -267;
-    public static int LOW_POS_BACK = -250;
+    public static int LOW_POS_BACK = -265;
     public static int MID_POS_BACK = -240;
     public static int HIGH_POS_BACK = -180;
 

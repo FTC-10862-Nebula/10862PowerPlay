@@ -132,10 +132,10 @@ public class MainTeleOp extends MatchOpMode {
             Button subClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT))
                     .whenPressed(clawServos::subClaw1Pos);
         //Slide Manual - D1 (Temp)
-            Button slideUpTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
+            Button slideUpTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
                     .whenPressed(slide::upSlideManual)
                     .whenReleased(slide::stopSlide));
-            Button slideDownTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
+            Button slideDownTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
                     .whenPressed(slide::downSlideManual)
                     .whenReleased(slide::stopSlide));
 

@@ -16,22 +16,22 @@ import java.util.logging.Level;
 @Config
 public class ClawServos extends SubsystemBase {
     //Claw Variables
-    private static double CLOSE_POS_S1 = 0.6;
+    private static double CLOSE_POS_S1 = 0.5;
     private static double OPEN_POS_S1 = 0.35;
 
-    private static double CLOSE_POS_S2 = 0.83;
-    private static double OPEN_POS_S2 = 0.7;
+    private static double CLOSE_POS_S2 = 0.5;
+    private static double OPEN_POS_S2 = 0.65;
 
-    private static double INTAKE_POWER = -1;
-    private static double OUTTAKE_POWER = 1;
+//    private static double INTAKE_POWER = -1;
+//    private static double OUTTAKE_POWER = 1;
 
     private static double F_POS_S3 = 0.843;
     private static double B_POS_S3 = 0.215;
 
 
     Telemetry telemetry;
-    private ServoEx clawS1;
-    private ServoEx clawS2;
+    private ServoEx clawS1;//  -0.95
+    private ServoEx clawS2; //0. - 0.78
 //    private CRServo clawS2;     //Super Speed that is CR
     private ServoEx clawS3;     //Servo that turns claw
 
@@ -54,7 +54,8 @@ public class ClawServos extends SubsystemBase {
 
     @Override
     public void periodic() {
-//        Util.logger(this, telemetry, Level.INFO, "Claw Servo 1 Pos: ", clawS1.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Claw Servo 1 Pos: ", clawS1.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Claw Servo 2 Pos: ", clawS2.getPosition());
         Util.logger(this, telemetry, Level.INFO, "Claw Servo 3 Pos: ", clawS3.getPosition());
     }
 
@@ -62,7 +63,7 @@ public class ClawServos extends SubsystemBase {
         clawS1.setPosition(clawServo1Pos);
     }
     public void setClawS2(double clawServo2Pos) {
-        clawS3.setPosition(clawServo2Pos);
+        clawS2.setPosition(clawServo2Pos);
     }
     public void setClawS3(double clawServo3Pos) {
         clawS3.setPosition(clawServo3Pos);

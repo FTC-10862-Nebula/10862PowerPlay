@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands;
+package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands.Low;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
@@ -14,8 +14,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
-public class LeftMidAutonCommand extends SequentialCommandGroup{
-    public LeftMidAutonCommand(Drivetrain drivetrain, Slide slide, ClawMotors clawMotors, ClawServos clawServos){
+public class LeftLowAutonCommand extends SequentialCommandGroup{
+    public LeftLowAutonCommand(Drivetrain drivetrain, Slide slide, ClawMotors clawMotors, ClawServos clawServos){
         addCommands(
                 new DriveForwardCommand(drivetrain, 70),
                 new TurnToCommand(drivetrain, 315, true),

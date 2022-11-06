@@ -11,8 +11,11 @@ public class PickConeCommand extends SequentialCommandGroup {
 
     public PickConeCommand(ClawServos clawServos, Slide slide){
         addCommands(
-                new InstantCommand(clawServos::clawClose, clawServos),
-                new InstantCommand(slide::slideMid, slide)
+                  new InstantCommand(clawServos::clawClose, clawServos)
+//                                new WaitCommand(800),
+//                new InstantCommand(slide::slideMid, slide)
+
+
 //                new InstantCommand(clawServos::intakeClaw),
 //                new WaitCommand(4000),
 //                new InstantCommand(clawServos::stopClaw)
