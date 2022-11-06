@@ -28,8 +28,8 @@ public class Claw12ServoTeleOp extends MatchOpMode {
     private MotorEx clawMotor;
 
     private ServoEx clawS1, clawS3;
-//        private ServoEx clawS2;
-    private CRServo clawS2;
+        private ServoEx clawS2;
+//    private CRServo clawS2;
 
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;

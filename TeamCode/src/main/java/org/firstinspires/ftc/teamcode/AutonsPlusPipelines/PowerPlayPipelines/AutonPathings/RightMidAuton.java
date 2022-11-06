@@ -54,8 +54,8 @@ public class RightMidAuton extends LinearOpMode
     //Motors and Servos
     private MotorEx clawMotor;
     private ServoEx clawS1, clawS3;
-    //    private ServoEx clawS2;
-    private CRServo clawS2;
+        private ServoEx clawS2;
+//    private CRServo clawS2;
     private MotorEx leftFront, leftRear, rightRear, rightFront;
     private MotorEx liftMotor1, liftMotor2;
 

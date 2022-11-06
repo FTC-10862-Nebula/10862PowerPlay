@@ -24,8 +24,8 @@ public class Test3 extends LinearOpMode {
     //Motors and Servos
     MotorEx clawMotor;
     ServoEx clawS1, clawS3;
-    //    private ServoEx clawS2;
-    private CRServo clawS2;
+        private ServoEx clawS2;
+//    private CRServo clawS2;
     MotorEx leftFront, leftRear, rightRear, rightFront;
     MotorEx liftMotor1, liftMotor2;
 
