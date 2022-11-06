@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
+import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
@@ -11,6 +12,7 @@ import com.qualcomm.robotcore.util.Range;
 import org.apache.commons.math3.util.IntegerSequence;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.commands.SlideDefaultCommand;
 
 import java.util.logging.Level;
 
@@ -77,8 +79,7 @@ public class Slide extends SubsystemBase {
         upController = new PIDFController(pidfUpCoefficients.p, pidfUpCoefficients.i, pidfUpCoefficients.d, pidfUpCoefficients.f, getAngle(), getAngle());
         upController.setTolerance(10);
 
-//        downController = new PIDFController(pidfDownCoefficients.p, pidfDownCoefficients.i, pidfDownCoefficients.d, pidfDownCoefficients.f, getAngle(), getAngle());
-//        downController.setTolerance(10);
+
         this.telemetry = tl;
         automatic = false;
         setOffset();
@@ -116,10 +117,16 @@ public class Slide extends SubsystemBase {
         return slideM2.getDistance() -encoderOffset2;
     }
 
-    public void upSlideManual() {
+    public void upSlideManual(GamepadEx operatorGamepad, Slide slide) {
+        new SlideDefaultCommand(slide, operatorGamepad);
         automatic = false;
-        slideM1.set(UP_SPEED);
-        slideM2.set(UP_SPEED);
+
+
+    }
+    public void setPower(double power)
+    {
+        slideM1.set(power);
+        slideM2.set(power);
     }
 
     public void downSlideManual() {

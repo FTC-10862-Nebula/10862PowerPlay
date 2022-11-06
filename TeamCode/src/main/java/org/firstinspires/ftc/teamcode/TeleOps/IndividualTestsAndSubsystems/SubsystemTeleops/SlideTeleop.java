@@ -44,12 +44,12 @@ public class SlideTeleop extends MatchOpMode {
     @Override
     public void configureButtons() {
         //Slide Manual
-            slideUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
-                    .whenPressed(slide::upSlideManual)
-                    .whenReleased(slide::stopSlide));
-            slideDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
-                    .whenPressed(slide::downSlideManual)
-                    .whenReleased(slide::stopSlide));
+//            slideUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
+//                    .whenPressed(slide::upSlideManual)
+//                    .whenReleased(slide::stopSlide));
+//            slideDownButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
+//                    .whenPressed(slide::downSlideManual)
+//                    .whenReleased(slide::stopSlide));
 
         //Slide positions
             groundSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)

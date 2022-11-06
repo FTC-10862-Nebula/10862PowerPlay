@@ -13,7 +13,7 @@ public class FaithCommand extends SequentialCommandGroup{
 //        addRequirements(drivetrain);    //Add Subsystems that you need to run this Command
         addCommands(
                 //Commands
-        new InstantCommand(clawMotors::moveMidF, clawMotors ),
+        new InstantCommand(clawMotors::moveF, clawMotors ),
 //        new InstantCommand(slide::slideMid),
       new InstantCommand(slide::slideMid)   ,
 //          new InstantCommand(drivetrain::)

@@ -29,15 +29,11 @@ public class ClawMotors extends SubsystemBase {
     public static int INIT_POS = 0;
 
     public static int INTAKE_POS_BACK = -273;
-    public static int GROUND_POS_BACK = -267;
-    public static int LOW_POS_BACK = -265;
-    public static int MID_POS_BACK = -240;
+    public static int POS_BACK = -267;
     public static int HIGH_POS_BACK = -180;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK;
-    public static int GROUND_POS_FRONT = -GROUND_POS_BACK;
-    public static int LOW_POS_FRONT = -LOW_POS_BACK;
-    public static int MID_POS_FRONT = -MID_POS_BACK;
+    public static int POS_FRONT = -POS_BACK;
     public static int HIGH_POS_FRONT = -HIGH_POS_BACK;
 
     private static double POWER = 0.8;
@@ -117,54 +113,33 @@ public class ClawMotors extends SubsystemBase {
         controller.setSetPoint(INTAKE_POS_FRONT);
         clawPos = 0;
     }
-    public void moveGroundF() {
+    public void moveF() {
         automatic = true;
-        controller.setSetPoint(GROUND_POS_FRONT);
+        controller.setSetPoint(POS_FRONT);
         clawPos = 1;
-    }
-    public void moveLowF() {
-        automatic = true;
-        controller.setSetPoint(LOW_POS_FRONT);
-        clawPos = 2;
-    }
-    public void moveMidF() {
-        automatic = true;
-        controller.setSetPoint(MID_POS_FRONT);
-        clawPos = 3;
     }
     public void moveHighF() {
         automatic = true;
         controller.setSetPoint(HIGH_POS_FRONT);
-        clawPos = 4;
+        clawPos = 2;
     }
-
-
 
     public void moveIntakeB() {
         automatic = true;
         controller.setSetPoint(INTAKE_POS_BACK);
-        clawPos = 5;
+        clawPos = 3;
     }
-    public void moveGroundB() {
+    public void moveB() {
         automatic = true;
-        controller.setSetPoint(GROUND_POS_BACK);
-        clawPos = 6;
-    }
-    public void moveLowB() {
-        automatic = true;
-        controller.setSetPoint(LOW_POS_BACK);
-        clawPos = 7;
-    }
-    public void moveMidB() {
-        automatic = true;
-        controller.setSetPoint(MID_POS_BACK);
-        clawPos = 8;
+        controller.setSetPoint(POS_BACK);
+        clawPos = 4;
     }
     public void moveHighB() {
         automatic = true;
         controller.setSetPoint(HIGH_POS_BACK);
-        clawPos = 9;
+        clawPos = 5;
     }
+
     public void encoderReset() {
         clawMotor.resetEncoder();
     }
@@ -196,27 +171,15 @@ public class ClawMotors extends SubsystemBase {
         clawEncoderReset();
     }
 
-    public void moveClawToCorrectHeight() {
-        if(clawPos == 0) {
-            moveIntakeF();
-        } else if(clawPos == 1) {
-            moveGroundF();
-        } else if(clawPos == 2) {
-            moveLowF();
-        } else if(clawPos == 3) {
-            moveMidF();
-        } else if(clawPos == 4) {
-            moveHighF();
-        } else if(clawPos == 5) {
-            moveIntakeB();
-        } else if(clawPos == 6) {
-            moveGroundB();
-        } else if(clawPos == 7) {
-            moveLowB();
-        } else if(clawPos == 8) {
-            moveMidB();
-        } else if(clawPos == 9) {
-            moveHighB();
-        }
-    }
+//    public void moveClawToCorrectHeight() {
+//        if(clawPos == 0) {
+//            moveIntakeF();
+//        } else if(clawPos == 1) {
+//            moveHighF();
+//        } else if(clawPos == 2) {
+//            moveIntakeB();
+//        } else if(clawPos == 3) {
+//            moveHighB();
+//        }
+//    }
 }

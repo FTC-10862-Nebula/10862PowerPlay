@@ -11,10 +11,12 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 public class SlideGroundBackCommand extends SequentialCommandGroup {
     public SlideGroundBackCommand(Slide slide, ClawMotors clawMotors, ClawServos clawServos) {
         addCommands(
-                new InstantCommand(clawServos::setBClawPos),
                 new InstantCommand(slide::slideGround, slide),
                 new WaitCommand(150),
-                new InstantCommand(clawMotors::moveGroundB, clawMotors)
+                new InstantCommand(clawMotors::moveB, clawMotors),
+                new WaitCommand(150),
+                new InstantCommand(clawServos::setBClawPos)
+
         );
     }
 }

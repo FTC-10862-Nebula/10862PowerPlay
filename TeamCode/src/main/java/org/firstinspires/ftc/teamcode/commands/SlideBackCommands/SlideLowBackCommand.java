@@ -11,10 +11,11 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 public class SlideLowBackCommand extends SequentialCommandGroup {
     public SlideLowBackCommand(Slide slide, ClawMotors clawMotors, ClawServos clawServos) {
         addCommands(
-                new InstantCommand(clawServos::setBClawPos),
                 new InstantCommand(slide::slideLow, slide),
                 new WaitCommand(150),
-                new InstantCommand(clawMotors::moveLowB, clawMotors)
+                new InstantCommand(clawMotors::moveB, clawMotors),
+                new WaitCommand(200),
+                new InstantCommand(clawServos::setBClawPos)
         );
     }
 }

@@ -49,23 +49,11 @@ public class ClawMotorTeleop extends MatchOpMode {
 
         intakeF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
                 .whenPressed(clawMotors::moveIntakeF));
-        groundF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                .whenPressed(clawMotors::moveGroundF));
-        lowF= (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                .whenPressed(clawMotors::moveLowF));
-        midF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                .whenPressed(clawMotors::moveMidF));
         highF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
                 .whenPressed(clawMotors::moveHighF));
 
         intakeB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
                 .whenPressed(clawMotors::moveIntakeB));
-        groundB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
-                .whenPressed(clawMotors::moveGroundB));
-        lowB= (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
-                .whenPressed(clawMotors::moveLowB));
-        midB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
-                .whenPressed(clawMotors::moveMidB));
         highB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
                 .whenPressed(clawMotors::moveHighB));
 
