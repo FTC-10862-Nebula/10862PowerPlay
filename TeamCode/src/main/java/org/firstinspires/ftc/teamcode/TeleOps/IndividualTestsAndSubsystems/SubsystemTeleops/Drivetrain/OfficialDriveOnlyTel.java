@@ -6,32 +6,14 @@ import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
-import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.TeleOps.GamepadTrigger;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.SlowDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideGroundBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideHighBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideLowBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideMidBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideResetBackCommandT;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideGroundFrontCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideHighFrontCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideLowFrontCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideMidFrontCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideResetFrontCommandT;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 @Config
 @TeleOp(name = "OfficialDriveOnlyTeleop")

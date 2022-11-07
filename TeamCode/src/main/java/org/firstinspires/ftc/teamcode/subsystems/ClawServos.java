@@ -42,10 +42,10 @@ public class ClawServos extends SubsystemBase {
 
         this.clawS1 = new SimpleServo(hw,"clawS1",0,360);
         this.clawS1.setPosition(CLOSE_POS_S1);
-
         this.clawS2 = new SimpleServo(hw,"clawS2", 0, 360);
         this.clawS2.setPosition(CLOSE_POS_S2);
 //        this.clawS2 = new CRServo(hw, "clawS2");
+
         this.clawS3 = new SimpleServo(hw,"clawS3",0,360);
         this.clawS3.setPosition(F_POS_S3);
 

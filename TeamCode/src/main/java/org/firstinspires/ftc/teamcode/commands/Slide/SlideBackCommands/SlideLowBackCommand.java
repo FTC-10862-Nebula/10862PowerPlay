@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands.SlideBackCommands;
+package org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -8,15 +8,15 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class SlideHighBackCommand extends SequentialCommandGroup {
-    public SlideHighBackCommand(Slide slide, ClawMotors clawMotors, ClawServos clawServos){
+public class SlideLowBackCommand extends SequentialCommandGroup {
+    public SlideLowBackCommand(Slide slide, ClawMotors clawMotors, ClawServos clawServos) {
         addCommands(
-                new InstantCommand(slide::slideHigh, slide),
+                new InstantCommand(clawServos::clawClose),
+                new InstantCommand(slide::slideLow, slide),
                 new WaitCommand(150),
-                new InstantCommand(clawMotors::moveHighB, clawMotors),
+                new InstantCommand(clawMotors::moveB, clawMotors),
                 new WaitCommand(200),
                 new InstantCommand(clawServos::setBClawPos)
-
         );
-    }   
+    }
 }

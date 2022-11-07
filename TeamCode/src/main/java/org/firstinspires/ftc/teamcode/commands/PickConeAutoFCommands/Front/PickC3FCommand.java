@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands;
+package org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.Front;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class PickCone3Command extends SequentialCommandGroup{
-    public PickCone3Command(Slide slide, ClawServos clawServos, ClawMotors clawMotors, Drivetrain drivetrain){
+public class PickC3FCommand extends SequentialCommandGroup{
+    public PickC3FCommand(Slide slide, ClawServos clawServos, ClawMotors clawMotors, Drivetrain drivetrain){
         addCommands(
                 new InstantCommand(slide::slideCone3),
                 new InstantCommand(clawMotors::moveIntakeF),

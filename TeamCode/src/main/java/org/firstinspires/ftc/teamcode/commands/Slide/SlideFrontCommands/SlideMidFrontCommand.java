@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands.SlideFrontCommands;
+package org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 public class SlideMidFrontCommand extends SequentialCommandGroup {
     public SlideMidFrontCommand(Slide slide, ClawMotors clawMotors, ClawServos clawServos) {
         addCommands(
+                new InstantCommand(clawServos::clawClose),
                 new InstantCommand(clawMotors::moveF, clawMotors),
                 new WaitCommand(150),
                 new InstantCommand(slide::slideMid, slide),

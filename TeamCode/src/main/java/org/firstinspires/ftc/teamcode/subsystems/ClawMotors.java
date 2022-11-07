@@ -108,6 +108,10 @@ public class ClawMotors extends SubsystemBase {
 
     /****************************************************************************************/
 
+    public void moveReset(){
+        automatic = true;
+        controller.setSetPoint(INIT_POS);
+    }
     public void moveIntakeF() {
         automatic = true;
         controller.setSetPoint(INTAKE_POS_FRONT);

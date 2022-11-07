@@ -2,33 +2,25 @@ package org.firstinspires.ftc.teamcode.TeleOps;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideGroundBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideHighBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideLowBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideMidBackCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideBackCommands.SlideResetBackCommandT;
-import org.firstinspires.ftc.teamcode.commands.SlideDefaultCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideHighFrontCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideResetFrontCommandT;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideGroundBackCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBackCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBackCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBackCommand;
 
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideGroundFrontCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideLowFrontCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideFrontCommands.SlideMidFrontCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands.SlideGroundFrontCommand;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 
@@ -107,17 +99,17 @@ public class MainTeleOp extends MatchOpMode {
             Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                     .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
-        //Claw Servo Outtake - D1
-            Button intakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
+        //Claw Servo Intake
+            Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
                 .whenPressed(new PickConeCommand(clawServos, slide));
             Button intakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
                 .whenPressed(new PickConeCommand(clawServos, slide));
 
-        //Claw Servo Outtake - D2
+        //Claw Servo Outtake
             Button outtakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                .whenPressed(new DropConeCommand(clawServos));
+                .whenPressed(new DropConeCommand(clawServos, slide));
             Button outtakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                .whenPressed(new DropConeCommand(clawServos));
+                .whenPressed(new DropConeCommand(clawServos, slide));
 
         //Slide positions - D2
             //back position
@@ -182,6 +174,7 @@ public class MainTeleOp extends MatchOpMode {
                     .whenPressed(clawServos::subClaw1Pos);
             */
 
+
         //PIDF Controllers Resets
             Button clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
                     .whenPressed(clawMotors::encoderReset);
@@ -192,6 +185,20 @@ public class MainTeleOp extends MatchOpMode {
     @Override
     public void matchLoop() {
 //        slide.setPower(-operatorGamepad.getLeftY());   - no worky
+        if(-operatorGamepad.getLeftY()>=0.5 || -operatorGamepad.getLeftY()<= -0.5)
+        {
+            slide.automaticFalse();
+            slide.setPower(-operatorGamepad.getLeftY());
+//            if(-operatorGamepad.getLeftY()>=-0.1&& -operatorGamepad.getLeftY()<=0.1)
+//            {
+//                slide.stopSlide();
+//            }
+
+        }
+//        else if(-operatorGamepad.getLeftY()==0){
+//            slide.stopSlide();
+//        }
+        //Works but not tooo much
     }
     @Override
     public void disabledPeriodic() { }

@@ -7,12 +7,10 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
-import com.qualcomm.robotcore.util.Range;
 
-import org.apache.commons.math3.util.IntegerSequence;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Util;
-import org.firstinspires.ftc.teamcode.commands.SlideDefaultCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideDefaultCommand;
 
 import java.util.logging.Level;
 
@@ -47,11 +45,11 @@ public class Slide extends SubsystemBase {
     public static int HIGH_POS = -1250;
 
     //Auto Slide Positions
-    public static int CONE_5_POS = -500;
-    public static int CONE_4_POS = -400;
-    public static int CONE_3_POS = -300;
-    public static int CONE_2_POS = -250;
-    public static int CONE_1_POS = -100;
+    public static int CONE_5_POS = -200;
+    public static int CONE_4_POS = -200;
+    public static int CONE_3_POS = -120;
+    public static int CONE_2_POS = -100;
+    public static int CONE_1_POS = -10;
 
     public static int CAP_POSITION = 0;
 
@@ -90,6 +88,9 @@ public class Slide extends SubsystemBase {
     }
     public boolean isAutomatic() {
         return automatic;
+    }
+    public void automaticFalse(){
+        automatic=false;
     }
 
     @Override
