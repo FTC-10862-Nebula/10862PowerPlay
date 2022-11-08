@@ -9,8 +9,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplineCommand;
-import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 @Disabled

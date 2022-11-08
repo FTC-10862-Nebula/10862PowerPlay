@@ -255,6 +255,16 @@ public class Slide extends SubsystemBase {
         upController.setSetPoint(getAngle());
     }
 
+    public void dropSlide(){
+        if(slideM1.getCurrentPosition()<200&& slideM2.getCurrentPosition()<200)
+        {
+            return;
+        } else
+        {
+            upController.setSetPoint(slideM1.getCurrentPosition()-125);
+        }
+    }
+
 //    public void moveUp() {
 //        liftPosition = liftPosition + 1;
 //        if(liftPosition > 4) {

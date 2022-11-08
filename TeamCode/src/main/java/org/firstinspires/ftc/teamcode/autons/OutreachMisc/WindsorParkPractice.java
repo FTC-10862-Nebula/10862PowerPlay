@@ -4,15 +4,14 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
-import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -54,25 +53,9 @@ public class WindsorParkPractice extends MatchOpMode {
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
-
-//        tagDetector = new ATDetector();
-//        tagDetector.init();
     }
 
 @Override
-    /*public void matchStart() {
-        schedule(
-                new SequentialCommandGroup(
-                        new CBlueCarouselCommandR(drivetrain, intake, lift, armServos, carousel)));
-    }};*/
-/*public void matchStart() {
-    schedule(
-            new SequentialCommandGroup
-                    (
-                   new CBlueWarehouseCommandR(drivetrain, intake, lift, armServos, sensorColor, capServos)
-                    ));
-            }};*/
-
     public void matchStart() {
             schedule(
                     new SequentialCommandGroup(

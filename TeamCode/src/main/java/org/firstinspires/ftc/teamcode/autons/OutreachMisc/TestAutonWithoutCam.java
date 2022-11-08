@@ -6,9 +6,9 @@ import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.Commands.High.LeftHighAutonCommand;
-import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.autons.AutonsPlusPipelines.PowerPlayPipelines.Commands.High.LeftHighAutonCommand;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;

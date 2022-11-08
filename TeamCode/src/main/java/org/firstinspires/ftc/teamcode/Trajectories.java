@@ -1,9 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
-import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.MAX_ANG_VEL;
-import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.driveTrain.DriveConstants.TRACK_WIDTH;
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MAX_ACCEL;
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MAX_ANG_VEL;
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.TRACK_WIDTH;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;

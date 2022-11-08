@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
