@@ -45,7 +45,6 @@ public class Test2 extends MatchOpMode {
     private Slide slide;
     private Vision vision;
 
-
     @Override
     public void robotInit() {
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
@@ -61,17 +60,17 @@ public class Test2 extends MatchOpMode {
         {
             vision.updateTagOfInterest();
             vision.tagToTelemetry();
-//            telemetry.update();
-            new InstantCommand(vision::getsend, vision);
+            telemetry.update();
+//            new InstantCommand(vision::getsend, vision);
 
         }
         this.matchStart();
     }
 
     public void matchStart() {
-        new InstantCommand(vision::getsend, vision);
+//        new InstantCommand(vision::getsend, vision);
         tagNum = vision.getTag();
-        new InstantCommand(vision::getsend, vision);
+//        new InstantCommand(vision::getsend, vision);
 
 //        if(tagNum==1)
 //        {
@@ -111,26 +110,36 @@ public class Test2 extends MatchOpMode {
 //            );
 //        }
 
-        switch (vision.getTag()) {
+
+        SequentialCommandGroup sequentialCommandGroup;
+        switch (tagNum) {
             case 1: {
-                new SequentialCommandGroup(
-                        new DriveForwardCommand(drivetrain, -19),
+                sequentialCommandGroup = new SequentialCommandGroup(
+                        new DriveForwardCommand(drivetrain, -5),
                         new InstantCommand(vision::getNumandsend, vision)
                 );
             }
             case 2: {
-                new SequentialCommandGroup(
-                        new DriveForwardCommand(drivetrain, -19),
+                sequentialCommandGroup = new SequentialCommandGroup(
+                        new DriveForwardCommand(drivetrain, -10),
                         new InstantCommand(vision::getNumandsend, vision)
                 );
 
             }
             case 3: {
-                new SequentialCommandGroup(
-                        new DriveForwardCommand(drivetrain, -19),
+                sequentialCommandGroup =new SequentialCommandGroup(
+                        new DriveForwardCommand(drivetrain, 8),
                         new InstantCommand(vision::getNumandsend, vision)
                 );
             }
-         }
+            default: {
+               sequentialCommandGroup = new SequentialCommandGroup(
+                        new DriveForwardCommand(drivetrain, 18),
+                        new InstantCommand(vision::getNumandsend, vision)
+                );
+            }
+        }
+        schedule(sequentialCommandGroup);
+
     }
 }

@@ -21,6 +21,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.Slow
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands.SlideGroundFrontCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands.SlideResetFrontCommandT;
 import org.firstinspires.ftc.teamcode.driveTrain.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
 
@@ -75,9 +76,7 @@ public class MainTeleOp extends MatchOpMode {
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
 
-
 //            slide.setDefaultCommand(new SlideDefaultCommand(slide, operatorGamepad));    // - works but stops pid from working
-
 //              upSlideManual(slide, operatorGamepad,left);
 //        slide.upSlideManual(operatorGamepad, slide);
 
@@ -88,7 +87,7 @@ public class MainTeleOp extends MatchOpMode {
     public void configureButtons() {
 //        Button slideMan = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
 //                .whenHeld(new InstantCommand(() -> slide.setPower(-operatorGamepad.getLeftY()))); - worky
-//        slide.upSlideManual(operatorGamepad, slide);
+//        slide.upSlideManual(operatorGamepad, slide);//                    .whenReleased(new InstantCommand( () -> slide.setPower(-operatorGamepad.getLeftY())))); - no worky
 
         //Drive Stuff - D1
             Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
@@ -99,34 +98,28 @@ public class MainTeleOp extends MatchOpMode {
             Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                     .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
-        //Claw Servo Intake
+        //Claw Servo Intake/Outtake - D1/D2
             Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
                 .whenPressed(new PickConeCommand(clawServos, slide));
-            Button intakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-                .whenPressed(new PickConeCommand(clawServos, slide));
-
-        //Claw Servo Outtake
-            Button outtakeTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+            Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
                 .whenPressed(new DropConeCommand(clawServos, slide));
-            Button outtakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                .whenPressed(new DropConeCommand(clawServos, slide));
+//            Button intakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
+//                .whenPressed(new PickConeCommand(clawServos, slide));
+//            Button outtakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+//                .whenPressed(new DropConeCommand(clawServos, slide));
 
         //Slide positions - D2
-            //back position
             Button groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
                     .whenPressed(new SlideGroundBackCommand(slide, clawMotors, clawServos)));
-//                    .whenReleased(new InstantCommand( () -> slide.setPower(-operatorGamepad.getLeftY())))); - no worky
             Button lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
                     .whenPressed(new SlideLowBackCommand(slide, clawMotors, clawServos)));
-        Button midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
+            Button midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
                     .whenPressed(new SlideMidBackCommand(slide, clawMotors, clawServos)));
-
-        Button highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
+            Button highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
                     .whenPressed(new SlideHighBackCommand(slide, clawMotors, clawServos)));
 
-        Button resetFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                .whenPressed(new SlideGroundFrontCommand(slide, clawMotors, clawServos)));
-
+            Button resetFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
+                .whenPressed(new SlideResetFrontCommandT(slide, clawMotors, clawServos)));
 
         //Slide Manual - D2
 //            slideMotor.set(operatorGamepad.getLeftY);
@@ -134,11 +127,12 @@ public class MainTeleOp extends MatchOpMode {
 //                    GamepadTrigger(operatorGamepad, GamepadKeys.Button.LEFT_STICK_BUTTON)
 //                .whenPressed(slide::upSlideManual)
 //                .whenReleased(slide::stopSlide));
-            Button slideDownTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
-                .whenPressed(slide::downSlideManual)
-                .whenReleased(slide::stopSlide));
+//            Button slideDownTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER)
+//                .whenPressed(slide::downSlideManual)
+//                .whenReleased(slide::stopSlide));
 
             //Arm Manual - D2
+
             Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
                 .whenPressed(clawMotors::raiseClawManual)
                 .whenReleased(clawMotors::stopClaw));
@@ -146,8 +140,12 @@ public class MainTeleOp extends MatchOpMode {
                 .whenPressed(clawMotors::lowerClawManual)
                 .whenReleased(clawMotors::stopClaw));
 
+        Button slideUpTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
+                .whenPressed(slide::upSlideManual);
+            Button slideDownTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+                .whenPressed(slide::downSlideManual);
+
             /*
-            //front position
             Button groundFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
                     .whenPressed(new SlideGroundFrontCommand(slide, clawMotors, clawServos)));
             Button lowFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
@@ -174,7 +172,6 @@ public class MainTeleOp extends MatchOpMode {
                     .whenPressed(clawServos::subClaw1Pos);
             */
 
-
         //PIDF Controllers Resets
             Button clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
                     .whenPressed(clawMotors::encoderReset);
@@ -185,16 +182,16 @@ public class MainTeleOp extends MatchOpMode {
     @Override
     public void matchLoop() {
 //        slide.setPower(-operatorGamepad.getLeftY());   - no worky
-        if(-operatorGamepad.getLeftY()>=0.5 || -operatorGamepad.getLeftY()<= -0.5)
-        {
-            slide.automaticFalse();
-            slide.setPower(-operatorGamepad.getLeftY());
+//        if(-operatorGamepad.getLeftY()>=0.5 || -operatorGamepad.getLeftY()<= -0.5)
+//        {
+//            slide.automaticFalse();
+//            slide.setPower(-operatorGamepad.getLeftY());
 //            if(-operatorGamepad.getLeftY()>=-0.1&& -operatorGamepad.getLeftY()<=0.1)
 //            {
 //                slide.stopSlide();
 //            }
 
-        }
+//        }
 //        else if(-operatorGamepad.getLeftY()==0){
 //            slide.stopSlide();
 //        }

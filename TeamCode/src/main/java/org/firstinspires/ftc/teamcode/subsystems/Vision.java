@@ -88,14 +88,15 @@ public class Vision extends SubsystemBase {
     }
 
     public int getTag() {
-        if (tagFound && tagFoundNum == 1) {
+//        return tagFoundNum;
+        if (tagFoundNum == 1) {
             telemetry.addLine("1 found");
             return 1;
 
-        } else if (tagFound && tagFoundNum == 2) {
+        } else if (tagFoundNum == 2) {
             telemetry.addLine("2 found");
             return 2;
-        } else if (tagFound && tagFoundNum == 3) {
+        } else if (tagFoundNum == 3) {
             telemetry.addLine("3 found");
             return 3;
         } else {

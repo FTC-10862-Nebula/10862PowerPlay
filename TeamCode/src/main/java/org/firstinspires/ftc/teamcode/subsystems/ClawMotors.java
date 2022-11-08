@@ -28,9 +28,9 @@ public class ClawMotors extends SubsystemBase {
     private double encoderOffset = 0;
     public static int INIT_POS = 0;
 
-    public static int INTAKE_POS_BACK = -273;
+    public static int INTAKE_POS_BACK = -284;
     public static int POS_BACK = -267;
-    public static int HIGH_POS_BACK = -180;
+    public static int HIGH_POS_BACK = -125;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK;
     public static int POS_FRONT = -POS_BACK;

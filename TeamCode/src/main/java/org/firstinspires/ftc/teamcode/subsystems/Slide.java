@@ -41,8 +41,8 @@ public class Slide extends SubsystemBase {
     public static int RESTING_POS = 2;
     public static int GROUND_POS = -23;
     public static int LOW_POS = -670;
-    public static int MID_POS = -1100;
-    public static int HIGH_POS = -1250;
+    public static int MID_POS = -1150;
+    public static int HIGH_POS = -1330;
 
     //Auto Slide Positions
     public static int CONE_5_POS = -200;
@@ -118,12 +118,16 @@ public class Slide extends SubsystemBase {
         return slideM2.getDistance() -encoderOffset2;
     }
 
-    public void upSlideManual(GamepadEx operatorGamepad, Slide slide) {
-        new SlideDefaultCommand(slide, operatorGamepad);
+//    public void upSlideManual(GamepadEx operatorGamepad, Slide slide) {
+//        new SlideDefaultCommand(slide, operatorGamepad);
+//        automatic = false;
+//    }
+    public void upSlideManual(){
         automatic = false;
-
-
+        slideM1.set(UP_SPEED);
+        slideM2.set(UP_SPEED);
     }
+
     public void setPower(double power)
     {
         slideM1.set(power);

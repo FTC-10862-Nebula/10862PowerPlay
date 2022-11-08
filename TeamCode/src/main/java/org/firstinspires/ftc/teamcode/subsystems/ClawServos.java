@@ -16,11 +16,11 @@ import java.util.logging.Level;
 @Config
 public class ClawServos extends SubsystemBase {
     //Claw Variables
-    private static double CLOSE_POS_S1 = 0.5;
-    private static double OPEN_POS_S1 = 0.35;
+    private final static double CLOSE_POS_S1 = 0.64;
+    private final static double OPEN_POS_S1 = 0.37;
 
-    private static double CLOSE_POS_S2 = 0.5;
-    private static double OPEN_POS_S2 = 0.65;
+    private final static double CLOSE_POS_S2 = 0.39;
+    private final static double OPEN_POS_S2 = 0.66;
 
 //    private static double INTAKE_POWER = -1;
 //    private static double OUTTAKE_POWER = 1;
@@ -80,18 +80,7 @@ public class ClawServos extends SubsystemBase {
         setClawS1(OPEN_POS_S1);
         setClawS2(OPEN_POS_S2);
     }
-    public void addClaw1Pos() {
-        if (clawS1.getPosition()>(CLOSE_POS_S1+0.05)) {
-            setClawS1(clawS1.getPosition() + 0.05);
-        }
-        else return;
-    }
-    public void subClaw1Pos() {
-        if (clawS1.getPosition()<(OPEN_POS_S1-0.05)) {
-            setClawS1(clawS1.getPosition() - 0.05);
-        }
-        else return;
-    }
+
 
 
 //    public void intakeClaw() {
@@ -104,15 +93,27 @@ public class ClawServos extends SubsystemBase {
 //        clawS2.stop();
 //    }
 
-    public void addClaw3Pos() {
-            setClawS3(clawS3.getPosition() + 0.05);
-    }
-    public void subClaw3Pos() {
-            setClawS3(clawS3.getPosition() - 0.05);
-    }
 
+
+    public void addClawPos() {
+        if (clawS1.getPosition()>(CLOSE_POS_S1+0.05) && clawS2.getPosition()>(CLOSE_POS_S2+0.05)) {
+            setClawS1(clawS1.getPosition() + 0.05);
+        }
+//        else return;
+    }
+    public void subClawPos() {
+        if (clawS1.getPosition()<(OPEN_POS_S1-0.05) && clawS2.getPosition()>(CLOSE_POS_S2-0.05)) {
+            setClawS1(clawS1.getPosition() - 0.05);
+        }
+//        else return;
+    }
 
     public void setFClawPos(){setClawS3(F_POS_S3);}
     public void setBClawPos(){setClawS3(B_POS_S3);}
-
+    public void addClaw3Pos() {
+        setClawS3(clawS3.getPosition() + 0.05);
+    }
+    public void subClaw3Pos() {
+        setClawS3(clawS3.getPosition() - 0.05);
+    }
 }
