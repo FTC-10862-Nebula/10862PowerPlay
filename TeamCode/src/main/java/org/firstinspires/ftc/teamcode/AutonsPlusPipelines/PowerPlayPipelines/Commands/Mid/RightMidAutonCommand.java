@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands.Mid;
+package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.Commands.Mid;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 

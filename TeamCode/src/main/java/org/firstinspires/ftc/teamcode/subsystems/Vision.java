@@ -1,15 +1,11 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-
-import static java.sql.Types.NULL;
-
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AprilTagDetectionPipeline;
+import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.UnneededMisc.AprilTagDetectionPipeline;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -66,41 +62,36 @@ public class Vision extends SubsystemBase {
             @Override
             public void onError(int errorCode)
             {
-
+                telemetry.addLine("ERROR!");
             }
         });
-
-//        updateTagOfInterest();
-//        tagToTelemetry();
     }
 
     @Override
     public void periodic()
     {
         telemetry.addLine("before updateTagOfInterest");
-
-//        updateTagOfInterest();
+        updateTagOfInterest();
         telemetry.addLine("periodic before tagtotelemetry");
-
         tagToTelemetry();
         telemetry.addLine("periodic aftere tagtotelemetry");
-
     }
 
     public int getTag() {
 //        return tagFoundNum;
+
         if (tagFoundNum == 1) {
-            telemetry.addLine("1 found");
+            telemetry.addLine("Found 1 - Left");
             return 1;
 
         } else if (tagFoundNum == 2) {
-            telemetry.addLine("2 found");
+            telemetry.addLine("Found 2 - Mid");
             return 2;
         } else if (tagFoundNum == 3) {
-            telemetry.addLine("3 found");
+            telemetry.addLine("Found 3 - Right");
             return 3;
         } else {
-            telemetry.addLine("returning 1 not found");
+            telemetry.addLine("Returning 1 - Left (Not Found)");
             return 1;
         }
     }
@@ -120,8 +111,6 @@ public class Vision extends SubsystemBase {
                 tagFound = true;
                 tagFoundNum = tag.id;
                 telemetry.addLine("changed tag.id/found");
-
-//                tagOfInterest = tag;
             }
         }
         telemetry.addLine("end of updatetagofinterest ");
@@ -132,16 +121,14 @@ public class Vision extends SubsystemBase {
     {
         telemetry.addLine("enter tagtelem");
 
-//        telemetry
         if (tagFoundNum == 0) {
-            telemetry.addLine("Tag not found");
+            telemetry.addLine("Tag In Sight: Not Found :( ");
             return;
         }
-        else if (tagFoundNum != 0)
-        {
+        else {
             telemetry.addData("Tag In Sight: ", tagFoundNum);
+//            telemetry.addData("Detected tag ID", tagFoundNum);
 
-            telemetry.addData("Detected tag ID", tagFoundNum);
 //            telemetry.addData("Translation X in meters", tagOfInterest.pose.x);
 //            telemetry.addData("Translation Y in meters", tagOfInterest.pose.y);
 //            telemetry.addData("Translation Z in meters", tagOfInterest.pose.z);
@@ -149,24 +136,13 @@ public class Vision extends SubsystemBase {
 //            telemetry.addData("Rotation Pitch degrees", Math.toDegrees(tagOfInterest.pose.pitch));
 //            telemetry.addData("Rotation Roll degrees", Math.toDegrees(tagOfInterest.pose.roll));
         }
-//        else telemetry.addLine("Tag seen before but not in sight");
         telemetry.addLine();
     }
 
-    public void getNumandsend(String string){
-        telemetry.addLine(string);
-//        telemetry.addData("Detected tag ID", tagFoundNum);
-
-
-    }
 
     public void getNumandsend() {
         telemetry.addLine("in one of the command htins");
 
     }
 
-    public void getsend() {
-        telemetry.addLine("before commands");
-
-    }
 }

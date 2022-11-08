@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.Tests;
+package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.UnneededMisc;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
@@ -15,7 +16,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Misc.VisionSubsystemNOUSE;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
-
+@Disabled
 @Autonomous
 public class Test3 extends LinearOpMode {
     private static double startPoseX = 0;

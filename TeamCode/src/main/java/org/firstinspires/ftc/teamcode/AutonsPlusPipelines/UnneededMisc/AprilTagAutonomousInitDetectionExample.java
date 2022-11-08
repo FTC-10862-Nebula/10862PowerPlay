@@ -19,53 +19,24 @@
  * SOFTWARE.
  */
 
-package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings;
+package org.firstinspires.ftc.teamcode.AutonsPlusPipelines.UnneededMisc;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AprilTagDetectionPipeline;
-import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.PowerPlayPipelines.AutonPathings.Commands.Mid.LeftMidAutonCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.driveTrain.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.Slide;
-import org.firstinspires.ftc.teamcode.subsystems.Misc.VisionSubsystemNOUSE;
+import org.firstinspires.ftc.teamcode.AutonsPlusPipelines.UnneededMisc.AprilTagDetectionPipeline;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
-
+@Disabled
 @Autonomous
-public class LeftMidAuton extends LinearOpMode
+public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
 {
-    private static double startPoseX = 0;
-    private static double startPoseY = 0;
-    private static double startPoseHeading = 0;
-
-    //Motors and Servos
-    private MotorEx clawMotor;
-    private ServoEx clawS1,  clawS3;
-        private ServoEx clawS2;
-//    private CRServo clawS2;
-    private MotorEx leftFront, leftRear, rightRear, rightFront;
-    private MotorEx liftMotor1, liftMotor2;
-
-    // Subsystems
-    private ClawMotors clawMotors;
-    private ClawServos clawServos;
-    private Drivetrain drivetrain;
-    private Slide slide;
-    private VisionSubsystemNOUSE visionSub;
-
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
@@ -83,23 +54,13 @@ public class LeftMidAuton extends LinearOpMode
     // UNITS ARE METERS
     double tagsize = 0.166;
 
-    // Tag ID 1,2,3 from the 36h11 family
-    int LEFT = 1;
-    int MIDDLE = 2;
-    int RIGHT = 3;
+    int ID_TAG_OF_INTEREST = 18; // Tag ID 18 from the 36h11 family
 
     AprilTagDetection tagOfInterest = null;
 
     @Override
     public void runOpMode()
     {
-        clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
-        drivetrain.init();
-        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        visionSub = new VisionSubsystemNOUSE( this);
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
@@ -110,8 +71,8 @@ public class LeftMidAuton extends LinearOpMode
             @Override
             public void onOpened()
             {
-//                camera.setViewportRenderer(OpenCvCamera.ViewportRenderer.GPU_ACCELERATED);
-                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
+                camera.startStreaming(800,600, OpenCvCameraRotation.UPRIGHT);
+//                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
             }
 
             @Override
@@ -137,7 +98,7 @@ public class LeftMidAuton extends LinearOpMode
 
                 for(AprilTagDetection tag : currentDetections)
                 {
-                    if(tag.id == LEFT || tag.id == MIDDLE || tag.id == RIGHT)
+                    if(tag.id == ID_TAG_OF_INTEREST)
                     {
                         tagOfInterest = tag;
                         tagFound = true;
@@ -205,20 +166,37 @@ public class LeftMidAuton extends LinearOpMode
         }
 
         /* Actually do something useful */
-        if(tagOfInterest == null || tagOfInterest.id == LEFT){
-            new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
-            new DriveForwardCommand(drivetrain, 30);
-        } else if(tagOfInterest.id == MIDDLE){
-            new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
-            new DriveForwardCommand(drivetrain, 18);
-        } else{
-            new LeftMidAutonCommand(drivetrain, slide, clawMotors, clawServos);
-            new DriveForwardCommand(drivetrain, 6);
+        if(tagOfInterest == null)
+        {
+            /*
+             * Insert your autonomous code here, presumably running some default configuration
+             * since the tag was never sighted during INIT
+             */
+        }
+        else
+        {
+            /*
+             * Insert your autonomous code here, probably using the tag pose to decide your configuration.
+             */
+
+            // e.g.
+//            if(tagOfInterest.pose.x <= 20)
+//            {
+//                // do something
+//            }
+//            else if(tagOfInterest.pose.x >= 20 && tagOfInterest.pose.x <= 50)
+//            {
+//                // do something else
+//            }
+//            else if(tagOfInterest.pose.x >= 50)
+//            {
+//                // do something else
+//            }
         }
 
 
-//        /* You wouldn't have this in your autonomous, this is just to prevent the sample from ending */
-//        while (opModeIsActive()) {sleep(20);}
+        /* You wouldn't have this in your autonomous, this is just to prevent the sample from ending */
+        while (opModeIsActive()) {sleep(20);}
     }
 
     void tagToTelemetry(AprilTagDetection detection)
