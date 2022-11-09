@@ -70,11 +70,8 @@ public class Vision extends SubsystemBase {
     @Override
     public void periodic()
     {
-        telemetry.addLine("before updateTagOfInterest");
         updateTagOfInterest();
-        telemetry.addLine("periodic before tagtotelemetry");
         tagToTelemetry();
-        telemetry.addLine("periodic aftere tagtotelemetry");
     }
 
     public int getTag() {
@@ -97,7 +94,6 @@ public class Vision extends SubsystemBase {
     }
 
     public void updateTagOfInterest() {
-        telemetry.addLine("in tagofinterest update");
 
         ArrayList<AprilTagDetection> currentDetections = aprilTagDetectionPipeline.getLatestDetections();
 
@@ -105,22 +101,15 @@ public class Vision extends SubsystemBase {
         if (currentDetections.size() == 0) return;
 
         for(AprilTagDetection tag : currentDetections) {
-            telemetry.addLine("for AprilTagDetection tag:currentDetections");
-
             if(tag.id == LEFT || tag.id == MIDDLE || tag.id == RIGHT) {
                 tagFound = true;
                 tagFoundNum = tag.id;
-                telemetry.addLine("changed tag.id/found");
             }
         }
-        telemetry.addLine("end of updatetagofinterest ");
-
     }
 
     public void tagToTelemetry()
     {
-        telemetry.addLine("enter tagtelem");
-
         if (tagFoundNum == 0) {
             telemetry.addLine("Tag In Sight: Not Found :( ");
             return;

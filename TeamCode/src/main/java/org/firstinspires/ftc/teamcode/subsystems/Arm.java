@@ -151,13 +151,13 @@ public class Arm extends SubsystemBase {
                 controller.setSetPoint(POS_FRONT+35);
                 return;
             case 3:
-                controller.setSetPoint(HIGH_POS_FRONT+35);
+                controller.setSetPoint(HIGH_POS_FRONT+40);
                 return;
             case 5:
-                controller.setSetPoint(POS_BACK-30);
+                controller.setSetPoint(POS_BACK-35);
                 return;
             case 6:
-                controller.setSetPoint(HIGH_POS_BACK-35);
+                controller.setSetPoint(HIGH_POS_BACK-40);
                 return;
         }
     }

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.Misc;
+package org.firstinspires.ftc.teamcode.autons;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.autons.Commands.High.LeftHighAutonCommand;
+import org.firstinspires.ftc.teamcode.autons.Commands.High.RightHighAutonCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -54,7 +55,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
     public void matchStart() {
         schedule(
                 new SequentialCommandGroup(
-                        new LeftHighAutonCommand(drivetrain, slide, arm, clawServos)
+                        new RightHighAutonCommand(drivetrain, slide, arm, clawServos)
 //                        new DriveForwardCommand(drivetrain, 30)
 //                        new LeftMidAutonCommand(drivetrain,slide,clawMotors, clawServos)
 //                        new DriveForwardCommand(drivetrain, 30)
