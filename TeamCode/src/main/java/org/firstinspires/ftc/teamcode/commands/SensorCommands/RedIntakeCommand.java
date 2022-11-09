@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitUntilCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class RedIntakeCommand extends SequentialCommandGroup {
 
-    public RedIntakeCommand(Drivetrain drivetrain, Slide slide, ClawServos clawServos, ClawMotors clawMotors, SensorColor sensorColor) {
+    public RedIntakeCommand(Drivetrain drivetrain, Slide slide, ClawServos clawServos, Arm arm, SensorColor sensorColor) {
         addRequirements(sensorColor);
         addCommands(
                 new WaitUntilCommand(sensorColor::grabbedRedCone).withTimeout(9),

@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Util;
 import java.util.logging.Level;
 
 @Config
-public class ClawMotors extends SubsystemBase {
+public class Arm extends SubsystemBase {
 
     public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.002, 0.2, 0, 0.0);
     //I = 0.0008
@@ -41,18 +41,18 @@ public class ClawMotors extends SubsystemBase {
     private int clawPos = 0;
 
     Telemetry telemetry;
-    private MotorEx clawMotor;
+    private MotorEx armMotor;
 
-    public ClawMotors(MotorEx clawMotor, Telemetry tl, HardwareMap hw) {
-        this.clawMotor = clawMotor;
-        this.clawMotor = new MotorEx(hw, "clawM");
+    public Arm(MotorEx armMotor, Telemetry tl, HardwareMap hw) {
+        this.armMotor = armMotor;
+        this.armMotor = new MotorEx(hw, "clawM");
 
         //Reverse claw motor
-        this.clawMotor.setInverted(true);
+        this.armMotor.setInverted(true);
 
-        this.clawMotor.resetEncoder();
+        this.armMotor.resetEncoder();
 
-        this.clawMotor.setDistancePerPulse(360 / CPR);
+        this.armMotor.setDistancePerPulse(360 / CPR);
 
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
         controller.setTolerance(10);
@@ -72,15 +72,15 @@ public class ClawMotors extends SubsystemBase {
             if (output <= -1) output = -1;
 
 
-            clawMotor.set(output * POWER);
+            armMotor.set(output * POWER);
         }
-        Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", clawMotor.getCurrentPosition());
+        Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", armMotor.getCurrentPosition());
         Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", clawPos);
     }
 
 
     private double getEncoderDistance() {
-        return clawMotor.getDistance() - encoderOffset;
+        return armMotor.getDistance() - encoderOffset;
     }
     public void setAutomatic(boolean auto) {
         this.automatic = auto;
@@ -93,15 +93,15 @@ public class ClawMotors extends SubsystemBase {
 
     public void raiseClawManual() {
         automatic = false;
-        clawMotor.set(UP_SPEED);
+        armMotor.set(UP_SPEED);
     }
     public void lowerClawManual() {
         automatic = false;
-        clawMotor.set(DOWN_SPEED);
+        armMotor.set(DOWN_SPEED);
     }
 
     public void stopClaw() {
-        clawMotor.stopMotor();
+        armMotor.stopMotor();
         controller.setSetPoint(getAngle());
         automatic = false;
     }
@@ -163,7 +163,7 @@ public class ClawMotors extends SubsystemBase {
     }
 
     public void encoderReset() {
-        clawMotor.resetEncoder();
+        armMotor.resetEncoder();
     }
 
     /****************************************************************************************/

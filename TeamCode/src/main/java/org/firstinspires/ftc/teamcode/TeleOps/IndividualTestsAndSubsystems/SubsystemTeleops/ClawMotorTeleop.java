@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 
-import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
 
 //@Disabled
 @Config
@@ -25,14 +25,14 @@ public class ClawMotorTeleop extends MatchOpMode {
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
     // Subsystems
-    private ClawMotors clawMotors;
+    private Arm arm;
 
     @Override
     public void robotInit() {
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
 
-        clawMotors = new ClawMotors(clawMotor, telemetry, hardwareMap);
+        arm = new Arm(clawMotor, telemetry, hardwareMap);
     }
 
     //Buttons
@@ -47,17 +47,17 @@ public class ClawMotorTeleop extends MatchOpMode {
 //                .whenPressed(clawMotors::setPower));
 
         intakeF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
-                .whenPressed(clawMotors::moveIntakeF));
+                .whenPressed(arm::moveIntakeF));
         highF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                .whenPressed(clawMotors::moveHighF));
+                .whenPressed(arm::moveHighF));
 
         intakeB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
-                .whenPressed(clawMotors::moveIntakeB));
+                .whenPressed(arm::moveIntakeB));
         highB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                .whenPressed(clawMotors::moveHighB));
+                .whenPressed(arm::moveHighB));
 
         clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
-                .whenPressed(clawMotors::encoderReset);
+                .whenPressed(arm::encoderReset);
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
@@ -21,7 +21,7 @@ public class Test3 extends LinearOpMode {
     private static double startPoseY = 0;
     private static double startPoseHeading = 0;
     //Motors and Servos
-    MotorEx clawMotor;
+    MotorEx armMotor;
     ServoEx clawS1, clawS3;
         private ServoEx clawS2;
 //    private CRServo clawS2;
@@ -29,7 +29,7 @@ public class Test3 extends LinearOpMode {
     MotorEx liftMotor1, liftMotor2;
 
     // Subsystems
-    ClawMotors clawMotors;
+    Arm arm;
     ClawServos clawServos;
     Drivetrain drivetrain;
     Slide slide;

@@ -5,15 +5,15 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SlowDriveForwardCommand;
-import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class PickC2BCommand extends SequentialCommandGroup{
-    public PickC2BCommand(Slide slide, ClawServos clawServos, ClawMotors clawMotors, Drivetrain drivetrain){
+    public PickC2BCommand(Slide slide, ClawServos clawServos, Arm arm, Drivetrain drivetrain){
         addCommands(
-                new InstantCommand(clawMotors::moveIntakeB),
+                new InstantCommand(arm::moveIntakeB),
                 new InstantCommand(clawServos::clawOpen),
                 new InstantCommand(slide::slideCone2),
                 new SlowDriveForwardCommand(drivetrain, 5),

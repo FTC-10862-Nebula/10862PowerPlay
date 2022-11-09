@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveF
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.ClawMotors;
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
@@ -38,7 +38,7 @@ public class WindsorParkPractice extends MatchOpMode {
     private GamepadEx driverGamepad;
 
     // Subsystems
-    private ClawMotors clawMotors;
+    private Arm arm;
     private ClawServos clawServos;
     private Drivetrain drivetrain;
     private Slide slide;
@@ -48,7 +48,7 @@ public class WindsorParkPractice extends MatchOpMode {
     public void robotInit() {
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
-
+        arm = new Arm(clawMotor, telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
