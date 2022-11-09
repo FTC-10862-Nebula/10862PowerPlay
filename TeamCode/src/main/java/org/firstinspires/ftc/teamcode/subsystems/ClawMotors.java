@@ -30,7 +30,7 @@ public class ClawMotors extends SubsystemBase {
 
     public static int INTAKE_POS_BACK = -284;
     public static int POS_BACK = -267;
-    public static int HIGH_POS_BACK = -125;
+    public static int HIGH_POS_BACK = -140;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK;
     public static int POS_FRONT = -POS_BACK;
@@ -111,37 +111,55 @@ public class ClawMotors extends SubsystemBase {
     public void moveReset(){
         automatic = true;
         controller.setSetPoint(INIT_POS);
+        clawPos = 0;
     }
     public void moveIntakeF() {
         automatic = true;
         controller.setSetPoint(INTAKE_POS_FRONT);
-        clawPos = 0;
+        clawPos = 1;
     }
     public void moveF() {
         automatic = true;
         controller.setSetPoint(POS_FRONT);
-        clawPos = 1;
+        clawPos = 2;
     }
     public void moveHighF() {
         automatic = true;
         controller.setSetPoint(HIGH_POS_FRONT);
-        clawPos = 2;
+        clawPos = 3;
     }
 
     public void moveIntakeB() {
         automatic = true;
         controller.setSetPoint(INTAKE_POS_BACK);
-        clawPos = 3;
+        clawPos = 4;
     }
     public void moveB() {
         automatic = true;
         controller.setSetPoint(POS_BACK);
-        clawPos = 4;
+        clawPos = 5;
     }
     public void moveHighB() {
         automatic = true;
         controller.setSetPoint(HIGH_POS_BACK);
-        clawPos = 5;
+        clawPos = 6;
+    }
+
+    public void dropArm(){
+        switch (clawPos){
+            case 2:
+                controller.setSetPoint(POS_FRONT+35);
+                return;
+            case 3:
+                controller.setSetPoint(HIGH_POS_FRONT+35);
+                return;
+            case 5:
+                controller.setSetPoint(POS_BACK-30);
+                return;
+            case 6:
+                controller.setSetPoint(HIGH_POS_BACK-35);
+                return;
+        }
     }
 
     public void encoderReset() {

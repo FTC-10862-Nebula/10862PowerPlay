@@ -256,12 +256,40 @@ public class Slide extends SubsystemBase {
     }
 
     public void dropSlide(){
-        if(slideM1.getCurrentPosition()<200&& slideM2.getCurrentPosition()<200)
-        {
-            return;
-        } else
-        {
-            upController.setSetPoint(slideM1.getCurrentPosition()-125);
+//        upController.
+//        if(slideM1.getCurrentPosition()<200 && slideM2.getCurrentPosition()<200)
+//        {
+//            return;
+//        } else
+//        {
+//            upController.setSetPoint(slideM1.getCurrentPosition()-200);
+//        }
+
+        switch (liftPosition){
+            case 2:
+                upController.setSetPoint(LOW_POS-50);
+                return;
+            case 3:
+                upController.setSetPoint(MID_POS-100);
+                return;
+            case 4:
+                upController.setSetPoint(HIGH_POS-200);
+                return;
+            case 5:
+                upController.setSetPoint(CONE_5_POS-50);
+                return;
+            case 6:
+                upController.setSetPoint(CONE_4_POS-50);
+                return;
+            case 7:
+                upController.setSetPoint(CONE_3_POS-50);
+                return;
+            case 8:
+                upController.setSetPoint(CONE_2_POS-50);
+                return;
+            case 9:
+                upController.setSetPoint(CONE_1_POS-50);
+                return;
         }
     }
 

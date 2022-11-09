@@ -28,7 +28,7 @@ public class LeftHighAutonCommand extends SequentialCommandGroup{
                 new SlideHighFrontCommand(slide, clawMotors, clawServos),
                 new DriveForwardCommand(drivetrain ,3),
                 new WaitCommand(1000),
-                new DropConeCommand(clawServos, slide),
+                new DropConeCommand(clawServos, slide, clawMotors),
                 new WaitCommand(600),
                 new SlideLowBackCommand(slide, clawMotors, clawServos),
                 new TurnToCommand(drivetrain, 270),
