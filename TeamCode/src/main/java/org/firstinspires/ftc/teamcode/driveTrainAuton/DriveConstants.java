@@ -45,9 +45,9 @@ public class DriveConstants {
      * angular distances although most angular parameters are wrapped in Math.toRadians() for
      * convenience. Make sure to exclude any gear ratio included in MOTOR_CONFIG from GEAR_RATIO.
      */
-    public static double WHEEL_RADIUS = 3.78; // in
+    public static double WHEEL_RADIUS = 1.889;//(96/25.4)/2; // in  (96mm/25.4) = in
     public static double GEAR_RATIO = 1.112; // 28/25 - output (wheel) speed / input (motor) speed
-    public static double TRACK_WIDTH = 11.5; // in
+    public static double TRACK_WIDTH = 11.5; // in - Tuner = 8.55
 
     /*
      * These are the feedforward parameters used to model the drive motor behavior. If you are using
@@ -55,8 +55,8 @@ public class DriveConstants {
      * motor encoders or have elected not to use them for velocity control, these values should be
      * empirically tuned.
      */
-    public static double kV = 0.0165;//0.01633 // 0.017
-    public static double kA = 0.003; //0.01610 //0.0030
+    public static double kV = 0.0181;//0.0185
+    public static double kA = 0.0029; //0.01610 //0.0030
     public static double kStatic = 0.02; //0.00013 //0.009
 
     /*
@@ -87,8 +87,8 @@ public class DriveConstants {
      * You are free to raise this on your own if you would like. It is best determined through experimentation.
 
      */
-    public static double MAX_VEL = 57;  //57
-    public static double MAX_ACCEL = 57;    //57
+    public static double MAX_VEL = 50;  //57
+    public static double MAX_ACCEL = 50;    //57
     public static double MAX_ANG_VEL = Math.toRadians(300.704976);  //According to guide make 180 deg - 300.704976
     public static double MAX_ANG_ACCEL = Math.toRadians(300.704976);  //According to guide make 180 deg - 300.704976
 

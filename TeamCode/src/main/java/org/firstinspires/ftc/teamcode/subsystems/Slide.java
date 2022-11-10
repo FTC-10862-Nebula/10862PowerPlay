@@ -53,7 +53,7 @@ public class Slide extends SubsystemBase {
 
     public static int CAP_POSITION = 0;
 
-    private static double POWER = 0.98;
+    private static double POWER = 1.1;
 
     private int liftPosition = 0;
 

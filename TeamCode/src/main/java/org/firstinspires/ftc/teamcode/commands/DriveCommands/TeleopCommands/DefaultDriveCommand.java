@@ -30,15 +30,15 @@ public class DefaultDriveCommand extends CommandBase {
         if(mecDrive)
         {
             drive.mecDrive(
-                -driverGamepad.getLeftY(), //Removed - from drivergamepad
+                -driverGamepad.getLeftY() * multiplier, //Removed - from drivergamepad
                 -driverGamepad.getLeftX() * multiplier,
-                -driverGamepad.getRightX() //Changed from -driverGamepad.getLeftY(), so the drive mturns right
+                -driverGamepad.getRightX() * multiplier //Changed from -driverGamepad.getLeftY(), so the drive mturns right
             );
         } else{
             drive.fieldCentric(
-                    -driverGamepad.getLeftY(),
-                    -driverGamepad.getLeftX(),
-                    -driverGamepad.getRightX()
+                    -driverGamepad.getLeftY() * multiplier,
+                    -driverGamepad.getLeftX() * multiplier,
+                    -driverGamepad.getRightX() * multiplier
             );
         }
 
