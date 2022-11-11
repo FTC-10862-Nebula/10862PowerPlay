@@ -14,7 +14,7 @@ public class SlideGroundFrontCommand extends SequentialCommandGroup {
                 new InstantCommand(clawServos::clawClose),
                 new InstantCommand(clawServos::setFClawPos),
                 new InstantCommand(slide::slideGround, slide),
-                new WaitCommand(150),
+                new WaitCommand(650),
                 new InstantCommand(arm::moveF, arm)
         );
     }

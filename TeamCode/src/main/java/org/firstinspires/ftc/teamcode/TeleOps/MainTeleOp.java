@@ -75,11 +75,6 @@ public class MainTeleOp extends MatchOpMode {
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
-
-//            slide.setDefaultCommand(new SlideDefaultCommand(slide, operatorGamepad));    // - works but stops pid from working
-//              upSlideManual(slide, operatorGamepad,left);
-//        slide.upSlideManual(operatorGamepad, slide);
-
     }
 
 
@@ -94,7 +89,7 @@ public class MainTeleOp extends MatchOpMode {
             Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                     .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
-        //Claw Servo Intake/Outtake - D1/D2
+        //Claw Servo Intake/Outtake - D1
             Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
                 .whenPressed(new PickConeCommand(clawServos, slide));
             Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
@@ -133,6 +128,16 @@ public class MainTeleOp extends MatchOpMode {
                 .whenPressed(arm::lowerClawManual)
                 .whenReleased(arm::stopClaw));
 
+        //Claw Servo 3 Buttons - D1
+            Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
+                    .whenPressed(clawServos::setFClawPos);
+            Button s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
+                    .whenPressed(clawServos::setBClawPos);
+            //PIDF Controllers Resets
+            Button clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
+                    .whenPressed(arm::encoderReset);
+            Button slideEncoderResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
+                    .whenPressed(slide::encoderReset);
 
 
             /*
@@ -157,40 +162,16 @@ public class MainTeleOp extends MatchOpMode {
             Button subClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT))
                     .whenPressed(clawServos::subClaw1Pos);
             */
-        //Claw Servo 3 Buttons - D1
-            Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
-                    .whenPressed(clawServos::setFClawPos);
-            Button s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
-                    .whenPressed(clawServos::setBClawPos);
-        //PIDF Controllers Resets
-            Button clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
-                    .whenPressed(arm::encoderReset);
-            Button slideEncoderResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
-                    .whenPressed(slide::encoderReset);
+
+
     }
 
     @Override
-    public void matchLoop() {
-//        slide.setPower(-operatorGamepad.getLeftY());   - no worky
-//        if(-operatorGamepad.getLeftY()>=0.5 || -operatorGamepad.getLeftY()<= -0.5)
-//        {
-//            slide.automaticFalse();
-//            slide.setPower(-operatorGamepad.getLeftY());
-//            if(-operatorGamepad.getLeftY()>=-0.1&& -operatorGamepad.getLeftY()<=0.1)
-//            {
-//                slide.stopSlide();
-//            }
-
-//        }
-//        else if(-operatorGamepad.getLeftY()==0){
-//            slide.stopSlide();
-//        }
-        //Works but not tooo much
-    }
+    public void matchLoop() { }
     @Override
     public void disabledPeriodic() { }
     @Override
     public void matchStart() { }
     @Override
-    public void robotPeriodic(){}
+    public void robotPeriodic(){ }
 }

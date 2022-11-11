@@ -14,7 +14,7 @@ public class SlideMidBackCommand extends SequentialCommandGroup {
                 new InstantCommand(clawServos::clawClose),
                 new InstantCommand(slide::slideMid, slide),
                 new InstantCommand(arm::moveB, arm),
-                new WaitCommand(550),
+                new WaitCommand(650),
                 new InstantCommand(clawServos::setBClawPos)
         );
     }

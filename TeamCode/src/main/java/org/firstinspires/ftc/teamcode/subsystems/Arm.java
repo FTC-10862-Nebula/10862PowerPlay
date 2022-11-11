@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 
+import static com.arcrobotics.ftclib.hardware.motors.Motor.ZeroPowerBehavior.BRAKE;
+
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
@@ -28,16 +30,15 @@ public class Arm extends SubsystemBase {
     private double encoderOffset = 0;
     public static int INIT_POS = 0;
 
-    public static int INTAKE_POS_BACK = -284;
-    public static int POS_BACK = -267;
-    public static int HIGH_POS_BACK = -140;
+    public static int INTAKE_POS_BACK = -289,
+                        POS_BACK = -267,
+                        HIGH_POS_BACK = -135;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK;
     public static int POS_FRONT = -POS_BACK;
     public static int HIGH_POS_FRONT = -HIGH_POS_BACK;
 
-    private static double POWER = 0.8;
-
+    private static double POWER = 0.83;
     private int clawPos = 0;
 
     Telemetry telemetry;
@@ -49,9 +50,8 @@ public class Arm extends SubsystemBase {
 
         //Reverse claw motor
         this.armMotor.setInverted(true);
-
         this.armMotor.resetEncoder();
-
+        this.armMotor.setZeroPowerBehavior(BRAKE);
         this.armMotor.setDistancePerPulse(360 / CPR);
 
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
@@ -164,6 +164,7 @@ public class Arm extends SubsystemBase {
 
     public void encoderReset() {
         armMotor.resetEncoder();
+        telemetry.addLine("ARM RESET");
     }
 
     /****************************************************************************************/

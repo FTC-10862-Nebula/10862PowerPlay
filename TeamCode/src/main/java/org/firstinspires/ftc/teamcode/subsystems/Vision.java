@@ -41,12 +41,12 @@ public class Vision extends SubsystemBase {
     boolean tagFound = false;
     int tagFoundNum = 0;
 
-    public Vision (HardwareMap hardwareMap, String webCamName, Telemetry telemetry)//, Telemetry tl)
+    public Vision (HardwareMap hw, String webCamName, Telemetry tl)
     {
-        this.telemetry=telemetry;
+        this.telemetry=tl;
 
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, webCamName), cameraMonitorViewId);
+        int cameraMonitorViewId = hw.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hw.appContext.getPackageName());
+        camera = OpenCvCameraFactory.getInstance().createWebcam(hw.get(WebcamName.class, webCamName), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
 
         camera.setPipeline(aprilTagDetectionPipeline);
@@ -62,7 +62,7 @@ public class Vision extends SubsystemBase {
             @Override
             public void onError(int errorCode)
             {
-                telemetry.addLine("ERROR!");
+                tl.addLine("ERROR!");
             }
         });
     }

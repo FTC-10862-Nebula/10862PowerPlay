@@ -12,10 +12,9 @@ public class SlideLowFrontCommand extends SequentialCommandGroup {
     public SlideLowFrontCommand(Slide slide, Arm arm, ClawServos clawServos) {
         addCommands(
                 new InstantCommand(clawServos::clawClose),
+                new InstantCommand(slide::slideHigh, slide),
                 new InstantCommand(arm::moveF, arm),
-                new WaitCommand(150),
-                new InstantCommand(slide::slideLow, slide),
-                new WaitCommand(150),
+                new WaitCommand(650),
                 new InstantCommand(clawServos::setFClawPos)
         );
     }

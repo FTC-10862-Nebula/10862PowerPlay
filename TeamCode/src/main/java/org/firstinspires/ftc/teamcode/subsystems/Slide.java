@@ -21,7 +21,7 @@ public class Slide extends SubsystemBase {
     private MotorEx slideM2;
 
     public boolean liftTime;
-    int liftError = 0, liftTargetPos = 0, setPos;
+//    int liftError = 0, liftTargetPos = 0, setPos;
 
     public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(.005, 0.00, 0,0);//.0075, 0., .003, 0)
 //    public static PIDFCoefficients pidfDownCoefficients = new PIDFCoefficients(0.01, 0.00, 0, 0);
@@ -170,12 +170,12 @@ public class Slide extends SubsystemBase {
         automatic = true;
         upController.setSetPoint(RESTING_POS);
         liftPosition = 0;
-//      downController.setSetPoint(RESTING_POS);
     }
 
     public void encoderReset() {
         slideM1.resetEncoder();
         slideM2.resetEncoder();
+        telemetry.addLine("SLIDE RESET");
     }
 
     public void slideGround() {
