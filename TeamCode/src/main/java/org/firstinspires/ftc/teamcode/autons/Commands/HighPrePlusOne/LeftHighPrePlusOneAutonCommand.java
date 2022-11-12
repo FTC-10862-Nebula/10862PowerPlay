@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.Commands.High;
+package org.firstinspires.ftc.teamcode.autons.Commands.HighPrePlusOne;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -20,8 +20,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
-public class LeftHighAutonCommand extends SequentialCommandGroup{
-    public LeftHighAutonCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
+public class LeftHighPrePlusOneAutonCommand extends SequentialCommandGroup{
+    public LeftHighPrePlusOneAutonCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         addCommands(
                 new DriveForwardCommand(drivetrain, 75),
                 new TurnToCommand(drivetrain, 152, true),

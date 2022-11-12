@@ -38,6 +38,12 @@ public class Arm extends SubsystemBase {
     public static int POS_FRONT = -POS_BACK;
     public static int HIGH_POS_FRONT = -HIGH_POS_BACK;
 
+    public static int HIGH_POS_AUTO_BACK = HIGH_POS_BACK-14;
+    public static int HIGH_POS_AUTO_FRONT = HIGH_POS_FRONT+14;
+    public static int INTAKE_POS_AUTO_FRONT = INTAKE_POS_FRONT-14;
+    public static int POS_AUTO_BACK = POS_BACK-14;
+
+
     private static double POWER = 0.89;
     private int clawPos = 0;
 
@@ -53,6 +59,8 @@ public class Arm extends SubsystemBase {
         this.armMotor.resetEncoder();
 //        this.armMotor.setZeroPowerBehavior(BRAKE);
         this.armMotor.setDistancePerPulse(360 / CPR);
+
+        this.armMotor.set(0);
 
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
         controller.setTolerance(10);
@@ -147,6 +155,26 @@ public class Arm extends SubsystemBase {
         controller.setSetPoint(HIGH_POS_BACK);
         clawPos = 6;
     }
+    public void moveHighBAuto(){
+        automatic = true;
+        controller.setSetPoint(HIGH_POS_AUTO_BACK);
+        clawPos = 7;
+    }
+    public void moveHighFAuto(){
+        automatic = true;
+        controller.setSetPoint(HIGH_POS_AUTO_FRONT);
+        clawPos = 8;
+    }
+    public void moveIntakeFAuto() {
+        automatic = true;
+        controller.setSetPoint(INTAKE_POS_AUTO_FRONT);
+        clawPos = 9;
+    }
+    public void moveBAuto() {
+        automatic = true;
+        controller.setSetPoint(POS_AUTO_BACK);
+        clawPos = 10;
+    }
 
     public void dropArm(){
         switch (clawPos){
@@ -161,6 +189,18 @@ public class Arm extends SubsystemBase {
                 return;
             case 6:
                 controller.setSetPoint(HIGH_POS_BACK-40);
+                return;
+            case 7:
+                controller.setSetPoint(HIGH_POS_AUTO_BACK-43);
+                return;
+            case 8:
+                controller.setSetPoint(HIGH_POS_AUTO_FRONT+43);
+                return;
+//            case 9:
+//                controller.setSetPoint(INTAKE_POS_AUTO_FRONT-20);
+//                return;
+            case 10:
+                controller.setSetPoint(POS_AUTO_BACK-20);
                 return;
         }
     }

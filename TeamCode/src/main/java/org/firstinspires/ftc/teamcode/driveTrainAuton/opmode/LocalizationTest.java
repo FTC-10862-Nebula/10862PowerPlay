@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 
-//@Disabled
+@Disabled
 /**
  * This is a simple teleop routine for testing localization. Drive the robot around like a normal
  * teleop routine and make sure the robot's estimated pose matches the robot's actual pose (slight

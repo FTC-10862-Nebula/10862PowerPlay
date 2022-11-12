@@ -15,7 +15,8 @@ public class PrePickC5FCommand extends SequentialCommandGroup{
     public PrePickC5FCommand(Slide slide, ClawServos clawServos, Arm arm){
         addCommands(
                 new InstantCommand(clawServos::clawClose),
-                new InstantCommand(arm::moveIntakeF),
+                new InstantCommand(arm::moveIntakeFAuto),
+                new InstantCommand(clawServos::setFClawPos),
                 new InstantCommand(clawServos::clawOpen),
                 new InstantCommand(slide::slideCone5)
 

@@ -26,8 +26,9 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-import org.firstinspires.ftc.teamcode.autons.Commands.High.LeftHighAutonCommand;
+import org.firstinspires.ftc.teamcode.autons.Commands.HighPrePlusOne.LeftHighPrePlusOneAutonCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
@@ -36,7 +37,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
-
+@Disabled
 @Autonomous
 public class LeftHighAuton extends MatchOpMode
 {
@@ -94,26 +95,26 @@ public class LeftHighAuton extends MatchOpMode
         switch (tagNum) {
             case 1: { //Left
                 autonGroup = new SequentialCommandGroup(
-                        new LeftHighAutonCommand(drivetrain, slide, arm, clawServos),
+                        new LeftHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos),
                         new DriveForwardCommand(drivetrain, 28)
                 );
             }
             case 2: { //Mid
                 autonGroup = new SequentialCommandGroup(
-                        new LeftHighAutonCommand(drivetrain, slide, arm, clawServos),
+                        new LeftHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos),
                         new DriveForwardCommand(drivetrain, 20)
                 );
 
             }
             case 3: { //High
                 autonGroup =new SequentialCommandGroup(
-                        new LeftHighAutonCommand(drivetrain, slide, arm, clawServos),
+                        new LeftHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos),
                         new DriveForwardCommand(drivetrain, 5)
                 );
             }
             default: {
                 autonGroup = new SequentialCommandGroup(
-                        new LeftHighAutonCommand(drivetrain, slide, arm, clawServos),
+                        new LeftHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos),
                         new DriveForwardCommand(drivetrain, 20)
                 );
             }

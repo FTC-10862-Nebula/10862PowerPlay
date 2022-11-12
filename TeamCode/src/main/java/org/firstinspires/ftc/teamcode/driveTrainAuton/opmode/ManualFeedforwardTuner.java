@@ -25,7 +25,7 @@ import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.kV;
 
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 
-//@Disabled
+@Disabled
 /*
  * This routine is designed to tune the open-loop feedforward coefficients. Although it may seem unnecessary,
  * tuning these coefficients is just as important as the positional parameters. Like the other
