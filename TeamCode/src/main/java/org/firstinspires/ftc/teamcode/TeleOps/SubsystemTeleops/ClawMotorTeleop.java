@@ -16,48 +16,54 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 @Config
 @TeleOp(name = "ClawMotorTeleop")
 public class ClawMotorTeleop extends MatchOpMode {
-    private static double startPoseX = 0;
-    private static double startPoseY = 0;
-    private static double startPoseHeading = 0;
 
     //Motors and Servos
     private MotorEx clawMotor;
     // Gamepad
-    private GamepadEx driverGamepad, operatorGamepad;
+    private GamepadEx operatorGamepad;
     // Subsystems
     private Arm arm;
 
     @Override
     public void robotInit() {
-        driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
 
         arm = new Arm(clawMotor, telemetry, hardwareMap);
     }
 
     //Buttons
-    public Button intakeF, groundF, lowF, midF, highF;
-    public Button intakeB, groundB, lowB, midB, highB;
+    public Button intakeF, moveF, highF;
+    public Button intakeB, moveB, highB;
     public Button clawMotorResetButton;
-    public Button one, two;
 
     @Override
     public void configureButtons() {
 //        one = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER)
 //                .whenPressed(clawMotors::setPower));
 
-        intakeF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
+        intakeF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
                 .whenPressed(arm::moveIntakeF));
-        highF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
+        moveF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
+                .whenPressed(arm::moveF));
+        highF = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
                 .whenPressed(arm::moveHighF));
 
-        intakeB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
+        intakeB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
                 .whenPressed(arm::moveIntakeB));
-        highB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
+        moveB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
+                .whenPressed(arm::moveB));
+        highB = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
                 .whenPressed(arm::moveHighB));
 
         clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
                 .whenPressed(arm::encoderReset);
+
+        Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
+                .whenPressed(arm::raiseClawManual)
+                .whenReleased(arm::stopClaw));
+        Button armLowerButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
+                .whenPressed(arm::lowerClawManual)
+                .whenReleased(arm::stopClaw));
     }
 
     @Override

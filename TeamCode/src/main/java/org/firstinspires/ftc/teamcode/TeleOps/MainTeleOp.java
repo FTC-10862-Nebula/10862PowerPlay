@@ -134,10 +134,15 @@ public class MainTeleOp extends MatchOpMode {
             Button s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
                     .whenPressed(clawServos::setBClawPos);
             //PIDF Controllers Resets
-            Button clawMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
+            Button armMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
                     .whenPressed(arm::encoderReset);
             Button slideEncoderResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
                     .whenPressed(slide::encoderReset);
+
+            Button armFButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT))
+                    .whenPressed(arm::moveF);
+        Button armBButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT))
+                .whenPressed(arm::moveB);
 
 
             /*

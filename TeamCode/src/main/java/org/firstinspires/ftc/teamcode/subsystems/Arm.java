@@ -18,7 +18,7 @@ import java.util.logging.Level;
 @Config
 public class Arm extends SubsystemBase {
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.002, 0.2, 0, 0.0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.0025, 0.2, 0, 0.0);
     //I = 0.0008
     private PIDFController controller;
     private boolean automatic;
@@ -30,15 +30,15 @@ public class Arm extends SubsystemBase {
     private double encoderOffset = 0;
     public static int INIT_POS = 0;
 
-    public static int INTAKE_POS_BACK = -289,
-                        POS_BACK = -267,
-                        HIGH_POS_BACK = -135;
+    public static int INTAKE_POS_BACK = -300,
+                        POS_BACK = -254,
+                        HIGH_POS_BACK = -160;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK;
     public static int POS_FRONT = -POS_BACK;
     public static int HIGH_POS_FRONT = -HIGH_POS_BACK;
 
-    private static double POWER = 0.83;
+    private static double POWER = 0.89;
     private int clawPos = 0;
 
     Telemetry telemetry;
@@ -51,7 +51,7 @@ public class Arm extends SubsystemBase {
         //Reverse claw motor
         this.armMotor.setInverted(true);
         this.armMotor.resetEncoder();
-        this.armMotor.setZeroPowerBehavior(BRAKE);
+//        this.armMotor.setZeroPowerBehavior(BRAKE);
         this.armMotor.setDistancePerPulse(360 / CPR);
 
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
@@ -68,11 +68,14 @@ public class Arm extends SubsystemBase {
             controller.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
 
             double output = controller.calculate(getAngle());
-            if (output >= 1) output = 1;
-            if (output <= -1) output = -1;
+            telemetry.addData("CLaw Motor Output:", output);
 
+//            if (output >= 1) output = 1;
+//            if (output <= -1) output = -1;
+//            armMotor.set(output);
 
             armMotor.set(output * POWER);
+
         }
         Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", armMotor.getCurrentPosition());
         Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", clawPos);
@@ -102,7 +105,7 @@ public class Arm extends SubsystemBase {
 
     public void stopClaw() {
         armMotor.stopMotor();
-        controller.setSetPoint(getAngle());
+//        controller.setSetPoint(getAngle());
         automatic = false;
     }
 
