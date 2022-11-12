@@ -6,7 +6,8 @@ import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.autons.Commands.HighPre.RightHighPreAutonCommand;
+import org.firstinspires.ftc.teamcode.autons.Commands.HighPrePlusOne.RightHighPrePlusOneAutonCommand;
+import org.firstinspires.ftc.teamcode.autons.Commands.PrePlusHigh.RightPrePlusHighAutonCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
@@ -17,8 +18,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
-@Autonomous(name = "RightHighPreAuton", group = "Test")
-public class RightHighPreAuton extends MatchOpMode {
+@Autonomous(name = "RightHighPrePlusHighAuton", group = "Test")
+public class RightHighPrePlusHighAuton extends MatchOpMode {
 //    private ATDetector tagDetector;
 
     private static final double startPoseX = 0;
@@ -73,8 +74,8 @@ public class RightHighPreAuton extends MatchOpMode {
             case 1: { //Left
                 schedule(
                         new SequentialCommandGroup(
-                        new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
-                        new DriveForwardCommand(drivetrain, -25),
+                        new RightPrePlusHighAutonCommand(drivetrain, slide, arm, clawServos),
+                        new DriveForwardCommand(drivetrain, -20),
                         new TurnToCommand(drivetrain, 180)
                         )
                 );
@@ -83,7 +84,9 @@ public class RightHighPreAuton extends MatchOpMode {
             case 2: { //Mid
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
+
+                                new RightPrePlusHighAutonCommand(drivetrain, slide, arm, clawServos),
+//                                new DriveForwardCommand(drivetrain, -20),
                                 new TurnToCommand(drivetrain, 180)
                         )
                 );
@@ -92,8 +95,9 @@ public class RightHighPreAuton extends MatchOpMode {
             default: { //High
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
-                                new DriveForwardCommand(drivetrain, 25),
+
+                                new RightPrePlusHighAutonCommand(drivetrain, slide, arm, clawServos),
+                                new DriveForwardCommand(drivetrain, 20),
                                 new TurnToCommand(drivetrain, 180)
                         )
                 );

@@ -6,7 +6,6 @@ import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.autons.Commands.High.RightHighPreAutonCommand;
 import org.firstinspires.ftc.teamcode.autons.Commands.HighPrePlusOne.RightHighPrePlusOneAutonCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
@@ -18,8 +17,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
-@Autonomous(name = "RightHighAuton", group = "Test")
-public class RightHighAuton extends MatchOpMode {
+@Autonomous(name = "RightHighPrePlusLowAuton", group = "Test")
+public class RightHighrePlusLowAuton extends MatchOpMode {
 //    private ATDetector tagDetector;
 
     private static final double startPoseX = 0;
@@ -75,7 +74,7 @@ public class RightHighAuton extends MatchOpMode {
                 schedule(
                         new SequentialCommandGroup(
                         new RightHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos),
-                        new DriveForwardCommand(drivetrain, -45),
+                        new DriveForwardCommand(drivetrain, -46),
                         new TurnToCommand(drivetrain, 180)
                         )
                 );

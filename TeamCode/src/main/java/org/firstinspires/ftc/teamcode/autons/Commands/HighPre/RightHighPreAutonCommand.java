@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.Commands.High;
+package org.firstinspires.ftc.teamcode.autons.Commands.HighPre;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
