@@ -28,20 +28,22 @@ public class Arm extends SubsystemBase {
     public static double DOWN_SPEED = 0.55;
 
     private double encoderOffset = 0;
+    private double offsetNum = 0;
     public static int INIT_POS = 0;
+    private static double newSetPosition;
 
     public static int INTAKE_POS_BACK = -300,
                         POS_BACK = -254,
-                        HIGH_POS_BACK = -160;
+                        HIGH_POS_BACK = -145;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK;
     public static int POS_FRONT = -POS_BACK;
     public static int HIGH_POS_FRONT = -HIGH_POS_BACK;
 
-    public static int HIGH_POS_AUTO_BACK = HIGH_POS_BACK-14;
-    public static int HIGH_POS_AUTO_FRONT = HIGH_POS_FRONT+14;
-    public static int INTAKE_POS_AUTO_FRONT = INTAKE_POS_FRONT-14;
-    public static int POS_AUTO_BACK = POS_BACK-14;
+    public static int HIGH_POS_AUTO_BACK = -132;
+    public static int HIGH_POS_AUTO_FRONT = 140;
+    public static int INTAKE_POS_AUTO_FRONT = 288;
+    public static int POS_AUTO_BACK = -160;
 
 
     private static double POWER = 0.89;
@@ -73,6 +75,9 @@ public class Arm extends SubsystemBase {
     @Override
     public void periodic() {
         if (automatic) {
+//            newSetPosition = (offsetNum*-3)+(controller.getSetPoint());
+//            controller.setSetPoint(newSetPosition);
+
             controller.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
 
             double output = controller.calculate(getAngle());
@@ -128,6 +133,7 @@ public class Arm extends SubsystemBase {
         automatic = true;
         controller.setSetPoint(INTAKE_POS_FRONT);
         clawPos = 1;
+//        offsetNum++;
     }
     public void moveF() {
         automatic = true;

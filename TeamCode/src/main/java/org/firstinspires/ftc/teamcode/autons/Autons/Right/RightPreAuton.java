@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.Autons;
+package org.firstinspires.ftc.teamcode.autons.Autons.Right;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.autons.Commands.HighPrePlusOne.RightHighPrePlusOneAutonCommand;
+import org.firstinspires.ftc.teamcode.autons.Commands.HighPre.RightHighPreAutonCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
@@ -17,8 +17,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
-@Autonomous(name = "RightHighPrePlusLowAuton", group = "Test")
-public class RightHighrePlusLowAuton extends MatchOpMode {
+@Autonomous(name = "RightPreAuton", group = "Test")
+public class RightPreAuton extends MatchOpMode {
 //    private ATDetector tagDetector;
 
     private static final double startPoseX = 0;
@@ -73,8 +73,8 @@ public class RightHighrePlusLowAuton extends MatchOpMode {
             case 1: { //Left
                 schedule(
                         new SequentialCommandGroup(
-                        new RightHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos),
-                        new DriveForwardCommand(drivetrain, -46),
+                        new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
+                        new DriveForwardCommand(drivetrain, -25),
                         new TurnToCommand(drivetrain, 180)
                         )
                 );
@@ -83,8 +83,7 @@ public class RightHighrePlusLowAuton extends MatchOpMode {
             case 2: { //Mid
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos),
-                                new DriveForwardCommand(drivetrain, -23),
+                                new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
                                 new TurnToCommand(drivetrain, 180)
                         )
                 );
@@ -93,8 +92,8 @@ public class RightHighrePlusLowAuton extends MatchOpMode {
             default: { //High
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos),
-                                new DriveForwardCommand(drivetrain, 1),
+                                new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
+                                new DriveForwardCommand(drivetrain, 25),
                                 new TurnToCommand(drivetrain, 180)
                         )
                 );

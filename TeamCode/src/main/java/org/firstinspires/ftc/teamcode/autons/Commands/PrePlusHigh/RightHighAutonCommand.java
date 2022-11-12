@@ -19,11 +19,11 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
-public class RightPrePlusHighAutonCommand extends SequentialCommandGroup{
-    public RightPrePlusHighAutonCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
+public class RightHighAutonCommand extends SequentialCommandGroup{
+    public RightHighAutonCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         addCommands(
                 new DriveForwardCommand(drivetrain, -55),
-                new TurnToCommand(drivetrain, 47, true),
+                new TurnToCommand(drivetrain, 46.5, true),
                 new SlideHighBAutoCommand(slide, arm, clawServos),
                 new WaitCommand(100),
                 new SlowDriveForwardCommand(drivetrain ,-8.1),
@@ -33,16 +33,17 @@ public class RightPrePlusHighAutonCommand extends SequentialCommandGroup{
                 new SlowDriveForwardCommand(drivetrain ,8),
                 new PrePickC5FCommand(slide, clawServos, arm),
                 new TurnToCommand(drivetrain, 97),
-                new DriveForwardCommand(drivetrain, 25),
+                new DriveForwardCommand(drivetrain, 23),
 
                 new PickC5FCommand(slide, clawServos, arm, drivetrain),
                 new DriveForwardCommand(drivetrain, -25),
+                new TurnToCommand(drivetrain, 33),
                 new SlideHighAutonBCommand(slide, arm, clawServos),
-                new TurnToCommand(drivetrain, 43),
-                new SlowDriveForwardCommand(drivetrain, -10),
+                new WaitCommand(200),
+                new SlowDriveForwardCommand(drivetrain, -8.1),
                 new InstantCommand(clawServos::clawOpen, clawServos),
                 new WaitCommand(400),
-                new DriveForwardCommand(drivetrain, 9),
+                new DriveForwardCommand(drivetrain, 4.5),
 
 
 

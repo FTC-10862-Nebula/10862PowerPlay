@@ -25,8 +25,8 @@ public class ClawServos extends SubsystemBase {
 //    private static double INTAKE_POWER = -1;
 //    private static double OUTTAKE_POWER = 1;
 
-    private static double F_POS_S3 = 0.843;
-    private static double B_POS_S3 = 0.215;
+    private static double F_POS_S3 = 0.894;
+    private static double B_POS_S3 = 0.129;
 
 
     Telemetry telemetry;
