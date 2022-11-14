@@ -75,8 +75,6 @@ public class Arm extends SubsystemBase {
     @Override
     public void periodic() {
         if (automatic) {
-//            newSetPosition = (offsetNum*-3)+(controller.getSetPoint());
-//            controller.setSetPoint(newSetPosition);
 
             controller.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
 
@@ -133,7 +131,6 @@ public class Arm extends SubsystemBase {
         automatic = true;
         controller.setSetPoint(INTAKE_POS_FRONT);
         clawPos = 1;
-//        offsetNum++;
     }
     public void moveF() {
         automatic = true;

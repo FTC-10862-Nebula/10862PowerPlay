@@ -1,14 +1,32 @@
-package org.firstinspires.ftc.teamcode.Treads;
+package org.firstinspires.ftc.teamcode.Treads.one;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 @Disabled
 public class DriveThread extends Thread
     {
+//        private static final double startPoseX = 0;
+//        private static final double startPoseY = 0;
+//        private static final double startPoseHeading = 0;
+//
+//        private Drivetrain drivetrain;
+//
 //        public DriveThread()
 //        {
 //            this.setName("DriveThread");
-//wheres the servo declaration
+////wheres the servo declaration
+//            drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
+//            drivetrain.init();
+//            drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+//
 //
 //            System.out.println("%s");
 //            System.out.println(this.getName());
@@ -41,13 +59,12 @@ public class DriveThread extends Thread
 //            // interrupted means time to shutdown. note we can stop by detecting isInterrupted = true
 //            // or by the interrupted exception thrown from the sleep function.
 //            catch (InterruptedException e) {
-//                Logging.log("%s interrupted", this.getName());
+//                telemetry.addData("%s interrupted", this.getName());
 //            }
 //            // an error occurred in the run loop.
 //            catch (Exception e) {
 //                e.printStackTrace(Logging.logPrintStream);
 //            }
-//
-//            Logging.log("end of thread %s", this.getName());
+//            telemetry.addData("end of thread %s", this.getName());
 //        }
     }
