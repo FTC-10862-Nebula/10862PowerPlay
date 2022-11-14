@@ -1,14 +1,13 @@
 package org.firstinspires.ftc.teamcode.Treads.two;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 //Extend ThreadOpMode rather than OpMode
-public class ExampleOpMode extends ThreadOpMode {
+public class ExampleThreadOpMode extends ThreadOpMode {
     private static double startPoseX = 0;
     private static double startPoseY = 0;
     private static double startPoseHeading = 0;
