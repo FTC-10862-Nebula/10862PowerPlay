@@ -44,21 +44,6 @@ public class RightHighPrePlusOneAutonCommand extends SequentialCommandGroup{
                 new DriveForwardCommand(drivetrain, 3),
                 new TurnToCommand(drivetrain, 90),
 
-//                new PickC4FCommand(slide, clawServos, arm, drivetrain),
-//                new SlideLowBackCommand(slide, arm, clawServos),
-//                new TurnToCommand(drivetrain, 145),
-//                new DriveForwardCommand(drivetrain, -8),new InstantCommand(clawServos::clawOpen, clawServos),
-//                new WaitCommand(400),
-//                new DriveForwardCommand(drivetrain, 7),
-//                new TurnToCommand(drivetrain, 85),
-
-//                new PickC3FCommand(slide, clawServos, arm, drivetrain),
-//                new TurnToCommand(drivetrain, 140),
-//                new SlideLowBackCommand(slide, arm, clawServos),
-//                new DriveForwardCommand(drivetrain, -8),new InstantCommand(clawServos::clawOpen, clawServos),
-//                new WaitCommand(400),
-//                new DriveForwardCommand(drivetrain, 7),
-//                new TurnToCommand(drivetrain, 85),
 
                 new SlideResetAutonFCommand(slide, arm, clawServos),
                 new WaitCommand(200)

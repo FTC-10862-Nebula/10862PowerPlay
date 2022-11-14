@@ -110,6 +110,7 @@ public class ClawServos extends SubsystemBase {
 
     public void setFClawPos(){setClawS3(F_POS_S3);}
     public void setBClawPos(){setClawS3(B_POS_S3);}
+
     public void addClaw3Pos() {
         setClawS3(clawS3.getPosition() + 0.05);
     }

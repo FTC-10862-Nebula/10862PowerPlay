@@ -16,8 +16,6 @@ public class SlideLowBackCommand extends SequentialCommandGroup {
                 new InstantCommand(arm::moveB, arm),
                 new WaitCommand(650),
                 new InstantCommand(clawServos::setBClawPos)
-
-
         );
     }
 }

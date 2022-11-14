@@ -20,14 +20,14 @@ public class Slide extends SubsystemBase {
     private MotorEx slideM1;
     private MotorEx slideM2;
 
-    public boolean liftTime;
+//    public boolean liftTime;
 //    int liftError = 0, liftTargetPos = 0, setPos;
 
     public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(.005, 0.00, 0,0);//.0075, 0., .003, 0)
 //    public static PIDFCoefficients pidfDownCoefficients = new PIDFCoefficients(0.01, 0.00, 0, 0);
 
     //I = 0.0008
-    public static double ARM_OFFSET = 0;
+//    public static double ARM_OFFSET = 0;
     private PIDFController upController;//, downController;
     private boolean automatic;
 
@@ -50,8 +50,6 @@ public class Slide extends SubsystemBase {
     public static int CONE_3_POS = -120;
     public static int CONE_2_POS = -100;
     public static int CONE_1_POS = -10;
-
-    public static int CAP_POSITION = 0;
 
     private static double POWER = 1.1;
 
@@ -83,15 +81,15 @@ public class Slide extends SubsystemBase {
         setOffset();
     }
 
-    public void toggleAutomatic() {
-        automatic = !automatic;
-    }
-    public boolean isAutomatic() {
-        return automatic;
-    }
-    public void automaticFalse(){
-        automatic=false;
-    }
+//    public void toggleAutomatic() {
+//        automatic = !automatic;
+//    }
+//    public boolean isAutomatic() {
+//        return automatic;
+//    }
+//    public void automaticFalse(){
+//        automatic=false;
+//    }
 
     @Override
     public void periodic() {
@@ -115,7 +113,7 @@ public class Slide extends SubsystemBase {
     }
 
     private double getEncoderDistance2(){
-        return slideM2.getDistance() -encoderOffset2;
+        return slideM2.getDistance() - encoderOffset2;
     }
 
 //    public void upSlideManual(GamepadEx operatorGamepad, Slide slide) {
@@ -147,12 +145,12 @@ public class Slide extends SubsystemBase {
         automatic = false;
     }
 
-    public void setAutomatic(boolean auto) {
-        this.automatic = auto;
-    }
+//    public void setAutomatic(boolean auto) {
+//        this.automatic = auto;
+//    }
 
     public void resetEncoder() {
-        liftEncoderReset();
+//        liftEncoderReset();
     }
 
     public double getAngle() {
@@ -198,6 +196,8 @@ public class Slide extends SubsystemBase {
         upController.setSetPoint(HIGH_POS);
         liftPosition = 4;
     }
+
+
     public void slideCone5() {
         automatic = true;
         upController.setSetPoint(CONE_5_POS);
@@ -223,6 +223,7 @@ public class Slide extends SubsystemBase {
         upController.setSetPoint(CONE_1_POS);
         liftPosition = 9;
     }
+
     public void autoPickSlideUp() {
         automatic = true;
         upController.setSetPoint(slideM1.getCurrentPosition()+150);
@@ -309,31 +310,31 @@ public class Slide extends SubsystemBase {
 //        moveLiftToCorrectHeight();
 //    }
 
-    public void moveLiftToCorrectHeight() {
-        if(liftPosition == 0) {
-            slideResting();
-        } else if(liftPosition == 1) {
-            slideGround();
-        } else if(liftPosition == 2) {
-            slideLow();
-        } else if(liftPosition == 3) {
-            slideMid();
-        } else if(liftPosition == 4) {
-            slideHigh();
-        } else if(liftPosition == 5) {
-            slideCone5();
-        } else if(liftPosition == 6) {
-            slideCone4();
-        } else if(liftPosition == 7) {
-            slideCone3();
-        } else if(liftPosition == 8) {
-            slideCone2();
-        } else if(liftPosition == 9) {
-            slideCone1();
-        } else if(liftPosition == 10) {
-            autoPickSlideUp();
-        } else if(liftPosition == 11) {
-            autoDropSlideUp();
-        }
-    }
+//    public void moveLiftToCorrectHeight() {
+//        if(liftPosition == 0) {
+//            slideResting();
+//        } else if(liftPosition == 1) {
+//            slideGround();
+//        } else if(liftPosition == 2) {
+//            slideLow();
+//        } else if(liftPosition == 3) {
+//            slideMid();
+//        } else if(liftPosition == 4) {
+//            slideHigh();
+//        } else if(liftPosition == 5) {
+//            slideCone5();
+//        } else if(liftPosition == 6) {
+//            slideCone4();
+//        } else if(liftPosition == 7) {
+//            slideCone3();
+//        } else if(liftPosition == 8) {
+//            slideCone2();
+//        } else if(liftPosition == 9) {
+//            slideCone1();
+//        } else if(liftPosition == 10) {
+//            autoPickSlideUp();
+//        } else if(liftPosition == 11) {
+//            autoDropSlideUp();
+//        }
+//    }
 }

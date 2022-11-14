@@ -60,6 +60,7 @@ public class MainTeleOp extends MatchOpMode {
 //    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
     //    private Vision vision;
 
+//    private Button one;
 
     @Override
     public void robotInit() {
@@ -82,15 +83,17 @@ public class MainTeleOp extends MatchOpMode {
     public void configureButtons() {
         //Drive Stuff - D1
             Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                    .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,  true));
+                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true));
             Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
-                    .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,false));
+                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false));
+
         //Slowmode - D1
             Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                     .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
         //Claw Servo Intake/Outtake - D1
             Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
+                    .whenPressed(new SlideLowBackCommand(slide, arm, clawServos))
                 .whenPressed(new PickConeCommand(clawServos, slide));
             Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
                 .whenPressed(new DropConeCommand(clawServos, slide, arm));
@@ -110,7 +113,7 @@ public class MainTeleOp extends MatchOpMode {
                     .whenPressed(new SlideHighBackCommand(slide, arm, clawServos)));
 
             Button resetFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                .whenPressed(new SlideResetFrontCommandT(slide, arm, clawServos)));
+                    .whenPressed(new SlideResetFrontCommandT(slide, arm, clawServos)));
 
         //Slide Manual - D2
             Button slideUpTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
@@ -141,8 +144,8 @@ public class MainTeleOp extends MatchOpMode {
 
             Button armFButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT))
                     .whenPressed(arm::moveF);
-        Button armBButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT))
-                .whenPressed(arm::moveB);
+            Button armBButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT))
+                    .whenPressed(arm::moveB);
 
 
             /*
