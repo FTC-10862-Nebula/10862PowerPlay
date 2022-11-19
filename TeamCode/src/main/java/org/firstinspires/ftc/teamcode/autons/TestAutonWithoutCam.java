@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.autons;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
@@ -9,6 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.autons.Commands.HighPre.RightHighPreAutonCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.PrePickConeCommands.PrePickC5FCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -56,10 +58,15 @@ public class TestAutonWithoutCam extends MatchOpMode {
     public void matchStart() {
         schedule(
                 new SequentialCommandGroup(
-
-                        new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
-                        new DriveForwardCommand(drivetrain, -23),
-                        new TurnToCommand(drivetrain, 180)
+                        new InstantCommand(slide::slideLow),
+                        new InstantCommand(arm::moveIntakeFAuto),
+//                    new WaitCommand(12);
+                                new InstantCommand(clawServos::clawOpen),
+new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos)
+//new PrePickC5FCommand(slide, clawServos, arm)
+//                        new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
+//                        new DriveForwardCommand(drivetrain, -23),
+//                        new TurnToCommand(drivetrain, 180)
                 )
         );
     }

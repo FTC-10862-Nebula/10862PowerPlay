@@ -114,6 +114,8 @@ public class MainTeleOp extends MatchOpMode {
 
             Button resetFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
                     .whenPressed(new SlideResetFrontCommandT(slide, arm, clawServos)));
+            Button resetArmUp = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
+                    .whenPressed(arm::moveReset));
 
         //Slide Manual - D2
             Button slideUpTrigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
@@ -175,7 +177,9 @@ public class MainTeleOp extends MatchOpMode {
     }
 
     @Override
-    public void matchLoop() { }
+    public void matchLoop() {
+
+    }
     @Override
     public void disabledPeriodic() { }
     @Override

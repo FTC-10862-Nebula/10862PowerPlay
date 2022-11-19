@@ -17,19 +17,30 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class RightHighPreAutonCommand extends SequentialCommandGroup{
     public RightHighPreAutonCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
-        addCommands(
-                new DriveForwardCommand(drivetrain, -55),
-                new TurnToCommand(drivetrain, 48, true),
-                new SlideHighBAutoCommand(slide, arm, clawServos),
-                new WaitCommand(100),
-                new SlowDriveForwardCommand(drivetrain ,-8.1),
-                new WaitCommand(500),
-                new DropConeCommand(clawServos, slide, arm),
-                new WaitCommand(200),
-                new SlowDriveForwardCommand(drivetrain ,8),
-                new TurnToCommand(drivetrain, 90),
-                new SlideResetAutonFCommand(slide, arm, clawServos)
-//                new InstantCommand(arm::moveReset, arm),
-        );
+//        addCommands(
+//                new DriveForwardCommand(drivetrain, -55),
+//                new TurnToCommand(drivetrain, 48, true),
+//                new SlideHighBAutoCommand(slide, arm, clawServos),
+//                new WaitCommand(100),
+//                new SlowDriveForwardCommand(drivetrain ,-8.1),
+//                new WaitCommand(500),
+//                new DropConeCommand(clawServos, slide, arm),
+//                new WaitCommand(200),
+//                new SlowDriveForwardCommand(drivetrain ,8),
+//                new TurnToCommand(drivetrain, 90),
+//                new SlideResetAutonFCommand(slide, arm, clawServos)
+////                new InstantCommand(arm::moveReset, arm),
+//        );
+        new Thread(
+                () -> {
+                    slide.slideLow();
+                    arm.moveIntakeFAuto();
+//                    new WaitCommand(12);
+                    clawServos.clawOpen();
+
+                }
+        ).start();
+//        new Thread().destroy();
+        new Thread().stop();
     }
 }

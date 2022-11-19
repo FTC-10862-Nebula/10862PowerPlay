@@ -21,16 +21,36 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
         this.colorSensor = colorSensor;
     }
 
-    public SensorColor(HardwareMap hardwareMap , Telemetry tl) {
-        this(hardwareMap.get(ColorSensor.class, "colorSensor"));
+    public SensorColor(ColorSensor colorSensor, HardwareMap hardwareMap , Telemetry tl) {
+        this.colorSensor = colorSensor;
+        this.colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
         this.telemetry = tl;
     }
 
     public void periodic() {
-        Util.logger(this, telemetry, Level.INFO, "\tColor Alpha:",colorSensor.alpha());
-        Util.logger(this, telemetry, Level.INFO, "\tColor Red:",colorSensor.red());
-        Util.logger(this, telemetry, Level.INFO, "\tColor Green:",colorSensor.green());
-        Util.logger(this, telemetry, Level.INFO, "\tColor Blue:",colorSensor.blue());
+//        telemetry.addData("\tAlpha:", alpha());
+//        telemetry.addData("\tRed:", red());
+//        telemetry.addData("\tGreen:", green());
+//        telemetry.addData("\tBlue:", blue());
+
+
+
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Alpha:",colorSensor.alpha());
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Red:",colorSensor.red());
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Green:",colorSensor.green());
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Blue:",colorSensor.blue());
+int[] color = getARGB();
+        Util.logger(this, telemetry, Level.INFO, "\tColor Alpha:",color[0]);
+        Util.logger(this, telemetry, Level.INFO, "\tColor Red:",color[1]);
+        Util.logger(this, telemetry, Level.INFO, "\tColor Green:",color[2]);
+        Util.logger(this, telemetry, Level.INFO, "\tColor Blue:",color[3]);
+
+
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Alpha:",alpha());
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Red:",red());
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Green:",green());
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Blue:",blue());
+        telemetry.update();
     }
 
     public int[] HSVtoARGB(int alpha, float[] hsv) {
@@ -54,6 +74,7 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
 
     public boolean grabbedBlueCone() {
         //TODO:Change the color
+//        telemetry.addLine();
         return (red() > 150) && (green() > 150);
     }
     public boolean grabbedRedCone() {

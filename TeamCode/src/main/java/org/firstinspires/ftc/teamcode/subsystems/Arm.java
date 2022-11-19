@@ -32,7 +32,7 @@ public class Arm extends SubsystemBase {
     public static int INIT_POS = 0;
     private static double newSetPosition;
 
-    public static int INTAKE_POS_BACK = -300,
+    public static int INTAKE_POS_BACK = -312,
                         POS_BACK = -254,
                         HIGH_POS_BACK = -145;
 
@@ -46,7 +46,7 @@ public class Arm extends SubsystemBase {
     public static int POS_AUTO_BACK = -160;
 
 
-    private static double POWER = 0.89;
+    private static double POWER = 0.93;
     private int clawPos = 0;
 
     Telemetry telemetry;

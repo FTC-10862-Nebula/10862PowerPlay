@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SlowDr
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.Front.PickC5FCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.PrePickConeCOmmands.PrePickC5FCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.PrePickConeCommands.PrePickC5FCommand;
 import org.firstinspires.ftc.teamcode.commands.SlideAutos.SlideLowAutonBCommand;
 import org.firstinspires.ftc.teamcode.commands.SlideAutos.SlideResetAutonFCommand;
 import org.firstinspires.ftc.teamcode.commands.SlideAutos.SlideHighBAutoCommand;

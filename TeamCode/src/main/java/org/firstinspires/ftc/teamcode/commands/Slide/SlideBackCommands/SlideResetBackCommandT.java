@@ -10,6 +10,15 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class SlideResetBackCommandT extends SequentialCommandGroup {
     public SlideResetBackCommandT(Slide slide, Arm arm, ClawServos clawServos){
+//        new Thread(
+//                () -> {
+//                    clawServos.clawClose();
+//                    slide.slideLow();
+//                    arm.moveB();
+//                    new WaitCommand(650);
+//                    clawServos.setBClawPos();
+//                }
+//        ).start();
         addCommands(
                 new InstantCommand(clawServos::clawClose, clawServos),
                 new InstantCommand(clawServos::setBClawPos),

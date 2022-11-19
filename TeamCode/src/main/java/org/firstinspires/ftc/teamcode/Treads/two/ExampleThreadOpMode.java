@@ -1,11 +1,12 @@
 package org.firstinspires.ftc.teamcode.Treads.two;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-
+@Autonomous
 //Extend ThreadOpMode rather than OpMode
 public class ExampleThreadOpMode extends ThreadOpMode {
     private static double startPoseX = 0;
@@ -41,5 +42,12 @@ public class ExampleThreadOpMode extends ThreadOpMode {
     @Override
     public void mainLoop() {
         //Anything you want to constantly run in the MAIN thread goes here
+    }
+
+    public void matchStart(){
+
+//        schedule{
+//
+//        }
     }
 }

@@ -10,6 +10,15 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class SlideMidBackCommand extends SequentialCommandGroup {
     public SlideMidBackCommand(Slide slide, Arm arm, ClawServos clawServos) {
+//        new Thread(
+//                () -> {
+//                    clawServos.clawClose();
+//                    slide.slideMid();
+//                    arm.moveB();
+//                    new WaitCommand(650);
+//                    clawServos.setBClawPos();
+//                }
+//        ).start();
         addCommands(
                 new InstantCommand(clawServos::clawClose),
                 new InstantCommand(slide::slideMid, slide),
