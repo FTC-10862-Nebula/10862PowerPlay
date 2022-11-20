@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOps.SubsystemTeleops.ClawServo;
 
+import static org.firstinspires.ftc.teamcode.subsystems.ClawServos.*;
+
 import com.arcrobotics.ftclib.hardware.motors.CRServo;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -12,11 +14,8 @@ public class ClawServoTest extends OpMode {
     Servo servo2;
     double pos = 0.5, pos2 = 0.5;
 
-    public static double CLOSE_POS_S1 = 0.22;
-    public static double OPEN_POS_S1 = 0.35;
 
-    public static double CLOSE_POS_S2 = 0.83;
-    public static double OPEN_POS_S2 = 0.7;
+
 
     public static double INTAKE_POWER = -1;
     public static double OUTTAKE_POWER = 1;

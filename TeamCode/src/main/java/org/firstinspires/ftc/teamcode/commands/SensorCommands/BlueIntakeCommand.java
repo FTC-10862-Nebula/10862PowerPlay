@@ -20,25 +20,12 @@ public class BlueIntakeCommand extends SequentialCommandGroup {
 //                new WaitUntilCommand(sensorColor::grabbedBlueCone).withTimeout(9),
                 new ConditionalCommand(
                         new SequentialCommandGroup( //When True
-//                                new InstantCommand(clawServos::clawClose)
+                                new InstantCommand(clawServos::clawClose)
 //                                new InstantCommand(slide::autoPickSlideUp)
-                                new InstantCommand(clawServos::clawOpen)
-//                                new DriveForwardCommand(drivetrain,5)
-
                         ),
-                        new SequentialCommandGroup( //When False
-
-
-//                                new InstantCommand(slide::autoDropSlideUp),
-//                                new DriveForwardCommand(drivetrain,5)
-
-                                new InstantCommand(arm::moveIntakeFAuto),
-//                                new InstantCommand(clawServos::intakeClaw),
-                                new InstantCommand(clawServos::clawOpen)
-//                                new WaitCommand(100),
-//                                new InstantCommand(clawServos::stopClaw)
+                        new SequentialCommandGroup( /*When False*/                                 new InstantCommand(clawServos::clawOpen)
                         ),
-                        sensorColor::grabbedBlueCone
+                        sensorColor::grabbedBlueCone    //What they R checking
                 )
         );
     }

@@ -60,7 +60,6 @@ public class MainTeleOp extends MatchOpMode {
 //    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
     //    private Vision vision;
 
-//    private Button one;
 
     @Override
     public void robotInit() {

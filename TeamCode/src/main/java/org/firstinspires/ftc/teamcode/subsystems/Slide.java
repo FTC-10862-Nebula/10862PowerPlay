@@ -50,6 +50,7 @@ public class Slide extends SubsystemBase {
     public static int CONE_3_POS = -120;
     public static int CONE_2_POS = -100;
     public static int CONE_1_POS = -10;
+    double output = 0;
 
     public static boolean lowBool = false;
 //    private static double POWER = 1.4,
@@ -98,9 +99,9 @@ public class Slide extends SubsystemBase {
         if (automatic) {
             upController.setF(pidfUpCoefficients.f * Math.cos(Math.toRadians(upController.getSetPoint())));
 
-            double output = upController.calculate(getAngle());
-            if (output >= 1) output = 1;
-            if (output <= -1) output = -1;
+            output = upController.calculate(getAngle());
+//            if (output >= 1) output = 1;
+//            if (output <= -1) output = -1;
 
             slideM1.set(output);
             slideM2.set(output);
@@ -114,9 +115,12 @@ public class Slide extends SubsystemBase {
 //                slideM2.set(output * POWER);
 //            }
         }
+        telemetry.addLine("Slide - ");
+            telemetry.addData("     Lift Motor Output:", output);
 
-        Util.logger(this, telemetry, Level.INFO, "lift encoder pos 1: ", slideM1.getCurrentPosition());
-        Util.logger(this, telemetry, Level.INFO, "lift encoder pos 2: ", slideM2.getCurrentPosition());
+        Util.logger(this, telemetry, Level.INFO, "  Lift1 Encoder: ", slideM1.getCurrentPosition());
+        Util.logger(this, telemetry, Level.INFO, "  Lift2 Encoder: ", slideM2.getCurrentPosition());
+        telemetry.addData(" List Pos:", liftPosition);
     }
 
     private double getEncoderDistance() {

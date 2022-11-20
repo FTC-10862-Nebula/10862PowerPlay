@@ -75,11 +75,11 @@ int[] color = getARGB();
     public boolean grabbedBlueCone() {
         //TODO:Change the color
 //        telemetry.addLine();
-        return (red() > 150) && (green() > 150);
+        return (blue()>100);    //red() > 150) && (green() > 150);
     }
     public boolean grabbedRedCone() {
         //TODO:Change the color
-        return (red() > 150) && (green() > 150);
+        return (red() > 150);   //(red() > 150 && (green() > 150);
     }
 
     @Override
