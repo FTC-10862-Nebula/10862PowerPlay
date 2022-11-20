@@ -12,7 +12,7 @@ public class ClawServoTest extends OpMode {
     Servo servo2;
     double pos = 0.5, pos2 = 0.5;
 
-    public static double CLOSE_POS_S1 = 0.6;
+    public static double CLOSE_POS_S1 = 0.22;
     public static double OPEN_POS_S1 = 0.35;
 
     public static double CLOSE_POS_S2 = 0.83;
@@ -32,7 +32,7 @@ public class ClawServoTest extends OpMode {
     @Override
     public void init() {
         servo1 = hardwareMap.get(Servo.class, "clawS1");
-        servo2 = hardwareMap.get(Servo.class, "clawS2");
+        servo2 = hardwareMap.get(Servo.class, "clawS2"); //
     }
 
     /**
@@ -54,6 +54,15 @@ public class ClawServoTest extends OpMode {
         }
         else if(gamepad1.dpad_up){
             pos2 += 0.001;
+        }
+
+        if(gamepad1.right_bumper){
+            pos = CLOSE_POS_S1;
+            pos2  = CLOSE_POS_S2;
+        }
+        else if(gamepad1.left_bumper){
+            pos = OPEN_POS_S1;
+            pos2  = OPEN_POS_S2;
         }
 
 

@@ -93,7 +93,7 @@ public class MainTeleOp extends MatchOpMode {
 
         //Claw Servo Intake/Outtake - D1
             Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-                    .whenPressed(new SlideLowBackCommand(slide, arm, clawServos))
+//                    .whenPressed(new SlideLowBackCommand(slide, arm, clawServos))
                 .whenPressed(new PickConeCommand(clawServos, slide));
             Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
                 .whenPressed(new DropConeCommand(clawServos, slide, arm));

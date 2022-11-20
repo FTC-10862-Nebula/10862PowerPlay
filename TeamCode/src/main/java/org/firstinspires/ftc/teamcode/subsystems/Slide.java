@@ -51,7 +51,9 @@ public class Slide extends SubsystemBase {
     public static int CONE_2_POS = -100;
     public static int CONE_1_POS = -10;
 
-    private static double POWER = 1.1;
+    public static boolean lowBool = false;
+//    private static double POWER = 1.4,
+//    LOW_POWER =0.7;
 
     private int liftPosition = 0;
 
@@ -100,8 +102,17 @@ public class Slide extends SubsystemBase {
             if (output >= 1) output = 1;
             if (output <= -1) output = -1;
 
-            slideM1.set(output* POWER);
-            slideM2.set(output* POWER);
+            slideM1.set(output);
+            slideM2.set(output);
+
+//            if (lowBool) {
+//                slideM1.set(output * LOW_POWER);
+//                slideM2.set(output * LOW_POWER);
+//            }
+//            else {
+//                slideM1.set(output * POWER);
+//                slideM2.set(output * POWER);
+//            }
         }
 
         Util.logger(this, telemetry, Level.INFO, "lift encoder pos 1: ", slideM1.getCurrentPosition());
@@ -166,6 +177,7 @@ public class Slide extends SubsystemBase {
 
     public void slideResting() {
         automatic = true;
+        lowBool = true;
         upController.setSetPoint(RESTING_POS);
         liftPosition = 0;
     }
@@ -178,21 +190,25 @@ public class Slide extends SubsystemBase {
 
     public void slideGround() {
         automatic = true;
+        lowBool = true;
         upController.setSetPoint(GROUND_POS);
         liftPosition = 1;
     }
     public void slideLow() {
         automatic = true;
+        lowBool = false;
         upController.setSetPoint(LOW_POS);
         liftPosition = 2;
     }
     public void slideMid() {
         automatic = true;
+        lowBool = false;
         upController.setSetPoint(MID_POS);
         liftPosition = 3;
     }
     public void slideHigh() {
         automatic = true;
+        lowBool = false;
         upController.setSetPoint(HIGH_POS);
         liftPosition = 4;
     }
@@ -200,44 +216,51 @@ public class Slide extends SubsystemBase {
 
     public void slideCone5() {
         automatic = true;
+        lowBool = false;
         upController.setSetPoint(CONE_5_POS);
         liftPosition = 5;
     }
     public void slideCone4() {
         automatic = true;
+        lowBool = false;
         upController.setSetPoint(CONE_4_POS);
         liftPosition = 6;
     }
     public void slideCone3() {
         automatic = true;
+        lowBool = false;
         upController.setSetPoint(CONE_3_POS);
         liftPosition = 7;
     }
     public void slideCone2() {
         automatic = true;
+        lowBool = false;
         upController.setSetPoint(CONE_2_POS);
         liftPosition = 8;
     }
     public void slideCone1() {
         automatic = true;
+        lowBool = false;
         upController.setSetPoint(CONE_1_POS);
         liftPosition = 9;
     }
 
     public void autoPickSlideUp() {
         automatic = true;
-        upController.setSetPoint(slideM1.getCurrentPosition()+150);
-        liftPosition = 10;
+        lowBool = false;
+        upController.setSetPoint(slideM1.getCurrentPosition()-200);
+//        liftPosition = 10;
     }
     public void autoDropSlideUp() {
         automatic = true;
-        upController.setSetPoint(slideM1.getCurrentPosition()-150);
-        liftPosition = 11;
+        lowBool = false;
+        upController.setSetPoint(slideM1.getCurrentPosition()+200);
+//        liftPosition = 11;
     }
 
     public void slidePickUp(){
         automatic = true;
-        upController.setSetPoint(slideM1.getCurrentPosition()-150);
+        upController.setSetPoint(slideM1.getCurrentPosition()+200);
 //        liftPosition = 12;
     }
 

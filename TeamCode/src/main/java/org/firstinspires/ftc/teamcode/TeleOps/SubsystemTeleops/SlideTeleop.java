@@ -51,27 +51,27 @@ public class SlideTeleop extends MatchOpMode {
 //                    .whenPressed(slide::downSlideManual)
 //                    .whenReleased(slide::stopSlide));
 
-            Button cone5 = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
-                .whenPressed(slide::slideCone5));
-            Button cone4 = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
-                    .whenPressed(slide::slideCone4));
-            Button cone3 = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
-                    .whenPressed(slide::slideCone3));
-            Button cone2 = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                    .whenPressed(slide::slideCone2));
-            Button cone1 = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                    .whenPressed(slide::slideCone1));
+//            Button cone5 = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
+//                .whenPressed(slide::slideCone5));
+//            Button cone4 = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
+//                    .whenPressed(slide::slideCone4));
+//            Button cone3 = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
+//                    .whenPressed(slide::slideCone3));
+//            Button cone2 = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
+//                    .whenPressed(slide::slideCone2));
+//            Button cone1 = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
+//                    .whenPressed(slide::slideCone1));
 
 
 //        //Slide positions
-//            groundSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-//                    .whenPressed(slide::slideGround));
-//            lowSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-//                    .whenPressed(slide::slideLow));
-//            midSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-//                    .whenPressed(slide::slideMid));
-//            highSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-//                    .whenPressed(slide::slideHigh));
+            groundSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
+                    .whenPressed(slide::slideGround));
+            lowSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
+                    .whenPressed(slide::slideLow));
+            midSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
+                    .whenPressed(slide::slideMid));
+            highSButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
+                    .whenPressed(slide::slideHigh));
 
         //reset everything
             resetEveryThingButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN))

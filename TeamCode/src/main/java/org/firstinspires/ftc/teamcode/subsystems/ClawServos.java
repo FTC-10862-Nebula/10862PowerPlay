@@ -38,7 +38,7 @@ public class ClawServos extends SubsystemBase {
     public ClawServos(ServoEx clawS1, ServoEx clawS2, ServoEx clawS3, Telemetry tl, HardwareMap hw) {
         this.clawS1 = clawS1;
         this.clawS2 = clawS2;
-        this.clawS3 = clawS3;
+        this.clawS3 = clawS3; //Port 5
 
         this.clawS1 = new SimpleServo(hw,"clawS1",0,360);
         this.clawS1.setPosition(CLOSE_POS_S1);
