@@ -13,7 +13,8 @@ public class PickConeCommand extends SequentialCommandGroup {
         addCommands(
                 new InstantCommand(clawServos::clawClose, clawServos),
                 new WaitCommand(800),
-                new InstantCommand(slide::slidePickUp, slide)
+                new InstantCommand(slide::slidePickUp, slide),
+                new InstantCommand()
         );
     }
 

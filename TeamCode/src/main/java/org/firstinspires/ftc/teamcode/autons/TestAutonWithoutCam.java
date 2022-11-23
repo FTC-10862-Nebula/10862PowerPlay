@@ -58,13 +58,18 @@ public class TestAutonWithoutCam extends MatchOpMode {
     public void matchStart() {
         schedule(
                 new SequentialCommandGroup(
-                        new InstantCommand(slide::slideLow),
-                        new InstantCommand(arm::moveIntakeFAuto),
-//                    new WaitCommand(12);
-                                new InstantCommand(clawServos::clawOpen),
-new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos)
-//new PrePickC5FCommand(slide, clawServos, arm)
-//                        new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
+//                        new InstantCommand(slide::slideLow),
+//                        new InstantCommand(arm::moveIntakeFAuto),
+////                    new WaitCommand(12);
+//                                new InstantCommand(clawServos::clawOpen),
+//new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
+//                        new In vnstantCommand(arm::moveIntakeF),
+new DriveForwardCommand(drivetrain, 12),
+//                        new InstantCommand(slide::slideMid),
+//                        new InstantCommand(clawServos::clawClose),
+//                        new InstantCommand(arm::moveIntakeF)
+new PrePickC5FCommand(slide, clawServos, arm)
+//                        new RightHighPreAuton Command(drivetrain, slide, arm, clawServos),
 //                        new DriveForwardCommand(drivetrain, -23),
 //                        new TurnToCommand(drivetrain, 180)
                 )

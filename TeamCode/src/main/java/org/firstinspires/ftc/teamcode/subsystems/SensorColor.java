@@ -39,6 +39,8 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Red:",colorSensor.red());
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Green:",colorSensor.green());
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Blue:",colorSensor.blue());
+
+
 int[] color = getARGB();
         Util.logger(this, telemetry, Level.INFO, "\tColor Alpha:",color[0]);
         Util.logger(this, telemetry, Level.INFO, "\tColor Red:",color[1]);

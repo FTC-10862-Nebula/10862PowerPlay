@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode.autons.Commands.HighPre;
 
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
+import com.qualcomm.robotcore.util.ThreadPool;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SlowDriveForwardCommand;
@@ -31,16 +33,34 @@ public class RightHighPreAutonCommand extends SequentialCommandGroup{
 //                new SlideResetAutonFCommand(slide, arm, clawServos)
 ////                new InstantCommand(arm::moveReset, arm),
 //        );
-        new Thread(
-                () -> {
-                    slide.slideLow();
-                    arm.moveIntakeFAuto();
-//                    new WaitCommand(12);
-                    clawServos.clawOpen();
 
-                }
-        ).start();
+        try{
+            addCommands(
+            new InstantCommand(slide::slideLow),
+            new InstantCommand(arm::moveIntakeFAuto),
+
+            new InstantCommand(clawServos::clawOpen)
+            );
+        }catch (Exception e){
+            addCommands(
+                    new InstantCommand(slide::slideLow),
+                    new InstantCommand(arm::moveIntakeFAuto),
+
+                    new InstantCommand(clawServos::clawOpen)
+            );
+        }
+//        new Thread(
+//                () -> {
+//                    slide.slideLow();
+//                    arm.moveIntakeFAuto();
+//                    new WaitCommand(12);
+//                    clawServos.clawOpen();
+//
+//                }
+//        ).start();
+
+//        new ThreadPool()
 //        new Thread().destroy();
-        new Thread().stop();
+//        new Thread().stop();
     }
 }

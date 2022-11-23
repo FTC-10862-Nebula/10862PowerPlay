@@ -28,8 +28,8 @@ public class Slide extends SubsystemBase {
 
     //I = 0.0008
 //    public static double ARM_OFFSET = 0;
-    private PIDFController upController;//, downController;
-    private boolean automatic;
+    private static PIDFController upController;//, downController;
+    private static boolean automatic;
 
     public static double CPR = 751.8;
     public static double UP_SPEED = -0.8;
@@ -56,7 +56,7 @@ public class Slide extends SubsystemBase {
 //    private static double POWER = 1.4,
 //    LOW_POWER =0.7;
 
-    private int liftPosition = 0;
+    private static int liftPosition = 0;
 
     public Slide(MotorEx slideM1, MotorEx slideM2, Telemetry tl, HardwareMap hw) {
         this.slideM1 = slideM1;
@@ -198,7 +198,7 @@ public class Slide extends SubsystemBase {
         upController.setSetPoint(GROUND_POS);
         liftPosition = 1;
     }
-    public void slideLow() {
+    public static void slideLow() {
         automatic = true;
         lowBool = false;
         upController.setSetPoint(LOW_POS);

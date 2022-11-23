@@ -35,7 +35,8 @@ public class TaskThread {
         /**
          * Robot code to be ran periodically on its own thread.
          */
-        public void loop();
+        public void loop(
+        );
     }
 
     void start() {
