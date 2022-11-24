@@ -15,7 +15,8 @@ public class PickC5FCommand extends SequentialCommandGroup{
     public PickC5FCommand(Slide slide, ClawServos clawServos, Arm arm, Drivetrain drivetrain){
         addCommands(
 //                new InstantCommand(clawServos::clawClose),
-//                new InstantCommand(arm::moveIntakeF),
+//                new InstantCommand(arm::moveIntakeFAuto),
+//                new InstantCommand(clawServos::setFClawPos),
 //                new InstantCommand(clawServos::clawOpen),
 //                new InstantCommand(slide::slideCone5),
 

@@ -1,8 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 
-import static com.arcrobotics.ftclib.hardware.motors.Motor.ZeroPowerBehavior.BRAKE;
-
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
@@ -21,7 +19,7 @@ public class Arm extends SubsystemBase {
     public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.0025, 0.2, 0, 0.0);
     //I = 0.0008
     private PIDFController controller;
-    private boolean automatic;
+    private boolean armAutomatic;
 
     public static double CPR = 384.5;
     public static double UP_SPEED = -0.55;
@@ -30,7 +28,7 @@ public class Arm extends SubsystemBase {
     private double encoderOffset = 0;
     private double offsetNum = 0;
     public static int INIT_POS = 0;
-    private static double newSetPosition;
+//    private static double newSetPosition;
 
     public static int INTAKE_POS_BACK = -312,
                         POS_BACK = -254,
@@ -47,7 +45,7 @@ public class Arm extends SubsystemBase {
 
 
     private static double POWER = 0.93;
-    private int clawPos = 0;
+    private static int clawPos = 0;
 
     Telemetry telemetry;
     private MotorEx armMotor;
@@ -68,13 +66,13 @@ public class Arm extends SubsystemBase {
         controller.setTolerance(10);
 
         this.telemetry = tl;
-        automatic = false;
+        armAutomatic = false;
         setOffset();
     }
 
     @Override
     public void periodic() {
-        if (automatic) {
+        if (armAutomatic) {
 
             controller.setF(pidfCoefficients.f * Math.cos(Math.toRadians(controller.getSetPoint())));
 
@@ -97,7 +95,7 @@ public class Arm extends SubsystemBase {
         return armMotor.getDistance() - encoderOffset;
     }
     public void setAutomatic(boolean auto) {
-        this.automatic = auto;
+        this.armAutomatic = auto;
     }
     public double getAngle() {
         return getEncoderDistance();
@@ -106,75 +104,75 @@ public class Arm extends SubsystemBase {
     /****************************************************************************************/
 
     public void raiseClawManual() {
-        automatic = false;
+        armAutomatic = false;
         armMotor.set(UP_SPEED);
     }
     public void lowerClawManual() {
-        automatic = false;
+        armAutomatic = false;
         armMotor.set(DOWN_SPEED);
     }
 
     public void stopClaw() {
         armMotor.stopMotor();
 //        controller.setSetPoint(getAngle());
-        automatic = false;
+        armAutomatic = false;
     }
 
     /****************************************************************************************/
 
     public void moveReset(){
-        automatic = true;
+        armAutomatic = true;
         controller.setSetPoint(INIT_POS);
         clawPos = 0;
     }
     public void moveIntakeF() {
-        automatic = true;
+        armAutomatic = true;
         controller.setSetPoint(INTAKE_POS_FRONT);
         clawPos = 1;
     }
     public void moveF() {
-        automatic = true;
+        armAutomatic = true;
         controller.setSetPoint(POS_FRONT);
         clawPos = 2;
     }
     public void moveHighF() {
-        automatic = true;
+        armAutomatic = true;
         controller.setSetPoint(HIGH_POS_FRONT);
         clawPos = 3;
     }
 
     public void moveIntakeB() {
-        automatic = true;
+        armAutomatic = true;
         controller.setSetPoint(INTAKE_POS_BACK);
         clawPos = 4;
     }
     public void moveB() {
-        automatic = true;
+        armAutomatic = true;
         controller.setSetPoint(POS_BACK);
         clawPos = 5;
     }
     public void moveHighB() {
-        automatic = true;
+        armAutomatic = true;
         controller.setSetPoint(HIGH_POS_BACK);
         clawPos = 6;
     }
     public void moveHighBAuto(){
-        automatic = true;
+        armAutomatic = true;
         controller.setSetPoint(HIGH_POS_AUTO_BACK);
         clawPos = 7;
     }
     public void moveHighFAuto(){
-        automatic = true;
+        armAutomatic = true;
         controller.setSetPoint(HIGH_POS_AUTO_FRONT);
         clawPos = 8;
     }
     public void moveIntakeFAuto() {
-        automatic = true;
+        armAutomatic = true;
         controller.setSetPoint(INTAKE_POS_AUTO_FRONT);
         clawPos = 9;
     }
     public void moveBAuto() {
-        automatic = true;
+        armAutomatic = true;
         controller.setSetPoint(POS_AUTO_BACK);
         clawPos = 10;
     }

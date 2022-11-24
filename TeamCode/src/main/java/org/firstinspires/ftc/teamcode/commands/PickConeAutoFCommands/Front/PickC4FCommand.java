@@ -14,17 +14,17 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 public class PickC4FCommand extends SequentialCommandGroup{
     public PickC4FCommand(Slide slide, ClawServos clawServos, Arm arm, Drivetrain drivetrain){
         addCommands(
-                new InstantCommand(clawServos::clawClose),
-                new InstantCommand(arm::moveIntakeF),
-                new InstantCommand(clawServos::clawOpen),
-                new InstantCommand(slide::slideCone4),
+//                new InstantCommand(clawServos::clawClose),
+//                new InstantCommand(arm::moveIntakeFAuto),
+//                new InstantCommand(clawServos::setFClawPos),
+//                new InstantCommand(clawServos::clawOpen),
+//                new InstantCommand(slide::slideCone4),
 
-
-                new SlowDriveForwardCommand(drivetrain, 3),
+                new SlowDriveForwardCommand(drivetrain, 2.5),
                 new InstantCommand(clawServos::clawClose),
                 new WaitCommand(100),
                 new InstantCommand(slide:: slideLow),
-                new DriveForwardCommand(drivetrain, -4)
+                new DriveForwardCommand(drivetrain, -3.7)
         );
     }
 }
