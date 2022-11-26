@@ -14,7 +14,9 @@ public class PrePickC4FCommand extends SequentialCommandGroup{
                 new InstantCommand(arm::moveIntakeFAuto),
                 new InstantCommand(clawServos::setFClawPos),
                 new InstantCommand(clawServos::clawOpen),
-                new InstantCommand(slide::slideCone4)
+                new InstantCommand(slide::slideCone5)
+//                new InstantCommand(slide::slideCone4)
+
 
         );
     }

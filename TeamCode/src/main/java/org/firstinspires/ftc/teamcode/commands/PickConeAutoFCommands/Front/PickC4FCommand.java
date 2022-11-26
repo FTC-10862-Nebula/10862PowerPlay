@@ -20,7 +20,7 @@ public class PickC4FCommand extends SequentialCommandGroup{
 //                new InstantCommand(clawServos::clawOpen),
 //                new InstantCommand(slide::slideCone4),
 
-                new SlowDriveForwardCommand(drivetrain, 2.5),
+                new SlowDriveForwardCommand(drivetrain, 3.5),
                 new InstantCommand(clawServos::clawClose),
                 new WaitCommand(100),
                 new InstantCommand(slide:: slideLow),

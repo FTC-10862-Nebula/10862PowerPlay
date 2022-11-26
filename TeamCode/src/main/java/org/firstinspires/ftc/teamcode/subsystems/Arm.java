@@ -33,15 +33,17 @@ public class Arm extends SubsystemBase {
     public static int INTAKE_POS_BACK = -312,
                         POS_BACK = -254,
                         HIGH_POS_BACK = -145;
-
-    public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK;
-    public static int POS_FRONT = -POS_BACK;
-    public static int HIGH_POS_FRONT = -HIGH_POS_BACK;
-
-    public static int HIGH_POS_AUTO_BACK = -132;
-    public static int HIGH_POS_AUTO_FRONT = 140;
-    public static int INTAKE_POS_AUTO_FRONT = 288;
+    public static int HIGH_POS_AUTO_BACK = -140;
+    public static int INTAKE_POS_AUTO_BACK = -288;
     public static int POS_AUTO_BACK = -160;
+
+    public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
+            POS_FRONT = -POS_BACK,
+            HIGH_POS_FRONT = -HIGH_POS_BACK;
+    public static int HIGH_POS_AUTO_FRONT = -HIGH_POS_AUTO_BACK,
+            INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
+            POS_AUTO_FRONT = POS_AUTO_BACK;
+
 
 
     private static double POWER = 0.93;
@@ -176,32 +178,40 @@ public class Arm extends SubsystemBase {
         controller.setSetPoint(POS_AUTO_BACK);
         clawPos = 10;
     }
+    public void moveFAuto() {
+        armAutomatic = true;
+        controller.setSetPoint(POS_AUTO_FRONT);
+        clawPos = 11;
+    }
 
     public void dropArm(){
         switch (clawPos){
             case 2:
-                controller.setSetPoint(POS_FRONT+35);
+                controller.setSetPoint(POS_FRONT+40);
                 return;
             case 3:
                 controller.setSetPoint(HIGH_POS_FRONT+40);
                 return;
             case 5:
-                controller.setSetPoint(POS_BACK-35);
+                controller.setSetPoint(POS_BACK-40);
                 return;
             case 6:
-                controller.setSetPoint(HIGH_POS_BACK-40);
+                controller.setSetPoint(HIGH_POS_BACK-45);
                 return;
             case 7:
-                controller.setSetPoint(HIGH_POS_AUTO_BACK-43);
+                controller.setSetPoint(HIGH_POS_AUTO_BACK-45);
                 return;
             case 8:
-                controller.setSetPoint(HIGH_POS_AUTO_FRONT+43);
+                controller.setSetPoint(HIGH_POS_AUTO_FRONT+45);
                 return;
 //            case 9:
 //                controller.setSetPoint(INTAKE_POS_AUTO_FRONT-20);
 //                return;
             case 10:
                 controller.setSetPoint(POS_AUTO_BACK-20);
+                return;
+            case 11:
+                controller.setSetPoint(POS_AUTO_FRONT+20);
                 return;
         }
     }

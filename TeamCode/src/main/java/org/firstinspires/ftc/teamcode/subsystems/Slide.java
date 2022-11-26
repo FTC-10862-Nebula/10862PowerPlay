@@ -38,9 +38,10 @@ public class Slide extends SubsystemBase {
 
     public static int RESTING_POS = 5;
     public static int GROUND_POS = -23;
-    public static int LOW_POS = -660;
-    public static int MID_POS = -1152;
+    public static int LOW_POS = -650;
+    public static int MID_POS = -1140;
     public static int HIGH_POS = -1343;
+    public static int AUTO_MID_POS = -1000;
 
     //Auto Slide Positions
     public static int CONE_5_POS = -242;
@@ -265,6 +266,11 @@ public class Slide extends SubsystemBase {
         upController.setSetPoint(slideM1.getCurrentPosition()+200);
 //        liftPosition = 12;
     }
+    public void slideAutoMid(){
+        slideAutomatic = true;
+        upController.setSetPoint(AUTO_MID_POS);
+        liftPosition = 13;
+    }
 
 
     public void liftEncoderReset() {
@@ -289,30 +295,31 @@ public class Slide extends SubsystemBase {
     public void dropSlide(){
         switch (liftPosition){
             case 2:
-                upController.setSetPoint(LOW_POS+100);
+                upController.setSetPoint(LOW_POS+350);
                 break;
             case 3:
-                upController.setSetPoint(MID_POS+100);
+                upController.setSetPoint(MID_POS+500);
                 break;
-
             case 4:
-                upController.setSetPoint(HIGH_POS+200);
+                upController.setSetPoint(HIGH_POS+600);
                 break;
             case 5:
-                upController.setSetPoint(CONE_5_POS+70);
+                upController.setSetPoint(CONE_5_POS+80);
                 break;
             case 6:
-                upController.setSetPoint(CONE_4_POS+70);
+                upController.setSetPoint(CONE_4_POS+80);
                 break;
             case 7:
-                upController.setSetPoint(CONE_3_POS+70);
+                upController.setSetPoint(CONE_3_POS+80);
                 break;
             case 8:
-                upController.setSetPoint(CONE_2_POS+70);
+                upController.setSetPoint(CONE_2_POS+80);
                 break;
             case 9:
-                upController.setSetPoint(CONE_1_POS+50);
+                upController.setSetPoint(CONE_1_POS+80);
                 break;
+            case 13:
+                upController.setSetPoint(AUTO_MID_POS+500);
         }
     }
 

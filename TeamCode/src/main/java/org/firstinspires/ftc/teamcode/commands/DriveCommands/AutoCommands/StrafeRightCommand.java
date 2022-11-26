@@ -30,18 +30,21 @@ public class StrafeRightCommand extends CommandBase{
         this.constraint = constraint;
         this.addRequirements(drive);
     }
-
     @Override
     public void initialize() {
 //        trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).strafeRight(distance).build();
 
-        trajectory = drive.trajectoryBuilder(new Pose2d())
+        trajectory = drive.trajectoryBuilder(drive.getPoseEstimate())
                 .strafeRight(distance)
                 .build();
+//        trajectory = drive.trajectoryBuilder(new Pose2d())
+//                .strafeRight(distance)
+//                .build();
 
         drive.followTrajectory(trajectory);
 
     }
+
 
     @Override
     public void execute() {

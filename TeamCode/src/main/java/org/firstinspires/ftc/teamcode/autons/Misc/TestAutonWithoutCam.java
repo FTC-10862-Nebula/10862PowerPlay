@@ -1,15 +1,12 @@
 package org.firstinspires.ftc.teamcode.autons.Misc;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.HighPrePlusOne.LeftHigh2AutonCommandSideways;
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewLeft.LeftHighAutonCommandSidewaysJUnctions;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeLeftCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.LeftHigh2AutonCommandSideways;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.LeftHighAutonCommandSidewaysJUnctions;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -67,16 +64,9 @@ public class TestAutonWithoutCam extends MatchOpMode {
 //                new WaitCommand(100),
 //                new StrafeLeftCommand(drivetrain, 13)
 
-//                new LeftHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
-new LeftHigh2AutonCommandSideways(drivetrain, slide, arm, clawServos)
+                new LeftHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
+//new LeftHigh2AutonCommandSideways(drivetrain, slide, arm, clawServos)
 //               new LeftHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos)
-
-
-
-
-//                new ScheduleCommand(){
-//
-//                },
 
 
 

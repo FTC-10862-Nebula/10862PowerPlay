@@ -9,7 +9,9 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnTo
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.Front.*;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.PrePickConeCommands.*;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.*;
+import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideHighBAutoCommand;
+import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideLowBAutoCommand;
+import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideResetAutonFCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -42,7 +44,7 @@ public class LeftHighPrePlusOneAutonCommand extends SequentialCommandGroup{
 
 
                 new PickC5FCommand(slide, clawServos, arm, drivetrain),
-                new SlideLowAutonBCommand(slide, arm, clawServos),
+                new SlideLowBAutoCommand(slide, arm, clawServos),
                 new TurnToCommand(drivetrain, 218),
                 new SlowDriveForwardCommand(drivetrain, -1.4),
                 new DropConeCommand(clawServos, slide, arm),
@@ -55,7 +57,7 @@ public class LeftHighPrePlusOneAutonCommand extends SequentialCommandGroup{
 
 
                 new PickC4FCommand(slide, clawServos, arm, drivetrain),
-                new SlideLowAutonBCommand(slide, arm, clawServos),
+                new SlideLowBAutoCommand(slide, arm, clawServos),
                 new TurnToCommand(drivetrain, 212),
                 new SlowDriveForwardCommand(drivetrain, -2),                new DropConeCommand(clawServos, slide, arm),
                 new DropConeCommand(clawServos, slide, arm),
@@ -68,7 +70,7 @@ public class LeftHighPrePlusOneAutonCommand extends SequentialCommandGroup{
 
 
                 new PickC3FCommand(slide, clawServos, arm, drivetrain),
-                new SlideLowAutonBCommand(slide, arm, clawServos),
+                new SlideLowBAutoCommand(slide, arm, clawServos),
                 new TurnToCommand(drivetrain, 210),
                 new SlowDriveForwardCommand(drivetrain, -2),                new DropConeCommand(clawServos, slide, arm),
                 new DropConeCommand(clawServos, slide, arm),

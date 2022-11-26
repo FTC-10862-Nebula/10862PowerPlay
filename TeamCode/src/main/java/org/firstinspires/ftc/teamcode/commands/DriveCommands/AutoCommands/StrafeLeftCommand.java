@@ -33,7 +33,11 @@ public class StrafeLeftCommand extends CommandBase{
 
     @Override
     public void initialize() {
-        trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).strafeLeft(distance).build();
+//        trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).strafeLeft(distance).build();
+
+        trajectory = drive.trajectoryBuilder(drive.getPoseEstimate())
+                .strafeLeft(distance)
+                .build();
 //        trajectory = drive.trajectoryBuilder(new Pose2d())
 //                .strafeLeft(distance)
 //                .build();
