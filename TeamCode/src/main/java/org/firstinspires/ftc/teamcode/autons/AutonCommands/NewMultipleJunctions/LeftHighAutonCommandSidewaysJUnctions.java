@@ -10,11 +10,10 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.Strafe
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.Front.PickC4FCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.Front.PickC5FCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.PrePickConeCommands.PrePickC4FCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.PrePickConeCommands.PrePickC5FCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideHighBAutoCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC4FCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC5FCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC4FCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC5FCommand;
 import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideLowBAutoCommand;
 import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideMidBAutoCommand;
 import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideHighFAutoCommand;
@@ -35,10 +34,13 @@ public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGrou
 //                new TurnToCommand(drivetrain, 0),
 
                 new SlideMidBAutoCommand(slide, arm, clawServos),
-                new StrafeRightCommand(drivetrain, 52),
+                new StrafeRightCommand(drivetrain, 52.7),
                 new SlowDriveForwardCommand(drivetrain, -0.8),
                 new DropConeCommand(clawServos, slide, arm),
-                new WaitCommand(220),
+
+                new InstantCommand(clawServos::clawOpen),
+
+                new WaitCommand(500),
                 new PrePickC5FCommand(slide, clawServos, arm),
                 new StrafeRightCommand(drivetrain, 16.5),
                 new DriveForwardCommand(drivetrain, 26.5),
@@ -46,21 +48,22 @@ public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGrou
 
                 new PickC5FCommand(slide, clawServos, arm, drivetrain),
                 new SlideLowBAutoCommand(slide, arm, clawServos),
-                new TurnCommand(drivetrain, -53.3),
+                new TurnCommand(drivetrain, -55.3),
                 new SlowDriveForwardCommand(drivetrain, -3),
                 new DropConeCommand(clawServos, slide, arm),
                 new WaitCommand(200),
                 new SlowDriveForwardCommand(drivetrain, 1.8),
                 new PrePickC4FCommand(slide, clawServos, arm),
-                new TurnToCommand(drivetrain, 360),
+                new TurnToCommand(drivetrain, 3, true),
+                new SlowDriveForwardCommand(drivetrain, 3),
                 new InstantCommand(slide::slideCone4),
 
 
 
                 new PickC4FCommand(slide, clawServos, arm, drivetrain),
-                new DriveForwardCommand(drivetrain, -33.2),
+                new DriveForwardCommand(drivetrain, -35.8),
                 new SlideHighFAutoCommand(slide, arm, clawServos),
-                new TurnToCommand(drivetrain, 263),
+                new TurnToCommand(drivetrain, 264.9),
                 new SlowDriveForwardCommand(drivetrain, 2.1),
                 new DropConeCommand(clawServos, slide, arm),
                 new WaitCommand(300),
@@ -97,7 +100,7 @@ public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGrou
 //                new InstantCommand(arm::moveReset, arm),
 //                new DriveForwardCommand(drivetrain, 50)
                 new SlideResetAutonFCommand(slide, arm, clawServos),
-                new StrafeRightCommand(drivetrain, 17)
+                new StrafeRightCommand(drivetrain, 19)
         );
     }
 }

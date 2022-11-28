@@ -5,8 +5,10 @@ import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.HighPre.RightHighPreAutonCommand;
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.LeftHigh2AutonCommandSideways;
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.LeftHighAutonCommandSidewaysJUnctions;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.RightHighAutonCommandSidewaysJUnctions;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -56,22 +58,17 @@ public class TestAutonWithoutCam extends MatchOpMode {
 
     public void matchStart() {
         schedule(
-//                new StrafeRightCommand(drivetrain, 10),
-//                new WaitCommand(100),
-//                new StrafeRightCommand(drivetrain, 13),
-//                new WaitCommand(100),
-//                new StrafeRightCommand(drivetrain, -10),
-//                new WaitCommand(100),
-//                new StrafeLeftCommand(drivetrain, 13)
 
-                new LeftHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
-//new LeftHigh2AutonCommandSideways(drivetrain, slide, arm, clawServos)
+//                new LeftHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
+//              new LeftHigh2AutonCommandSideways(drivetrain, slide, arm, clawServos)
 //               new LeftHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos)
 
 
 
-//new Sin
-//                new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos)
+                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
+
+
+
 
 //                new SequentialCommandGroup(
 //
@@ -80,15 +77,30 @@ public class TestAutonWithoutCam extends MatchOpMode {
 //////                    new WaitCommand(12);
 ////                                new InstantCommand(clawServos::clawOpen),
 ////new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
-////                        new In vnstantCommand(arm::moveIntakeF),
-//new DriveForwardCommand(drivetrain, 12),
+////                        new InstantCommand(arm::moveIntakeF),
+//                          new DriveForwardCommand(drivetrain, 12),
 ////                        new InstantCommand(slide::slideMid),
 ////                        new InstantCommand(clawServos::clawClose),
 ////                        new InstantCommand(arm::moveIntakeF)
-//new PrePickC5FCommand(slide, clawServos, arm)
-////                        new RightHighPreAuton Command(drivetrain, slide, arm, clawServos),
+//                          new PrePickC5FCommand(slide, clawServos, arm)
+////                        new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
 ////                        new DriveForwardCommand(drivetrain, -23),
 ////                        new TurnToCommand(drivetrain, 180)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //                RunExp1.main(drivetrain, slide, arm),
 //        new WaitCommand(100),

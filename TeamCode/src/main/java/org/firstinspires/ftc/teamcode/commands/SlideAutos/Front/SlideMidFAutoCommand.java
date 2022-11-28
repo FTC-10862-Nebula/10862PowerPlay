@@ -12,10 +12,11 @@ public class SlideMidFAutoCommand extends SequentialCommandGroup {
     public SlideMidFAutoCommand(Slide slide, Arm arm, ClawServos clawServos) {
         addCommands(
                 new InstantCommand(clawServos::clawClose),
-                new InstantCommand(slide::slideMid, slide),
+                new InstantCommand(slide::slideAutoMid, slide),
                 new InstantCommand(arm::moveFAuto, arm),
                 new WaitCommand(650),
                 new InstantCommand(clawServos::setFClawPos)
+
         );
     }
 }

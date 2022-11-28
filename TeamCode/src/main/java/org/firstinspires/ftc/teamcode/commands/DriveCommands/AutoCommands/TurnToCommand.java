@@ -34,6 +34,7 @@ public class TurnToCommand extends CommandBase {
         Util.logger(this, Level.INFO, "curr angle", firstAngle);
         if (weird && firstAngle > 180) firstAngle = firstAngle - 360;
         desired = angle - firstAngle;
+
         Util.logger(this, Level.INFO, "adjusted angle", firstAngle);
         Util.logger(this, Level.INFO, "desired angle", desired);
 

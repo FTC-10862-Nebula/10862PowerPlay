@@ -31,10 +31,10 @@ public class Arm extends SubsystemBase {
 //    private static double newSetPosition;
 
     public static int INTAKE_POS_BACK = -312,
-                        POS_BACK = -254,
+                        POS_BACK = -260,
                         HIGH_POS_BACK = -145;
     public static int HIGH_POS_AUTO_BACK = -140;
-    public static int INTAKE_POS_AUTO_BACK = -288;
+    public static int INTAKE_POS_AUTO_BACK = -265;
     public static int POS_AUTO_BACK = -160;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
@@ -42,7 +42,7 @@ public class Arm extends SubsystemBase {
             HIGH_POS_FRONT = -HIGH_POS_BACK;
     public static int HIGH_POS_AUTO_FRONT = -HIGH_POS_AUTO_BACK,
             INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
-            POS_AUTO_FRONT = POS_AUTO_BACK;
+            POS_AUTO_FRONT = -POS_AUTO_BACK;
 
 
 
@@ -183,6 +183,11 @@ public class Arm extends SubsystemBase {
         controller.setSetPoint(POS_AUTO_FRONT);
         clawPos = 11;
     }
+    public void moveIntakeBAuto() {
+        armAutomatic = true;
+        controller.setSetPoint(INTAKE_POS_AUTO_BACK);
+        clawPos = 12;
+    }
 
     public void dropArm(){
         switch (clawPos){
@@ -204,14 +209,17 @@ public class Arm extends SubsystemBase {
             case 8:
                 controller.setSetPoint(HIGH_POS_AUTO_FRONT+45);
                 return;
-//            case 9:
-//                controller.setSetPoint(INTAKE_POS_AUTO_FRONT-20);
-//                return;
+            case 9:
+                controller.setSetPoint(INTAKE_POS_AUTO_FRONT+25);
+                return;
             case 10:
-                controller.setSetPoint(POS_AUTO_BACK-20);
+                controller.setSetPoint(POS_AUTO_BACK-35);
                 return;
             case 11:
-                controller.setSetPoint(POS_AUTO_FRONT+20);
+                controller.setSetPoint(POS_AUTO_FRONT+35);
+                return;
+            case 12:
+                controller.setSetPoint(INTAKE_POS_AUTO_BACK-25);
                 return;
         }
     }

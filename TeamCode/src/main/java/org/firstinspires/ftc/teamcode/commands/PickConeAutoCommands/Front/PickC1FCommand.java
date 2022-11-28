@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands.PickConeAutoFCommands.Front;
+package org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;

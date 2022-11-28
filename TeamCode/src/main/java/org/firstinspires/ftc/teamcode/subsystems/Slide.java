@@ -40,12 +40,12 @@ public class Slide extends SubsystemBase {
     public static int GROUND_POS = -23;
     public static int LOW_POS = -650;
     public static int MID_POS = -1140;
-    public static int HIGH_POS = -1343;
+    public static int HIGH_POS = -1365;
     public static int AUTO_MID_POS = -1000;
 
     //Auto Slide Positions
-    public static int CONE_5_POS = -242;
-    public static int CONE_4_POS = -200;
+    public static int CONE_5_POS = -247;
+    public static int CONE_4_POS = -186;
     public static int CONE_3_POS = -120;
     public static int CONE_2_POS = -100;
     public static int CONE_1_POS = -10;
@@ -303,23 +303,23 @@ public class Slide extends SubsystemBase {
             case 4:
                 upController.setSetPoint(HIGH_POS+600);
                 break;
-            case 5:
-                upController.setSetPoint(CONE_5_POS+80);
-                break;
-            case 6:
-                upController.setSetPoint(CONE_4_POS+80);
-                break;
-            case 7:
-                upController.setSetPoint(CONE_3_POS+80);
-                break;
-            case 8:
-                upController.setSetPoint(CONE_2_POS+80);
-                break;
-            case 9:
-                upController.setSetPoint(CONE_1_POS+80);
-                break;
+//            case 5:
+//                upController.setSetPoint(CONE_5_POS+80);
+//                break;
+//            case 6:
+//                upController.setSetPoint(CONE_4_POS+80);
+//                break;
+//            case 7:
+//                upController.setSetPoint(CONE_3_POS+80);
+//                break;
+//            case 8:
+//                upController.setSetPoint(CONE_2_POS+80);
+//                break;
+//            case 9:
+//                upController.setSetPoint(CONE_1_POS+80);
+//                break;
             case 13:
-                upController.setSetPoint(AUTO_MID_POS+500);
+                upController.setSetPoint(AUTO_MID_POS+600);
         }
     }
 
