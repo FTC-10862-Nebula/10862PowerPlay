@@ -25,13 +25,15 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
         this.colorSensor = colorSensor;
         this.colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
         this.telemetry = tl;
+
+        this.colorSensor.enableLed(false);
     }
 
     public void periodic() {
-//        telemetry.addData("\tAlpha:", alpha());
-//        telemetry.addData("\tRed:", red());
-//        telemetry.addData("\tGreen:", green());
-//        telemetry.addData("\tBlue:", blue());
+        telemetry.addData("\tAlpha:", alpha());
+        telemetry.addData("\tRed:", red());
+        telemetry.addData("\tGreen:", green());
+        telemetry.addData("\tBlue:", blue());
 
 
 
@@ -41,17 +43,19 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Blue:",colorSensor.blue());
 
 
-int[] color = getARGB();
-        Util.logger(this, telemetry, Level.INFO, "\tColor Alpha:",color[0]);
-        Util.logger(this, telemetry, Level.INFO, "\tColor Red:",color[1]);
-        Util.logger(this, telemetry, Level.INFO, "\tColor Green:",color[2]);
-        Util.logger(this, telemetry, Level.INFO, "\tColor Blue:",color[3]);
+//int[] color = getARGB();
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Alpha:",color[0]);
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Red:",color[1]);
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Green:",color[2]);
+//        Util.logger(this, telemetry, Level.INFO, "\tColor Blue:",color[3]);
 
-
+//
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Alpha:",alpha());
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Red:",red());
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Green:",green());
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Blue:",blue());
+
+        telemetry.addData("Address:", colorSensor.getI2cAddress());
         telemetry.update();
     }
 
@@ -77,11 +81,13 @@ int[] color = getARGB();
     public boolean grabbedBlueCone() {
         //TODO:Change the color
 //        telemetry.addLine();
-        return (blue()>100);    //red() > 150) && (green() > 150);
+//        return (blue()>100);
+        return red() > 150 && (green() > 150);
     }
     public boolean grabbedRedCone() {
         //TODO:Change the color
-        return (red() > 150);   //(red() > 150 && (green() > 150);
+//        return (red() > 150);
+        return red() > 150 && (green() > 150);
     }
 
     @Override
