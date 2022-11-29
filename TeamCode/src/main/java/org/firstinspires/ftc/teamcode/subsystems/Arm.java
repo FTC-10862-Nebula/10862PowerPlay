@@ -88,8 +88,8 @@ public class Arm extends SubsystemBase {
             armMotor.set(output * POWER);
 
         }
-//        Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", armMotor.getCurrentPosition());
-//        Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", clawPos);
+        Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", armMotor.getCurrentPosition());
+        Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", clawPos);
     }
 
 

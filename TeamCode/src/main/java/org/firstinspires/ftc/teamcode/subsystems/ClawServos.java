@@ -17,10 +17,10 @@ import java.util.logging.Level;
 public class ClawServos extends SubsystemBase {
     //Claw Variables
     public final static double CLOSE_POS_S1 = 0.5,
-                                OPEN_POS_S1 = 0.649,
+                                OPEN_POS_S1 = 0.66,
 
                                 CLOSE_POS_S2 = 0.56,
-                                OPEN_POS_S2 = 0.35;
+                                OPEN_POS_S2 = 0.365;
 
 //    private static double INTAKE_POWER = -1;
 //    private static double OUTTAKE_POWER = 1;
@@ -54,9 +54,9 @@ public class ClawServos extends SubsystemBase {
 
     @Override
     public void periodic() {
-//        Util.logger(this, telemetry, Level.INFO, "Claw Servo 1 Pos: ", clawS1.getPosition());
-//        Util.logger(this, telemetry, Level.INFO, "Claw Servo 2 Pos: ", clawS2.getPosition());
-//        Util.logger(this, telemetry, Level.INFO, "Claw Servo 3 Pos: ", clawS3.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Claw Servo 1 Pos: ", clawS1.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Claw Servo 2 Pos: ", clawS2.getPosition());
+        Util.logger(this, telemetry, Level.INFO, "Claw Servo 3 Pos: ", clawS3.getPosition());
     }
 
     public void setClawS1(double clawServo1Pos) {

@@ -36,74 +36,48 @@ Turn is Counterclockwise
                 new TurnToCommand(drivetrain, 0),
 */
         addCommands(
-                new SlideMidFAutoCommand(slide, arm, clawServos),
-                new StrafeRightCommand(drivetrain, 52.8),
-                new SlowDriveForwardCommand(drivetrain, 3.6),
-                new DropConeCommand(clawServos, slide, arm),
-
-                new InstantCommand(clawServos::clawOpen),
-
-                new WaitCommand(500),
-                new PrePickC5BCommand(slide, clawServos, arm),
-                new StrafeRightCommand(drivetrain, 18.5),
-                new DriveForwardCommand(drivetrain, -25.4),
-
-
-                new PickC5BCommand(slide, clawServos, arm, drivetrain),
-                new SlideLowFAutoCommand(slide, arm, clawServos),
-                new TurnCommand(drivetrain, 66),
-                new SlowDriveForwardCommand(drivetrain, 3.9),
-                new WaitCommand(200),
-                new DropConeCommand(clawServos, slide, arm),
-                new WaitCommand(200),
-                new SlowDriveForwardCommand(drivetrain, 2.1),
-                new PrePickC4BCommand(slide, clawServos, arm),
-                new TurnToCommand(drivetrain, 0),
-                new SlowDriveForwardCommand(drivetrain, -3),
-                new InstantCommand(slide::slideCone4),
-
-
-
-                new PickC4BCommand(slide, clawServos, arm, drivetrain),
-                new DriveForwardCommand(drivetrain, 33.5),
-                new SlideHighFAutoCommand(slide, arm, clawServos),
-                new TurnToCommand(drivetrain, 277, false),
-                new SlowDriveForwardCommand(drivetrain, 1),
-                new DropConeCommand(clawServos, slide, arm),
-                new WaitCommand(300),
-                new SlowDriveForwardCommand(drivetrain, 2),
-                new TurnToCommand(drivetrain, 270),
-
-
-//                new PickC3FCommand(slide, clawServos, arm, drivetrain),
-//                new SlideLowAutonBCommand(slide, arm, clawServos),
-//                new TurnToCommand(drivetrain, 322),
-//                new SlowDriveForwardCommand(drivetrain, -2),
+                new DropConeCommand(clawServos, slide, arm)
+//                new SlideMidFAutoCommand(slide, arm, clawServos),
+//                new StrafeRightCommand(drivetrain, 52),
+//                new SlowDriveForwardCommand(drivetrain, 3),
 //                new DropConeCommand(clawServos, slide, arm),
-//                new WaitCommand(400),
-//                new SlowDriveForwardCommand(drivetrain, 1.8),
-//                new TurnToCommand(drivetrain, 8),
-//                new PrePickC2FCommand(slide, clawServos, arm),
+//
+//                new InstantCommand(clawServos::clawOpen),
+//
+//                new WaitCommand(500),
+//                new PrePickC5BCommand(slide, clawServos, arm),
+//                new StrafeRightCommand(drivetrain, 17.9),
+//                new DriveForwardCommand(drivetrain, -25.4),
+//
+//
+//                new PickC5BCommand(slide, clawServos, arm, drivetrain),
+//                new SlideLowFAutoCommand(slide, arm, clawServos),
+//                new TurnCommand(drivetrain, 66),
+//                new SlowDriveForwardCommand(drivetrain, 3.9),
 //                new WaitCommand(200),
+//                new DropConeCommand(clawServos, slide, arm),
+//                new WaitCommand(200),
+//                new SlowDriveForwardCommand(drivetrain, 2.1),
+//                new PrePickC4BCommand(slide, clawServos, arm),
+//                new TurnToCommand(drivetrain, 0),
+//                new SlowDriveForwardCommand(drivetrain, -3),
+//                new InstantCommand(slide::slideCone4),
 
 
 
-
-
-
-//                new PickC3BCommand(slide, clawServos, arm, drivetrain),
-//                new TurnToCommand(drivetrain, 140),
-//                new SlideLowFrontCommand(slide, arm, clawServos),
-//                new InstantCommand(clawServos::clawOpen, clawServos),
-//                new WaitCommand(600),
+//                new PickC4BCommand(slide, clawServos, arm, drivetrain),
+//                new DriveForwardCommand(drivetrain, 33.1),
+//                new SlideHighFAutoCommand(slide, arm, clawServos),
+//                new TurnToCommand(drivetrain, 273.5, false),
+//                new SlowDriveForwardCommand(drivetrain, 1),
+//                new DropConeCommand(clawServos, slide, arm),
+//                new WaitCommand(300),
+//                new SlowDriveForwardCommand(drivetrain, 2),
 //                new TurnToCommand(drivetrain, 270),
 //
-//                new SlideResetFrontCommandT(slide, arm, clawServos),
-//                new WaitCommand(200),
-//                new InstantCommand(arm::moveReset, arm),
-//                new DriveForwardCommand(drivetrain, 50)
-        new SlideResetAutonFCommand(slide, arm, clawServos),
-                new StrafeRightCommand(drivetrain, 19)
+//
+//        new SlideResetAutonFCommand(slide, arm, clawServos),
+//                new StrafeRightCommand(drivetrain, 19)
         );
     }
 }
