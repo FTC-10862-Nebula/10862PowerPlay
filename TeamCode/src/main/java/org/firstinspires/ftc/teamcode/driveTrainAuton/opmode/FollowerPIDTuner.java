@@ -2,12 +2,12 @@ package org.firstinspires.ftc.teamcode.driveTrainAuton.opmode;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 /*
  * Op mode for preliminary tuning of the follower PID coefficients (located in the drive base
@@ -18,21 +18,19 @@ import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
  * you've successfully connected, start the program, and your robot will begin driving in a square.
  * You should observe the target position (green) and your pose estimate (blue) and adjust your
  * follower PID coefficients such that you follow the target position as accurately as possible.
- * If you are using SampleTankDrive, you should be tuning TRANSLATIONAL_PID and HEADING_PID.
+ * If you are using SampleMecanumDrive, you should be tuning TRANSLATIONAL_PID and HEADING_PID.
  * If you are using SampleTankDrive, you should be tuning AXIAL_PID, CROSS_TRACK_PID, and HEADING_PID.
  * These coefficients can be tuned live in dashboard.
  */
-@Config
 @Disabled
+@Config
 @Autonomous(group = "drive")
-
 public class FollowerPIDTuner extends LinearOpMode {
     public static double DISTANCE = 48; // in
 
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-
 
         Pose2d startPose = new Pose2d(-DISTANCE / 2, -DISTANCE / 2, 0);
 
@@ -43,13 +41,17 @@ public class FollowerPIDTuner extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (!isStopRequested()) {
-            Trajectory traj = drive.trajectoryBuilder(startPose)
+            TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(startPose)
                     .forward(DISTANCE)
+                    .turn(Math.toRadians(90))
+                    .forward(DISTANCE)
+                    .turn(Math.toRadians(90))
+                    .forward(DISTANCE)
+                    .turn(Math.toRadians(90))
+                    .forward(DISTANCE)
+                    .turn(Math.toRadians(90))
                     .build();
-            drive.followTrajectory(traj);
-            drive.turn(Math.toRadians(90));
-
-            startPose = traj.end().plus(new Pose2d(0, 0, Math.toRadians(90)));
+            drive.followTrajectorySequence(trajSeq);
         }
     }
 }

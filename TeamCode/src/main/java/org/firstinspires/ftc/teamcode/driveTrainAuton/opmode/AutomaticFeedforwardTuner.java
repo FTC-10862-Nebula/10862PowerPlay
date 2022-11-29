@@ -1,5 +1,10 @@
 package org.firstinspires.ftc.teamcode.driveTrainAuton.opmode;
 
+
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MAX_RPM;
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.rpmToVelocity;
+
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -10,6 +15,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.RobotLog;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.internal.system.Misc;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.util.LoggingUtil;
@@ -17,10 +23,6 @@ import org.firstinspires.ftc.teamcode.util.RegressionUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MAX_RPM;
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.rpmToVelocity;
 
 /*
  * Op mode for computing kV, kStatic, and kA from various drive routines. For the curious, here's an
@@ -32,8 +34,8 @@ import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.rpmT
  *   4. Adjust the encoder data based on the velocity tuning data and find kA with another linear
  *      regression.
  */
-@Config
 @Disabled
+@Config
 @Autonomous(group = "drive")
 public class AutomaticFeedforwardTuner extends LinearOpMode {
     public static double MAX_POWER = 0.7;
@@ -46,7 +48,8 @@ public class AutomaticFeedforwardTuner extends LinearOpMode {
                     "when using the built-in drive motor velocity PID.");
         }
 
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+        Telemetry telemetry = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
+
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         NanoClock clock = NanoClock.system();

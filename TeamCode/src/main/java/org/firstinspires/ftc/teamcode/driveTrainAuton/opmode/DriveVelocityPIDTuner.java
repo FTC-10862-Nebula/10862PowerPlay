@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.driveTrainAuton.opmode;
 
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.*;
+
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -14,15 +16,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.RobotLog;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 
 import java.util.List;
-
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MOTOR_VELO_PID;
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.kV;
 
 /*
  * This routine is designed to tune the PID coefficients used by the REV Expansion Hubs for closed-
@@ -48,8 +45,8 @@ import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.kV;
  * user to reset the position of the bot in the event that it drifts off the path.
  * Pressing B/O (Xbox/PS4) will cede control back to the tuning process.
  */
-@Config
 @Disabled
+@Config
 @Autonomous(group = "drive")
 public class DriveVelocityPIDTuner extends LinearOpMode {
     public static double DISTANCE = 72; // in
@@ -72,9 +69,9 @@ public class DriveVelocityPIDTuner extends LinearOpMode {
                     "PID is not in use", getClass().getSimpleName());
         }
 
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        Telemetry telemetry = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
 
+        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         Mode mode = Mode.TUNING_MODE;
 

@@ -1,5 +1,13 @@
 package org.firstinspires.ftc.teamcode.driveTrainAuton.opmode;
 
+
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MAX_ACCEL;
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.RUN_USING_ENCODER;
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.kA;
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.kStatic;
+import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.kV;
+
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -14,18 +22,11 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.RobotLog;
 
-import java.util.Objects;
-
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MAX_ACCEL;
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.MAX_VEL;
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.RUN_USING_ENCODER;
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.kA;
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.kStatic;
-import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.kV;
-
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 
-@Disabled
+import java.util.Objects;
+
 /*
  * This routine is designed to tune the open-loop feedforward coefficients. Although it may seem unnecessary,
  * tuning these coefficients is just as important as the positional parameters. Like the other
@@ -41,6 +42,7 @@ import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
  * user to reset the position of the bot in the event that it drifts off the path.
  * Pressing B/O (Xbox/PS4) will cede control back to the tuning process.
  */
+@Disabled
 @Config
 @Autonomous(group = "drive")
 public class ManualFeedforwardTuner extends LinearOpMode {
@@ -48,6 +50,7 @@ public class ManualFeedforwardTuner extends LinearOpMode {
 
     private FtcDashboard dashboard = FtcDashboard.getInstance();
 
+    private SampleMecanumDrive drive;
 
     enum Mode {
         DRIVER_MODE,
@@ -69,9 +72,9 @@ public class ManualFeedforwardTuner extends LinearOpMode {
                     "when using the built-in drive motor velocity PID.");
         }
 
-        telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
+        Telemetry telemetry = new MultipleTelemetry(this.telemetry, dashboard.getTelemetry());
 
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        drive = new SampleMecanumDrive(hardwareMap);
 
         mode = Mode.TUNING_MODE;
 

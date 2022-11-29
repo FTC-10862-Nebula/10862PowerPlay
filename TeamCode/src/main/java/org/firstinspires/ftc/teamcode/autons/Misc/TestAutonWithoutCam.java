@@ -59,13 +59,13 @@ public class TestAutonWithoutCam extends MatchOpMode {
     public void matchStart() {
         schedule(
 
-//                new LeftHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
+                new LeftHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
 //              new LeftHigh2AutonCommandSideways(drivetrain, slide, arm, clawServos)
 //               new LeftHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos)
 
 
 
-                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
+//                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
 
 
 
