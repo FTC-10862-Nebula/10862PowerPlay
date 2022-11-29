@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.TeleOps;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -13,7 +14,10 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.GamepadTrigger;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
+import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
 import org.firstinspires.ftc.teamcode.commands.SensorCommands.BlueIntakeCommand;
+import org.firstinspires.ftc.teamcode.commands.SensorCommands.RedIntakeCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -67,8 +71,10 @@ public class SensorColorTeleop extends MatchOpMode {
         drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         sensorColor = new SensorColor(colorSensor, hardwareMap, telemetry);
-        clawServos.setDefaultCommand(new BlueIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
+//        clawServos.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+
+        sensorColor.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
@@ -77,7 +83,11 @@ public class SensorColorTeleop extends MatchOpMode {
 
     @Override
     public void configureButtons() {
-
+        Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
+//                    .whenPressed(new SlideLowBackCommand(slide, arm, clawServos))
+                .whenPressed(new InstantCommand(clawServos::clawOpen));
+        Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+                .whenPressed(new InstantCommand(clawServos::clawClose));
     }
 
     @Override
@@ -88,5 +98,7 @@ public class SensorColorTeleop extends MatchOpMode {
     @Override
     public void matchStart() { }
     @Override
-    public void robotPeriodic(){ }
+    public void robotPeriodic(){
+        sensorColor.periodic();
+    }
 }
