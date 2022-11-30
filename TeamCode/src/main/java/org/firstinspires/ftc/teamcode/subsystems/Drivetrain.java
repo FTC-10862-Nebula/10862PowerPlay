@@ -112,10 +112,10 @@ public class Drivetrain extends SubsystemBase {
 //        powers [RRVal] = (y - x - rx) / denominator;
         //Strafes (up/down) forward (right/left), turns opposite
 
-         powers [LFVal] =    (-y - x + rx) / denominator;
+         powers [LFVal] =    (y + x + rx) / denominator;
          powers [LRVal] =     (y - x + rx) / denominator;
-         powers [RFVal] =   (-y - x - rx) / denominator;
-         powers [RRVal] =     (y - x - rx) / denominator;
+         powers [RFVal] =   (y - x - rx) / denominator;
+         powers [RRVal] =     (y + x - rx) / denominator;
         //Everthing but turning works- Test
 
 
