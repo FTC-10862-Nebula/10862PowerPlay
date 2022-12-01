@@ -8,16 +8,13 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class DropConeCommand extends SequentialCommandGroup {
+public class PickAutoConeCommand extends SequentialCommandGroup {
 
-    public DropConeCommand(ClawServos clawServos, Slide slide, Arm arm){
-        addRequirements(arm);
+    public PickAutoConeCommand(ClawServos clawServos, Slide slide, Arm arm){
         addCommands(
-                new InstantCommand(arm::dropArmTeleop),
-                new InstantCommand(slide::dropSlide),
-                new WaitCommand(120),
-                new InstantCommand(clawServos::clawOpen, clawServos),
-                new WaitCommand(400),
+                new InstantCommand(clawServos::clawClose, clawServos),
+                new WaitCommand(800),
+                new InstantCommand(slide::slidePickUp, slide),
                 new InstantCommand(arm::moveReset)
         );
     }

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.TeleOps;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -83,7 +84,10 @@ public class MainTeleOp extends MatchOpMode {
         //Drive Stuff - D1
             Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
                     .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true));
+//                    .whenPressed( new InstantCommand(drivetrain::closeImu));
             Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
+//                    .whenPressed( new InstantCommand(()->(drivetrain.inIMU(hardwareMap)));
+//                    .whenPressed(drivetrain.inIMU(hardwareMap));
                     .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false));
 
         //Slowmode - D1
@@ -96,6 +100,7 @@ public class MainTeleOp extends MatchOpMode {
                 .whenPressed(new PickConeCommand(clawServos, slide, arm));
             Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
                 .whenPressed(new DropConeCommand(clawServos, slide, arm));
+//                    .whenActive();
 //            Button intakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
 //                .whenPressed(new PickConeCommand(clawServos, slide));
 //            Button outtakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))

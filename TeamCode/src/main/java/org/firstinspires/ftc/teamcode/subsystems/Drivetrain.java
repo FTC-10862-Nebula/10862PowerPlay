@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
+import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -37,7 +38,6 @@ public class Drivetrain extends SubsystemBase {
         this.drive = drive;
         this.telemetry = tl;
         imu = hardwareMap.get(BNO055IMU.class, "imu");
-//        imu.close();
     }
 
     public void init() {
@@ -47,6 +47,15 @@ public class Drivetrain extends SubsystemBase {
 //        imu = hardwareMap.get(BNO055IMU.class, "imu");
 
     }
+    public void closeImu(){
+        imu.close();
+    }
+    public Command inIMU(HardwareMap hM){
+        imu = hM.get(BNO055IMU.class, "imu");
+        return null;
+    }
+
+
 
     @Override
     public void periodic() {

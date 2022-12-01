@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.autons.Misc;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -9,6 +10,7 @@ import org.firstinspires.ftc.teamcode.autons.AutonCommands.HighPre.RightHighPreA
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.LeftHigh2AutonCommandSideways;
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.LeftHighAutonCommandSidewaysJUnctions;
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.RightHighAutonCommandSidewaysJUnctions;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -59,56 +61,17 @@ public class TestAutonWithoutCam extends MatchOpMode {
     public void matchStart() {
         schedule(
 
-                new LeftHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
+                new SequentialCommandGroup(
+//                        new StrafeRightCommand(drivetrain, 12)
+                        new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
+                        new StrafeRightCommand(drivetrain, 28)
+
+//                new LeftHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
 //              new LeftHigh2AutonCommandSideways(drivetrain, slide, arm, clawServos)
 //               new LeftHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos)
 
 
-
-//                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
-
-
-
-
-//                new SequentialCommandGroup(
-//
-////                        new InstantCommand(slide::slideLow),
-////                        new InstantCommand(arm::moveIntakeFAuto),
-//////                    new WaitCommand(12);
-////                                new InstantCommand(clawServos::clawOpen),
-////new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
-////                        new InstantCommand(arm::moveIntakeF),
-//                          new DriveForwardCommand(drivetrain, 12),
-////                        new InstantCommand(slide::slideMid),
-////                        new InstantCommand(clawServos::clawClose),
-////                        new InstantCommand(arm::moveIntakeF)
-//                          new PrePickC5FCommand(slide, clawServos, arm)
-////                        new RightHighPreAutonCommand(drivetrain, slide, arm, clawServos),
-////                        new DriveForwardCommand(drivetrain, -23),
-////                        new TurnToCommand(drivetrain, 180)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//                RunExp1.main(drivetrain, slide, arm),
-//        new WaitCommand(100),
-//        RunExp2.main(drivetrain, slide, arm)
-
-
-
-        );
+        ));
 
     }
 };

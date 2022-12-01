@@ -10,7 +10,9 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class SlideResetFrontCommandT extends SequentialCommandGroup {
     public SlideResetFrontCommandT(Slide slide, Arm arm, ClawServos clawServos){
+        addRequirements(arm);
         addCommands(
+                new WaitCommand(100),
                 new InstantCommand(clawServos::clawClose, clawServos),
                 new WaitCommand(400),
                 new InstantCommand(arm::moveIntakeF, arm),

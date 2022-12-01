@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SlowDr
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC4FCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC5FCommand;
@@ -36,7 +37,7 @@ public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGrou
                 new SlideMidBAutoCommand(slide, arm, clawServos),
                 new StrafeRightCommand(drivetrain, 52.7),
                 new SlowDriveForwardCommand(drivetrain, -0.8),
-                new DropConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm),
 
                 new InstantCommand(clawServos::clawOpen),
 
@@ -50,7 +51,7 @@ public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGrou
                 new SlideLowBAutoCommand(slide, arm, clawServos),
                 new TurnCommand(drivetrain, -55.3),
                 new SlowDriveForwardCommand(drivetrain, -3),
-                new DropConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm),
                 new WaitCommand(200),
                 new SlowDriveForwardCommand(drivetrain, 1.8),
                 new PrePickC4FCommand(slide, clawServos, arm),
@@ -65,7 +66,7 @@ public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGrou
                 new SlideHighFAutoCommand(slide, arm, clawServos),
                 new TurnToCommand(drivetrain, 264.9),
                 new SlowDriveForwardCommand(drivetrain, 2.1),
-                new DropConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm),
                 new WaitCommand(300),
                 new SlowDriveForwardCommand(drivetrain, -2),
 
@@ -76,7 +77,7 @@ public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGrou
 //                new SlideLowAutonBCommand(slide, arm, clawServos),
 //                new TurnToCommand(drivetrain, 322),
 //                new SlowDriveForwardCommand(drivetrain, -2),
-//                new DropConeCommand(clawServos, slide, arm),
+//                new DropAutoConeCommand(clawServos, slide, arm),
 //                new WaitCommand(400),
 //                new SlowDriveForwardCommand(drivetrain, 1.8),
 //                new TurnToCommand(drivetrain, 8),
