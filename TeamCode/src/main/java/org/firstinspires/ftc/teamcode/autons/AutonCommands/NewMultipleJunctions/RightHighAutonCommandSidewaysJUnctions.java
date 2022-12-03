@@ -39,50 +39,44 @@ Turn is Counterclockwise
 */
         addCommands(
                 new SlideMidFAutoCommand(slide, arm, clawServos),
-                new StrafeRightCommand(drivetrain, 51),
-                new SlowDriveForwardCommand(drivetrain, 1),
+                new StrafeRightCommand(drivetrain, 51.45),
+                new SlowDriveForwardCommand(drivetrain, 0.75),
                 new DropAutoConeCommand(clawServos, slide, arm),
-//                new InstantCommand(clawServos::clawOpen),
-                new WaitCommand(500),
-                new StrafeRightCommand(drivetrain, 16.4),
+//                new WaitCommand(500),
+                new StrafeRightCommand(drivetrain, 17.69),
                 new PrePickC5BCommand(slide, clawServos, arm),
-                new TurnToCommand(drivetrain, 1.5, true),
-                new DriveForwardCommand(drivetrain, -22.2),
+//                new TurnToCommand(drivetrain, 359),
+                new DriveForwardCommand(drivetrain, -24.7),
 
 
                 new PickC5BCommand(slide, clawServos, arm, drivetrain),
                 new SlideLowFAutoCommand(slide, arm, clawServos),
-                new TurnToCommand(drivetrain, 65, true),
-//                new TurnCommand(drivetrain, 75),
+                new TurnToCommand(drivetrain, 61, true),
+//                new TurnToCommand(drivetrain, 62.2),
                 new SlowDriveForwardCommand(drivetrain, 3.3),
                 new WaitCommand(200),
                 new DropAutoConeCommand(clawServos, slide, arm),
-                new WaitCommand(200),
                 new SlowDriveForwardCommand(drivetrain, -1.77),
                 new PrePickC4BCommand(slide, clawServos, arm),
-                new TurnToCommand(drivetrain, 1.1, false),//turned from true
-                new SlowDriveForwardCommand(drivetrain, -2),
+                new TurnToCommand(drivetrain, 0),
+                new SlowDriveForwardCommand(drivetrain, -3),
                 new InstantCommand(slide::slideCone4),
 
 
 
                 new PickC4BCommand(slide, clawServos, arm, drivetrain),
+                new TurnToCommand(drivetrain, 0),   //or remove
                 new InstantCommand(arm::moveReset),
-                new DriveForwardCommand(drivetrain, 35),
-                new StrafeRightCommand(drivetrain, 2),
+                new DriveForwardCommand(drivetrain, 35.2),
+                new StrafeRightCommand(drivetrain, 1.51),
                 new TurnToCommand(drivetrain, 270),
-                new TurnToCommand(drivetrain, 271.9), //To fix error
+                new WaitCommand(300),   //Just in case the pole is w0bbling
+//                new TurnToCommand(drivetrain, 272),       //To fix error
 
-
-//                new TurnToCommand(drivetrain, 263),
-//                new SlowDriveForwardCommand(drivetrain, -3),
-//                new InstantCommand(arm::moveReset),
-//                new StrafeLeftCommand(drivetrain, 41.5),
 
                 new SlideHighFAutoCommand(slide, arm, clawServos),
-                new SlowDriveForwardCommand(drivetrain, 1),
+                new SlowDriveForwardCommand(drivetrain, 1.3),
                 new DropAutoConeCommand(clawServos, slide, arm),
-                new WaitCommand(300),
                 new SlowDriveForwardCommand(drivetrain, -3),
 //                new TurnToCommand(drivetrain, 270),
 

@@ -8,8 +8,10 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Util;
 
+import java.util.Locale;
 import java.util.logging.Level;
 
 public class SensorColor extends SubsystemBase implements HardwareDevice {
@@ -26,16 +28,16 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
         this.colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
         this.telemetry = tl;
 
-        this.colorSensor.enableLed(false);
+        this.colorSensor.enableLed(true);
     }
 
     public void periodic() {
-        telemetry.addData("\tAlpha:", alpha());
-        telemetry.addData("\tRed:", red());
-        telemetry.addData("\tGreen:", green());
-        telemetry.addData("\tBlue:", blue());
-
-
+//        telemetry.addData("Distance (cm)",
+//                String.format(Locale.US, "%.02f", colorSensor.getDistance(DistanceUnit.INCH)));
+        telemetry.addData("\tAlpha:", colorSensor.alpha());
+        telemetry.addData("\tRed:", colorSensor.red());
+        telemetry.addData("\tGreen:", colorSensor.green());
+        telemetry.addData("\tBlue:", colorSensor.blue());
 
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Alpha:",colorSensor.alpha());
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Red:",colorSensor.red());
@@ -55,7 +57,7 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Green:",green());
 //        Util.logger(this, telemetry, Level.INFO, "\tColor Blue:",blue());
 
-        telemetry.addData("Address:", colorSensor.getI2cAddress());
+//        telemetry.addData("Address:", colorSensor.getI2cAddress());
         telemetry.update();
     }
 
@@ -69,25 +71,26 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
         return hsv;
     }
 
-    public int[] getARGB() {
-        return new int[]{alpha(), red(), green(), blue()};
-    }
+//    public int[] getARGB() {
+//        return new int[]{alpha(), red(), green(), blue()};
+//    }
 
-    public int alpha() {return colorSensor.alpha();}
-    public int red() {return colorSensor.red();}
-    public int green() {return colorSensor.green();}
-    public int blue() {return colorSensor.blue();}
+//    public int alpha() {return colorSensor.alpha();}
+//    public int red() {return colorSensor.red();}
+//    public int green() {return colorSensor.green();}
+//    public int blue() {return colorSensor.blue();}
 
     public boolean grabbedBlueCone() {
         //TODO:Change the color
-//        telemetry.addLine();
+//        telemetry.addLine("Got Blue Cone");
 //        return (blue()>100);
-        return red() > 150 && (green() > 150);
+        return (colorSensor.red() > 150) && (colorSensor.green() > 150);
     }
     public boolean grabbedRedCone() {
         //TODO:Change the color
+//        telemetry.addLine("Got Red Cone");
 //        return (red() > 150);
-        return red() > 150 && (green() > 150);
+        return (colorSensor.red() > 150) && (colorSensor.green() > 150);
     }
 
     @Override

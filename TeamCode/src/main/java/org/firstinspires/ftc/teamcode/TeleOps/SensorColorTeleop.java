@@ -99,7 +99,7 @@ public class SensorColorTeleop extends MatchOpMode {
     public void matchStart() { }
     @Override
     public void robotPeriodic(){
-        sensorColor.periodic();
-        telemetry.update();
+//        sensorColor.periodic();
+//        telemetry.update();
     }
 }

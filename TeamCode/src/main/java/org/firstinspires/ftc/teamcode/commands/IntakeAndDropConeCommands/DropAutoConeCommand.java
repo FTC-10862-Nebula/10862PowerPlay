@@ -17,9 +17,7 @@ public class DropAutoConeCommand extends SequentialCommandGroup {
                 new InstantCommand(slide::dropSlide),
                 new WaitCommand(120),
                 new InstantCommand(clawServos::clawOpen, clawServos),
-//                new InstantCommand(clawServos::clawClose, clawServos),
-//                new InstantCommand(clawServos::clawOpen, clawServos),   //Idk
-                new WaitCommand(400),
+                new WaitCommand(300),
                 new InstantCommand(arm::moveReset)
         );
     }

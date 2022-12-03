@@ -17,5 +17,7 @@ public class SlideHighFAutoCommand extends SequentialCommandGroup {
                 new WaitCommand(650),
                 new InstantCommand(clawServos::setFClawPos)
                 );
-    }   
+    }
+
 }
+

@@ -1,9 +1,12 @@
 
 package org.firstinspires.ftc.teamcode.subsystems;
 
+
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
+import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
+import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -16,6 +19,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 
 import java.util.List;
 
@@ -372,4 +376,19 @@ public class Drivetrain extends SubsystemBase {
             }
         }
     }
+
+
+//    private static final TrajectoryVelocityConstraint VEL_CONSTRAINT = getVelocityConstraint(MAX_VEL, MAX_ANG_VEL, TRACK_WIDTH);
+//    private static final TrajectoryAccelerationConstraint ACCEL_CONSTRAINT = getAccelerationConstraint(MAX_ACCEL);
+//
+//    //Test for trajectories and multithreading
+//    public TrajectorySequenceBuilder trajectorySequenceBuilder(Pose2d startPose) {
+//        return new TrajectorySequenceBuilder(
+//                startPose,
+//                VEL_CONSTRAINT, ACCEL_CONSTRAINT,
+//                MAX_ANG_VEL, MAX_ANG_ACCEL,
+//                opMode
+//
+//        );
+//    }
 }
