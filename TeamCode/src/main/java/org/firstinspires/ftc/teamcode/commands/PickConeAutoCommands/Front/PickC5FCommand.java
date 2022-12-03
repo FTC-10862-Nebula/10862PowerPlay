@@ -8,11 +8,11 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveF
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class PickC5FCommand extends SequentialCommandGroup{
-    public PickC5FCommand(Slide slide, ClawServos clawServos, Arm arm, Drivetrain drivetrain){
+    public PickC5FCommand(Slide slide, ClawServos clawServos, Arm arm, DrivetrainCOrrect drivetrainCorrect){
         addCommands(
 //                new InstantCommand(clawServos::clawClose),
 //                new InstantCommand(arm::moveIntakeFAuto),
@@ -20,11 +20,11 @@ public class PickC5FCommand extends SequentialCommandGroup{
 //                new InstantCommand(clawServos::clawOpen),
 //                new InstantCommand(slide::slideCone5),
 
-                new SlowDriveForwardCommand(drivetrain, 2.7),
+                new SlowDriveForwardCommand(drivetrainCorrect, 2.7),
                 new InstantCommand(clawServos::clawClose),
                 new WaitCommand(100),
                 new InstantCommand(slide:: slideLow),
-                new DriveForwardCommand(drivetrain, -3.7)
+                new DriveForwardCommand(drivetrainCorrect, -3.7)
 
         );
     }

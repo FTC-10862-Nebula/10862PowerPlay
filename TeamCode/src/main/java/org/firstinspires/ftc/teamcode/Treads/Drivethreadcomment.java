@@ -4,15 +4,13 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-
-import java.util.concurrent.ThreadPoolExecutor;
 
 
 public class Drivethreadcomment extends SequentialCommandGroup{
 //    private Thread;
-    public Drivethreadcomment(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
+    public Drivethreadcomment(DrivetrainCOrrect drivetrainCorrect, Slide slide, Arm arm, ClawServos clawServos){
 //        addCommands(
 //                new DriveForwardCommand(drivetrain, -55),
 //                new TurnToCommand(drivetrain, 48, true),

@@ -1,20 +1,18 @@
 package org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
-
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 
 public class DefaultDriveCommand extends CommandBase {
-    private Drivetrain drive;
+    private DrivetrainCOrrect drive;
     private GamepadEx driverGamepad;
 
     protected double multiplier;
     boolean mecDrive = true;
 
-    public DefaultDriveCommand(Drivetrain drive, GamepadEx driverGamepad, boolean mecDrive) {
+    public DefaultDriveCommand(DrivetrainCOrrect drive, GamepadEx driverGamepad, boolean mecDrive) {
 
         this.drive = drive;
         this.driverGamepad = driverGamepad;

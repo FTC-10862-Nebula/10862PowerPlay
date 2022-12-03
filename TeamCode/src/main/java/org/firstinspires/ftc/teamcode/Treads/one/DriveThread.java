@@ -1,14 +1,6 @@
 package org.firstinspires.ftc.teamcode.Treads.one;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-
-import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 @Disabled
 public class DriveThread extends Thread

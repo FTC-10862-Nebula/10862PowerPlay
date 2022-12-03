@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 
 @Disabled
 @Config
@@ -25,14 +25,14 @@ public class MotorTeleop extends MatchOpMode {
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
     // Subsystems
-    private Drivetrain drivetrain;
+    private DrivetrainCOrrect drivetrainCorrect;
     @Override
     public void robotInit() {
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
 
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
-        drivetrain.init();
+        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrainCorrect.init();
     }
 
     //Buttons

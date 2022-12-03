@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 
 /*
  * Op mode for preliminary tuning of the follower PID coefficients (located in the drive base
@@ -34,7 +34,7 @@ public class BackAndForth extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        SampleMecanumDriveCorrect drive = new SampleMecanumDriveCorrect(hardwareMap);
 
         Trajectory trajectoryForward = drive.trajectoryBuilder(new Pose2d())
                 .forward(DISTANCE)

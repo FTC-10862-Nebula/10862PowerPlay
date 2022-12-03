@@ -14,8 +14,9 @@ public class SlideResetFrontCommandT extends SequentialCommandGroup {
         addCommands(
                 new WaitCommand(100),
                 new InstantCommand(clawServos::clawClose, clawServos),
-                new WaitCommand(400),
+                new WaitCommand(200),
                 new InstantCommand(arm::moveIntakeF, arm),
+                new WaitCommand(100),
                 new InstantCommand(slide::slideResting, slide),
                 new InstantCommand(clawServos::setFClawPos),
                 new WaitCommand(200),

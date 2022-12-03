@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 
 @Disabled
 @Autonomous(name = "SplineTests", group = "RED/BLUE")
@@ -27,19 +27,19 @@ public class SplineTestAuton extends MatchOpMode {
     // Gamepad
     private GamepadEx driverGamepad;
     // Subsystems
-    private Drivetrain drivetrain;
+    private DrivetrainCOrrect drivetrainCorrect;
 
     @Override
     public void robotInit() {
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
-        drivetrain.init();
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrainCorrect.init();
+        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     }
 
     public void matchStart() {
             schedule(
                 new SequentialCommandGroup(
-                        new SplineCommand(drivetrain, new Vector2d(-26, -30), -90)
+                        new SplineCommand(drivetrainCorrect, new Vector2d(-26, -30), -90)
                 )
             );
     }

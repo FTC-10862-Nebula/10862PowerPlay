@@ -1,22 +1,16 @@
 package org.firstinspires.ftc.teamcode.autons.Misc;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.RightHighAutonCommandSidewaysJUnctions;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeLeftCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideHighFAutoCommand;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
@@ -44,10 +38,10 @@ public class New2THing extends LinearOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private Drivetrain drivetrain;
+    private DrivetrainCOrrect drivetrainCorrect;
     private Slide slide;
     private Vision vision;
-    private SampleMecanumDrive driveMec;
+    private SampleMecanumDriveCorrect driveMec;
 
     public void runOpMode() throws InterruptedException {
 
@@ -55,10 +49,10 @@ public class New2THing extends LinearOpMode {
         arm = new Arm(armMotor, telemetry, hardwareMap);
 //        driveMec = new SampleMecanumDrive(hardwareMap);
 //
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
-        drivetrain.init();
+        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrainCorrect.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 //        vision.init(hardwareMap);

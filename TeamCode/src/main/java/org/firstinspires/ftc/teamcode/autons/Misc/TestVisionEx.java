@@ -1,18 +1,16 @@
 package org.firstinspires.ftc.teamcode.autons.Misc;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
@@ -39,7 +37,7 @@ public class TestVisionEx extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private Drivetrain drivetrain;
+    private DrivetrainCOrrect drivetrainCorrect;
     private Slide slide;
     private Vision vision;
 
@@ -47,10 +45,10 @@ public class TestVisionEx extends MatchOpMode {
     public void robotInit() {
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         arm = new Arm(armMotor, telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
-        drivetrain.init();
+        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrainCorrect.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         while (!isStarted() && !isStopRequested())

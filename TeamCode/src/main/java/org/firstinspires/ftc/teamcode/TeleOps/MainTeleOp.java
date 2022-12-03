@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.TeleOps;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -24,11 +23,11 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropCon
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands.SlideResetFrontCommandT;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 @Config
@@ -56,7 +55,7 @@ public class MainTeleOp extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private Drivetrain drivetrain;
+    private DrivetrainCOrrect drivetrainCorrect;
     private Slide slide;
 //    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
     //    private Vision vision;
@@ -69,13 +68,13 @@ public class MainTeleOp extends MatchOpMode {
 
         arm = new Arm(armMotor, telemetry, hardwareMap);
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
-        drivetrain.init();
+        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrainCorrect.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
+        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrainCorrect.setDefaultCommand(new DefaultDriveCommand(drivetrainCorrect, driverGamepad, false));
     }
 
 
@@ -83,16 +82,16 @@ public class MainTeleOp extends MatchOpMode {
     public void configureButtons() {
         //Drive Stuff - D1
             Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true));
+                    .whenPressed(new DefaultDriveCommand(drivetrainCorrect, driverGamepad,  true));
 //                    .whenPressed( new InstantCommand(drivetrain::closeImu));
             Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
 //                    .whenPressed( new InstantCommand(()->(drivetrain.inIMU(hardwareMap)));
 //                    .whenPressed(drivetrain.inIMU(hardwareMap));
-                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false));
+                    .whenPressed(new DefaultDriveCommand(drivetrainCorrect, driverGamepad,false));
 
         //Slowmode - D1
             Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                    .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
+                    .whileHeld(new SlowDriveCommand(drivetrainCorrect, driverGamepad));
 
         //Claw Servo Intake/Outtake - D1
             Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))

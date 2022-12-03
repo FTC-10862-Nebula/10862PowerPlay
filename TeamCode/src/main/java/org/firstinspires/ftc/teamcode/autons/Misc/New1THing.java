@@ -11,10 +11,10 @@ import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeLeftCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
@@ -42,10 +42,10 @@ public class New1THing extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private Drivetrain drivetrain;
+    private DrivetrainCOrrect drivetrainCorrect;
     private Slide slide;
     private Vision vision;
-    private SampleMecanumDrive driveMec;
+    private SampleMecanumDriveCorrect driveMec;
 
     @Override
     public void robotInit() {
@@ -53,10 +53,10 @@ public class New1THing extends MatchOpMode {
         arm = new Arm(armMotor, telemetry, hardwareMap);
 //        driveMec = new SampleMecanumDrive(hardwareMap);
 //
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
-        drivetrain.init();
+        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrainCorrect.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 //        vision.init(hardwareMap);
@@ -84,8 +84,8 @@ public class New1THing extends MatchOpMode {
 
 
                         new SequentialCommandGroup(
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
-                                new StrafeLeftCommand(drivetrain, 10)
+                                new RightHighAutonCommandSidewaysJUnctions(drivetrainCorrect, slide, arm, clawServos),
+                                new StrafeLeftCommand(drivetrainCorrect, 10)
                         )
                 );
                 return;
@@ -95,8 +95,8 @@ public class New1THing extends MatchOpMode {
                 schedule(
                         new SequentialCommandGroup(
 
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
-                                new StrafeRightCommand(drivetrain, 5)
+                                new RightHighAutonCommandSidewaysJUnctions(drivetrainCorrect, slide, arm, clawServos),
+                                new StrafeRightCommand(drivetrainCorrect, 5)
                         )
                 );
                 return;
@@ -104,8 +104,8 @@ public class New1THing extends MatchOpMode {
             default: { //Right
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
-                                new StrafeRightCommand(drivetrain, 28)
+                                new RightHighAutonCommandSidewaysJUnctions(drivetrainCorrect, slide, arm, clawServos),
+                                new StrafeRightCommand(drivetrainCorrect, 28)
                         )
                 );
                 return;

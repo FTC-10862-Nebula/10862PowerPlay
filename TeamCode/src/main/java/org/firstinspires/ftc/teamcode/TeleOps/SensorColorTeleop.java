@@ -4,28 +4,25 @@ import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
-import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.GamepadTrigger;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
-import org.firstinspires.ftc.teamcode.commands.SensorCommands.BlueIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.SensorCommands.RedIntakeCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-
+@Disabled
 @Config
 @TeleOp(name = "SensorColorTeleop")
 public class SensorColorTeleop extends MatchOpMode {
@@ -52,7 +49,7 @@ public class SensorColorTeleop extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private Drivetrain drivetrain;
+    private DrivetrainCOrrect drivetrainCorrect;
     private Slide slide;
     private SensorColor sensorColor;
 //    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
@@ -67,17 +64,17 @@ public class SensorColorTeleop extends MatchOpMode {
 
         arm = new Arm(armMotor, telemetry, hardwareMap);
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
-        drivetrain.init();
+        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrainCorrect.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
         sensorColor = new SensorColor(colorSensor, hardwareMap, telemetry);
 //        clawServos.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 
-        sensorColor.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
+        sensorColor.setDefaultCommand(new RedIntakeCommand(drivetrainCorrect, slide, clawServos, arm, sensorColor));
 
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
+        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrainCorrect.setDefaultCommand(new DefaultDriveCommand(drivetrainCorrect, driverGamepad, false));
     }
 
 

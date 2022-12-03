@@ -11,10 +11,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 @Disabled
@@ -40,18 +40,18 @@ public class WindsorParkPractice extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private Drivetrain drivetrain;
+    private DrivetrainCOrrect drivetrainCorrect;
     private Slide slide;
 
 
     @Override
     public void robotInit() {
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
+        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
         arm = new Arm(clawMotor, telemetry, hardwareMap);
-        drivetrain.init();
+        drivetrainCorrect.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
     }
 
@@ -59,14 +59,14 @@ public class WindsorParkPractice extends MatchOpMode {
     public void matchStart() {
             schedule(
                     new SequentialCommandGroup(
-                        new DriveForwardCommand(drivetrain, 50),
-                        new TurnCommand(drivetrain, 90),
-                        new DriveForwardCommand(drivetrain, 50),
-                        new TurnCommand(drivetrain, 90),
-                        new DriveForwardCommand(drivetrain, 50),
-                        new TurnCommand(drivetrain, 90),
-                        new DriveForwardCommand(drivetrain, 50),
-                        new TurnCommand(drivetrain, 90)
+                        new DriveForwardCommand(drivetrainCorrect, 50),
+                        new TurnCommand(drivetrainCorrect, 90),
+                        new DriveForwardCommand(drivetrainCorrect, 50),
+                        new TurnCommand(drivetrainCorrect, 90),
+                        new DriveForwardCommand(drivetrainCorrect, 50),
+                        new TurnCommand(drivetrainCorrect, 90),
+                        new DriveForwardCommand(drivetrainCorrect, 50),
+                        new TurnCommand(drivetrainCorrect, 90)
                     )
             );
     }

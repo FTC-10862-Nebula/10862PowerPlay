@@ -5,8 +5,6 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
-import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
-import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -14,19 +12,18 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 
 import java.util.List;
 
 
-public class Drivetrain extends SubsystemBase {
+public class DrivetrainCOrrect extends SubsystemBase {
 
-    private final SampleMecanumDrive drive;
+    private final SampleMecanumDriveCorrect drive;
     private Telemetry telemetry;
     private BNO055IMU imu;
     private final int LFVal = 0,
@@ -38,7 +35,7 @@ public class Drivetrain extends SubsystemBase {
 
 
 
-    public Drivetrain(SampleMecanumDrive drive, Telemetry tl, HardwareMap hardwareMap) {
+    public DrivetrainCOrrect(SampleMecanumDriveCorrect drive, Telemetry tl, HardwareMap hardwareMap) {
         this.drive = drive;
         this.telemetry = tl;
         imu = hardwareMap.get(BNO055IMU.class, "imu");

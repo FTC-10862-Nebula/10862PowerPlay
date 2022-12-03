@@ -10,24 +10,24 @@ import org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands.SlideMid
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands.SlideResetFrontCommandT;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
 public class LeftLowAutonCommand extends SequentialCommandGroup{
-    public LeftLowAutonCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
+    public LeftLowAutonCommand(DrivetrainCOrrect drivetrainCorrect, Slide slide, Arm arm, ClawServos clawServos){
         addCommands(
-                new DriveForwardCommand(drivetrain, 70),
-                new TurnToCommand(drivetrain, 315, true),
+                new DriveForwardCommand(drivetrainCorrect, 70),
+                new TurnToCommand(drivetrainCorrect, 315, true),
                 new SlideMidFrontCommand(slide, arm, clawServos),
                 new WaitCommand(1200),
                 new DropConeCommand(clawServos, slide, arm),
                 new WaitCommand(1100),
                 new SlideResetFrontCommandT(slide, arm, clawServos),
-                new TurnToCommand(drivetrain, 90),
-                new DriveForwardCommand(drivetrain, 30),
-                new TurnToCommand(drivetrain, 360),
-                new DriveForwardCommand(drivetrain, 30)
+                new TurnToCommand(drivetrainCorrect, 90),
+                new DriveForwardCommand(drivetrainCorrect, 30),
+                new TurnToCommand(drivetrainCorrect, 360),
+                new DriveForwardCommand(drivetrainCorrect, 30)
 
         );
     }
