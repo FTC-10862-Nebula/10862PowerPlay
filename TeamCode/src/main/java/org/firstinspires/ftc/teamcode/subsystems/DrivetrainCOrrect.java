@@ -146,111 +146,20 @@ public class DrivetrainCOrrect extends SubsystemBase {
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
-//        powers [LFVal] = (rotY + rotX + rx) / denominator;
-//        powers [LRVal] = (rotY - rotX + rx) / denominator;
-//        powers [RFVal] = (rotY - rotX - rx) / denominator;
-//        powers [RRVal] = (rotY + rotX - rx) / denominator;
-//not work
-
-
-//        powers [LFVal] = Math.sin(theta + Math.PI / 4);
-//        powers [LRVal] = Math.sin(theta - Math.PI / 4);
-//        powers [RFVal] = Math.sin(theta - Math.PI / 4);
-//        powers [RRVal] = Math.sin(theta + Math.PI / 4);
-        //Test 1 - suddenly turns to one direction without any input
-//        powers [LFVal] = (rotY + rotX - rx) / denominator;
-//        powers [LRVal] = (rotY + rotX - rx) / denominator;
-//        powers [RFVal] = (rotY - rotX + rx) / denominator;
-//        powers [RRVal] = (rotY - rotX + rx) / denominator;
-        //Test2 - stafes when front/back; tueninf and strafing is badd
-
-//        powers [LFVal] = (rotY + rotX + rx) / denominator;
-//        powers [LRVal] = (rotY + rotX - rx) / denominator;
-//        powers [RFVal] = (rotY - rotX - rx) / denominator;
-//        powers [RRVal] = (rotY - rotX + rx) / denominator;
-        //Test3 - everything but back and forth works
-
-//        powers [LFVal] = (rotY + rotX - rx) / denominator;
-//        powers [LRVal] = (rotY + rotX + rx) / denominator;
-//        powers [RFVal] = (rotY - rotX + rx) / denominator;
-//        powers [RRVal] = (rotY - rotX - rx) / denominator;
-        //Test4 - turing is opp; y control makes bot strafe;
-
-//        powers [LFVal] = (rotY + rotX + rx) / denominator;
-//        powers [LRVal] = (rotY - rotX + rx) / denominator;
-//        powers [RFVal] = (rotY - rotX - rx) / denominator;
-//        powers [RRVal] = (rotY + rotX - rx) / denominator;
-
-//        powers [LFVal] = Math.sin(theta + Math.PI / 4)+rx;
-//        powers [LRVal] = Math.sin(theta - Math.PI / 4)-rx;
-//        powers [RFVal] = Math.sin(theta - Math.PI / 4)+rx;
-//        powers [RRVal] = Math.sin(theta + Math.PI / 4)-rx;
-        //Tes just no - turns wih no inout
-
-//        powers [LFVal] = (rotY + rotX + rx) / denominator;
-//        powers [LRVal] = (rotY + rotX +   rx) / denominator;
-//        powers [RFVal] = (rotY + rotX + rx) / denominator;
-//        powers [RRVal] = (rotY + rotX + rx) / denominator;
-//just strafes
+//
         powers [LFVal] = (-rotY -rotX- rx) / denominator;
         powers [LRVal] = (-rotY + rotX -   rx) / denominator;
         powers [RFVal] = (-rotY - rotX + rx) / denominator;
         powers [RRVal] = (-rotY + rotX + rx) / denominator;
         //WORKS!!!!!!!!!!!!!!!!
 
-//        powers [LFVal] = (-rotY +rotX+ rx) / denominator;
-//        powers [LRVal] = (-rotY - rotX +   rx) / denominator;
-//        powers [RFVal] = (-rotY + rotX - rx) / denominator;
-//        powers [RRVal] = (-rotY - rotX - rx) / denominator;
 
-
-
-
-
-
-
-
-
-
+        drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[3]);
 //        powers [LFVal] = (y + x + rx) / denominator;    //fLPower
 //        powers [LRVal] = (y - x + rx) / denominator;    //bLPower
 //        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
 //        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
 ////        Orginal Comp1 for noral mec drive
-
-//        double gpHypot = Range.clip(Math.hypot(gpXCord, gpYCord), 0, 1);
-//        //finds just how much power to give the robot based on how much x and y given by gamepad
-//        //range.clip helps us keep our power within positive 1
-//        // also helps set maximum possible value of 1/sqrt(2) for x and y controls if at a 45 degree angle (which yields greatest possible value for y+x)
-//        double gpDegree = Math.atan2(gpYCord, gpXCord);
-//        //the inverse tangent of opposite/adjacent gives us our gamepad degree
-//        double botDegree = this.getAngle();
-//        //gives us the angle our robot is at
-//        double movementDegree = gpDegree - botDegree;
-//
-//        //adjust the angle we need to move at by finding needed movement degree based on gamepad and robot angles
-//        double gpXCtrl = Math.cos(Math.toRadians(movementDegree)) * gpHypot;
-//        //by finding the adjacent side, we can get our needed x value to power our motors
-//        double gpYCtrl = Math.sin(Math.toRadians(movementDegree)) * gpHypot;
-//        //by finding the opposite side, we can get our needed y value to power our motors
-
-        //by mulitplying the gpYCtrl and gpXCtrl by their respective absolute values,
-        //we can guarantee that our motor powers will not exceed 1 without any driveTurn
-        //since we've maxed out our hypot at 1, the greatest possible value of x+y is (1/sqrt(2)) + (1/sqrt(2)) = sqrt(2)
-        //since (1/sqrt(2))^2 = 1/2 = .5, we know that we will not exceed a power of 1 (with no turn), giving us more precision for our driving
-
-        //Strafing ____ straight front and back __ turn
-//        powers [FLVal]=//Math.sin(botDegree + Math.PI / 4);       //(gpYCtrl * Math.abs(gpYCtrl) + gpXCtrl * Math.abs(gpXCtrl) - driveTurn);
-//        powers [FRVal]=//Math.sin(botDegree - Math.PI / 4);       //(gpYCtrl * Math.abs(gpYCtrl) - gpXCtrl * Math.abs(gpXCtrl) - driveTurn);
-//        powers [RFVal2]=//Math.sin(botDegree - Math.PI / 4);           //(gpYCtrl * Math.abs(gpYCtrl) - gpXCtrl * Math.abs(gpXCtrl) + driveTurn);
-//        powers [3]=;//Math.sin(botDegree + Math.PI / 4);          //(gpYCtrl * Math.abs(gpYCtrl) + gpXCtrl * Math.abs(gpXCtrl) + driveTurn);
-
-//   lF     Math.sin(theta + Math.PI / 4);
-//       lR wheelSpeeds[2] = Math.sin(theta - Math.PI / 4);
-//     rF   wheelSpeeds[1] = Math.sin(theta - Math.PI / 4);
-
-//     rR   wheelSpeeds[3] = Math.sin(theta + Math.PI / 4);
-        drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[3]);
     }
 
 
