@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 @Disabled
@@ -41,7 +41,7 @@ public class RightHighAuton extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private DrivetrainCOrrect drivetrainCorrect;
+    private Drivetrain drivetrain;
     private Slide slide;
     private Vision vision;
 
@@ -49,10 +49,10 @@ public class RightHighAuton extends MatchOpMode {
     public void robotInit() {
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         arm = new Arm(armMotor, telemetry, hardwareMap);
-        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
-        drivetrainCorrect.init();
+        drivetrain = new Drivetrain(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 //        vision.init(hardwareMap);
@@ -74,9 +74,9 @@ public class RightHighAuton extends MatchOpMode {
             case 1: { //Left
                 schedule(
                         new SequentialCommandGroup(
-                        new RightHighAutonCommand(drivetrainCorrect, slide, arm, clawServos),
-                        new DriveForwardCommand(drivetrainCorrect, -20),
-                        new TurnToCommand(drivetrainCorrect, 180)
+                        new RightHighAutonCommand(drivetrain, slide, arm, clawServos),
+                        new DriveForwardCommand(drivetrain, -20),
+                        new TurnToCommand(drivetrain, 180)
                         )
                 );
                 return;
@@ -85,9 +85,9 @@ public class RightHighAuton extends MatchOpMode {
                 schedule(
                         new SequentialCommandGroup(
 
-                                new RightHighAutonCommand(drivetrainCorrect, slide, arm, clawServos),
+                                new RightHighAutonCommand(drivetrain, slide, arm, clawServos),
 //                                new DriveForwardCommand(drivetrain, -20),
-                                new TurnToCommand(drivetrainCorrect, 180)
+                                new TurnToCommand(drivetrain, 180)
                         )
                 );
                 return;
@@ -96,9 +96,9 @@ public class RightHighAuton extends MatchOpMode {
                 schedule(
                         new SequentialCommandGroup(
 
-                                new RightHighAutonCommand(drivetrainCorrect, slide, arm, clawServos),
-                                new DriveForwardCommand(drivetrainCorrect, 27),
-                                new TurnToCommand(drivetrainCorrect, 180)
+                                new RightHighAutonCommand(drivetrain, slide, arm, clawServos),
+                                new DriveForwardCommand(drivetrain, 27),
+                                new TurnToCommand(drivetrain, 180)
                         )
                 );
                 return;

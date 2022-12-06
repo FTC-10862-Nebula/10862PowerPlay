@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.Defa
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 @Disabled
 
@@ -31,17 +31,17 @@ public class OfficialDriveOnlyTel extends MatchOpMode {
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
     // Subsystems
-    private DrivetrainCOrrect drivetrainCorrect;
+    private Drivetrain drivetrain;
 
     @Override
     public void robotInit() {
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
 
-        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
-        drivetrainCorrect.init();
-        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        drivetrainCorrect.setDefaultCommand(new DefaultDriveCommand(drivetrainCorrect, driverGamepad, false));
+        drivetrain = new Drivetrain(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrain.init();
+        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
 
 //        standardTrackingWheelLocalizer = new StandardTrackingWheelLocalizer(leftEncoder, rightEncoder, frontEncoder, hardwareMap);
     }
@@ -54,13 +54,13 @@ public class OfficialDriveOnlyTel extends MatchOpMode {
     public void configureButtons() {
         //Robot/Centric Drive Button
         Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                .whenPressed(new DefaultDriveCommand(drivetrainCorrect,driverGamepad,  true));
+                .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,  true));
         Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
-                .whenPressed(new DefaultDriveCommand(drivetrainCorrect,driverGamepad,false));
+                .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,false));
 
         //Slowmode - D1
             Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                    .whileHeld(new SlowDriveCommand(drivetrainCorrect, driverGamepad));
+                    .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
     }
 

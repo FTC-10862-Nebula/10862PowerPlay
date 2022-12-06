@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 import java.util.List;
 
 
-public class DrivetrainCOrrect extends SubsystemBase {
+public class Drivetrain extends SubsystemBase {
 
     private final SampleMecanumDriveCorrect drive;
     private Telemetry telemetry;
@@ -35,7 +35,7 @@ public class DrivetrainCOrrect extends SubsystemBase {
 
 
 
-    public DrivetrainCOrrect(SampleMecanumDriveCorrect drive, Telemetry tl, HardwareMap hardwareMap) {
+    public Drivetrain(SampleMecanumDriveCorrect drive, Telemetry tl, HardwareMap hardwareMap) {
         this.drive = drive;
         this.telemetry = tl;
         imu = hardwareMap.get(BNO055IMU.class, "imu");

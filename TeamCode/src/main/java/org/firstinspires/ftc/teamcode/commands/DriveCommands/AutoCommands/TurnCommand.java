@@ -2,14 +2,14 @@ package org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 public class TurnCommand extends CommandBase {
 
-    private final DrivetrainCOrrect drive;
+    private final Drivetrain drive;
     private final double angle;
 
-    public TurnCommand(DrivetrainCOrrect drive, double angle) {
+    public TurnCommand(Drivetrain drive, double angle) {
         this.drive = drive;
         this.angle = angle;
 

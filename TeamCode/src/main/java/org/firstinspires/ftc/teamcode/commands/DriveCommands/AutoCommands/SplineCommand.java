@@ -8,19 +8,19 @@ import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.Trajectories;
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 @Config
 public class SplineCommand extends CommandBase{
 
-    DrivetrainCOrrect drive;
+    Drivetrain drive;
     Trajectory trajectory;
     boolean reverse = false;
     Vector2d splinePos;
     double endHeading;
 
     MinVelocityConstraint maxVelConstraint;
-    public SplineCommand(DrivetrainCOrrect drive, MinVelocityConstraint constraint, boolean reverse, Vector2d splinePos, double endHeading) {
+    public SplineCommand(Drivetrain drive, MinVelocityConstraint constraint, boolean reverse, Vector2d splinePos, double endHeading) {
         this.drive = drive;
         this.reverse = reverse;
         this.splinePos = splinePos;
@@ -29,11 +29,11 @@ public class SplineCommand extends CommandBase{
         this.addRequirements(drive);
     }
 
-    public SplineCommand(DrivetrainCOrrect drive, Vector2d splinePos, double endHeading) {
+    public SplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading) {
         this(drive, Trajectories.velConstraint, false, splinePos, endHeading);
     }
 
-    public SplineCommand(DrivetrainCOrrect drive, Vector2d splinePos, double endHeading, boolean reverse) {
+    public SplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading, boolean reverse) {
         this(drive, Trajectories.velConstraint, reverse, splinePos, endHeading);
     }
 

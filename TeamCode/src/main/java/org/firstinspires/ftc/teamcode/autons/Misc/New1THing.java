@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
@@ -42,7 +42,7 @@ public class New1THing extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private DrivetrainCOrrect drivetrainCorrect;
+    private Drivetrain drivetrain;
     private Slide slide;
     private Vision vision;
     private SampleMecanumDriveCorrect driveMec;
@@ -53,10 +53,10 @@ public class New1THing extends MatchOpMode {
         arm = new Arm(armMotor, telemetry, hardwareMap);
 //        driveMec = new SampleMecanumDrive(hardwareMap);
 //
-        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
-        drivetrainCorrect.init();
+        drivetrain = new Drivetrain(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 //        vision.init(hardwareMap);
@@ -84,8 +84,8 @@ public class New1THing extends MatchOpMode {
 
 
                         new SequentialCommandGroup(
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrainCorrect, slide, arm, clawServos),
-                                new StrafeLeftCommand(drivetrainCorrect, 10)
+                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
+                                new StrafeLeftCommand(drivetrain, 10)
                         )
                 );
                 return;
@@ -95,8 +95,8 @@ public class New1THing extends MatchOpMode {
                 schedule(
                         new SequentialCommandGroup(
 
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrainCorrect, slide, arm, clawServos),
-                                new StrafeRightCommand(drivetrainCorrect, 5)
+                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
+                                new StrafeRightCommand(drivetrain, 5)
                         )
                 );
                 return;
@@ -104,8 +104,8 @@ public class New1THing extends MatchOpMode {
             default: { //Right
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrainCorrect, slide, arm, clawServos),
-                                new StrafeRightCommand(drivetrainCorrect, 28)
+                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
+                                new StrafeRightCommand(drivetrain, 28)
                         )
                 );
                 return;

@@ -11,23 +11,23 @@ import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideResetAutonF
 import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideHighBAutoCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
 public class RightHighPreAutonCommand extends SequentialCommandGroup {
-    public RightHighPreAutonCommand(DrivetrainCOrrect drivetrainCorrect, Slide slide, Arm arm, ClawServos clawServos){
+    public RightHighPreAutonCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         addCommands(
-                new DriveForwardCommand(drivetrainCorrect, -55),
-                new TurnToCommand(drivetrainCorrect, 48, true),
+                new DriveForwardCommand(drivetrain, -55),
+                new TurnToCommand(drivetrain, 48, true),
                 new SlideHighBAutoCommand(slide, arm, clawServos),
                 new WaitCommand(100),
-                new SlowDriveForwardCommand(drivetrainCorrect,-8.1),
+                new SlowDriveForwardCommand(drivetrain,-8.1),
                 new WaitCommand(500),
                 new DropConeCommand(clawServos, slide, arm),
                 new WaitCommand(200),
-                new SlowDriveForwardCommand(drivetrainCorrect,8),
-                new TurnToCommand(drivetrainCorrect, 90),
+                new SlowDriveForwardCommand(drivetrain,8),
+                new TurnToCommand(drivetrain, 90),
                 new SlideResetAutonFCommand(slide, arm, clawServos)
 //                new InstantCommand(arm::moveReset, arm),
         );

@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
@@ -40,7 +40,7 @@ public class RightJunctionAuton extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private DrivetrainCOrrect drivetrainCorrect;
+    private Drivetrain drivetrain;
     private Slide slide;
     private Vision vision;
 
@@ -48,10 +48,10 @@ public class RightJunctionAuton extends MatchOpMode {
     public void robotInit() {
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         arm = new Arm(armMotor, telemetry, hardwareMap);
-        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
-        drivetrainCorrect.init();
+        drivetrain = new Drivetrain(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrain.init();
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
         while (!isStarted() && !isStopRequested())
@@ -70,8 +70,8 @@ public class RightJunctionAuton extends MatchOpMode {
             case 1: { //Left
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrainCorrect, slide, arm, clawServos),
-                                new StrafeLeftCommand(drivetrainCorrect, 17.5)
+                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
+                                new StrafeLeftCommand(drivetrain, 17.5)
                         )
                 );
                 return;
@@ -79,8 +79,8 @@ public class RightJunctionAuton extends MatchOpMode {
             case 2: { //Mid
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrainCorrect, slide, arm, clawServos),
-                                new StrafeRightCommand(drivetrainCorrect, 13.5)
+                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
+                                new StrafeRightCommand(drivetrain, 13.5)
                         )
                 );
                 return;
@@ -88,8 +88,8 @@ public class RightJunctionAuton extends MatchOpMode {
             default: { //High
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrainCorrect, slide, arm, clawServos),
-                                new StrafeRightCommand(drivetrainCorrect, 44)
+                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
+                                new StrafeRightCommand(drivetrain, 44)
                         )
                 );
                 return;

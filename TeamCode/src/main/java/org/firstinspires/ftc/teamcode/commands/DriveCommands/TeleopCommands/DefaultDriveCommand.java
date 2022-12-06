@@ -3,16 +3,16 @@ package org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 public class DefaultDriveCommand extends CommandBase {
-    private DrivetrainCOrrect drive;
+    private Drivetrain drive;
     private GamepadEx driverGamepad;
 
     protected double multiplier;
     boolean mecDrive = true;
 
-    public DefaultDriveCommand(DrivetrainCOrrect drive, GamepadEx driverGamepad, boolean mecDrive) {
+    public DefaultDriveCommand(Drivetrain drive, GamepadEx driverGamepad, boolean mecDrive) {
 
         this.drive = drive;
         this.driverGamepad = driverGamepad;

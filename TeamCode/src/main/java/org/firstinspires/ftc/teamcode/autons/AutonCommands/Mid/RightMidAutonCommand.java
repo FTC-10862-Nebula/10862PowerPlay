@@ -7,19 +7,19 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnTo
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands.SlideMidFrontCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
 public class RightMidAutonCommand extends SequentialCommandGroup{
-    public RightMidAutonCommand(DrivetrainCOrrect drivetrainCorrect, Slide slide, Arm arm, ClawServos clawServos){
+    public RightMidAutonCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         addCommands(
                 //Counter Clockwise Angles
-                new DriveForwardCommand(drivetrainCorrect, 65),
-                new TurnToCommand(drivetrainCorrect, 50),
+                new DriveForwardCommand(drivetrain, 65),
+                new TurnToCommand(drivetrain, 50),
                 new SlideMidFrontCommand(slide, arm, clawServos),
-                new TurnToCommand(drivetrainCorrect, 95),
-                new DriveForwardCommand(drivetrainCorrect, -40)
+                new TurnToCommand(drivetrain, 95),
+                new DriveForwardCommand(drivetrain, -40)
         );
     }
 }

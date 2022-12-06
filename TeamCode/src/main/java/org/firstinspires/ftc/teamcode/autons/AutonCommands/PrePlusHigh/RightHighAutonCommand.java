@@ -14,42 +14,42 @@ import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideHighBAutoCom
 import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideResetAutonFCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
 public class RightHighAutonCommand extends SequentialCommandGroup{
-    public RightHighAutonCommand(DrivetrainCOrrect drivetrainCorrect, Slide slide, Arm arm, ClawServos clawServos){
+    public RightHighAutonCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         addCommands(
-                new DriveForwardCommand(drivetrainCorrect, -55),
-                new TurnToCommand(drivetrainCorrect, 46.5, true),
+                new DriveForwardCommand(drivetrain, -55),
+                new TurnToCommand(drivetrain, 46.5, true),
                 new SlideHighBAutoCommand(slide, arm, clawServos),
                 new WaitCommand(100),
-                new SlowDriveForwardCommand(drivetrainCorrect,-8.1),
+                new SlowDriveForwardCommand(drivetrain,-8.1),
                 new WaitCommand(500),
                 new DropConeCommand(clawServos, slide, arm),
                 new WaitCommand(200),
-                new SlowDriveForwardCommand(drivetrainCorrect,8),
+                new SlowDriveForwardCommand(drivetrain,8),
                 new PrePickC5FCommand(slide, clawServos, arm),
-                new TurnToCommand(drivetrainCorrect, 97),
-                new DriveForwardCommand(drivetrainCorrect, 23),
+                new TurnToCommand(drivetrain, 97),
+                new DriveForwardCommand(drivetrain, 23),
 
-                new PickC5FCommand(slide, clawServos, arm, drivetrainCorrect),
-                new DriveForwardCommand(drivetrainCorrect, -25),
-                new TurnToCommand(drivetrainCorrect, 33),
+                new PickC5FCommand(slide, clawServos, arm, drivetrain),
+                new DriveForwardCommand(drivetrain, -25),
+                new TurnToCommand(drivetrain, 33),
                 new SlideHighBAutoCommand(slide, arm, clawServos),
                 new WaitCommand(200),
-                new SlowDriveForwardCommand(drivetrainCorrect, -8.1),
+                new SlowDriveForwardCommand(drivetrain, -8.1),
                 new InstantCommand(clawServos::clawOpen, clawServos),
                 new WaitCommand(400),
-                new DriveForwardCommand(drivetrainCorrect, 4.5),
+                new DriveForwardCommand(drivetrain, 4.5),
 
 
 
 
 
                 new SlideResetAutonFCommand(slide, arm, clawServos),
-                new TurnToCommand(drivetrainCorrect, 90),
+                new TurnToCommand(drivetrain, 90),
                 new WaitCommand(200)
 //                new InstantCommand(arm::moveReset, arm),
         );

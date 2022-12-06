@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 @Autonomous(name = "TestAutonWithoutCam", group = "RED/BLUE")
@@ -37,7 +37,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private DrivetrainCOrrect drivetrainCorrect;
+    private Drivetrain drivetrain;
     private Slide slide;
 
 
@@ -46,9 +46,9 @@ public class TestAutonWithoutCam extends MatchOpMode {
         clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         arm = new Arm(armMotor, telemetry, hardwareMap);
         slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
-        drivetrainCorrect = new DrivetrainCOrrect(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
-        drivetrainCorrect.init();
-        drivetrainCorrect.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
+        drivetrain = new Drivetrain(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrain.init();
+        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         while (!isStarted() && !isStopRequested()){
             waitForStart();
@@ -60,8 +60,8 @@ public class TestAutonWithoutCam extends MatchOpMode {
 
                 new SequentialCommandGroup(
 //                        new StrafeRightCommand(drivetrain, 12)
-                        new RightHighAutonCommandSidewaysJUnctions(drivetrainCorrect, slide, arm, clawServos),
-                        new StrafeRightCommand(drivetrainCorrect, 28)
+                        new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
+                        new StrafeRightCommand(drivetrain, 28)
 
 //                new LeftHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
 //              new LeftHigh2AutonCommandSideways(drivetrain, slide, arm, clawServos)

@@ -21,12 +21,12 @@ import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideMidFAutoCom
 import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideResetAutonFCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.DrivetrainCOrrect;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
 public class RightHighAutonCommandSidewaysJUnctions extends SequentialCommandGroup{
-    public RightHighAutonCommandSidewaysJUnctions(DrivetrainCOrrect drivetrainCorrect, Slide slide, Arm arm, ClawServos clawServos){
+    public RightHighAutonCommandSidewaysJUnctions(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         /*
 Turn is Counterclockwise
                 new TurnToCommand(drivetrain, 90),
@@ -37,53 +37,53 @@ Turn is Counterclockwise
 */
         addCommands(
                 new SlideMidFAutoCommand(slide, arm, clawServos),
-                new StrafeRightCommand(drivetrainCorrect, 52),
-                new SlowDriveForwardCommand(drivetrainCorrect, 3.3),
+                new StrafeRightCommand(drivetrain, 52),
+                new SlowDriveForwardCommand(drivetrain, 3.3),
                 new DropAutoConeCommand(clawServos, slide, arm),
 //                new WaitCommand(500),
-                new StrafeRightCommand(drivetrainCorrect, 17.8),
+                new StrafeRightCommand(drivetrain, 17.8),
                 new PrePickC5BCommand(slide, clawServos, arm),
-                new DriveForwardCommand(drivetrainCorrect, -24.4),
+                new DriveForwardCommand(drivetrain, -24.4),
 //                new TurnToCommand(drivetrain, 0),
 
 
 
-                new PickC5BCommand(slide, clawServos, arm, drivetrainCorrect),
+                new PickC5BCommand(slide, clawServos, arm, drivetrain),
                 new SlideLowFAutoCommand(slide, arm, clawServos),
-                new TurnToCommand(drivetrainCorrect, 61, true),
+                new TurnToCommand(drivetrain, 61, true),
 //                new TurnToCommand(drivetrain, 62.2),
-                new SlowDriveForwardCommand(drivetrainCorrect, 3.47),
+                new SlowDriveForwardCommand(drivetrain, 3.47),
                 new WaitCommand(200),
                 new DropAutoConeCommand(clawServos, slide, arm),
-                new SlowDriveForwardCommand(drivetrainCorrect, -1.77),
+                new SlowDriveForwardCommand(drivetrain, -1.77),
                 new PrePickC4BCommand(slide, clawServos, arm),
-                new TurnToCommand(drivetrainCorrect, 0),
-                new SlowDriveForwardCommand(drivetrainCorrect, -2.6),
+                new TurnToCommand(drivetrain, 0),
+                new SlowDriveForwardCommand(drivetrain, -2.6),
                 new InstantCommand(slide::slideCone4),
 
 
 
-                new PickC4BCommand(slide, clawServos, arm, drivetrainCorrect),
-                new TurnToCommand(drivetrainCorrect, 0),   //or remove
+                new PickC4BCommand(slide, clawServos, arm, drivetrain),
+                new TurnToCommand(drivetrain, 0),   //or remove
                 new InstantCommand(slide::slideLow),    /*TTTTESTTTTT*/
                 new InstantCommand(arm::moveReset),
 //                new DriveForwardCommand(drivetrain, 32.5),
 
-                new DriveForwardCommand(drivetrainCorrect, 28),
+                new DriveForwardCommand(drivetrain, 28),
 //                new StrafeLeftCommand(drivetrain, 1.51),
-                new TurnToCommand(drivetrainCorrect, 271.2, true),
-                new StrafeLeftCommand(drivetrainCorrect, 10.8),
+                new TurnToCommand(drivetrain, 271.2, true),
+                new StrafeLeftCommand(drivetrain, 10.8),
                 new WaitCommand(300),   //Just in case the pole is w0bbling
-                new SlowDriveForwardCommand(drivetrainCorrect, -1.43),
+                new SlowDriveForwardCommand(drivetrain, -1.43),
 
 //                new TurnToCommand(drivetrain, 270),       //To fix error
 
 
                 new SlideHighFAutoCommand(slide, arm, clawServos),
-                new SlowDriveForwardCommand(drivetrainCorrect, 0.85),
+                new SlowDriveForwardCommand(drivetrain, 0.85),
                 new DropAutoConeCommand(clawServos, slide, arm),
-                new SlowDriveForwardCommand(drivetrainCorrect, -3),
-                new TurnToCommand(drivetrainCorrect, 271),
+                new SlowDriveForwardCommand(drivetrain, -3),
+                new TurnToCommand(drivetrain, 271),
 
 
                 new SlideResetAutonFCommand(slide, arm, clawServos)
