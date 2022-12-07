@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 @Disabled
@@ -38,7 +38,7 @@ public class OfficialDriveOnlyTel extends MatchOpMode {
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
 
-        drivetrain = new Drivetrain(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));

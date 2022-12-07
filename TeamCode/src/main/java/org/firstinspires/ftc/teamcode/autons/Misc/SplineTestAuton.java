@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 @Disabled
@@ -31,7 +31,7 @@ public class SplineTestAuton extends MatchOpMode {
 
     @Override
     public void robotInit() {
-        drivetrain = new Drivetrain(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     }

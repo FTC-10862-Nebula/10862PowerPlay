@@ -24,7 +24,7 @@ public class RightHighPreAutonCommand extends SequentialCommandGroup {
                 new WaitCommand(100),
                 new SlowDriveForwardCommand(drivetrain,-8.1),
                 new WaitCommand(500),
-                new DropConeCommand(clawServos, slide, arm),
+                new DropConeCommand(clawServos, slide, arm,drivetrain),
                 new WaitCommand(200),
                 new SlowDriveForwardCommand(drivetrain,8),
                 new TurnToCommand(drivetrain, 90),

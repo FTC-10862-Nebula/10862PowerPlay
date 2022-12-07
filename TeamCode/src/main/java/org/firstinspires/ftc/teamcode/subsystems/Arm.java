@@ -52,12 +52,12 @@ public class Arm extends SubsystemBase {
     Telemetry telemetry;
     private MotorEx armMotor;
 
-    public Arm(MotorEx armMotor, Telemetry tl, HardwareMap hw) {
-        this.armMotor = armMotor;
+    public Arm(Telemetry tl, HardwareMap hw) {
+//        this.armMotor = armMotor;
         this.armMotor = new MotorEx(hw, "clawM");
 
         //Reverse claw motor
-        this.armMotor.setInverted(true);
+         this.armMotor.setInverted(true);
         this.armMotor.resetEncoder();
 //        this.armMotor.setZeroPowerBehavior(BRAKE);
         this.armMotor.setDistancePerPulse(360 / CPR);

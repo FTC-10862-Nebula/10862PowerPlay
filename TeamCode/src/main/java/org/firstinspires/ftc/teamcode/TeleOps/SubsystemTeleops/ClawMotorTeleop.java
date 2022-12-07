@@ -29,7 +29,7 @@ public class ClawMotorTeleop extends MatchOpMode {
     public void robotInit() {
         operatorGamepad = new GamepadEx(gamepad2);
 
-        arm = new Arm(clawMotor, telemetry, hardwareMap);
+        arm = new Arm(telemetry, hardwareMap);
     }
 
     //Buttons

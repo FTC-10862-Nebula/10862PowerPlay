@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeLeftCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -46,11 +46,11 @@ public class RightJunctionAuton extends MatchOpMode {
 
     @Override
     public void robotInit() {
-        clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
-        arm = new Arm(armMotor, telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        clawServos = new ClawServos( telemetry, hardwareMap);
+        arm = new Arm( telemetry, hardwareMap);
+        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
-        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
+        slide = new Slide(telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);

@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.GamepadTrigger;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.SensorCommands.RedIntakeCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -62,11 +62,11 @@ public class SensorColorTeleop extends MatchOpMode {
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
 
-        arm = new Arm(armMotor, telemetry, hardwareMap);
-        clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDriveCorrect(hardwareMap), telemetry, hardwareMap);
+        arm = new Arm(telemetry, hardwareMap);
+        clawServos = new ClawServos( telemetry, hardwareMap);
+        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
-        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
+        slide = new Slide(telemetry, hardwareMap);
         sensorColor = new SensorColor(colorSensor, hardwareMap, telemetry);
 //        clawServos.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);

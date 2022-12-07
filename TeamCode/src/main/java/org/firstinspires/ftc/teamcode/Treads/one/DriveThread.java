@@ -5,6 +5,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 @Disabled
 public class DriveThread extends Thread
     {
+        public void mainTHread(Runnable runnable){
+            new Thread(runnable).start();
+    }
 //        private static final double startPoseX = 0;
 //        private static final double startPoseY = 0;
 //        private static final double startPoseHeading = 0;

@@ -33,7 +33,7 @@ public class SlideTeleop extends MatchOpMode {
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
 
-        slide = new Slide(liftMotor1, liftMotor2, telemetry, hardwareMap);
+        slide = new Slide(telemetry, hardwareMap);
     }
 
     //Buttons

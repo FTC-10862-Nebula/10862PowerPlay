@@ -59,22 +59,22 @@ public class Slide extends SubsystemBase {
 
     private static int liftPosition = 0;
 
-    public Slide(MotorEx slideM1, MotorEx slideM2, Telemetry tl, HardwareMap hw) {
-        this.slideM1 = slideM1;
-        this.slideM2 = slideM2;
+    public Slide( Telemetry tl, HardwareMap hw) {
+//        this.slideM1 = slideM1;
+//        this.slideM2 = slideM2;
 
-        this.slideM1 = new MotorEx(hw, "lift");
-        this.slideM2 = new MotorEx(hw, "lift2");
+        slideM1 = new MotorEx(hw, "lift");
+       slideM2 = new MotorEx(hw, "lift2");
 
         //Reverse lift motor
-        this.slideM1.setInverted(true);
+        slideM1.setInverted(true);
         //this.slideMotor2.setInverted(true);
 
-        this.slideM1.resetEncoder();
-        this.slideM2.resetEncoder();
+        slideM1.resetEncoder();
+        slideM2.resetEncoder();
 
-        this.slideM1.setDistancePerPulse(360 / CPR);
-        this.slideM2.setDistancePerPulse(360 / CPR);
+        slideM1.setDistancePerPulse(360 / CPR);
+        slideM2.setDistancePerPulse(360 / CPR);
 
         upController = new PIDFController(pidfUpCoefficients.p, pidfUpCoefficients.i, pidfUpCoefficients.d, pidfUpCoefficients.f, getAngle(), getAngle());
         upController.setTolerance(10);
@@ -309,7 +309,7 @@ public class Slide extends SubsystemBase {
                 upController.setSetPoint(MID_POS+500);
                 break;
             case 4:
-                upController.setSetPoint(HIGH_POS+600);
+                upController.setSetPoint(HIGH_POS+50);
                 break;
 //            case 5:
 //                upController.setSetPoint(CONE_5_POS+80);

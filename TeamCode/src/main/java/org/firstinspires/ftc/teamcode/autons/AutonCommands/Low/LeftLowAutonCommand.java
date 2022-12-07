@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands.SlideMidFrontCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands.SlideResetFrontCommandT;
@@ -21,7 +22,7 @@ public class LeftLowAutonCommand extends SequentialCommandGroup{
                 new TurnToCommand(drivetrain, 315, true),
                 new SlideMidFrontCommand(slide, arm, clawServos),
                 new WaitCommand(1200),
-                new DropConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm),
                 new WaitCommand(1100),
                 new SlideResetFrontCommandT(slide, arm, clawServos),
                 new TurnToCommand(drivetrain, 90),

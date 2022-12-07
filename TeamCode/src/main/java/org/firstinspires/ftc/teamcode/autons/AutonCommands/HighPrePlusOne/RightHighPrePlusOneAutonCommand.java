@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC5FCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC5FCommand;
@@ -27,7 +28,7 @@ public class RightHighPrePlusOneAutonCommand extends SequentialCommandGroup{
                 new WaitCommand(100),
                 new SlowDriveForwardCommand(drivetrain,-8.1),
                 new WaitCommand(500),
-                new DropConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm),
                 new WaitCommand(200),
 
                 new SlowDriveForwardCommand(drivetrain,8),
@@ -40,7 +41,7 @@ public class RightHighPrePlusOneAutonCommand extends SequentialCommandGroup{
                 new TurnToCommand(drivetrain, 148),
                 new SlowDriveForwardCommand(drivetrain, -2),
 //                new InstantCommand(clawServos::clawOpen, clawServos),
-                new DropConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm),
                 new WaitCommand(400),
                 new SlowDriveForwardCommand(drivetrain, 3),
                 new TurnToCommand(drivetrain, 90),

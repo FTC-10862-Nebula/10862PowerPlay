@@ -16,14 +16,14 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDriveCorrect;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 
 import java.util.List;
 
 
 public class Drivetrain extends SubsystemBase {
 
-    private final SampleMecanumDriveCorrect drive;
+    private final SampleMecanumDrive drive;
     private Telemetry telemetry;
     private BNO055IMU imu;
     private final int LFVal = 0,
@@ -35,7 +35,7 @@ public class Drivetrain extends SubsystemBase {
 
 
 
-    public Drivetrain(SampleMecanumDriveCorrect drive, Telemetry tl, HardwareMap hardwareMap) {
+    public Drivetrain(SampleMecanumDrive drive, Telemetry tl, HardwareMap hardwareMap) {
         this.drive = drive;
         this.telemetry = tl;
         imu = hardwareMap.get(BNO055IMU.class, "imu");
