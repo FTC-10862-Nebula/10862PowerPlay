@@ -31,8 +31,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 @Config
-@TeleOp(name = "MainTeleop")
-public class MainTeleOp extends MatchOpMode {
+@TeleOp(name = "FieldCentricTeleop")
+public class FieldCentricTeleOp extends MatchOpMode {
 
     private static double startPoseX = 0;
     private static double startPoseY = 0;

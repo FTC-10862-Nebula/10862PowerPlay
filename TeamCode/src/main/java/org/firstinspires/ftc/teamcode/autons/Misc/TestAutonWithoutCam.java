@@ -24,14 +24,6 @@ public class TestAutonWithoutCam extends MatchOpMode {
     private static double startPoseY = 0;
     private static double startPoseHeading = 0;
 
-//    //Motors and Servos
-//    private MotorEx armMotor;
-//    private ServoEx clawS1, clawS3;
-//    private ServoEx clawS2;
-////    private CRServo clawS2;
-////    private MotorEx leftFront, leftRear, rightRear, rightFront;
-//    private MotorEx liftMotor1, liftMotor2;
-
     // Gamepad
 //    private GamepadEx driverGamepad;
 
@@ -45,7 +37,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
     @Override
     public void robotInit() {
         clawServos = new ClawServos( telemetry, hardwareMap);
-        arm = new Arm( telemetry, hardwareMap);
+        arm = new Arm(telemetry, hardwareMap);
         slide = new Slide(telemetry, hardwareMap);
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();

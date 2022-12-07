@@ -27,14 +27,6 @@ public class RightMidAuton extends MatchOpMode {
     private static final double startPoseHeading = 0;
     private int tagNum = 0;
 
-    //Motors and Servos
-    private MotorEx armMotor;
-    private ServoEx clawS1, clawS3;
-    private ServoEx clawS2;
-    //    private CRServo clawS2;
-    private MotorEx leftFront, leftRear, rightRear, rightFront;
-    private MotorEx liftMotor1, liftMotor2;
-
     //Gamepad
 //    private GamepadEx driverGamepad;
 

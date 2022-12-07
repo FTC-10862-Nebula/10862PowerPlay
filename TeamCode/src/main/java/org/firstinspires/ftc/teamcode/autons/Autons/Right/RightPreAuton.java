@@ -27,13 +27,6 @@ public class RightPreAuton extends MatchOpMode {
     private static final double startPoseHeading = 0;
     private int tagNum = 0;
 
-    //Motors and Servos
-    private MotorEx armMotor;
-    private ServoEx clawS1, clawS3;
-    private ServoEx clawS2;
-    //    private CRServo clawS2;
-    private MotorEx leftFront, leftRear, rightRear, rightFront;
-    private MotorEx liftMotor1, liftMotor2;
 
     //Gamepad
 //    private GamepadEx driverGamepad;
@@ -61,15 +54,13 @@ public class RightPreAuton extends MatchOpMode {
             vision.updateTagOfInterest();
             vision.tagToTelemetry();
             telemetry.update();
-//            new InstantCommand(vision::getsend, vision);
-
         }
         this.matchStart();
     }
 
-    public void matchStart() {tagNum = vision.getTag();
+    public void matchStart() {
+        tagNum = vision.getTag();
 
-        SequentialCommandGroup autonGroup;
         switch (tagNum) {
             case 1: { //Left
                 schedule(
@@ -111,7 +102,5 @@ public class RightPreAuton extends MatchOpMode {
 //                return;
 //            }
         }
-
-//        schedule(autonGroup);
     }
 }

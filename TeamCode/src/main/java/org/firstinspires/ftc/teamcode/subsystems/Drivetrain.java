@@ -63,10 +63,6 @@ public class Drivetrain extends SubsystemBase {
         update();
     }
 
-    public void resetImu(){
-//        imu.close();
-//        imu.initialize("imu");
-    }
 
     public void setMode(DcMotor.RunMode mode) {
         drive.setMode(mode);
@@ -84,7 +80,7 @@ public class Drivetrain extends SubsystemBase {
         drive.update();
     }
 
-    public void mecDrive(double leftF, double leftR, double rightR, double rightF) {
+    public void setPowers(double leftF, double leftR, double rightR, double rightF) {
         drive.setMotorPowers(leftF, leftR, rightR, rightF);
     }
 
@@ -110,29 +106,34 @@ public class Drivetrain extends SubsystemBase {
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
 
-//        powers [FLVal] = (y + x + rx) / denominator;    //fLPower
-//        powers [FRVal] = (y - x + rx) / denominator;    //bLPower
+//        Orginal Comp1
+        powers [LFVal] = (y + x + rx) / denominator;    //fLPower
+        powers [LRVal] = (y - x + rx) / denominator;    //bLPower
+        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
+        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
+//        powers [LFVal] = (y + x + rx) / denominator;    //fLPower
+//        powers [LRVal] = (y - x + rx) / denominator;    //bLPower
 //        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
 //        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
-//        Orginal Comp1
-
-//        powers [FLVal] = (y + x + rx) / denominator;
-//        powers [FRVal] = (y - x + rx) / denominator;
-//        powers [RFVal] = (y + x - rx) / denominator;
-//        powers [RRVal] = (y - x - rx) / denominator;
-        //Strafes (up/down) forward (right/left), turns opposite
-
-         powers [LFVal] =    (y + x + rx) / denominator;
-         powers [LRVal] =     (y - x + rx) / denominator;
-         powers [RFVal] =   (y - x - rx) / denominator;
-         powers [RRVal] =     (y + x - rx) / denominator;
-        //Everthing but turning works- Test
-
-
-//        double frontLPower = (-y - x - rx) / denominator;
-//        double frontRPower = (y - x - rx) / denominator;
-//        double backLPower = (-y + x - rx) / denominator;
-//        double backRPower = (y + x - rx) / denominator;
+////        Orginal Comp1 for noral mec drive
+//
+////        powers [FLVal] = (y + x + rx) / denominator;
+////        powers [FRVal] = (y - x + rx) / denominator;
+////        powers [RFVal] = (y + x - rx) / denominator;
+////        powers [RRVal] = (y - x - rx) / denominator;
+//        //Strafes (up/down) forward (right/left), turns opposite
+//
+//         powers [LFVal] =    (y + x + rx) / denominator;
+//         powers [LRVal] =     (y - x + rx) / denominator;
+//         powers [RFVal] =   (y - x - rx) / denominator;
+//         powers [RRVal] =     (y + x - rx) / denominator;
+//        //Everthing but turning works- Test
+//
+//
+////        double frontLPower = (-y - x - rx) / denominator;
+////        double frontRPower = (y - x - rx) / denominator;
+////        double backLPower = (-y + x - rx) / denominator;
+////        double backRPower = (y + x - rx) / denominator;
         drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
     }
 
@@ -155,11 +156,7 @@ public class Drivetrain extends SubsystemBase {
 
 
         drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[3]);
-//        powers [LFVal] = (y + x + rx) / denominator;    //fLPower
-//        powers [LRVal] = (y - x + rx) / denominator;    //bLPower
-//        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
-//        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
-////        Orginal Comp1 for noral mec drive
+//
     }
 
 
@@ -224,7 +221,7 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void stop() {
-        mecDrive(0, 0, 0, 0);
+        setPowers(0, 0, 0, 0);
     }
 
     public Pose2d getPoseVelocity() {
