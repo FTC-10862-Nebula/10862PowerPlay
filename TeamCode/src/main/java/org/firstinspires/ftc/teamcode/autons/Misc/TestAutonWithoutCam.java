@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-@Autonomous(name = "TestAutonWithoutCam", group = "RED/BLUE")
+@Autonomous(group = "RED/BLUE")
 public class TestAutonWithoutCam extends MatchOpMode {
 //    private ATDetector tagDetector;
 
@@ -51,28 +51,11 @@ public class TestAutonWithoutCam extends MatchOpMode {
     public void matchStart() {
         waitForStart();
         schedule(
-                new Drivethreadcomment(drivetrain, slide, arm, clawServos),
-                new WaitCommand(1000),
-                new Drivethreadcomment22(drivetrain, slide, arm, clawServos)
-//                RunExp1.main(drivetrain, slide, arm),
-//                new WaitCommand(1500),
-//                RunExp2.main(drivetrain, slide, arm)
-        );
                 new SequentialCommandGroup(
-
-//                        RunExp1.main(drivetrain, slide, arm);
-
-//                        new StrafeRightCommand(drivetrain, 12)
-//                        new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
-//                        new StrafeRightCommand(drivetrain, 28)
-
-//                new LeftHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos)
-//              new LeftHigh2AutonCommandSideways(drivetrain, slide, arm, clawServos)
-//               new LeftHighPrePlusOneAutonCommand(drivetrain, slide, arm, clawServos)
-
-
-//        )
+                        new Drivethreadcomment(drivetrain, slide, arm, clawServos),
+                        new WaitCommand(1000),
+                        new Drivethreadcomment22(drivetrain, slide, arm, clawServos)
+                    )
         );
-
     }
 };

@@ -19,7 +19,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-@Autonomous(name = "TestAutonWithoutCam", group = "RED/BLUE")
+@Autonomous(name = "FaithCam", group = "RED/BLUE")
 public class FaithAuton extends MatchOpMode {
 //    private ATDetector tagDetector;
 
