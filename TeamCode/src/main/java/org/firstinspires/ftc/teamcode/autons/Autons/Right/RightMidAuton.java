@@ -39,8 +39,8 @@ public class RightMidAuton extends MatchOpMode {
 
     @Override
     public void robotInit() {
-        clawServos = new ClawServos( telemetry, hardwareMap);
-        arm = new Arm( telemetry, hardwareMap);
+        clawServos = new ClawServos(telemetry, hardwareMap);
+        arm = new Arm(telemetry, hardwareMap);
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);

@@ -62,13 +62,13 @@ public class TrajectoryTest extends LinearOpMode {
 
         clawServos.clawOpen();
 
-        sleep(10);
+//        sleep(10);
         t.start();
 
-        sleep(2);
-        drive.followTrajectorySequence(cycle1Pickup);
-        two.start();
-        slide.slideResting();
+//        sleep(2);
+//        drive.followTrajectorySequence(cycle1Pickup);
+//        two.start();
+//        slide.slideResting();
 
 
         }

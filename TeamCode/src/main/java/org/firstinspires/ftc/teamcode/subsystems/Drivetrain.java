@@ -31,7 +31,7 @@ public class Drivetrain extends SubsystemBase {
                     RFVal = 2,
                     RRVal = 3;
 
-    double powers[] = new double[4];
+    double[] powers = new double[4];
 
 
 

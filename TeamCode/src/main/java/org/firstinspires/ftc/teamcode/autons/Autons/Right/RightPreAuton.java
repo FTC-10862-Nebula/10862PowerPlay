@@ -41,14 +41,13 @@ public class RightPreAuton extends MatchOpMode {
     @Override
     public void robotInit() {
         clawServos = new ClawServos(telemetry, hardwareMap);
-        arm = new Arm( telemetry, hardwareMap);
+        arm = new Arm(telemetry, hardwareMap);
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-
         vision = new Vision(hardwareMap, "Webcam 1", telemetry);
-//        vision.init(hardwareMap);
+
         while (!isStarted() && !isStopRequested())
         {
             vision.updateTagOfInterest();
