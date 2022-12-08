@@ -12,18 +12,16 @@ public class Drivethreadcomment22 extends SequentialCommandGroup{
 //    private Thread;
     public Drivethreadcomment22(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
 
-        Thread one = new Thread(
+   new Thread(
                 () -> {
-                    slide.slideMid();
+//                    slide.slideMid();
                     arm.moveIntakeB();
 //                    new WaitCommand(12);
                     clawServos.clawClose();
 
                 }
 
-        );
-
-        new Thread(one).start();
+        ).start();
         return;
     }
 }

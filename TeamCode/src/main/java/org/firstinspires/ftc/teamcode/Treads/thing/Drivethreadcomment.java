@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Treads.thing;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
+import org.firstinspires.ftc.teamcode.commands.ThreadComman;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -12,16 +13,16 @@ public class Drivethreadcomment extends SequentialCommandGroup{
 //    private Thread;
     public Drivethreadcomment(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
 
-       Thread two= new Thread(
+       new Thread(
                 () -> {
-                    slide.slideLow();
+//                    slide.slideLow();
                     arm.moveHighB();
 //                    new WaitCommand(12);
                     clawServos.clawClose();
                 }
-        );
+        ).start();
+//        Thread.currentThread().interrupt();
+       return;
 
-        new Thread(two).start();
-        return;
     }
 }

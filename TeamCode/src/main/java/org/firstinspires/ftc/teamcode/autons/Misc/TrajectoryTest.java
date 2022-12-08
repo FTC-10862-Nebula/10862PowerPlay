@@ -3,13 +3,17 @@ package org.firstinspires.ftc.teamcode.autons.Misc;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
+import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Treads.thing.Drivethreadcomment;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBackCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBackCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBackCommand;
+import org.firstinspires.ftc.teamcode.commands.ThreadComman;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -33,23 +37,28 @@ public class TrajectoryTest extends LinearOpMode {
 
         clawServos.clawClose();
         Pose2d startPose = new Pose2d(0, 0,0);
+//        Thread t = new Thread(() -> {
+//            new DriveForwardCommand(normDrive, 12);
+//            new SlideHighBackCommand(slide, arm, clawServos);
+//        });
+//        Thread two = new Thread(() -> {
+//            new StrafeRightCommand(normDrive, 5);
+//            new SlideMidBackCommand(slide, arm, clawServos);
+//        });
 
         TrajectorySequence preLoad = drive.trajectorySequenceBuilder(startPose)
                 .forward(5, vel, accel)
+//                .addTemporalMarker(t.start())
+//                .addTemporalMarker(clawServos::clawOpen)
+//                .UNSTABLE_addTemporalMarkerOffset(.5, clawServos::clawOpen)
                 .build();
 
         TrajectorySequence cycle1Pickup = drive.trajectorySequenceBuilder(preLoad.end())
 //                .forward(5, vel, accel)
                 .strafeRight(5)
+
                 .build();
-        Thread t = new Thread(() -> {
-            new DriveForwardCommand(normDrive, 12);
-            new SlideHighBackCommand(slide, arm, clawServos);
-        });
-        Thread two = new Thread(() -> {
-            new StrafeRightCommand(normDrive, 5);
-            new SlideMidBackCommand(slide, arm, clawServos);
-        });
+
 
         drive.setPoseEstimate(startPose);
 
@@ -57,18 +66,21 @@ public class TrajectoryTest extends LinearOpMode {
         waitForStart();
         if (isStopRequested()) return;
 
+//        ThreadComman.clearGroupedCommand();
 //        slide.slideHigh();
         drive.followTrajectorySequence(preLoad);
-
         clawServos.clawOpen();
 
 //        sleep(10);
-        t.start();
+//        t.start();
+        new Drivethreadcomment(normDrive, slide, arm, clawServos);
 
-//        sleep(2);
-//        drive.followTrajectorySequence(cycle1Pickup);
 //        two.start();
-//        slide.slideResting();
+
+        drive.followTrajectorySequence(preLoad);
+        new SlideMidBackCommand(slide, arm, clawServos);
+        new WaitCommand(134);
+        new Drivethreadcomment(normDrive, slide, arm, clawServos);
 
 
         }
