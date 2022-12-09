@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.autons.Misc;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -10,6 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Treads.thing.Drivethreadcomment;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
+import org.firstinspires.ftc.teamcode.commands.InstantThreadCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBackCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBackCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBackCommand;
@@ -77,10 +79,9 @@ public class TrajectoryTest extends LinearOpMode {
 
 //        two.start();
 
+        new InstantCommand(()->drive.followTrajectorySequence(preLoad));
         drive.followTrajectorySequence(preLoad);
-        new SlideMidBackCommand(slide, arm, clawServos);
-        new WaitCommand(134);
-        new Drivethreadcomment(normDrive, slide, arm, clawServos);
+
 
 
         }
