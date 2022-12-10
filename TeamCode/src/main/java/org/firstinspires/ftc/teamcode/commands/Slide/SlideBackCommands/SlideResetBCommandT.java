@@ -8,16 +8,18 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class SlideResetBCommandT extends ParallelCommandGroup {
+public class SlideResetBCommandT extends SequentialCommandGroup {
     public SlideResetBCommandT(Slide slide, Arm arm, ClawServos clawServos){
         addCommands(
-                new InstantCommand(clawServos::setFClawPos),
-                new InstantCommand(
-                        () -> new Thread(() -> {
-                            clawServos.clawClose();
-                            arm.moveIntakeB();
-                            slide.slideResting();
-                        }).start()
+                new InstantCommand(clawServos::setBClawPos),
+                new ParallelCommandGroup(
+                        new InstantCommand(
+                                () -> new Thread(() -> {
+                                    clawServos.clawClose();
+                                    arm.moveIntakeB();
+                                    slide.slideResting();
+                                }).start()
+                        )
                 ),
                 new InstantCommand(clawServos::clawOpen)
 

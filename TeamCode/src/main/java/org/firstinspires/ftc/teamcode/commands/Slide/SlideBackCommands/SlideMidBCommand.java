@@ -9,38 +9,34 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class SlideMidBCommand extends ParallelCommandGroup {
+public class SlideMidBCommand extends SequentialCommandGroup {
     public SlideMidBCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto) {
         if (auto){
             addCommands(
-                    new InstantCommand(() ->
-                            new Thread(() -> {
-                                clawServos.clawClose();
-                                slide.slideMid();
-                                arm.moveBAuto();
-                            }).start()),
-
+                    new ParallelCommandGroup(
+                            new InstantCommand(() ->
+                                    new Thread(() -> {
+                                        clawServos.clawClose();
+                                        slide.slideMid();
+                                        arm.moveBAuto();
+                                    }).start())
+                    ),
                     new WaitCommand(200),
                     new InstantCommand(clawServos::setBClawPos)
             );
         }
         else {
             addCommands(
-                    new InstantCommand(() ->
-                            new Thread(() -> {
-                                clawServos.clawClose();
-                                slide.slideMid();
-                                arm.moveB();
-                            }).start()),
-
+                    new ParallelCommandGroup(
+                            new InstantCommand(() ->
+                                    new Thread(() -> {
+                                        clawServos.clawClose();
+                                        slide.slideMid();
+                                        arm.moveB();
+                                    }).start())
+                    ),
                     new WaitCommand(200),
                     new InstantCommand(clawServos::setBClawPos)
-
-//                new InstantCommand(clawServos::clawClose),
-//                new InstantCommand(slide::slideMid, slide),
-//                new InstantCommand(arm::moveB, arm),
-//                new WaitCommand(650),
-//                new InstantCommand(clawServos::setBClawPos)
             );
         }
     }

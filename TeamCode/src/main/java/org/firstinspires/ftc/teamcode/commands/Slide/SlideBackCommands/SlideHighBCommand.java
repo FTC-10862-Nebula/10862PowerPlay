@@ -9,39 +9,34 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class SlideHighBCommand extends ParallelCommandGroup {
+public class SlideHighBCommand extends SequentialCommandGroup {
     public SlideHighBCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto){
         if (auto){
             addCommands(
-                    new InstantCommand(() ->
-                            new Thread(() -> {
-                                clawServos.clawClose();
-                                slide.slideHigh();
-                                arm.moveBAuto();
-                            }).start()),
-
+                    new ParallelCommandGroup(
+                            new InstantCommand(() ->
+                                    new Thread(() -> {
+                                        clawServos.clawClose();
+                                        slide.slideHigh();
+                                        arm.moveHighBAuto();
+                                    }).start())
+                    ),
                     new WaitCommand(200),
                     new InstantCommand(clawServos::setBClawPos)
             );
         }
         else {
             addCommands(
-                    new InstantCommand(() ->
-                            new Thread(() -> {
-                                clawServos.clawClose();
-                                slide.slideHigh();
-                                arm.moveB();
-                            }).start()),
-
+                    new ParallelCommandGroup(
+                            new InstantCommand(() ->
+                                    new Thread(() -> {
+                                        clawServos.clawClose();
+                                        slide.slideHigh();
+                                        arm.moveHighB();
+                                    }).start())
+                    ),
                     new WaitCommand(200),
                     new InstantCommand(clawServos::setBClawPos)
-
-
-//                new InstantCommand(clawServos::clawClose),
-//                new InstantCommand(slide::slideHigh, slide),
-//                new InstantCommand(arm::moveHighB, arm),
-//                new WaitCommand(650),
-//                new InstantCommand(clawServos::setBClawPos)
             );
         }
     }

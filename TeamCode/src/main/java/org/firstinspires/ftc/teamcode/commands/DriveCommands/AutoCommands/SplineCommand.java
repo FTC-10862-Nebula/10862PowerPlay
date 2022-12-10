@@ -42,6 +42,7 @@ public class SplineCommand extends CommandBase{
     public void initialize() {
         trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), reverse, maxVelConstraint, Trajectories.accelConstraint)
                 .splineTo(splinePos, endHeading)
+//                .spline
                 .build();
 
         drive.followTrajectory(trajectory);

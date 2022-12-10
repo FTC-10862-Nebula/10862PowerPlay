@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class DropConeCommand extends ParallelCommandGroup {
+public class DropConeCommand extends SequentialCommandGroup  {
 
     public DropConeCommand(ClawServos clawServos, Slide slide, Arm arm, Drivetrain drivetrain){
         addRequirements(arm);

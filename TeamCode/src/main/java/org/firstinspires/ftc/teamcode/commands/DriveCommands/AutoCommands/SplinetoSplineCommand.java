@@ -23,10 +23,11 @@ public class SplinetoSplineCommand extends CommandBase{
     MinVelocityConstraint maxVelConstraint;
     public SplinetoSplineCommand(Drivetrain drive, MinVelocityConstraint constraint, boolean reverse, Pose2d splinePos, double endHeading) {
         this.drive = drive;
+        this.maxVelConstraint = constraint;
         this.reverse = reverse;
         this.splinePos = splinePos;
         this.endHeading = endHeading;
-        this.maxVelConstraint = constraint;
+
         this.addRequirements(drive);
     }
 
@@ -41,17 +42,10 @@ public class SplinetoSplineCommand extends CommandBase{
 
     @Override
     public void initialize() {
-//       startPose: com.acmerobotics.roadrunner.geometry.Pose2d?,
-//       startTangent: kotlin.Double?, trajectory: com.acmerobotics.roadrunner.trajectory.Trajectory?,
-//       t: kotlin.Double?,
-//       baseVelConstraint: com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint,
-//       baseAccelConstraint: com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint,
-//       start: com.acmerobotics.roadrunner.profile.MotionState, resolution: kotlin.Double)
 
 //        trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), reverse, maxVelConstraint, Trajectories.accelConstraint)
         trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), reverse, maxVelConstraint, Trajectories.accelConstraint)
-
-                .splineToSplineHeading(splinePos,endHeading)
+                .splineToSplineHeading(splinePos, endHeading)
                 .build();
 
         drive.followTrajectory(trajectory);

@@ -12,23 +12,16 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class PickC1BCommand extends ParallelCommandGroup {
+public class PickC1BCommand extends SequentialCommandGroup  {
     public PickC1BCommand(Slide slide, ClawServos clawServos, Arm arm, Drivetrain drivetrain){
         addCommands(
-//                new InstantCommand(arm::moveIntakeB),
-//                new InstantCommand(clawServos::clawOpen),
-//                new InstantCommand(slide::slideCone1),
-//                new SlowDriveForwardCommand(drivetrain, 5),
-//                new InstantCommand(clawServos::clawClose),
-//                new WaitCommand(50),
-//                new InstantCommand(slide:: slideLow)
-
-
-                new SlowDriveForwardCommand(drivetrain, -3),
+                new SlowDriveForwardCommand(drivetrain, -2.7),
                 new InstantCommand(clawServos::clawClose),
                 new WaitCommand(100),
-                new InstantCommand(slide:: slideLow),
-                new DriveForwardCommand(drivetrain, 4)
+                new ParallelCommandGroup(
+                        new InstantCommand(slide:: slideLow),
+                        new DriveForwardCommand(drivetrain, 3.7)
+                )
         );
     }
 }

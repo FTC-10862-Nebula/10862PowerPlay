@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class DropAutoConeCommand extends ParallelCommandGroup {
+public class DropAutoConeCommand extends SequentialCommandGroup {
 
     public DropAutoConeCommand(ClawServos clawServos, Slide slide, Arm arm){
         addRequirements(arm);

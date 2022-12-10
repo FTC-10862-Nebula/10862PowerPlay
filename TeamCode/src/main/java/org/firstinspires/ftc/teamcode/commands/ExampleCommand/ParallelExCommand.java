@@ -11,14 +11,15 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class ParallelExCommand extends ParallelCommandGroup{
-    public ParallelExCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos, double driveDistance){
-//        addRequirements(drivetrain);    //Add Subsystems that you need to run this Command
+    public ParallelExCommand(Drivetrain drivetrain){
+        addRequirements(drivetrain);    //Add Subsystems that you need to run this Command
         addCommands(
-//                //Commands
-                new DriveForwardCommand(drivetrain, driveDistance),
-                new InstantCommand(slide::slideLow),
-                new InstantCommand(arm::moveHighBAuto),
-                new InstantCommand(clawServos::clawClose)
+                //Commands that will run automatically - Each subsystem can only be used once
+                //Can also be implemented like below
+                new ParallelCommandGroup(
+                        //Commands
+                )
+
         );
     }
 }

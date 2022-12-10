@@ -9,32 +9,34 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class SlideLowFCommand extends ParallelCommandGroup {
+public class SlideLowFCommand extends SequentialCommandGroup {
     public SlideLowFCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto) {
         if (auto){
             addCommands(
-                    new InstantCommand(() ->
-                            new Thread(() -> {
-                                clawServos.clawClose();
-                                slide.slideHigh();
-                                arm.moveFAuto();
-                            }).start()),
-
+                    new ParallelCommandGroup(
+                            new InstantCommand(() ->
+                                    new Thread(() -> {
+                                        clawServos.clawClose();
+                                        slide.slideLow();
+                                        arm.moveFAuto();
+                                    }).start())
+                    ),
                     new WaitCommand(200),
                     new InstantCommand(clawServos::setFClawPos)
             );
         }
         else {
             addCommands(
-                new InstantCommand(() ->
-                        new Thread(() -> {
-                            clawServos.clawClose();
-                            slide.slideHigh();
-                            arm.moveF();
-                        }).start()),
-
-                new WaitCommand(200),
-                new InstantCommand(clawServos::setFClawPos)
+                    new ParallelCommandGroup(
+                            new InstantCommand(() ->
+                                    new Thread(() -> {
+                                        clawServos.clawClose();
+                                        slide.slideLow();
+                                        arm.moveF();
+                                    }).start())
+                    ),
+                    new WaitCommand(200),
+                    new InstantCommand(clawServos::setFClawPos)
             );
         }
     }

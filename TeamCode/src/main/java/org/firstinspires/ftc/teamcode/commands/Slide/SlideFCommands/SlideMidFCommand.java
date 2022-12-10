@@ -12,31 +12,33 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class SlideMidFCommand extends ParallelCommandGroup {
+public class SlideMidFCommand extends SequentialCommandGroup {
 
     public SlideMidFCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto) {
         if (auto){
             addCommands(
-                    new InstantCommand(() ->
-                            new Thread(() -> {
-                                clawServos.clawClose();
-                                slide.slideMid();
-                                arm.moveFAuto();
-                            }).start()),
-
+                    new ParallelCommandGroup(
+                            new InstantCommand(() ->
+                                    new Thread(() -> {
+                                        clawServos.clawClose();
+                                        slide.slideMid();
+                                        arm.moveFAuto();
+                                    }).start())
+                    ),
                     new WaitCommand(200),
                     new InstantCommand(clawServos::setFClawPos)
             );
         }
         else {
             addCommands(
-                    new InstantCommand(() ->
-                            new Thread(() -> {
-                                clawServos.clawClose();
-                                slide.slideMid();
-                                arm.moveF();
-                            }).start()),
-
+                    new ParallelCommandGroup(
+                            new InstantCommand(() ->
+                                    new Thread(() -> {
+                                        clawServos.clawClose();
+                                        slide.slideMid();
+                                        arm.moveF();
+                                    }).start())
+                    ),
                     new WaitCommand(200),
                     new InstantCommand(clawServos::setFClawPos)
             );
