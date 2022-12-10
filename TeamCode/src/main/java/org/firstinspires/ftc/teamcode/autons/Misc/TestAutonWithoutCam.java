@@ -1,21 +1,10 @@
 package org.firstinspires.ftc.teamcode.autons.Misc;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
-import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.Treads.thing.Drivethreadcomment;
-import org.firstinspires.ftc.teamcode.Treads.thing.Drivethreadcomment22;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.ExampleCommand.ExampleCommand;
-import org.firstinspires.ftc.teamcode.commands.InstantThreadCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBackCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands.SlideMidFrontCommand;
-import org.firstinspires.ftc.teamcode.commands.ThreadCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -58,31 +47,9 @@ public class TestAutonWithoutCam extends MatchOpMode {
     public void matchStart() {
 //        waitForStart();
         schedule(
-
                 new SequentialCommandGroup(
-//                        new InstantCommand(),
-                        new InstantThreadCommand(
-                                slide::slideMid
-
-//                                ()->(slide::slideMid)
-                        ),
-//                        new ThreadCommand(new ExampleCommand(drivetrain, slide, arm, clawServos, 2)),
-
-//                        new ThreadCommand(new DriveForwardCommand(drivetrain,2)),
-//    new WaitCommand(2500),
-                new SlideMidFrontCommand(slide, arm, clawServos,  true)
-                      )
-
-//                        new ThreadCommand(new SlideMidFrontCommand(slide, arm, clawServos))
-//                        new InstantCommand(() ->
-//                                new Thread(() -> {
-//                                    slide.slideLow();
-//                                    arm.moveHighB();
-//                                    clawServos.clawClose();
-//                                }).start()),
-//                        new WaitCommand(2500),
-// new ExampleCommand(drivetrain, slide, arm, clawServos)
-
-    );
+                    new SlideMidFCommand(slide, arm, clawServos,  true)
+                )
+        );
     }
 };

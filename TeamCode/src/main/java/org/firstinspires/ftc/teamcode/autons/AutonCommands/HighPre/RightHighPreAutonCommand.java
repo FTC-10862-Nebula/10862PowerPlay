@@ -7,8 +7,8 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveF
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideResetAutonFCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideHighBAutoCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetAutonFCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -20,7 +20,7 @@ public class RightHighPreAutonCommand extends SequentialCommandGroup {
         addCommands(
                 new DriveForwardCommand(drivetrain, -55),
                 new TurnToCommand(drivetrain, 48, true),
-                new SlideHighBAutoCommand(slide, arm, clawServos),
+                new SlideHighBCommand(slide, arm, clawServos, true),
                 new WaitCommand(100),
                 new SlowDriveForwardCommand(drivetrain,-8.1),
                 new WaitCommand(500),

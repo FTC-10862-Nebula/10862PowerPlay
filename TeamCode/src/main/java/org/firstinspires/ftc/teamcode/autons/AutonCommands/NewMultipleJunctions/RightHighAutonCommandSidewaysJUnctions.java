@@ -15,10 +15,10 @@ import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC5B
 
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickC4BCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickC5BCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideHighFAutoCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideLowFAutoCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideMidFAutoCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideResetAutonFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetAutonFCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -36,7 +36,7 @@ Turn is Counterclockwise
                 new TurnToCommand(drivetrain, 0),
 */
         addCommands(
-                new SlideMidFAutoCommand(slide, arm, clawServos),
+                new SlideMidFCommand(slide, arm, clawServos, true),
                 new StrafeRightCommand(drivetrain, 52),
                 new SlowDriveForwardCommand(drivetrain, 3.3),
                 new DropAutoConeCommand(clawServos, slide, arm),
@@ -49,7 +49,7 @@ Turn is Counterclockwise
 
 
                 new PickC5BCommand(slide, clawServos, arm, drivetrain),
-                new SlideLowFAutoCommand(slide, arm, clawServos),
+                new SlideLowFCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 61, true),
 //                new TurnToCommand(drivetrain, 62.2),
                 new SlowDriveForwardCommand(drivetrain, 3.47),
@@ -79,7 +79,7 @@ Turn is Counterclockwise
 //                new TurnToCommand(drivetrain, 270),       //To fix error
 
 
-                new SlideHighFAutoCommand(slide, arm, clawServos),
+                new SlideHighFCommand(slide, arm, clawServos, true),
                 new SlowDriveForwardCommand(drivetrain, 0.85),
                 new DropAutoConeCommand(clawServos, slide, arm),
                 new SlowDriveForwardCommand(drivetrain, -3),

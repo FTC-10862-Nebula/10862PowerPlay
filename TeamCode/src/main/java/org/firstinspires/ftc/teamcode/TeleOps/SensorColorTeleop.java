@@ -81,7 +81,7 @@ public class SensorColorTeleop extends MatchOpMode {
     @Override
     public void configureButtons() {
         Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-//                    .whenPressed(new SlideLowBackCommand(slide, arm, clawServos))
+//                    .whenPressed(new SlideLowBCommand(slide, arm, clawServos))
                 .whenPressed(new InstantCommand(clawServos::clawOpen));
         Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
                 .whenPressed(new InstantCommand(clawServos::clawClose));

@@ -7,12 +7,11 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveF
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.*;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.*;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideHighBAutoCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideLowBAutoCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideResetAutonFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetAutonFCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -31,7 +30,7 @@ public class LeftHighPrePlusOneAutonCommand extends SequentialCommandGroup{
 
                 new DriveForwardCommand(drivetrain, -55),
                 new TurnToCommand(drivetrain, 317.9),
-                new SlideHighBAutoCommand(slide, arm, clawServos),
+                new SlideHighBCommand(slide, arm, clawServos, true),
                 new WaitCommand(100),
                 new SlowDriveForwardCommand(drivetrain,-5.85),
                 new WaitCommand(500),
@@ -45,7 +44,7 @@ public class LeftHighPrePlusOneAutonCommand extends SequentialCommandGroup{
 
 
                 new PickC5FCommand(slide, clawServos, arm, drivetrain),
-                new SlideLowBAutoCommand(slide, arm, clawServos),
+                new SlideLowBCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 218),
                 new SlowDriveForwardCommand(drivetrain, -1.4),
                 new DropAutoConeCommand(clawServos, slide, arm),
@@ -58,7 +57,7 @@ public class LeftHighPrePlusOneAutonCommand extends SequentialCommandGroup{
 
 
                 new PickC4FCommand(slide, clawServos, arm, drivetrain),
-                new SlideLowBAutoCommand(slide, arm, clawServos),
+                new SlideLowBCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 212),
                 new SlowDriveForwardCommand(drivetrain, -2),
                 new DropAutoConeCommand(clawServos, slide, arm),
@@ -71,7 +70,7 @@ public class LeftHighPrePlusOneAutonCommand extends SequentialCommandGroup{
 
 
                 new PickC3FCommand(slide, clawServos, arm, drivetrain),
-                new SlideLowBAutoCommand(slide, arm, clawServos),
+                new SlideLowBCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 210),
                 new SlowDriveForwardCommand(drivetrain, -2),
                 new DropAutoConeCommand(clawServos, slide, arm),
@@ -88,12 +87,12 @@ public class LeftHighPrePlusOneAutonCommand extends SequentialCommandGroup{
 
 //                new PickC3BCommand(slide, clawServos, arm, drivetrain),
 //                new TurnToCommand(drivetrain, 140),
-//                new SlideLowFrontCommand(slide, arm, clawServos),
+//                new SlideLowFCommand(slide, arm, clawServos),
 //                new InstantCommand(clawServos::clawOpen, clawServos),
 //                new WaitCommand(600),
 //                new TurnToCommand(drivetrain, 270),
 //
-//                new SlideResetFrontCommandT(slide, arm, clawServos),
+//                new SlideResetFCommandT(slide, arm, clawServos),
 //                new WaitCommand(200),
 //                new InstantCommand(arm::moveReset, arm),
 //                new DriveForwardCommand(drivetrain, 50)

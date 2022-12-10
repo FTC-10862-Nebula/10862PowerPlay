@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands;
+package org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -8,15 +8,15 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class SlideHighFrontCommand extends SequentialCommandGroup {
-    public SlideHighFrontCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto){
+public class SlideGroundFCommand extends SequentialCommandGroup {
+    public SlideGroundFCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto) {
         if (auto){
             addCommands(
                     new InstantCommand(() ->
                             new Thread(() -> {
                                 clawServos.clawClose();
-                                slide.slideHigh();
-                                arm.moveHighFAuto();
+                                slide.slideGround();
+                                arm.moveFAuto();
                             }).start()),
 
                     new WaitCommand(200),
@@ -28,13 +28,21 @@ public class SlideHighFrontCommand extends SequentialCommandGroup {
                     new InstantCommand(() ->
                             new Thread(() -> {
                                 clawServos.clawClose();
-                                slide.slideHigh();
-                                arm.moveHighF();
+                                slide.slideGround();
+                                arm.moveF();
                             }).start()),
 
                     new WaitCommand(200),
                     new InstantCommand(clawServos::setFClawPos)
+
+
+//                new InstantCommand(clawServos::clawClose),
+//                new InstantCommand(clawServos::setFClawPos),
+//                new InstantCommand(slide::slideGround, slide),
+//                new WaitCommand(650),
+//                new InstantCommand(arm::moveF, arm)
             );
         }
-    }   
+
+    }
 }

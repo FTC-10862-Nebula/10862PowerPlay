@@ -2,16 +2,12 @@ package org.firstinspires.ftc.teamcode.autons.Misc;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.Treads.thing.Drivethreadcomment;
-import org.firstinspires.ftc.teamcode.Treads.thing.Drivethreadcomment22;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideHighBAutoCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideLowBAutoCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideResetAutonFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetAutonFCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -53,7 +49,7 @@ public class FaithAuton extends MatchOpMode {
         schedule(
                 new SequentialCommandGroup(
                         new StrafeRightCommand( drivetrain, 55),
-                        new SlideHighBAutoCommand(slide,arm, clawServos   ),
+                        new SlideHighBCommand(slide,arm, clawServos, true),
                         new DropAutoConeCommand(clawServos,slide,arm),
                         new SlideResetAutonFCommand(slide, arm, clawServos)
 //                        new

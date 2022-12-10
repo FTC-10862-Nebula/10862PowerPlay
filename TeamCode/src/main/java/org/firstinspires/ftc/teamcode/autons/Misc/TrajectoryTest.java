@@ -33,11 +33,11 @@ public class TrajectoryTest extends LinearOpMode {
         Pose2d startPose = new Pose2d(0, 0,0);
 //        Thread t = new Thread(() -> {
 //            new DriveForwardCommand(normDrive, 12);
-//            new SlideHighBackCommand(slide, arm, clawServos);
+//            new SlideHighBCommand(slide, arm, clawServos);
 //        });
 //        Thread two = new Thread(() -> {
 //            new StrafeRightCommand(normDrive, 5);
-//            new SlideMidBackCommand(slide, arm, clawServos);
+//            new SlideMidBCommand(slide, arm, clawServos);
 //        });
 
         TrajectorySequence preLoad = drive.trajectorySequenceBuilder(startPose)

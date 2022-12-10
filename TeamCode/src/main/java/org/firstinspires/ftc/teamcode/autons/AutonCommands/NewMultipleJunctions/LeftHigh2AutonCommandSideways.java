@@ -15,9 +15,9 @@ import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC5
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC3FCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC4FCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC5FCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideHighBAutoCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Back.SlideLowBAutoCommand;
-import org.firstinspires.ftc.teamcode.commands.SlideAutos.Front.SlideResetAutonFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetAutonFCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -35,7 +35,7 @@ public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
 
                 new StrafeRightCommand(drivetrain, 68),
                 new TurnToCommand(drivetrain, 36.5),
-                new SlideHighBAutoCommand(slide, arm, clawServos),
+                new SlideHighBCommand(slide, arm, clawServos, true),
                 new WaitCommand(100),
                 new SlowDriveForwardCommand(drivetrain,-5.85),
                 new WaitCommand(500),
@@ -48,7 +48,7 @@ public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
 
 
                 new PickC5FCommand(slide, clawServos, arm, drivetrain),
-                new SlideLowBAutoCommand(slide, arm, clawServos),
+                new SlideLowBCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 322, true),
                 new SlowDriveForwardCommand(drivetrain, -3),
                 new DropAutoConeCommand(clawServos, slide, arm),
@@ -61,7 +61,7 @@ public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
 
 
                 new PickC4FCommand(slide, clawServos, arm, drivetrain),
-                new SlideLowBAutoCommand(slide, arm, clawServos),
+                new SlideLowBCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 322, true),
                 new SlowDriveForwardCommand(drivetrain, -2),
                 new DropAutoConeCommand(clawServos, slide, arm),
@@ -74,7 +74,7 @@ public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
 
 
                 new PickC3FCommand(slide, clawServos, arm, drivetrain),
-                new SlideLowBAutoCommand(slide, arm, clawServos),
+                new SlideLowBCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 322),
                 new SlowDriveForwardCommand(drivetrain, -2),
                 new DropAutoConeCommand(clawServos, slide, arm),
@@ -91,12 +91,12 @@ public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
 
 //                new PickC3BCommand(slide, clawServos, arm, drivetrain),
 //                new TurnToCommand(drivetrain, 140),
-//                new SlideLowFrontCommand(slide, arm, clawServos),
+//                new SlideLowFCommand(slide, arm, clawServos),
 //                new InstantCommand(clawServos::clawOpen, clawServos),
 //                new WaitCommand(600),
 //                new TurnToCommand(drivetrain, 270),
 //
-//                new SlideResetFrontCommandT(slide, arm, clawServos),
+//                new SlideResetFCommandT(slide, arm, clawServos),
 //                new WaitCommand(200),
 //                new InstantCommand(arm::moveReset, arm),
 //                new DriveForwardCommand(drivetrain, 50)
