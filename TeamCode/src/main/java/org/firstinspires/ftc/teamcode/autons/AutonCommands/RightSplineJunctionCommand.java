@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions;
+package org.firstinspires.ftc.teamcode.autons.AutonCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -12,7 +12,6 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnTo
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC4BCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC5BCommand;
-
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickBAutoCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
@@ -24,8 +23,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
-public class RightHighAutonCommandSidewaysJUnctions extends SequentialCommandGroup{
-    public RightHighAutonCommandSidewaysJUnctions(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
+public class RightSplineJunctionCommand extends SequentialCommandGroup{
+    public RightSplineJunctionCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         /*
 Turn is Counterclockwise
                 new TurnToCommand(drivetrain, 90),

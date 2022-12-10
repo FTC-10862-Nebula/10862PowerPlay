@@ -5,6 +5,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAcceleration
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Treads.thing.Drivethreadcomment;
@@ -15,7 +16,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
-
+@Disabled
 @Autonomous
 public class TrajectoryTest extends LinearOpMode {
     @Override
@@ -31,14 +32,6 @@ public class TrajectoryTest extends LinearOpMode {
 
         clawServos.clawClose();
         Pose2d startPose = new Pose2d(0, 0,0);
-//        Thread t = new Thread(() -> {
-//            new DriveForwardCommand(normDrive, 12);
-//            new SlideHighBCommand(slide, arm, clawServos);
-//        });
-//        Thread two = new Thread(() -> {
-//            new StrafeRightCommand(normDrive, 5);
-//            new SlideMidBCommand(slide, arm, clawServos);
-//        });
 
         TrajectorySequence preLoad = drive.trajectorySequenceBuilder(startPose)
                 .forward(5, vel, accel)
@@ -60,21 +53,12 @@ public class TrajectoryTest extends LinearOpMode {
         waitForStart();
         if (isStopRequested()) return;
 
-//        ThreadComman.clearGroupedCommand();
-//        slide.slideHigh();
-        drive.followTrajectorySequence(preLoad);
-        clawServos.clawOpen();
 
-//        sleep(10);
-//        t.start();
-        new Drivethreadcomment(normDrive, slide, arm, clawServos);
-
-//        two.start();
-
-        new InstantCommand(()->drive.followTrajectorySequence(preLoad));
-        drive.followTrajectorySequence(preLoad);
-
-
+//        Trajectory traj = drive.trajectoryBuilder(new Pose2d(-38,71.6, Math.toRadians(-3)), Math.toRadians(-3))
+//                .splineToSplineHeading(new Pose2d(-38.4,24.4, Math.toRadians(9)), Math.toRadians(9))
+//                .splineToSplineHeading(new Pose2d(-62.8,12, Math.toRadians(175)), Math.toRadians(175))
+//                .splineToSplineHeading(new Pose2d(-24.4,11.6, Math.toRadians(-85)), Math.toRadians(-85))
+//        .build();
 
         }
 

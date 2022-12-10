@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode.autons.Misc;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.commands.ExampleCommand.ParallelExCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
@@ -48,6 +51,10 @@ public class TestAutonWithoutCam extends MatchOpMode {
 //        waitForStart();
         schedule(
                 new SequentialCommandGroup(
+//                        new ParallelExCommand(),
+//            new ParallelCommandGroup(new SlideMidFCommand(slide, arm, clawServos, true)),
+                        new ParallelExCommand(drivetrain, slide, arm, clawServos, -2),
+                    new WaitCommand(5000),
                     new SlideMidFCommand(slide, arm, clawServos,  true)
                 )
         );

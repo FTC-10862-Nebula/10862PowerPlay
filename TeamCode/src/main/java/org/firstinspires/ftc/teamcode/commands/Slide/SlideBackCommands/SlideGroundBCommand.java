@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
@@ -8,7 +9,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class SlideGroundBCommand extends SequentialCommandGroup {
+public class SlideGroundBCommand extends ParallelCommandGroup {
     public SlideGroundBCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto) {
         if (auto){
             addCommands(

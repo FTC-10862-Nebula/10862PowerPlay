@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
@@ -11,7 +12,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class PickC4BCommand extends SequentialCommandGroup{
+public class PickC4BCommand extends ParallelCommandGroup {
     public PickC4BCommand(Slide slide, ClawServos clawServos, Arm arm, Drivetrain drivetrain){
         addCommands(
 //                new InstantCommand(arm::moveIntakeBAuto),

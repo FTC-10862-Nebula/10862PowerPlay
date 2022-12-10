@@ -18,6 +18,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 import java.util.List;
 
@@ -49,13 +50,13 @@ public class Drivetrain extends SubsystemBase {
 //        imu = hardwareMap.get(BNO055IMU.class, "imu");
 
     }
-    public void closeImu(){
-        imu.close();
-    }
-    public Command inIMU(HardwareMap hM){
-        imu = hM.get(BNO055IMU.class, "imu");
-        return null;
-    }
+//    public void closeImu(){
+//        imu.close();
+//    }
+//    public Command inIMU(HardwareMap hM){
+//        imu = hM.get(BNO055IMU.class, "imu");
+//        return null;
+//    }
 
 
 
@@ -281,7 +282,18 @@ public class Drivetrain extends SubsystemBase {
         }
     }
 
-    public void distanceCommand(double l){
-        new DriveForwardCommand(this, l);
+//    public void distanceCommand(double l){
+//        new DriveForwardCommand(this, l);
+//    }
+
+    public void followTrajectoryAsync(Trajectory trajectory) {
+        drive.followTrajectoryAsync(trajectory);
+    }
+
+    public void followTrajectorySequenceAsync(TrajectorySequence trajectorySequence) {
+        drive.followTrajectorySequenceAsync(trajectorySequence);
+    }
+    public void turnAsync(double angle) {
+        drive.turnAsync(angle);
     }
 }

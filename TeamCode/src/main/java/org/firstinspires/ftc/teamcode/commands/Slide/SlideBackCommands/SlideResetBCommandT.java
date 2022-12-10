@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class SlideResetBCommandT extends SequentialCommandGroup {
+public class SlideResetBCommandT extends ParallelCommandGroup {
     public SlideResetBCommandT(Slide slide, Arm arm, ClawServos clawServos){
         addCommands(
                 new InstantCommand(clawServos::setFClawPos),

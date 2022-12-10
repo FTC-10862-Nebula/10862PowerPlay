@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.commands.SensorCommands;
 
 import com.arcrobotics.ftclib.command.ConditionalCommand;
 import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitUntilCommand;
 
@@ -11,7 +12,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class RedIntakeCommand extends SequentialCommandGroup {
+public class RedIntakeCommand extends ParallelCommandGroup {
 
     public RedIntakeCommand(Drivetrain drivetrain, Slide slide, ClawServos clawServos, Arm arm, SensorColor sensorColor) {
         addRequirements(sensorColor, clawServos);

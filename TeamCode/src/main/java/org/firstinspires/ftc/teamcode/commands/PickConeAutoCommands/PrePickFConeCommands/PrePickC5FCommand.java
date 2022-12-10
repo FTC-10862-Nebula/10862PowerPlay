@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class PrePickC5FCommand extends SequentialCommandGroup{
+public class PrePickC5FCommand extends ParallelCommandGroup {
     public PrePickC5FCommand(Slide slide, ClawServos clawServos, Arm arm){
         addCommands(
                 new InstantCommand(clawServos::clawClose),
