@@ -9,13 +9,32 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class SlideLowFrontCommand extends SequentialCommandGroup {
-    public SlideLowFrontCommand(Slide slide, Arm arm, ClawServos clawServos) {
-        addCommands(
-                new InstantCommand(clawServos::clawClose),
-                new InstantCommand(slide::slideHigh, slide),
-                new InstantCommand(arm::moveF, arm),
-                new WaitCommand(650),
+    public SlideLowFrontCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto) {
+        if (auto){
+            addCommands(
+                    new InstantCommand(() ->
+                            new Thread(() -> {
+                                clawServos.clawClose();
+                                slide.slideHigh();
+                                arm.moveF();
+                            }).start()),
+
+                    new WaitCommand(200),
+                    new InstantCommand(clawServos::setFClawPos)
+            );
+        }
+        else {
+            addCommands(
+                new InstantCommand(() ->
+                        new Thread(() -> {
+                            clawServos.clawClose();
+                            slide.slideHigh();
+                            arm.moveF();
+                        }).start()),
+
+                new WaitCommand(200),
                 new InstantCommand(clawServos::setFClawPos)
-        );
+            );
+        }
     }
 }

@@ -17,11 +17,11 @@ public class DriveForwardCommand extends CommandBase{
     Trajectory trajectory;
     MinVelocityConstraint constraint;
     public DriveForwardCommand(Drivetrain drive, double distance) {
-//        this.drive = drive;
-//        this.distance = distance;
-//        constraint = Trajectories.velConstraint;
-//        this.addRequirements(drive);
-        new DriveForwardCommand(drive, distance, Trajectories.velConstraint);
+        this.drive = drive;
+        this.distance = distance;
+        constraint = Trajectories.velConstraint;
+        this.addRequirements(drive);
+//        new DriveForwardCommand(drive, distance, Trajectories.velConstraint);
     }
 
     public DriveForwardCommand(Drivetrain drive, double distance, MinVelocityConstraint constraint) {
@@ -39,7 +39,6 @@ public class DriveForwardCommand extends CommandBase{
             trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).forward(distance).build();
 
         drive.followTrajectory(trajectory);
-
     }
 
     @Override

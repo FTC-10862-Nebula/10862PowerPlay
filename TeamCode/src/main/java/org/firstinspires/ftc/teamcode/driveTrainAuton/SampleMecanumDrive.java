@@ -20,6 +20,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
+import com.arcrobotics.ftclib.command.Command;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -29,6 +30,10 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
@@ -45,6 +50,15 @@ import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.*;
  */
 @Config
 public class SampleMecanumDrive extends MecanumDrive {
+//    private final SampleMecanumDrive drive;
+
+    private Telemetry telemetry;
+    double[] powers = new double[4];
+    private final int LFVal = 0,
+            LRVal = 1,
+            RFVal = 2,
+            RRVal = 3;
+
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(10, 0, 0); //6,1,0
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(4.8, 0, 1);//0,0,0
 
@@ -209,6 +223,7 @@ public class SampleMecanumDrive extends MecanumDrive {
     }
 
     public void update() {
+
         updatePoseEstimate();
         DriveSignal signal = trajectorySequenceRunner.update(getPoseEstimate(), getPoseVelocity());
         if (signal != null) setDriveSignal(signal);
@@ -313,4 +328,159 @@ public class SampleMecanumDrive extends MecanumDrive {
     public static TrajectoryAccelerationConstraint getAccelerationConstraint(double maxAccel) {
         return new ProfileAccelerationConstraint(maxAccel);
     }
+
+
+
+
+
+
+
+
+
+
+
+/******Drivetrain Code********/
+
+//    public void init() {
+//        setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        setMotorPowers(0, 0, 0, 0);
+//        setPoseEstimate(new Pose2d());
+////        imu = hardwareMap.get(BNO055IMU.class, "imu");
+//
+//    }
+//    public void closeImu(){
+//        imu.close();
+//    }
+//    public Command inIMU(HardwareMap hM){
+//        imu = hM.get(BNO055IMU.class, "imu");
+//        return null;
+//    }
+//
+//
+//    public void setPowers(double leftF, double leftR, double rightR, double rightF) {
+//        setMotorPowers(leftF, leftR, rightR, rightF);
+//    }
+//
+//
+//    public void mecDrive(double y, double x, double rx) {
+//
+//        // Denominator is the largest motor power (absolute value) or 1
+//        // This ensures all the powers maintain the same ratio, but only when
+//        // at least one is out of the range [-1, 1]
+//        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
+//
+////        Orginal Comp1
+//        powers [LFVal] = (y + x + rx) / denominator;    //fLPower
+//        powers [LRVal] = (y - x + rx) / denominator;    //bLPower
+//        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
+//        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
+////        powers [LFVal] = (y + x + rx) / denominator;    //fLPower
+////        powers [LRVal] = (y - x + rx) / denominator;    //bLPower
+////        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
+////        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
+////        Orginal Comp1 for normal mec drive
+////
+////         powers [LFVal] =    (y + x + rx) / denominator;
+////         powers [LRVal] =     (y - x + rx) / denominator;
+////         powers [RFVal] =   (y - x - rx) / denominator;
+////         powers [RRVal] =     (y + x - rx) / denominator;
+////        //Everthing but turning works- Test
+////
+////        double frontLPower = (-y - x - rx) / denominator;
+////        double frontRPower = (y - x - rx) / denominator;
+////        double backLPower = (-y + x - rx) / denominator;
+////        double backRPower = (y + x - rx) / denominator;
+//        setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
+//    }
+//
+//    public void  fieldCentric(double y, double x, double rx){
+//        double theta = -imu.getAngularOrientation().firstAngle;
+//
+//        double rotX = x * Math.cos(theta) - y * Math.sin(theta);
+//        double rotY = x * Math.sin(theta) + y * Math.cos(theta);
+//
+//        // Denominator is the largest motor power (absolute value) or 1
+//        // This ensures all the powers maintain the same ratio, but only when
+//        // at least one is out of the range [-1, 1]
+//        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
+////
+//        powers [LFVal] = (-rotY - rotX - rx) / denominator;
+//        powers [LRVal] = (-rotY + rotX - rx) / denominator;
+//        powers [RFVal] = (-rotY - rotX + rx) / denominator;
+//        powers [RRVal] = (-rotY + rotX + rx) / denominator;
+//        //WORKS!!!!!!!!!!!!!!!!
+//
+//        setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[3]);
+////
+//    }
+//
+//    public void setDrivePower(Pose2d drivePower) {
+//        setDrivePower(drivePower);
+//    }
+//
+//    public double getHeading() {
+//        return Math.toDegrees(getExternalHeading());
+//    }
+//    public double getAngle() {
+//        return imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+//        //works
+//    }
+//
+//
+//    public void stop() {
+//        setPowers(0, 0, 0, 0);
+//    }
+//
+//
+////    private double clamp(double val, double min, double max) {
+////        return Math.max(min, Math.min(max, val));
+////    }
+//
+//    /**
+//     * Returns minimum range value if the given value is less than
+//     * the set minimum. If the value is greater than the set maximum,
+//     * then the method returns the maximum value.
+//     *
+//     * @param value The value to clip.
+//     */
+//    public double clipRange(double value) {
+//        return value <= -1 ? -1
+//                : value >= 1 ? 1
+//                : value;
+//    }
+//
+//    /**
+//     * Normalize the wheel speeds
+//     */
+////    protected void normalize(double[] wheelSpeeds, double magnitude) {
+////        double maxMagnitude = Math.abs(wheelSpeeds[0]);
+////        for (int i = 1; i < wheelSpeeds.length; i++) {
+////            double temp = Math.abs(wheelSpeeds[i]);
+////            if (maxMagnitude < temp) {
+////                maxMagnitude = temp;
+////            }
+////        }
+////        for (int i = 0; i < wheelSpeeds.length; i++) {
+////            wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude) * magnitude;
+////        }
+////
+////    }
+////
+////    /**
+////     * Normalize the wheel speeds
+////     */
+////    protected void normalize(double[] wheelSpeeds) {
+////        double maxMagnitude = Math.abs(wheelSpeeds[0]);
+////        for (int i = 1; i < wheelSpeeds.length; i++) {
+////            double temp = Math.abs(wheelSpeeds[i]);
+////            if (maxMagnitude < temp) {
+////                maxMagnitude = temp;
+////            }
+////        }
+////        if(maxMagnitude > 1) {
+////            for (int i = 0; i < wheelSpeeds.length; i++) {
+////                wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude);
+////            }
+////        }
+////    }
 }

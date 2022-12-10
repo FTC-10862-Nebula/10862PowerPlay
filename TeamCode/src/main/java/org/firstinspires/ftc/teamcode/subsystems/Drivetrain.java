@@ -16,6 +16,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 
 import java.util.List;
@@ -27,9 +28,9 @@ public class Drivetrain extends SubsystemBase {
     private Telemetry telemetry;
     private BNO055IMU imu;
     private final int LFVal = 0,
-                    LRVal = 1,
-                    RFVal = 2,
-                    RRVal = 3;
+            LRVal = 1,
+            RFVal = 2,
+            RRVal = 3;
 
     double[] powers = new double[4];
 
@@ -280,18 +281,7 @@ public class Drivetrain extends SubsystemBase {
         }
     }
 
-
-//    private static final TrajectoryVelocityConstraint VEL_CONSTRAINT = getVelocityConstraint(MAX_VEL, MAX_ANG_VEL, TRACK_WIDTH);
-//    private static final TrajectoryAccelerationConstraint ACCEL_CONSTRAINT = getAccelerationConstraint(MAX_ACCEL);
-//
-//    //Test for trajectories and multithreading
-//    public TrajectorySequenceBuilder trajectorySequenceBuilder(Pose2d startPose) {
-//        return new TrajectorySequenceBuilder(
-//                startPose,
-//                VEL_CONSTRAINT, ACCEL_CONSTRAINT,
-//                MAX_ANG_VEL, MAX_ANG_ACCEL,
-//                opMode
-//
-//        );
-//    }
+    public void distanceCommand(double l){
+        new DriveForwardCommand(this, l);
+    }
 }

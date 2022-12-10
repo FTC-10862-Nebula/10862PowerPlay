@@ -10,6 +10,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.Treads.thing.Drivethreadcomment;
 import org.firstinspires.ftc.teamcode.Treads.thing.Drivethreadcomment22;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.ExampleCommand.ExampleCommand;
 import org.firstinspires.ftc.teamcode.commands.InstantThreadCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBackCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFrontCommands.SlideMidFrontCommand;
@@ -56,42 +58,31 @@ public class TestAutonWithoutCam extends MatchOpMode {
     public void matchStart() {
 //        waitForStart();
         schedule(
+
                 new SequentialCommandGroup(
+//                        new InstantCommand(),
                         new InstantThreadCommand(
                                 slide::slideMid
 
 //                                ()->(slide::slideMid)
                         ),
-//                        new WaitCommand(2500),
-//                        new ThreadCommand(new SlideMidFrontCommand(slide, arm, clawServos)),
-                        new InstantCommand(() ->
-                                new Thread(() -> {
-                                    slide.slideLow();
-                                    arm.moveHighB();
-                                    clawServos.clawClose();
-                                }).start()),
+//                        new ThreadCommand(new ExampleCommand(drivetrain, slide, arm, clawServos, 2)),
 
-                        new InstantCommand(
-                            () -> new Thread(
-                                    () -> new SlideMidFrontCommand(slide, arm, clawServos)
-                            )
-                        )
-//                        new WaitCommand(2000),
+//                        new ThreadCommand(new DriveForwardCommand(drivetrain,2)),
+//    new WaitCommand(2500),
+                new SlideMidFrontCommand(slide, arm, clawServos,  true)
+                      )
+
+//                        new ThreadCommand(new SlideMidFrontCommand(slide, arm, clawServos))
 //                        new InstantCommand(() ->
 //                                new Thread(() -> {
-//                                    slide.slideMid();
-//                                    arm.moveIntakeB();
+//                                    slide.slideLow();
+//                                    arm.moveHighB();
 //                                    clawServos.clawClose();
 //                                }).start()),
-//new WaitCommand(3000),
-//                        new InstantCommand(() ->
-//                                new Thread(() -> {new SlideMidFrontCommand(slide,arm, clawServos );
-//                                }).start())
-//                )
-//                        new Drivethreadcomment(drivetrain, slide, arm, clawServos),
-//                        new WaitCommand(1000),
-//                        new Drivethreadcomment22(drivetrain, slide, arm, clawServos)
+//                        new WaitCommand(2500),
+// new ExampleCommand(drivetrain, slide, arm, clawServos)
 
-                ) );
+    );
     }
 };

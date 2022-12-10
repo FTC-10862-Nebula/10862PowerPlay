@@ -9,13 +9,40 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class SlideGroundFrontCommand extends SequentialCommandGroup {
-    public SlideGroundFrontCommand(Slide slide, Arm arm, ClawServos clawServos) {
-        addCommands(
-                new InstantCommand(clawServos::clawClose),
-                new InstantCommand(clawServos::setFClawPos),
-                new InstantCommand(slide::slideGround, slide),
-                new WaitCommand(650),
-                new InstantCommand(arm::moveF, arm)
-        );
+    public SlideGroundFrontCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto) {
+        if (auto){
+            addCommands(
+                    new InstantCommand(() ->
+                            new Thread(() -> {
+                                clawServos.clawClose();
+                                slide.slideGround();
+                                arm.moveFAuto();
+                            }).start()),
+
+                    new WaitCommand(200),
+                    new InstantCommand(clawServos::setFClawPos)
+            );
+        }
+        else {
+            addCommands(
+                    new InstantCommand(() ->
+                            new Thread(() -> {
+                                clawServos.clawClose();
+                                slide.slideGround();
+                                arm.moveF();
+                            }).start()),
+
+                    new WaitCommand(200),
+                    new InstantCommand(clawServos::setFClawPos)
+
+
+//                new InstantCommand(clawServos::clawClose),
+//                new InstantCommand(clawServos::setFClawPos),
+//                new InstantCommand(slide::slideGround, slide),
+//                new WaitCommand(650),
+//                new InstantCommand(arm::moveF, arm)
+            );
+        }
+
     }
 }
