@@ -12,8 +12,6 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropCon
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC3FCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC4FCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC5FCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC3FCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC4FCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC5FCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
@@ -54,7 +52,7 @@ public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
                 new DropAutoConeCommand(clawServos, slide, arm),
                 new WaitCommand(400),
                 new SlowDriveForwardCommand(drivetrain, 1.8),
-                new PrePickC4FCommand(slide, clawServos, arm),
+                new PrePickC5FCommand(slide, clawServos, arm),
                 new TurnToCommand(drivetrain, 3),
                 new WaitCommand(200),
 
@@ -67,7 +65,7 @@ public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
                 new DropAutoConeCommand(clawServos, slide, arm),
                 new WaitCommand(400),
                 new SlowDriveForwardCommand(drivetrain, 1.8),
-                new PrePickC3FCommand(slide, clawServos, arm),
+                new PrePickC5FCommand(slide, clawServos, arm),
                 new TurnToCommand(drivetrain, 2),
 
                 new WaitCommand(200),

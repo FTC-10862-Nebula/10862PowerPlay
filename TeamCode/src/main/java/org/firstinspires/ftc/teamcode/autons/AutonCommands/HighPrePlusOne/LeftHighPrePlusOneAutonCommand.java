@@ -50,7 +50,7 @@ public class LeftHighPrePlusOneAutonCommand extends SequentialCommandGroup{
                 new DropAutoConeCommand(clawServos, slide, arm),
                 new WaitCommand(400),
                 new SlowDriveForwardCommand(drivetrain, 1.8),
-                new PrePickC4FCommand(slide, clawServos, arm),
+                new PrePickC5FCommand(slide, clawServos, arm),
                 new TurnToCommand(drivetrain, 265),
                 new WaitCommand(200),
 
@@ -63,7 +63,7 @@ public class LeftHighPrePlusOneAutonCommand extends SequentialCommandGroup{
                 new DropAutoConeCommand(clawServos, slide, arm),
                 new WaitCommand(400),
                 new SlowDriveForwardCommand(drivetrain, 1.8),
-                new PrePickC3FCommand(slide, clawServos, arm),
+                new PrePickC5FCommand(slide, clawServos, arm),
                 new TurnToCommand(drivetrain, 267),
 
                 new WaitCommand(200),

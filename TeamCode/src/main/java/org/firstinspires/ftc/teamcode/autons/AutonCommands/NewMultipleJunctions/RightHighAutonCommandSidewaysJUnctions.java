@@ -13,8 +13,7 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAut
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC4BCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC5BCommand;
 
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickC4BCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickC5BCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickBAutoCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
@@ -42,7 +41,7 @@ Turn is Counterclockwise
                 new DropAutoConeCommand(clawServos, slide, arm),
 //                new WaitCommand(500),
                 new StrafeRightCommand(drivetrain, 17.8),
-                new PrePickC5BCommand(slide, clawServos, arm),
+                new PrePickBAutoCommand(slide, clawServos, arm),
                 new DriveForwardCommand(drivetrain, -24.4),
 //                new TurnToCommand(drivetrain, 0),
 
@@ -56,7 +55,7 @@ Turn is Counterclockwise
                 new WaitCommand(200),
                 new DropAutoConeCommand(clawServos, slide, arm),
                 new SlowDriveForwardCommand(drivetrain, -1.77),
-                new PrePickC4BCommand(slide, clawServos, arm),
+                new PrePickBAutoCommand(slide, clawServos, arm),
                 new TurnToCommand(drivetrain, 0),
                 new SlowDriveForwardCommand(drivetrain, -2.6),
                 new InstantCommand(slide::slideCone4),
