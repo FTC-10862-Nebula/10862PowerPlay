@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBCone
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetAutonFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -25,23 +25,16 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class RightSplineJunctionCommand extends SequentialCommandGroup{
     public RightSplineJunctionCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
-        /*
-Turn is Counterclockwise
-                new TurnToCommand(drivetrain, 90),
-                new TurnToCommand(drivetrain, 180),
-                new TurnToCommand(drivetrain, 270),
-                new TurnToCommand(drivetrain, 360),
-                new TurnToCommand(drivetrain, 0),
-*/
+
         addCommands(
                 new SlideMidFCommand(slide, arm, clawServos, true),//Fix: Remove Drivetrain
                 new StrafeRightCommand(drivetrain, 52),
-                new SlowDriveForwardCommand(drivetrain, 3.3),
+                new SlowDriveForwardCommand(drivetrain, 1),
                 new DropAutoConeCommand(clawServos, slide, arm),
 //                new WaitCommand(500),
                 new StrafeRightCommand(drivetrain, 17.8),
                 new PrePickBAutoCommand(slide, clawServos, arm),
-                new DriveForwardCommand(drivetrain, -24.4),
+                new DriveForwardCommand(drivetrain, -25.5),
 //                new TurnToCommand(drivetrain, 0),
 
 
@@ -63,7 +56,8 @@ Turn is Counterclockwise
 
                 new PickC4BCommand(slide, clawServos, arm, drivetrain),
                 new TurnToCommand(drivetrain, 0),   //or remove
-                new InstantCommand(slide::slideLow),    /*TTTTESTTTTT*/
+//                new InstantCommand(slide::slideLow),    /*TTTTESTTTTT*/
+                new SlideHighFCommand(slide, arm, clawServos, true),
                 new InstantCommand(arm::moveReset),
 //                new DriveForwardCommand(drivetrain, 32.5),
 
@@ -77,14 +71,14 @@ Turn is Counterclockwise
 //                new TurnToCommand(drivetrain, 270),       //To fix error
 
 
-                new SlideHighFCommand(slide, arm, clawServos, true),
+//                new SlideHighFCommand(slide, arm, clawServos, true),
                 new SlowDriveForwardCommand(drivetrain, 0.85),
                 new DropAutoConeCommand(clawServos, slide, arm),
                 new SlowDriveForwardCommand(drivetrain, -3),
                 new TurnToCommand(drivetrain, 271),
 
 
-                new SlideResetAutonFCommand(slide, arm, clawServos)
+                new SlideResetUpAutonCommand(slide, arm, clawServos)
         );
     }
 }

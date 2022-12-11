@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions;
+package org.firstinspires.ftc.teamcode.autons.AutonCommands.Junctions;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
@@ -15,12 +15,11 @@ import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC5
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC5FCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetAutonFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-
 
 public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
     public LeftHigh2AutonCommandSideways(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
@@ -98,7 +97,7 @@ public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
 //                new WaitCommand(200),
 //                new InstantCommand(arm::moveReset, arm),
 //                new DriveForwardCommand(drivetrain, 50)
-        new SlideResetAutonFCommand(slide, arm, clawServos)
+        new SlideResetUpAutonCommand(slide, arm, clawServos)
         );
     }
 }

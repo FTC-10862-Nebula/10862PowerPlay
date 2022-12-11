@@ -1,17 +1,11 @@
 package org.firstinspires.ftc.teamcode.autons.Misc;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
-import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.RightSplineJunctionCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplineCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplinetoSplineCommand;
-import org.firstinspires.ftc.teamcode.commands.ExampleCommand.ParallelExCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.Junctions.RightHighJunctionCommandNew;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.Junctions.RightHighJunctionCommandOld;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -55,10 +49,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
 //        waitForStart();
         schedule(
                 new SequentialCommandGroup(
-                        new SplinetoSplineCommand(drivetrain, new Pose2d(-30, -50), 0, true),
-//                        new SplineCommand(drivetrain, new Vector2d(-30, -50), 0, false),
-                        new WaitCommand(10000),
-                        new SplineCommand(drivetrain, new  Vector2d(30, 50), 270)
+                    new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos)
 //                        new RightSplineJunctionCommand(drivetrain, slide, arm, clawServos)
                 )
         );

@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetAutonFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -51,7 +51,7 @@ public class FaithAuton extends MatchOpMode {
                         new StrafeRightCommand( drivetrain, 55),
                         new SlideHighBCommand(slide,arm, clawServos, true),
                         new DropAutoConeCommand(clawServos,slide,arm),
-                        new SlideResetAutonFCommand(slide, arm, clawServos)
+                        new SlideResetUpAutonCommand(slide, arm, clawServos)
 //                        new
         )
         );

@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropCon
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC5FCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC5FCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetAutonFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -48,7 +48,7 @@ public class RightHighAutonCommand extends SequentialCommandGroup{
 
 
 
-                new SlideResetAutonFCommand(slide, arm, clawServos),
+                new SlideResetUpAutonCommand(slide, arm, clawServos),
                 new TurnToCommand(drivetrain, 90),
                 new WaitCommand(200)
 //                new InstantCommand(arm::moveReset, arm),

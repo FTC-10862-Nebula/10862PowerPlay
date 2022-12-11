@@ -2,11 +2,9 @@ package org.firstinspires.ftc.teamcode.autons.Autons.Right;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.hardware.ServoEx;
-import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.NewMultipleJunctions.RightHighAutonCommandSidewaysJUnctions;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.Junctions.RightHighJunctionCommandOld;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeLeftCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
@@ -62,7 +60,7 @@ public class RightJunctionAuton extends MatchOpMode {
             case 1: { //Left
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
+                                new RightHighJunctionCommandOld(drivetrain, slide, arm, clawServos),
                                 new StrafeLeftCommand(drivetrain, 17.5)
                         )
                 );
@@ -71,7 +69,7 @@ public class RightJunctionAuton extends MatchOpMode {
             case 2: { //Mid
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
+                                new RightHighJunctionCommandOld(drivetrain, slide, arm, clawServos),
                                 new StrafeRightCommand(drivetrain, 13.5)
                         )
                 );
@@ -80,7 +78,7 @@ public class RightJunctionAuton extends MatchOpMode {
             default: { //High
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighAutonCommandSidewaysJUnctions(drivetrain, slide, arm, clawServos),
+                                new RightHighJunctionCommandOld(drivetrain, slide, arm, clawServos),
                                 new StrafeRightCommand(drivetrain, 44)
                         )
                 );

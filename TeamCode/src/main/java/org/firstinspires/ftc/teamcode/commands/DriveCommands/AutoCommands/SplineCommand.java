@@ -40,8 +40,10 @@ public class SplineCommand extends CommandBase{
 
     @Override
     public void initialize() {
-        trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), reverse, maxVelConstraint, Trajectories.accelConstraint)
+        trajectory = new TrajectoryBuilder
+                (drive.getPoseEstimate(), reverse, maxVelConstraint, Trajectories.accelConstraint)
                 .splineTo(splinePos, endHeading)
+//                .splineToConstantHeading(splinePos, endHeading)
 //                .spline
                 .build();
 

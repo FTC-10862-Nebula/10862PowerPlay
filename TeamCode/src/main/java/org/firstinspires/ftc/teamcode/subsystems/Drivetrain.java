@@ -32,6 +32,7 @@ public class Drivetrain extends SubsystemBase {
             LRVal = 1,
             RFVal = 2,
             RRVal = 3;
+    private final int AUTOFIXANGLE = 90;
 
     double[] powers = new double[4];
 
@@ -86,21 +87,6 @@ public class Drivetrain extends SubsystemBase {
         drive.setMotorPowers(leftF, leftR, rightR, rightF);
     }
 
-//    public void arcadeDrive(double forward, double rotate) {
-//        double maxInput = Math.copySign(Math.max(Math.abs(forward), Math.abs(rotate)), forward);
-//        forward = clipRange(forward);
-//        rotate = clipRange(rotate);
-//
-//
-//        double[] wheelSpeeds = new double[2];
-//        wheelSpeeds[0] = forward + rotate;
-//        wheelSpeeds[1] = forward - rotate;
-//
-//        normalize(wheelSpeeds);
-//
-//        drive.setMotorPowers(wheelSpeeds[0], wheelSpeeds[1]);
-//    }
-
     public void mecDrive(double y, double x, double rx) {
 
         // Denominator is the largest motor power (absolute value) or 1
@@ -118,12 +104,7 @@ public class Drivetrain extends SubsystemBase {
 //        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
 //        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
 ////        Orginal Comp1 for noral mec drive
-//
-////        powers [FLVal] = (y + x + rx) / denominator;
-////        powers [FRVal] = (y - x + rx) / denominator;
-////        powers [RFVal] = (y + x - rx) / denominator;
-////        powers [RRVal] = (y - x - rx) / denominator;
-//        //Strafes (up/down) forward (right/left), turns opposite
+
 //
 //         powers [LFVal] =    (y + x + rx) / denominator;
 //         powers [LRVal] =     (y - x + rx) / denominator;
@@ -140,7 +121,7 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void  fieldCentric(double y, double x, double rx){
-        double theta = -imu.getAngularOrientation().firstAngle;
+        double theta = -imu.getAngularOrientation().firstAngle+(AUTOFIXANGLE);
 
         double rotX = x * Math.cos(theta) - y * Math.sin(theta);
         double rotY = x * Math.sin(theta) + y * Math.cos(theta);
@@ -150,12 +131,11 @@ public class Drivetrain extends SubsystemBase {
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
 //
-        powers [LFVal] = (-rotY -rotX- rx) / denominator;
-        powers [LRVal] = (-rotY + rotX -   rx) / denominator;
+        powers [LFVal] = (-rotY - rotX - rx) / denominator;
+        powers [LRVal] = (-rotY + rotX - rx) / denominator;
         powers [RFVal] = (-rotY - rotX + rx) / denominator;
         powers [RRVal] = (-rotY + rotX + rx) / denominator;
         //WORKS!!!!!!!!!!!!!!!!
-
 
         drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[3]);
 //
