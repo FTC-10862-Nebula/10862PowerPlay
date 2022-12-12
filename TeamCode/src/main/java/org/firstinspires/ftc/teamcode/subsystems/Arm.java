@@ -28,21 +28,20 @@ public class Arm extends SubsystemBase {
     private double encoderOffset = 0;
     private double offsetNum = 0;
     public static int INIT_POS = 0;
-//    private static double newSetPosition;
 
     public static int INTAKE_POS_BACK = -312,
                         POS_BACK = -252,
                         HIGH_POS_BACK = -145;
-    public static int HIGH_POS_AUTO_BACK = -140;
-    public static int INTAKE_POS_AUTO_BACK = -238;
+    public static int HIGH_POS_AUTO_BACK = -139;
+    public static int INTAKE_POS_AUTO_BACK = -245;
     public static int POS_AUTO_BACK = -160;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
-            POS_FRONT = -POS_BACK,
-            HIGH_POS_FRONT = -HIGH_POS_BACK;
+                    POS_FRONT = -POS_BACK,
+                    HIGH_POS_FRONT = -HIGH_POS_BACK;
     public static int HIGH_POS_AUTO_FRONT = -HIGH_POS_AUTO_BACK,
-            INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
-            POS_AUTO_FRONT = -POS_AUTO_BACK;
+                    INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
+                    POS_AUTO_FRONT = -POS_AUTO_BACK;
 
 
 
@@ -215,10 +214,10 @@ public class Arm extends SubsystemBase {
 //                controller.setSetPoint(HIGH_POS_BACK-75);
 //                return;
             case 7:
-                controller.setSetPoint(HIGH_POS_AUTO_BACK-45);
+                controller.setSetPoint(HIGH_POS_AUTO_BACK-50);
                 return;
             case 8:
-                controller.setSetPoint(HIGH_POS_AUTO_FRONT+45);
+                controller.setSetPoint(HIGH_POS_AUTO_FRONT+50);
                 return;
             case 9:
                 controller.setSetPoint(INTAKE_POS_AUTO_FRONT+25);

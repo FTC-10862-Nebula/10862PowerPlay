@@ -17,6 +17,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
@@ -262,9 +264,15 @@ public class Drivetrain extends SubsystemBase {
         }
     }
 
-//    public void distanceCommand(double l){
-//        new DriveForwardCommand(this, l);
-//    }
+    public void distanceCommand(double d){
+        new DriveForwardCommand(this, d);
+    }
+    public void turnCommand(double angle){
+        new TurnCommand(this, angle);
+    }
+    public void turnToCommand(double angle){
+        new TurnToCommand(this, angle);
+    }
 
     public void followTrajectoryAsync(Trajectory trajectory) {
         drive.followTrajectoryAsync(trajectory);
