@@ -2,10 +2,12 @@ package org.firstinspires.ftc.teamcode.autons.Misc;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.Junctions.RightHighJunctionCommandNew;
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.Junctions.RightHighJunctionCommandOld;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -39,10 +41,6 @@ public class TestAutonWithoutCam extends MatchOpMode {
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-
-//        while (!isStarted() && !isStopRequested()){
-//            waitForStart();
-//        }
     }
 
     public void matchStart() {
@@ -50,6 +48,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
         schedule(
                 new SequentialCommandGroup(
                     new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos)
+
 //                        new RightSplineJunctionCommand(drivetrain, slide, arm, clawServos)
                 )
         );

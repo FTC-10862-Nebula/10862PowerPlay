@@ -33,12 +33,18 @@ public class TurnToCommand extends CommandBase {
         double firstAngle = drive.getHeading();
         Util.logger(this, Level.INFO, "curr angle", firstAngle);
         if (weird && firstAngle > 180) firstAngle = firstAngle - 360;
-//        if (weird) {
-//            desired = firstAngle - angle;
-//        }
 
         desired = angle - firstAngle;
 
+        //Test
+        /*if (weird) {
+            angle = 360 -angle;
+            desired = firstAngle - angle;
+        }
+        else{
+            desired = angle - firstAngle;
+
+        }*/
 
         Util.logger(this, Level.INFO, "adjusted angle", firstAngle);
         Util.logger(this, Level.INFO, "desired angle", desired);

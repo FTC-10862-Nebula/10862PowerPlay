@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TeleOps;
+package org.firstinspires.ftc.teamcode.TeleOps.SubsystemTeleops;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
@@ -24,7 +24,7 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 @Disabled
 @Config
-@TeleOp(name = "SensorColorTeleop")
+@TeleOp
 public class SensorColorTeleop extends MatchOpMode {
 
     private static double startPoseX = 0;
@@ -74,7 +74,7 @@ public class SensorColorTeleop extends MatchOpMode {
         sensorColor.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, 2));
     }
 
 

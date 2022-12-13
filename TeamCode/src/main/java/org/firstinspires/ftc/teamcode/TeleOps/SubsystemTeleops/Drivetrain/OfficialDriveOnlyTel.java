@@ -41,7 +41,7 @@ public class OfficialDriveOnlyTel extends MatchOpMode {
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, 2));
 
 //        standardTrackingWheelLocalizer = new StandardTrackingWheelLocalizer(leftEncoder, rightEncoder, frontEncoder, hardwareMap);
     }
@@ -54,9 +54,9 @@ public class OfficialDriveOnlyTel extends MatchOpMode {
     public void configureButtons() {
         //Robot/Centric Drive Button
         Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,  true));
+                .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,  true, 2));
         Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
-                .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,false));
+                .whenPressed(new DefaultDriveCommand(drivetrain,driverGamepad,false, 2));
 
         //Slowmode - D1
             Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))

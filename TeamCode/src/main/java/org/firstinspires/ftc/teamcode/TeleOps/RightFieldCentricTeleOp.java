@@ -11,28 +11,25 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.GamepadTrigger;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideGroundBCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBCommand;
-
-
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideGroundBCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetFCommandT;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
-
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 @Config
-@TeleOp(name = "FieldCentricTeleop")
-public class FieldCentricTeleOp extends MatchOpMode {
+@TeleOp(name = "Right")
+public class RightFieldCentricTeleOp extends MatchOpMode {
 
     private static double startPoseX = 0;
     private static double startPoseY = 0;
@@ -76,7 +73,7 @@ public class FieldCentricTeleOp extends MatchOpMode {
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, 3));
     }
 
 
@@ -84,12 +81,10 @@ public class FieldCentricTeleOp extends MatchOpMode {
     public void configureButtons() {
         //Drive Stuff - D1
             Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true));
+                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true, 3));
 //                    .whenPressed( new InstantCommand(drivetrain::closeImu));
             Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
-//                    .whenPressed( new InstantCommand(()->(drivetrain.inIMU(hardwareMap)));
-//                    .whenPressed(drivetrain.inIMU(hardwareMap));
-                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false));
+                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false, 3));
 
         //Slowmode - D1
             Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))

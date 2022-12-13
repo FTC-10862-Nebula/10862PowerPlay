@@ -20,7 +20,7 @@ public class ClawServos extends SubsystemBase {
                                 OPEN_POS_S1 = 0.685,
 
                                 CLOSE_POS_S2 = 0.565,
-                                OPEN_POS_S2 = 0.360;
+                                OPEN_POS_S2 = 0.2779;
 
 //    private static double INTAKE_POWER = -1;
 //    private static double OUTTAKE_POWER = 1;
@@ -36,18 +36,14 @@ public class ClawServos extends SubsystemBase {
     private ServoEx clawS3;     //Servo that turns claw
 
     public ClawServos(Telemetry tl, HardwareMap hw) {
-//        this.clawS1 = clawS1;
-//        this.clawS2 = clawS2;
-//        this.clawS3 = clawS3; //Port 5
 
         this.clawS1 = new SimpleServo(hw,"clawS1",0,360);
-        this.clawS1.setPosition(CLOSE_POS_S1);
+        this.clawS1.setPosition(CLOSE_POS_S1);  //Port 2
         this.clawS2 = new SimpleServo(hw,"clawS2", 0, 360);
-        this.clawS2.setPosition(CLOSE_POS_S2);
-//        this.clawS2 = new CRServo(hw, "clawS2");
+        this.clawS2.setPosition(CLOSE_POS_S2);  //Port 3
 
         this.clawS3 = new SimpleServo(hw,"clawS3",0,360);
-        this.clawS3.setPosition(F_POS_S3);
+        this.clawS3.setPosition(F_POS_S3);      //Port 5
 
         this.telemetry = tl;
     }
@@ -83,15 +79,15 @@ public class ClawServos extends SubsystemBase {
 
 
 
-//    public void intakeClaw() {
-//        clawS2.set(INTAKE_POWER);
-//    }
-//    public void outtakeClaw() {
-//        clawS2.set(OUTTAKE_POWER);
-//    }
-//    public void stopClaw() {
-//        clawS2.stop();
-//    }
+    /*public void intakeClaw() {
+        clawS2.set(INTAKE_POWER);
+    }
+    public void outtakeClaw() {
+        clawS2.set(OUTTAKE_POWER);
+    }
+    public void stopClaw() {
+        clawS2.stop();
+    }*/
 
 
 

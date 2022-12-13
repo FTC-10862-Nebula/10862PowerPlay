@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.Strafe
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC3BCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC4BCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC5BCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickBAutoCommand;
@@ -32,81 +33,73 @@ public class RightHighJunctionCommandNew extends SequentialCommandGroup{
         addCommands(
                 new ParallelCommandGroup(
                         new SlideMidFCommand(slide, arm, clawServos, true),
-                        new StrafeRightCommand(drivetrain, 52)
+                        new StrafeRightCommand(drivetrain, 51.)
                 ),
                 new DropAutoConeCommand(clawServos, slide, arm),
-                new WaitCommand(300),
+//                new WaitCommand(300),
                 new ParallelCommandGroup(
-                        new StrafeRightCommand(drivetrain, 19),
+                        new StrafeRightCommand(drivetrain, 20.1),
                         new PrePickBAutoCommand(slide, clawServos, arm)
                 ),
-                new DriveForwardCommand(drivetrain, -27.2),
+                new DriveForwardCommand(drivetrain, -26.8),
 //                new TurnToCommand(drivetrain, 0),
 
+                /***Cone 5***/
 
                 new PickC5BCommand(slide, clawServos, arm, drivetrain),
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, clawServos, true),
                         new DriveForwardCommand(drivetrain, 29)
                 ),
-                new TurnCommand(drivetrain, -68.3),
-                new DriveForwardCommand(drivetrain, 5),
-                new DropAutoConeCommand(clawServos, slide, arm),
-                new DriveForwardCommand(drivetrain, -5),
+                new SequentialCommandGroup(
+                        new TurnCommand(drivetrain, -71.8),
+                        new DriveForwardCommand(drivetrain, 4),
+                        new DropAutoConeCommand(clawServos, slide, arm),
+                        new DriveForwardCommand(drivetrain, -3.8)
+                ),
                 new ParallelCommandGroup(
-//                        new TurnToCommand(drivetrain, 0, true),
-                        new TurnCommand(drivetrain, 68.3),
+//                        new TurnToCommand(drivetrain, 2.4, true),
+                        new TurnCommand(drivetrain, 68.5),
                         new PrePickBAutoCommand(slide, clawServos, arm)
                 ),
-                new DriveForwardCommand(drivetrain, -34),
+                new DriveForwardCommand(drivetrain, -33.5),
 
 
+                /***Cone 4***/
                 new PickC4BCommand(slide, clawServos, arm, drivetrain),
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, clawServos, true),
-                        new DriveForwardCommand(drivetrain, 28.5)
+                        new DriveForwardCommand(drivetrain, 28.8)
                 ),
-                new TurnCommand(drivetrain, -70),
-                new DriveForwardCommand(drivetrain, 5.6),
-                new DropAutoConeCommand(clawServos, slide, arm)
-
-//                new TurnToCommand(drivetrain, 0)
-                /*new PickC5BCommand(slide, clawServos, arm, drivetrain),
-                new ParallelCommandGroup(
-                        new SlideLowFCommand(slide, arm, clawServos, true),
-                        new TurnToCommand(drivetr_ain, 61, true)
+                new SequentialCommandGroup(
+                        new TurnToCommand(drivetrain, -68.7 , true),//oprg:300 to -60
+                        new DriveForwardCommand(drivetrain, 3.1),
+                        new DropAutoConeCommand(clawServos, slide, arm),
+                        new DriveForwardCommand(drivetrain, -3.8)
                 ),
                 new ParallelCommandGroup(
-                        new SlowDriveForwardCommand(drivetrain, 3.47),
-                        new WaitCommand(200),
-                        new DropAutoConeCommand(clawServos, slide, arm)
-                ),
-                new ParallelCommandGroup(
-                        new SlowDriveForwardCommand(drivetrain, -1.77),
+        //                        new TurnToCommand(drivetrain, 2.4, true),
+                        new TurnCommand(drivetrain, 68.5),
                         new PrePickBAutoCommand(slide, clawServos, arm)
                 ),
-                new TurnToCommand(drivetrain, 0),
-                new ParallelCommandGroup(
-                        new SlowDriveForwardCommand(drivetrain, -2.6),
-                        new InstantCommand(slide::slideCone4)
-                ),*/
-//                new PickC4BCommand(slide, clawServos, arm, drivetrain),
-//                new ParallelCommandGroup(
-//                        new TurnToCommand(drivetrain, 0),   //or remove
-//                        new SlideHighFCommand(slide, arm, clawServos, true)
-//                ),
-//                new DriveForwardCommand(drivetrain, 24),
-//                new TurnToCommand(drivetrain, 220, true),
-//                new ParallelCommandGroup(
-//                        new SlowDriveForwardCommand(drivetrain, -1.43),
-//                        new DropAutoConeCommand(clawServos, slide, arm)
-//                ),
+                new DriveForwardCommand(drivetrain, -33.5),
 
-//                new SlowDriveForwardCommand(drivetrain, -3),
-//                new ParallelCommandGroup(
-//                        new TurnToCommand(drivetrain, 271),
-//                        new SlideResetUpAutonCommand(slide, arm, clawServos)
-//                )
+
+                /***Cone 3***/
+                new PickC3BCommand(slide, clawServos, arm, drivetrain),
+                new ParallelCommandGroup(
+                        new SlideHighFCommand(slide, arm, clawServos, true),
+                        new DriveForwardCommand(drivetrain, 26.5)
+                ),
+                new TurnToCommand(drivetrain, -68.7 , true),//oprg:300 to -60
+                new DriveForwardCommand(drivetrain, 3.1),
+                new DropAutoConeCommand(clawServos, slide, arm),
+
+
+
+                //Parking
+                new TurnToCommand(drivetrain, 270),
+                new StrafeRightCommand(drivetrain, 25)
         );
     }
 }

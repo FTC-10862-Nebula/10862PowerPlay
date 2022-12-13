@@ -6,6 +6,8 @@ import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.arcrobotics.ftclib.hardware.ServoEx;
+import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.GamepadTrigger;
@@ -26,18 +28,26 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 @Config
-@TeleOp(name = "RobotCentricTeleop")
-public class RobotCentricTeleOp extends MatchOpMode {
+@TeleOp(name = "Left")
+public class LeftFieldCentricTeleOp extends MatchOpMode {
 
     private static double startPoseX = 0;
     private static double startPoseY = 0;
     private static double startPoseHeading = 0;
 
+    //Motors and Servos
+//    private MotorEx armMotor;
+    private ServoEx clawS1, clawS3;
+        private ServoEx clawS2;
+//    private CRServo clawS2;
+//    private MotorEx leftFront, leftRear, rightRear, rightFront;
+    private MotorEx liftMotor1, liftMotor2;
 
 //    private Encoder leftEncoder, rightEncoder, frontEncoder;
 
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
+
 
     // Subsystems
     private Arm arm;
@@ -55,29 +65,26 @@ public class RobotCentricTeleOp extends MatchOpMode {
 
         arm = new Arm(telemetry, hardwareMap);
         clawServos = new ClawServos(telemetry, hardwareMap);
+//        arm = new Arm(armMotor, telemetry, hardwareMap);
+//        clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, true, 2));
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, 1));
     }
 
 
     @Override
     public void configureButtons() {
-//        new GamepadButton(driverGamepad, GamepadKeys.Button.START)
-//                .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true));
-
         //Drive Stuff - D1
             Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true, 2));
+                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true, 1));
 //                    .whenPressed( new InstantCommand(drivetrain::closeImu));
             Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
-//                    .whenPressed( new InstantCommand(()->(drivetrain.inIMU(hardwareMap)));
-//                    .whenPressed(drivetrain.inIMU(hardwareMap));
-                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false, 2));
+                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false, 1));
 
         //Slowmode - D1
             Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))

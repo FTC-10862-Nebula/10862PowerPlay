@@ -11,8 +11,9 @@ public class DefaultDriveCommand extends CommandBase {
 
     protected double multiplier;
     boolean mecDrive = true;
+    int choice = 0;
 
-    public DefaultDriveCommand(Drivetrain drive, GamepadEx driverGamepad, boolean mecDrive) {
+    public DefaultDriveCommand(Drivetrain drive, GamepadEx driverGamepad, boolean mecDrive, int choice) {
 
         this.drive = drive;
         this.driverGamepad = driverGamepad;
@@ -21,6 +22,7 @@ public class DefaultDriveCommand extends CommandBase {
         addRequirements(this.drive);
 
         this.mecDrive = mecDrive;
+        this.choice = choice;
     }
 
     @Override
@@ -36,7 +38,8 @@ public class DefaultDriveCommand extends CommandBase {
             drive.fieldCentric(
                     -driverGamepad.getLeftY() * multiplier,
                     -driverGamepad.getLeftX() * multiplier,
-                    -driverGamepad.getRightX() * multiplier
+                    -driverGamepad.getRightX() * multiplier,
+                    choice
             );
         }
 

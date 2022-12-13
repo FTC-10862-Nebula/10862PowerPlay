@@ -14,7 +14,7 @@ public class PickConeCommand extends ParallelCommandGroup {
     public PickConeCommand(ClawServos clawServos, Slide slide, Arm arm){
         addCommands(
                 new InstantCommand(clawServos::clawClose, clawServos),
-                new WaitCommand(800),
+                new WaitCommand(500),
                 new InstantCommand(() ->
                         new Thread(() -> {
                             slide.slidePickUp();
