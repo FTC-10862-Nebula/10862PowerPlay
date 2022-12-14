@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnTo
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC4BCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC5BCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickBAutoCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickB5AutoCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
@@ -33,13 +33,13 @@ public class RightSplineJunctionCommand extends SequentialCommandGroup{
                 new DropAutoConeCommand(clawServos, slide, arm),
 //                new WaitCommand(500),
                 new StrafeRightCommand(drivetrain, 17.8),
-                new PrePickBAutoCommand(slide, clawServos, arm),
+                new PrePickB5AutoCommand(slide, clawServos, arm),
                 new DriveForwardCommand(drivetrain, -25.5),
 //                new TurnToCommand(drivetrain, 0),
 
 
 
-                new PickC5BCommand(slide, clawServos, arm, drivetrain),
+                new PickC5BCommand(slide, clawServos),
                 new SlideLowFCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 61, true),
 //                new TurnToCommand(drivetrain, 62.2),
@@ -47,7 +47,7 @@ public class RightSplineJunctionCommand extends SequentialCommandGroup{
                 new WaitCommand(200),
                 new DropAutoConeCommand(clawServos, slide, arm),
                 new SlowDriveForwardCommand(drivetrain, -1.77),
-                new PrePickBAutoCommand(slide, clawServos, arm),
+                new PrePickB5AutoCommand(slide, clawServos, arm),
                 new TurnToCommand(drivetrain, 0),
                 new SlowDriveForwardCommand(drivetrain, -2.6),
                 new InstantCommand(slide::slideCone4),

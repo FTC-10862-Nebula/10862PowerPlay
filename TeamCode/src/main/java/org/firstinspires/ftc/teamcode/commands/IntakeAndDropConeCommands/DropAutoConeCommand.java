@@ -20,7 +20,7 @@ public class DropAutoConeCommand extends SequentialCommandGroup {
                             slide.dropSlide();
                             clawServos.clawOpen();
                         }).start()),
-                new WaitCommand(300),
+                new WaitCommand(200),
                 new InstantCommand(arm::moveReset)
         );
     }

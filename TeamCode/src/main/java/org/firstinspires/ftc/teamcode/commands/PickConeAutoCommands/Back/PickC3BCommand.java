@@ -15,13 +15,9 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 public class PickC3BCommand extends SequentialCommandGroup  {
     public PickC3BCommand(Slide slide, ClawServos clawServos, Arm arm, Drivetrain drivetrain){
         addCommands(
-                new SlowDriveForwardCommand(drivetrain, -3),
-                new InstantCommand(clawServos::clawClose),
+                new InstantCommand(clawServos::clawAutoClose),
                 new WaitCommand(100),
-                new ParallelCommandGroup(
-                        new InstantCommand(slide:: slideLow),
-                        new DriveForwardCommand(drivetrain, 4)
-                )
+                new InstantCommand(slide:: slideLow)
         );
     }
 }

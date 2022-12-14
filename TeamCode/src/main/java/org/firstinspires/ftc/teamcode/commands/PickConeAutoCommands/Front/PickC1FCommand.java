@@ -16,7 +16,7 @@ public class PickC1FCommand extends SequentialCommandGroup  {
     public PickC1FCommand(Slide slide, ClawServos clawServos, Arm arm,  Drivetrain drivetrain){
         addCommands(
                 new SlowDriveForwardCommand(drivetrain, 2.7),
-                new InstantCommand(clawServos::clawClose),
+                new InstantCommand(clawServos::clawAutoClose),
                 new WaitCommand(100),
                 new ParallelCommandGroup(
                         new InstantCommand(slide:: slideLow),

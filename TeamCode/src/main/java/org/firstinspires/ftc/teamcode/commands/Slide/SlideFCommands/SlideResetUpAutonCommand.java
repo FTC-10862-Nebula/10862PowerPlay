@@ -10,15 +10,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 public class SlideResetUpAutonCommand extends SequentialCommandGroup{
     public SlideResetUpAutonCommand(Slide slide, Arm arm, ClawServos clawServos){
         addCommands(
+                new InstantCommand(clawServos::clawAutoClose),
                 new InstantCommand(clawServos::setFClawPos),
-//                new InstantCommand(
-//                        () -> new Thread(() -> {
-//                            clawServos.clawClose();
-//                            arm.moveIntakeF();
-//                            slide.slideResting();
-//                        }).start()
-//                ),
-//                new WaitCommand(200),
                 new InstantCommand(
                         () -> new Thread(() -> {
                             arm.moveReset();
@@ -26,12 +19,6 @@ public class SlideResetUpAutonCommand extends SequentialCommandGroup{
                             clawServos.setFClawPos();
                         }).start()
                 )
-//                new InstantCommand(clawServos::clawOpen)
-//                new InstantCommand(clawServos::clawClose, clawServos),
-//                new WaitCommand(400),
-//                new InstantCommand(arm::moveReset, arm),
-//                new InstantCommand(slide::slideResting, slide),
-//                new InstantCommand(clawServos::setFClawPos)
         );
     }
 }
