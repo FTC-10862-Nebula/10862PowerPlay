@@ -10,16 +10,16 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class PickConeCommand extends ParallelCommandGroup {
-
     public PickConeCommand(ClawServos clawServos, Slide slide, Arm arm){
         addCommands(
                 new InstantCommand(clawServos::clawClose, clawServos),
-                new WaitCommand(500),
-                new InstantCommand(() ->
-                        new Thread(() -> {
-                            slide.slidePickUp();
-                            arm.moveReset();
-                        }).start())
+                new WaitCommand(700),
+                new InstantCommand(slide::slidePickUp)
+//                new InstantCommand(() ->
+//                        new Thread(() -> {
+//                            slide.slidePickUp();
+//                            arm.moveReset();
+//                        }).start())
         );
     }
 }

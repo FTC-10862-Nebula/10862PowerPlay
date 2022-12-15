@@ -35,7 +35,7 @@ public class SlideHighFCommand extends SequentialCommandGroup {
                                         arm.moveHighF();
                                     }).start())
                     ),
-                    new WaitCommand(200),
+                    new WaitCommand(500),
                     new InstantCommand(clawServos::setFClawPos)
             );
         }

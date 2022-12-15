@@ -32,7 +32,11 @@ public class TrajectoryTest extends LinearOpMode {
         Pose2d startPose = new Pose2d(0, 0,0);
 
         TrajectorySequence preLoad = drive.trajectorySequenceBuilder(startPose)
-                .forward(5, vel, accel)
+//                .forward(50, vel, accel).
+                .strafeRight(50)
+                .strafeRight(21)
+                .lineToSplineHeading(new Pose2d(70, 5))
+//                .line
 //                .addTemporalMarker(t.start())
 //                .addTemporalMarker(clawServos::clawOpen)
 //                .UNSTABLE_addTemporalMarkerOffset(.5, clawServos::clawOpen)

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBCon
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
@@ -12,14 +13,14 @@ public class PrePickB1AutoCommand extends SequentialCommandGroup   {
     public PrePickB1AutoCommand(Slide slide, ClawServos clawServos, Arm arm){
         addCommands(
                 new ParallelCommandGroup(
-                        new InstantCommand(clawServos::clawAutoClose),
-                        new InstantCommand(arm::moveIntakeBAuto)
+                        new InstantCommand(clawServos::clawClose),
+//                        new InstantCommand(clawServos::clawAutoClose),
+                        new InstantCommand(arm::moveIntakeBAuto),
+                        new InstantCommand(slide::slideCone1)
                 ),
                 new InstantCommand(clawServos::setBClawPos),
-                new ParallelCommandGroup(
-                        new InstantCommand(clawServos::clawOpen),
-                        new InstantCommand(slide::slideCone5)
-                )
+                new WaitCommand(150),
+                new InstantCommand(clawServos::clawOpen)
         );
     }
 }

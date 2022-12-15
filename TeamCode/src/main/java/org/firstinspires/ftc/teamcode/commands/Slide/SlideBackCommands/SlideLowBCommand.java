@@ -35,7 +35,7 @@ public class SlideLowBCommand extends SequentialCommandGroup {
                                         arm.moveB();
                                     }).start())
                     ),
-                    new WaitCommand(200),
+                    new WaitCommand(500),
                     new InstantCommand(clawServos::setBClawPos)
             );
         }

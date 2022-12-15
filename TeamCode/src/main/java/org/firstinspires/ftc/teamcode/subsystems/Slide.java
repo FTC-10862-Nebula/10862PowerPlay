@@ -41,7 +41,7 @@ public class Slide extends SubsystemBase {
     public static int LOW_POS = -663;
     public static int MID_POS = -1149;
     public static int HIGH_POS = -1365;
-    public static int AUTO_MID_POS = -1000;
+    public static int AUTO_MID_POS = -1015;
 
 
     //Auto Slide Positions
@@ -327,7 +327,7 @@ public class Slide extends SubsystemBase {
 //                upController.setSetPoint(CONE_1_POS+80);
 //                break;
             case 13:
-                upController.setSetPoint(AUTO_MID_POS+600);
+                upController.setSetPoint(AUTO_MID_POS+500);
         }
     }
 

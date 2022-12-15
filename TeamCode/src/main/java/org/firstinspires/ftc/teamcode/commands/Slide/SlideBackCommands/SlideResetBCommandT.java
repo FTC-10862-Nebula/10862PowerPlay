@@ -23,13 +23,6 @@ public class SlideResetBCommandT extends SequentialCommandGroup {
                 ),
                 new InstantCommand(clawServos::clawOpen)
 
-//                new InstantCommand(clawServos::clawClose, clawServos),
-//                new InstantCommand(clawServos::setBClawPos),
-//                new WaitCommand(800),
-//                new InstantCommand(slide::slideResting, slide),
-//                new InstantCommand(arm::moveIntakeB, arm),
-//                new WaitCommand(600),
-//                new InstantCommand(clawServos::clawOpen)
         );
     }
 }

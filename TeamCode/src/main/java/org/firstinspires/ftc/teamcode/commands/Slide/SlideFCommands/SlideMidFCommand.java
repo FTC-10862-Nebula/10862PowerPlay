@@ -21,7 +21,7 @@ public class SlideMidFCommand extends SequentialCommandGroup {
                             new InstantCommand(() ->
                                     new Thread(() -> {
                                         clawServos.clawClose();
-                                        slide.slideMid();
+                                        slide.slideAutoMid();
                                         arm.moveFAuto();
                                     }).start())
                     ),
@@ -39,7 +39,7 @@ public class SlideMidFCommand extends SequentialCommandGroup {
                                         arm.moveF();
                                     }).start())
                     ),
-                    new WaitCommand(200),
+                    new WaitCommand(500),
                     new InstantCommand(clawServos::setFClawPos)
             );
         }

@@ -37,14 +37,8 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
     private static double startPoseX = 0;
     private static double startPoseY = 0;
     private static double startPoseHeading = 0;
+    int choice = 2;
 
-    //Motors and Servos
-//    private MotorEx armMotor;
-    private ServoEx clawS1, clawS3;
-        private ServoEx clawS2;
-//    private CRServo clawS2;
-//    private MotorEx leftFront, leftRear, rightRear, rightFront;
-    private MotorEx liftMotor1, liftMotor2;
 
 //    private Encoder leftEncoder, rightEncoder, frontEncoder;
 
@@ -68,15 +62,13 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
 
         arm = new Arm(telemetry, hardwareMap);
         clawServos = new ClawServos(telemetry, hardwareMap);
-//        arm = new Arm(armMotor, telemetry, hardwareMap);
-//        clawServos = new ClawServos(clawS1, clawS2, clawS3, telemetry, hardwareMap);
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, 2));
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
     }
 
 
@@ -84,14 +76,14 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
     public void configureButtons() {
         //Drive Stuff - D1
             Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true, 2));
+                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true, choice));
 //                    .whenPressed( new InstantCommand(drivetrain::closeImu));
             Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
-                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false, 2));
+                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false, choice));
 
         //Slowmode - D1
-            Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                    .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
+            Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER))
+                    .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad, choice));
 
         //Claw Servo Intake/Outtake - D1
 //            Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
