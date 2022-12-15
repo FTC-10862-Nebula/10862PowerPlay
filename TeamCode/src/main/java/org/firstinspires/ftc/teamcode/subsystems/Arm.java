@@ -32,16 +32,16 @@ public class Arm extends SubsystemBase {
     public static int INTAKE_POS_BACK = -312,
                         POS_BACK = -252,
                         HIGH_POS_BACK = -145;
-    public static int HIGH_POS_AUTO_BACK = -139;
-    public static int INTAKE_POS_AUTO_BACK = -259;
-    public static int POS_AUTO_BACK = -160;
+    public static int HIGH_POS_AUTO_BACK = -139,
+                        INTAKE_POS_AUTO_BACK = -259,
+                        POS_AUTO_BACK = -164;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
-                    POS_FRONT = -POS_BACK,
-                    HIGH_POS_FRONT = -HIGH_POS_BACK;
+                        POS_FRONT = -POS_BACK,
+                        HIGH_POS_FRONT = -HIGH_POS_BACK;
     public static int HIGH_POS_AUTO_FRONT = -HIGH_POS_AUTO_BACK,
-                    INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
-                    POS_AUTO_FRONT = -POS_AUTO_BACK;
+                        INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
+                        POS_AUTO_FRONT = -POS_AUTO_BACK;
 
 
 
