@@ -74,76 +74,73 @@ public class RightFieldCentricTeleOp extends MatchOpMode {
     @Override
     public void configureButtons() {
         //Drive Stuff - D1
-            Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true, choice));
+        Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
+                .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true, choice));
 //                    .whenPressed( new InstantCommand(drivetrain::closeImu));
-            Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
-                    .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false, choice));
+        Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
+                .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false, choice));
 
         //Slowmode - D1
-            Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER))
-                    .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad, choice));
+        Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER))
+                .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad, choice));
 
         //Claw Servo Intake/Outtake - D1
-//            Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-////                    .whenPressed(new SlideLowBCommand(slide, arm, clawServos))
-//                .whenPressed(new PickConeCommand(clawServos, slide, arm));
-//            Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-//                .whenPressed(new DropConeCommand(clawServos, slide, arm, drivetrain));
-            Button intakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
+            /*Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
                 .whenPressed(new PickConeCommand(clawServos, slide, arm));
-            Button outtakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+            Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+                .whenPressed(new DropConeCommand(clawServos, slide, arm, drivetrain));*/
+        Button intakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
+                .whenPressed(new PickConeCommand(clawServos, slide, arm));
+        Button outtakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
                 .whenPressed(new DropConeCommand(clawServos, slide, arm, drivetrain));
 
         //Slide positions - D2
-            Button groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                    .whenPressed(new SlideGroundBCommand(slide, arm, clawServos, false)));
-            Button lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                    .whenPressed(new SlideLowBCommand(slide, arm, clawServos, false)));
-            Button midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                    .whenPressed(new SlideMidBCommand(slide, arm, clawServos, false)));
-            Button highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                    .whenPressed(new SlideHighBCommand(slide, arm, clawServos, false)));
+        Button groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
+                .whenPressed(new SlideGroundBCommand(slide, arm, clawServos, false)));
+        Button lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
+                .whenPressed(new SlideLowBCommand(slide, arm, clawServos, false)));
+        Button midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
+                .whenPressed(new SlideMidBCommand(slide, arm, clawServos, false)));
+        Button highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
+                .whenPressed(new SlideHighBCommand(slide, arm, clawServos, false)));
 
-            Button resetFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                    .whenPressed(new SlideResetFCommandT(slide, arm, clawServos)));
-            Button resetArmUp = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
-                    .whenPressed(arm::moveReset));
+        Button resetFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
+                .whenPressed(new SlideResetFCommandT(slide, arm, clawServos)));
+        Button resetArmUp = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
+                .whenPressed(arm::moveReset));
 
         //Slide Manual - D2
-            Button slideUpTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-                    .whenPressed(slide::upSlideManual)
-                    .whenReleased(slide::stopSlide);
-            Button slideDownTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                    .whenPressed(slide::downSlideManual)
-                    .whenReleased(slide::stopSlide);
+        Button slideUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
+                .whileHeld(slide::upSlideManual);
+        Button slideDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN))
+                .whileHeld(slide::downSlideManual);
 
         //Arm Manual - D2
-            Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
+        Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
                 .whenPressed(arm::raiseClawManual)
                 .whenReleased(arm::stopClaw));
-            Button armLowerButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
+        Button armLowerButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
                 .whenPressed(arm::lowerClawManual)
                 .whenReleased(arm::stopClaw));
 
         //Claw Servo 3 Buttons - D1
-//            Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
-//                    .whenPressed(clawServos::setFClawPos);
-//            Button s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
-//                    .whenPressed(clawServos::setBClawPos);
+            /*Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
+                    .whenPressed(clawServos::setFClawPos);
+            Button s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
+                    .whenPressed(clawServos::setBClawPos);*/
 
 
 
 //            PIDF Controllers Resets
-            Button armMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
-                    .whenPressed(arm::encoderReset);
-            Button slideEncoderResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
-                    .whenPressed(slide::encoderReset);
+        Button armMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
+                .whenPressed(arm::encoderReset);
+        Button slideEncoderResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
+                .whenPressed(slide::encoderReset);
 
-//            Button armFButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT))
-//                    .whenPressed(arm::moveF);
-//            Button armBButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT))
-//                    .whenPressed(arm::moveB);
+            /*Button armFButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT))
+                    .whenPressed(arm::moveF);
+            Button armBButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT))
+                    .whenPressed(arm::moveB);*/
 
 
             /*

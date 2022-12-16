@@ -12,11 +12,11 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnTo
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC4FCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC5FCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC5FCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePick5FCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetUpAutonCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -40,26 +40,26 @@ public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGrou
                 new InstantCommand(clawServos::clawOpen),
 
                 new WaitCommand(500),
-                new PrePickC5FCommand(slide, clawServos, arm),
+                new PrePick5FCommand(slide, clawServos, arm),
                 new StrafeRightCommand(drivetrain, 16.5),
                 new DriveForwardCommand(drivetrain, 26.5),
 
 
-                new PickC5FCommand(slide, clawServos, arm, drivetrain),
+                new PickC5FCommand(slide, clawServos),
                 new SlideLowBCommand(slide, arm, clawServos, true),
                 new TurnCommand(drivetrain, -55.3),
                 new SlowDriveForwardCommand(drivetrain, -3),
                 new DropAutoConeCommand(clawServos, slide, arm),
                 new WaitCommand(200),
                 new SlowDriveForwardCommand(drivetrain, 1.8),
-                new PrePickC5FCommand(slide, clawServos, arm),
+                new PrePick5FCommand(slide, clawServos, arm),
                 new TurnToCommand(drivetrain, 3, true),
                 new SlowDriveForwardCommand(drivetrain, 3),
                 new InstantCommand(slide::slideCone4),
 
 
 
-                new PickC4FCommand(slide, clawServos, arm, drivetrain),
+                new PickC4FCommand(slide, clawServos),
                 new DriveForwardCommand(drivetrain, -35.8),
                 new SlideHighFCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 264.9),

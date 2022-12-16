@@ -13,15 +13,11 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class PickC2FCommand extends SequentialCommandGroup {
-    public PickC2FCommand(Slide slide, ClawServos clawServos, Arm arm, Drivetrain drivetrain){
+    public PickC2FCommand(Slide slide, ClawServos clawServos){
         addCommands(
-                new SlowDriveForwardCommand(drivetrain, 2.7),
                 new InstantCommand(clawServos::clawAutoClose),
                 new WaitCommand(100),
-                new ParallelCommandGroup(
-                        new InstantCommand(slide:: slideLow),
-                        new DriveForwardCommand(drivetrain, -3.7)
-                )
+                new InstantCommand(slide:: slideLow)
         );
     }
 }

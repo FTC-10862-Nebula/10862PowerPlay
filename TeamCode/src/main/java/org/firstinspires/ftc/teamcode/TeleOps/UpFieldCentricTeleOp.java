@@ -86,11 +86,10 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
                     .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad, choice));
 
         //Claw Servo Intake/Outtake - D1
-//            Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-////                    .whenPressed(new SlideLowBCommand(slide, arm, clawServos))
-//                .whenPressed(new PickConeCommand(clawServos, slide, arm));
-//            Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-//                .whenPressed(new DropConeCommand(clawServos, slide, arm, drivetrain));
+            /*Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
+                .whenPressed(new PickConeCommand(clawServos, slide, arm));
+            Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+                .whenPressed(new DropConeCommand(clawServos, slide, arm, drivetrain));*/
             Button intakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
                 .whenPressed(new PickConeCommand(clawServos, slide, arm));
             Button outtakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
@@ -112,12 +111,10 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
                     .whenPressed(arm::moveReset));
 
         //Slide Manual - D2
-            Button slideUpTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-                    .whenPressed(slide::upSlideManual)
-                    .whenReleased(slide::stopSlide);
-            Button slideDownTrigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                    .whenPressed(slide::downSlideManual)
-                    .whenReleased(slide::stopSlide);
+            Button slideUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
+                    .whileHeld(slide::upSlideManual);
+            Button slideDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN))
+                    .whileHeld(slide::downSlideManual);
 
         //Arm Manual - D2
             Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
@@ -128,10 +125,10 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
                 .whenReleased(arm::stopClaw));
 
         //Claw Servo 3 Buttons - D1
-//            Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
-//                    .whenPressed(clawServos::setFClawPos);
-//            Button s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
-//                    .whenPressed(clawServos::setBClawPos);
+            /*Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
+                    .whenPressed(clawServos::setFClawPos);
+            Button s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
+                    .whenPressed(clawServos::setBClawPos);*/
 
 
 
@@ -141,10 +138,10 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
             Button slideEncoderResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
                     .whenPressed(slide::encoderReset);
 
-//            Button armFButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT))
-//                    .whenPressed(arm::moveF);
-//            Button armBButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT))
-//                    .whenPressed(arm::moveB);
+            /*Button armFButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT))
+                    .whenPressed(arm::moveF);
+            Button armBButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT))
+                    .whenPressed(arm::moveB);*/
 
 
             /*

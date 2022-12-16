@@ -12,11 +12,11 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnTo
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC4BCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC5BCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickB5AutoCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickB5Command;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetUpAutonCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -33,7 +33,7 @@ public class RightSplineJunctionCommand extends SequentialCommandGroup{
                 new DropAutoConeCommand(clawServos, slide, arm),
 //                new WaitCommand(500),
                 new StrafeRightCommand(drivetrain, 17.8),
-                new PrePickB5AutoCommand(slide, clawServos, arm),
+                new PrePickB5Command(slide, clawServos, arm),
                 new DriveForwardCommand(drivetrain, -25.5),
 //                new TurnToCommand(drivetrain, 0),
 
@@ -47,14 +47,14 @@ public class RightSplineJunctionCommand extends SequentialCommandGroup{
                 new WaitCommand(200),
                 new DropAutoConeCommand(clawServos, slide, arm),
                 new SlowDriveForwardCommand(drivetrain, -1.77),
-                new PrePickB5AutoCommand(slide, clawServos, arm),
+                new PrePickB5Command(slide, clawServos, arm),
                 new TurnToCommand(drivetrain, 0),
                 new SlowDriveForwardCommand(drivetrain, -2.6),
                 new InstantCommand(slide::slideCone4),
 
 
 
-                new PickC4BCommand(slide, clawServos, arm, drivetrain),
+                new PickC4BCommand(slide, clawServos),
                 new TurnToCommand(drivetrain, 0),   //or remove
 //                new InstantCommand(slide::slideLow),    /*TTTTESTTTTT*/
                 new SlideHighFCommand(slide, arm, clawServos, true),

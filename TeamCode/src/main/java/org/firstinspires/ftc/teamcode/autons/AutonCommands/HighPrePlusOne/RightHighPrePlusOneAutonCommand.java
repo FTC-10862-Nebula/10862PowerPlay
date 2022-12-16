@@ -8,10 +8,10 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SlowDr
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC5FCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePickC5FCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePick5FCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetUpAutonCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -31,11 +31,11 @@ public class RightHighPrePlusOneAutonCommand extends SequentialCommandGroup{
                 new WaitCommand(200),
 
                 new SlowDriveForwardCommand(drivetrain,8),
-                new PrePickC5FCommand(slide, clawServos, arm),
+                new PrePick5FCommand(slide, clawServos, arm),
                 new TurnToCommand(drivetrain, 97),
                 new DriveForwardCommand(drivetrain, 25),
 
-                new PickC5FCommand(slide, clawServos, arm, drivetrain),
+                new PickC5FCommand(slide, clawServos),
                 new SlideLowBCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 148),
                 new SlowDriveForwardCommand(drivetrain, -2),

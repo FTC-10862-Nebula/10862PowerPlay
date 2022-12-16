@@ -29,16 +29,18 @@ public class Arm extends SubsystemBase {
     private double offsetNum = 0;
     public static int INIT_POS = 0;
 
-    public static int INTAKE_POS_BACK = -312,
+    public static int INTAKE_POS_BACK = -318,
                         POS_BACK = -252,
-                        HIGH_POS_BACK = -145;
+                        HIGH_POS_BACK = -170                            ,
+                        GROUND_POS_BACK = -240;
     public static int HIGH_POS_AUTO_BACK = -139,
                         INTAKE_POS_AUTO_BACK = -259,
                         POS_AUTO_BACK = -164;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
                         POS_FRONT = -POS_BACK,
-                        HIGH_POS_FRONT = -HIGH_POS_BACK;
+                        HIGH_POS_FRONT = -HIGH_POS_BACK,
+                        GROUND_POS_FRONT = -GROUND_POS_BACK;
     public static int HIGH_POS_AUTO_FRONT = -HIGH_POS_AUTO_BACK,
                         INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
                         POS_AUTO_FRONT = -POS_AUTO_BACK;
@@ -52,7 +54,6 @@ public class Arm extends SubsystemBase {
     private MotorEx armMotor;
 
     public Arm(Telemetry tl, HardwareMap hw) {
-//        this.armMotor = armMotor;
         this.armMotor = new MotorEx(hw, "clawM");
 
         //Reverse claw motor
@@ -107,10 +108,20 @@ public class Arm extends SubsystemBase {
     public void raiseClawManual() {
         armAutomatic = false;
         armMotor.set(UP_SPEED);
+//        armAutomatic = true;
+//        if((armMotor.getCurrentPosition()<250)){
+//            controller.setSetPoint(armMotor.getCurrentPosition()+5);
+//        }
+//        else return;
     }
     public void lowerClawManual() {
         armAutomatic = false;
         armMotor.set(DOWN_SPEED);
+//        armAutomatic = true;
+//        if((armMotor.getCurrentPosition()>-250)){
+//            controller.setSetPoint(armMotor.getCurrentPosition()-5);
+//        }
+//        else return;
     }
 
     public void stopClaw() {
@@ -186,6 +197,16 @@ public class Arm extends SubsystemBase {
         armAutomatic = true;
         controller.setSetPoint(INTAKE_POS_AUTO_BACK);
         clawPos = 12;
+    }
+    public void moveGroundB(){
+        armAutomatic = true;
+        controller.setSetPoint(GROUND_POS_BACK);
+        clawPos = 13;
+    }
+    public void moveGroundF(){
+        armAutomatic = true;
+        controller.setSetPoint(GROUND_POS_FRONT);
+        clawPos = 13;
     }
 
     public void dropArmTeleop(){

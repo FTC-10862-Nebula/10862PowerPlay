@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class PickC4BCommand extends SequentialCommandGroup  {
-    public PickC4BCommand(Slide slide, ClawServos clawServos, Arm arm, Drivetrain drivetrain){
+    public PickC4BCommand(Slide slide, ClawServos clawServos){
         addCommands(
                 new InstantCommand(clawServos::clawAutoClose),
                 new WaitCommand(100),

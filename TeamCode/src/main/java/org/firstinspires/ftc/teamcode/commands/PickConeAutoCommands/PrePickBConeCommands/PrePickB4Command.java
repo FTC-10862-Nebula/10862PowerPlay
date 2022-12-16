@@ -9,14 +9,14 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class PrePickB3AutoCommand extends SequentialCommandGroup   {
-    public PrePickB3AutoCommand(Slide slide, ClawServos clawServos, Arm arm){
+public class PrePickB4Command extends SequentialCommandGroup   {
+    public PrePickB4Command(Slide slide, ClawServos clawServos, Arm arm){
         addCommands(
                 new ParallelCommandGroup(
                         new InstantCommand(clawServos::clawClose),
 //                        new InstantCommand(clawServos::clawAutoClose),
                         new InstantCommand(arm::moveIntakeBAuto),
-                        new InstantCommand(slide::slideCone3)
+                        new InstantCommand(slide::slideCone4)
                 ),
                 new InstantCommand(clawServos::setBClawPos),
                 new WaitCommand(150),

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
@@ -21,6 +22,7 @@ public class SlideResetBCommandT extends SequentialCommandGroup {
                                 }).start()
                         )
                 ),
+                new WaitCommand(700),
                 new InstantCommand(clawServos::clawOpen)
 
         );

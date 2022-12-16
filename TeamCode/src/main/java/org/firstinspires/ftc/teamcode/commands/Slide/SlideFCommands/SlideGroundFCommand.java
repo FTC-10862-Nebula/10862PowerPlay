@@ -32,7 +32,7 @@ public class SlideGroundFCommand extends SequentialCommandGroup {
                                     new Thread(() -> {
                                         clawServos.clawClose();
                                         slide.slideGround();
-                                        arm.moveF();
+                                        arm.moveGroundF();
                                     }).start())
                     ),
                     new WaitCommand(500),

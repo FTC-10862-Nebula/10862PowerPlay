@@ -14,11 +14,11 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAut
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC4BCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC5BCommand;
 
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickB5AutoCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickB5Command;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetUpAutonCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -40,7 +40,7 @@ Turn is Counterclockwise*/
                 ),
                 new ParallelCommandGroup(
                         new StrafeRightCommand(drivetrain, 17.8),
-                        new PrePickB5AutoCommand(slide, clawServos, arm)
+                        new PrePickB5Command(slide, clawServos, arm)
                 ),
                 new DriveForwardCommand(drivetrain, -24.4),
 //                new TurnToCommand(drivetrain, 0),
@@ -59,7 +59,7 @@ Turn is Counterclockwise*/
                 ),
                 new ParallelCommandGroup(
                         new SlowDriveForwardCommand(drivetrain, -1.77),
-                        new PrePickB5AutoCommand(slide, clawServos, arm)
+                        new PrePickB5Command(slide, clawServos, arm)
                 ),
                 new TurnToCommand(drivetrain, 0),
                 new ParallelCommandGroup(
@@ -68,7 +68,7 @@ Turn is Counterclockwise*/
                 ),
 
 
-                new PickC4BCommand(slide, clawServos, arm, drivetrain),
+                new PickC4BCommand(slide, clawServos),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 0),   //or remove
                         new SlideHighFCommand(slide, arm, clawServos, true)

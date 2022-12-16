@@ -137,9 +137,15 @@ public class Slide extends SubsystemBase {
 //        automatic = false;
 //    }
     public void upSlideManual(){
-        slideAutomatic = false;
-        slideM1.set(UP_SPEED);
-        slideM2.set(UP_SPEED);
+//        slideAutomatic = false;
+//        slideM1.set(UP_SPEED);
+//        slideM2.set(UP_SPEED);
+        slideAutomatic = true;
+        if((slideM1.getCurrentPosition()<-10)){
+            upController.setSetPoint(slideM1.getCurrentPosition()-20);
+        }
+        else return;
+
     }
 
     public void setPower(double power)
@@ -149,9 +155,15 @@ public class Slide extends SubsystemBase {
     }
 
     public void downSlideManual() {
-        slideAutomatic = false;
-        slideM1.set(DOWN_SPEED);
-        slideM2.set(DOWN_SPEED);
+//        slideAutomatic = false;
+//        slideM1.set(DOWN_SPEED);
+//        slideM2.set(DOWN_SPEED);
+        slideAutomatic = true;
+        if((slideM1.getCurrentPosition()>-10)){
+            upController.setSetPoint(slideM1.getCurrentPosition()+20);
+        }
+        else return;
+
     }
 
     public void stopSlide() {
@@ -299,6 +311,9 @@ public class Slide extends SubsystemBase {
         resetEncoder();
         upController.setSetPoint(getAngle());
     }
+    public boolean isSlideAutomatic(){
+        return slideAutomatic;
+    }
 
     public void dropSlide(){
         switch (liftPosition){
@@ -330,48 +345,4 @@ public class Slide extends SubsystemBase {
                 upController.setSetPoint(AUTO_MID_POS+500);
         }
     }
-
-//    public void moveUp() {
-//        liftPosition = liftPosition + 1;
-//        if(liftPosition > 4) {
-//            liftPosition = 4;
-//        }
-//        moveLiftToCorrectHeight();
-//    }
-//
-//    public void moveDown() {
-//        liftPosition = liftPosition - 1;
-//        if(liftPosition < 0) {
-//            liftPosition = 0;
-//        }
-//        moveLiftToCorrectHeight();
-//    }
-
-//    public void moveLiftToCorrectHeight() {
-//        if(liftPosition == 0) {
-//            slideResting();
-//        } else if(liftPosition == 1) {
-//            slideGround();
-//        } else if(liftPosition == 2) {
-//            slideLow();
-//        } else if(liftPosition == 3) {
-//            slideMid();
-//        } else if(liftPosition == 4) {
-//            slideHigh();
-//        } else if(liftPosition == 5) {
-//            slideCone5();
-//        } else if(liftPosition == 6) {
-//            slideCone4();
-//        } else if(liftPosition == 7) {
-//            slideCone3();
-//        } else if(liftPosition == 8) {
-//            slideCone2();
-//        } else if(liftPosition == 9) {
-//            slideCone1();
-//        } else if(liftPosition == 10) {
-//            autoPickSlideUp();
-//        } else if(liftPosition == 11) {
-//            autoDropSlideUp();
-//        }
-//    }
 }

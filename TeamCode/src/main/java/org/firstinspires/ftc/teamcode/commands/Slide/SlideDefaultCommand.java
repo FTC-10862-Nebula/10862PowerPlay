@@ -17,7 +17,10 @@ public class SlideDefaultCommand extends SequentialCommandGroup{
 
     @Override
     public void execute(){
+        if(slide.isSlideAutomatic())
+        {
             slide.setPower(-operatorGamepad.getLeftY());
+        }
     }
 
 

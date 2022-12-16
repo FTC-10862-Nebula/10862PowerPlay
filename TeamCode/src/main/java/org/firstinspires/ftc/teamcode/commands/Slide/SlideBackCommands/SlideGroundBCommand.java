@@ -32,7 +32,7 @@ public class SlideGroundBCommand extends SequentialCommandGroup {
                                     new Thread(() -> {
                                         clawServos.clawClose();
                                         slide.slideGround();
-                                        arm.moveB();
+                                        arm.moveGroundB();
                                     }).start())
                     ),
                     new WaitCommand(500),

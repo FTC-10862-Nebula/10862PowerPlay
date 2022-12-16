@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands;
+package org.firstinspires.ftc.teamcode.commands.Slide;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
