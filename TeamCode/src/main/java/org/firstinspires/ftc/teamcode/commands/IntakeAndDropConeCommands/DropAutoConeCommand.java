@@ -11,18 +11,31 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class DropAutoConeCommand extends SequentialCommandGroup {
 
-    public DropAutoConeCommand(ClawServos clawServos, Slide slide, Arm arm){
-        addRequirements(arm);
-        addCommands(
-                new InstantCommand(() ->
-                        new Thread(() -> {
-                            arm.dropArmAuto();
-                            slide.dropSlide();
-                            clawServos.clawOpen();
-                        }).start()),
-                new WaitCommand(200),
-                new InstantCommand(arm::moveReset)
-        );
+    public DropAutoConeCommand(ClawServos clawServos, Slide slide, Arm arm, boolean auto){
+        if(auto){
+            addCommands(
+                    new InstantCommand(() ->
+                            new Thread(() -> {
+                                arm.dropArmAuto();
+                                slide.dropSlide();
+                                clawServos.clawOpen();
+                            }).start()),
+                    new WaitCommand(200),
+                    new InstantCommand(arm::moveReset)
+            );
+        }else{
+            addCommands(
+                    new InstantCommand(() ->
+                            new Thread(() -> {
+                                arm.dropArmTeleop();
+                                slide.dropSlide();
+                                clawServos.clawOpen();
+                            }).start()),
+                    new WaitCommand(300),
+                    new InstantCommand(arm::moveReset)
+            );
+        }
+
     }
 
 }

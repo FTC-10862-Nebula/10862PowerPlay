@@ -50,7 +50,7 @@ public class FaithAuton extends MatchOpMode {
                 new SequentialCommandGroup(
                         new StrafeRightCommand( drivetrain, 55),
                         new SlideHighBCommand(slide,arm, clawServos, true),
-                        new DropAutoConeCommand(clawServos,slide,arm),
+                        new DropAutoConeCommand(clawServos, slide, arm,true),
                         new SlideResetUpAutonCommand(slide, arm, clawServos)
 //                        new
         )

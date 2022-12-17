@@ -35,7 +35,7 @@ public class SlideGroundBCommand extends SequentialCommandGroup {
                                         arm.moveGroundB();
                                     }).start())
                     ),
-                    new WaitCommand(500),
+                    new WaitCommand(800),
                     new InstantCommand(clawServos::setBClawPos)
             );
         }

@@ -23,7 +23,7 @@ public class SlideResetFCommandT extends SequentialCommandGroup {
                         }).start()
                     )
                 ),
-                new WaitCommand(700),
+                new WaitCommand(800),
                 new InstantCommand(clawServos::clawOpen)
         );
     }

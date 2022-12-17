@@ -39,7 +39,7 @@ public class SlideMidFCommand extends SequentialCommandGroup {
                                         arm.moveF();
                                     }).start())
                     ),
-                    new WaitCommand(500),
+                    new WaitCommand(800),
                     new InstantCommand(clawServos::setFClawPos)
             );
         }

@@ -11,9 +11,8 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.Strafe
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC4BCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC5BCommand;
 
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Pick.PickCBCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickB5Command;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
@@ -36,8 +35,8 @@ Turn is Counterclockwise*/
                 ),
                 new ParallelCommandGroup(
                         new SlowDriveForwardCommand(drivetrain, 1),
-                        new DropAutoConeCommand(clawServos, slide, arm)
-                ),
+                        new DropAutoConeCommand(clawServos, slide, arm,true)
+                        ),
                 new ParallelCommandGroup(
                         new StrafeRightCommand(drivetrain, 17.8),
                         new PrePickB5Command(slide, clawServos, arm)
@@ -47,7 +46,7 @@ Turn is Counterclockwise*/
 
 
 
-                new PickC5BCommand(slide, clawServos),
+                new PickCBCommand(slide, clawServos),
                 new ParallelCommandGroup(
                         new SlideLowFCommand(slide, arm, clawServos, true),
                         new TurnToCommand(drivetrain, 61, true)
@@ -55,8 +54,8 @@ Turn is Counterclockwise*/
                 new ParallelCommandGroup(
                         new SlowDriveForwardCommand(drivetrain, 3.47),
                         new WaitCommand(200),
-                        new DropAutoConeCommand(clawServos, slide, arm)
-                ),
+                        new DropAutoConeCommand(clawServos, slide, arm,true)
+                        ),
                 new ParallelCommandGroup(
                         new SlowDriveForwardCommand(drivetrain, -1.77),
                         new PrePickB5Command(slide, clawServos, arm)
@@ -68,7 +67,7 @@ Turn is Counterclockwise*/
                 ),
 
 
-                new PickC4BCommand(slide, clawServos),
+                new PickCBCommand(slide, clawServos),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 0),   //or remove
                         new SlideHighFCommand(slide, arm, clawServos, true)
@@ -86,8 +85,8 @@ Turn is Counterclockwise*/
 //                new SlowDriveForwardCommand(drivetrain, 0.85),
                 new ParallelCommandGroup(
                         new SlowDriveForwardCommand(drivetrain, -1.43),
-                        new DropAutoConeCommand(clawServos, slide, arm)
-                ),
+                        new DropAutoConeCommand(clawServos, slide, arm,true)
+                        ),
 
                 new SlowDriveForwardCommand(drivetrain, -3),
                 new ParallelCommandGroup(

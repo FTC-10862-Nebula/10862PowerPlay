@@ -35,7 +35,7 @@ public class SlideGroundFCommand extends SequentialCommandGroup {
                                         arm.moveGroundF();
                                     }).start())
                     ),
-                    new WaitCommand(500),
+                    new WaitCommand(800),
                     new InstantCommand(clawServos::setFClawPos)
             );
         }

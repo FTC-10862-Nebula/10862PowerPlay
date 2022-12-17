@@ -9,9 +9,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.Strafe
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC3FCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC4FCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC5FCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Pick.PickCFCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickB3Command;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickB4Command;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePick5FCommand;
@@ -32,7 +30,7 @@ public class LeftHighJunctionCommandNew extends SequentialCommandGroup{
                         new SlideMidBCommand(slide, arm, clawServos, true),
                         new StrafeRightCommand(drivetrain, 51.9)
                 ),
-                new DropAutoConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm,true),
                 new ParallelCommandGroup(
                         new StrafeRightCommand(drivetrain, 20.6),
                         new PrePick5FCommand(slide, clawServos, arm)
@@ -42,7 +40,7 @@ public class LeftHighJunctionCommandNew extends SequentialCommandGroup{
 
 
                 /***Cone 5***/
-                new PickC5FCommand(slide, clawServos),
+                new PickCFCommand(slide, clawServos),
                 new ParallelCommandGroup(
                         new SlideHighBCommand(slide, arm, clawServos, true),
                         new DriveForwardCommand(drivetrain, 29)
@@ -50,7 +48,7 @@ public class LeftHighJunctionCommandNew extends SequentialCommandGroup{
                 new SequentialCommandGroup(
                         new TurnCommand(drivetrain, 52.5),//61 ish
                         new DriveForwardCommand(drivetrain, -2.5),
-                        new DropAutoConeCommand(clawServos, slide, arm),
+                        new DropAutoConeCommand(clawServos, slide, arm,true),
                         new DriveForwardCommand(drivetrain, 4.88)
                 ),
                 new ParallelCommandGroup(
@@ -62,7 +60,7 @@ public class LeftHighJunctionCommandNew extends SequentialCommandGroup{
 
 
                 /***Cone 4***/
-                new PickC4FCommand(slide, clawServos),
+                new PickCFCommand(slide, clawServos),
                 new ParallelCommandGroup(
                         new SlideHighBCommand(slide, arm, clawServos, true),
                         new DriveForwardCommand(drivetrain, -30)
@@ -70,7 +68,7 @@ public class LeftHighJunctionCommandNew extends SequentialCommandGroup{
                 new SequentialCommandGroup(
                         new TurnCommand(drivetrain, 50.5),//oprg:300 to -60
                         new DriveForwardCommand(drivetrain, -2.3),
-                        new DropAutoConeCommand(clawServos, slide, arm),
+                        new DropAutoConeCommand(clawServos, slide, arm,true),
                         new DriveForwardCommand(drivetrain, 4.5)
                 ),
                 new ParallelCommandGroup(
@@ -82,14 +80,14 @@ public class LeftHighJunctionCommandNew extends SequentialCommandGroup{
 
 
                 /***Cone 3***/
-                new PickC3FCommand(slide, clawServos),
+                new PickCFCommand(slide, clawServos),
                 new ParallelCommandGroup(
                         new SlideHighBCommand(slide, arm, clawServos, true),
                         new DriveForwardCommand(drivetrain, -28.8)
                 ),
                 new TurnCommand(drivetrain, -46.5),//oprg:300 to -60
                 new DriveForwardCommand(drivetrain, 2.3),
-                new DropAutoConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm,true),
 
 
 

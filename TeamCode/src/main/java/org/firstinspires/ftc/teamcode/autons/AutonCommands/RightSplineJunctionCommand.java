@@ -10,8 +10,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.Strafe
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC4BCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Back.PickC5BCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Pick.PickCBCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBConeCommands.PrePickB5Command;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
@@ -30,7 +29,7 @@ public class RightSplineJunctionCommand extends SequentialCommandGroup{
                 new SlideMidFCommand(slide, arm, clawServos, true),//Fix: Remove Drivetrain
                 new StrafeRightCommand(drivetrain, 52),
                 new SlowDriveForwardCommand(drivetrain, 1),
-                new DropAutoConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm,true),
 //                new WaitCommand(500),
                 new StrafeRightCommand(drivetrain, 17.8),
                 new PrePickB5Command(slide, clawServos, arm),
@@ -39,13 +38,13 @@ public class RightSplineJunctionCommand extends SequentialCommandGroup{
 
 
 
-                new PickC5BCommand(slide, clawServos),
+                new PickCBCommand(slide, clawServos),
                 new SlideLowFCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 61, true),
 //                new TurnToCommand(drivetrain, 62.2),
                 new SlowDriveForwardCommand(drivetrain, 3.47),
                 new WaitCommand(200),
-                new DropAutoConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm,true),
                 new SlowDriveForwardCommand(drivetrain, -1.77),
                 new PrePickB5Command(slide, clawServos, arm),
                 new TurnToCommand(drivetrain, 0),
@@ -54,7 +53,7 @@ public class RightSplineJunctionCommand extends SequentialCommandGroup{
 
 
 
-                new PickC4BCommand(slide, clawServos),
+                new PickCBCommand(slide, clawServos),
                 new TurnToCommand(drivetrain, 0),   //or remove
 //                new InstantCommand(slide::slideLow),    /*TTTTESTTTTT*/
                 new SlideHighFCommand(slide, arm, clawServos, true),
@@ -73,7 +72,7 @@ public class RightSplineJunctionCommand extends SequentialCommandGroup{
 
 //                new SlideHighFCommand(slide, arm, clawServos, true),
                 new SlowDriveForwardCommand(drivetrain, 0.85),
-                new DropAutoConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm,true),
                 new SlowDriveForwardCommand(drivetrain, -3),
                 new TurnToCommand(drivetrain, 271),
 

@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveF
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SlowDriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
-import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Front.PickC5FCommand;
+import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Pick.PickCFCommand;
 import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFConeCommands.PrePick5FCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
@@ -27,7 +27,7 @@ public class RightHighPrePlusOneAutonCommand extends SequentialCommandGroup{
                 new WaitCommand(100),
                 new SlowDriveForwardCommand(drivetrain,-8.1),
                 new WaitCommand(500),
-                new DropAutoConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm,true),
                 new WaitCommand(200),
 
                 new SlowDriveForwardCommand(drivetrain,8),
@@ -35,12 +35,12 @@ public class RightHighPrePlusOneAutonCommand extends SequentialCommandGroup{
                 new TurnToCommand(drivetrain, 97),
                 new DriveForwardCommand(drivetrain, 25),
 
-                new PickC5FCommand(slide, clawServos),
+                new PickCFCommand(slide, clawServos),
                 new SlideLowBCommand(slide, arm, clawServos, true),
                 new TurnToCommand(drivetrain, 148),
                 new SlowDriveForwardCommand(drivetrain, -2),
 //                new InstantCommand(clawServos::clawOpen, clawServos),
-                new DropAutoConeCommand(clawServos, slide, arm),
+                new DropAutoConeCommand(clawServos, slide, arm,true),
                 new WaitCommand(400),
                 new SlowDriveForwardCommand(drivetrain, 3),
                 new TurnToCommand(drivetrain, 90),

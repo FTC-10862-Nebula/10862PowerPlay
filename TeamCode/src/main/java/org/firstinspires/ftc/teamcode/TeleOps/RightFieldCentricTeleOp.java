@@ -92,7 +92,7 @@ public class RightFieldCentricTeleOp extends MatchOpMode {
         Button intakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
                 .whenPressed(new PickConeCommand(clawServos, slide, arm));
         Button outtakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                .whenPressed(new DropConeCommand(clawServos, slide, arm, drivetrain));
+                .whenPressed(new DropConeCommand(clawServos, slide, arm));
 
         //Slide positions - D2
         Button groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
