@@ -46,7 +46,7 @@ public class Slide extends SubsystemBase {
 
     //Auto Slide Positions
     public static int CONE_STACK_POS = -236;
-    public static int CONE_5_POS = -224;
+    public static int CONE_5_POS = -221;
     public static int CONE_4_POS = -172;
     public static int CONE_3_POS = -110;
     public static int CONE_2_POS = -100;

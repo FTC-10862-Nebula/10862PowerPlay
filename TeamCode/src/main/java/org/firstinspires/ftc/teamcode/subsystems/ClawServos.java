@@ -17,12 +17,12 @@ import java.util.logging.Level;
 public class ClawServos extends SubsystemBase {
     //Claw Variables
     public final static double CLOSE_POS_S1 = 0.485,
-            AUTO_CLOSE_S1 = 0.477,
-            OPEN_POS_S1 = 0.141,
+                                AUTO_CLOSE_S1 = 0.477,
+                                OPEN_POS_S1 = 0.141,
 
-            CLOSE_POS_S2 = 0.537,
-            AUTO_CLOSE_S2 = 0.529,
-            OPEN_POS_S2 = 0.857;
+                                CLOSE_POS_S2 = 0.537,
+                                AUTO_CLOSE_S2 = 0.529,
+                                OPEN_POS_S2 = 0.857;
 
 //    private static double INTAKE_POWER = -1;
 //    private static double OUTTAKE_POWER = 1;

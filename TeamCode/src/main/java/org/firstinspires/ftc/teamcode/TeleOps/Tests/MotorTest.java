@@ -3,9 +3,10 @@ package org.firstinspires.ftc.teamcode.TeleOps.Tests;
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
+@Disabled
 @Config
 @TeleOp(name = "Motor Test")
 public class MotorTest extends OpMode {

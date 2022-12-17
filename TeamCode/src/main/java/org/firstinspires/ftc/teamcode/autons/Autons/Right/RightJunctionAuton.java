@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision;
 
-@Autonomous(name = "RightJunctionAuton", group = "Test")
+@Autonomous
 public class RightJunctionAuton extends MatchOpMode {
 //    private ATDetector tagDetector;
 
@@ -61,7 +61,7 @@ public class RightJunctionAuton extends MatchOpMode {
             case 1: { //Left
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighJunctionCommandOld(drivetrain, slide, arm, clawServos),
+                                new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos),
                                 new StrafeLeftCommand(drivetrain, 17.5)
                         )
                 );
@@ -70,7 +70,7 @@ public class RightJunctionAuton extends MatchOpMode {
             case 2: { //Mid
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighJunctionCommandOld(drivetrain, slide, arm, clawServos),
+                                new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos),
                                 new StrafeRightCommand(drivetrain, 13.5)
                         )
                 );
@@ -80,7 +80,7 @@ public class RightJunctionAuton extends MatchOpMode {
                 schedule(
                         new SequentialCommandGroup(
                                 new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos),
-                                new StrafeRightCommand(drivetrain, 44)
+                                new StrafeRightCommand(drivetrain, 41)
                         )
                 );
                 return;

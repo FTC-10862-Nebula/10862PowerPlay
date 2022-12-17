@@ -23,13 +23,15 @@ public class RightHighJunctionCommandNew extends SequentialCommandGroup{
     public RightHighJunctionCommandNew(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         /*Turn is Counterclockwise*/
         addCommands(
+//                new DropAutoConeCommand(clawServos, slide, arm,true),
+
                 new ParallelCommandGroup(
                         new SlideMidFCommand(slide, arm, clawServos, true),
-                        new StrafeRightCommand(drivetrain, 51.9)
+                        new StrafeRightCommand(drivetrain, 53.15)
                 ),
                 new DropAutoConeCommand(clawServos, slide, arm,true),
                 new ParallelCommandGroup(
-                        new StrafeRightCommand(drivetrain, 20.6),
+                        new StrafeRightCommand(drivetrain, 20.8),
                         new PrePickB5Command(slide, clawServos, arm)
                 ),
                 new DriveForwardCommand(drivetrain, -26.85),
@@ -43,16 +45,16 @@ public class RightHighJunctionCommandNew extends SequentialCommandGroup{
                         new DriveForwardCommand(drivetrain, 29)
                 ),
                 new SequentialCommandGroup(
-                        new TurnCommand(drivetrain, -52.5),//61 ish
+                        new TurnCommand(drivetrain, -60),//61 ish
                         new DriveForwardCommand(drivetrain, 2.5),
-                        new DropAutoConeCommand(clawServos, slide, arm,true),
-                        new DriveForwardCommand(drivetrain, -4.88)
+                        new DropAutoConeCommand(clawServos, slide, arm,true)
+//                        new DriveForwardCommand(drivetrain, -0.5)
                 ),
                 new ParallelCommandGroup(
-                        new TurnToCommand(drivetrain, 1, true),
+                        new TurnToCommand(drivetrain, 0.5, true),
                         new PrePickB4Command(slide, clawServos, arm)
                 ),
-                new DriveForwardCommand(drivetrain, -29.9),
+                new DriveForwardCommand(drivetrain, -32.5),
 
 
 
@@ -63,16 +65,16 @@ public class RightHighJunctionCommandNew extends SequentialCommandGroup{
                         new DriveForwardCommand(drivetrain, 30)
                 ),
                 new SequentialCommandGroup(
-                        new TurnCommand(drivetrain, -50.5),//oprg:300 to -60
-                        new DriveForwardCommand(drivetrain, 2.3),
-                        new DropAutoConeCommand(clawServos, slide, arm,true),
-                        new DriveForwardCommand(drivetrain, -4.5)
+                        new TurnCommand(drivetrain, -58),//oprg:300 to -60
+                        new DriveForwardCommand(drivetrain, 2.6),
+                        new DropAutoConeCommand(clawServos, slide, arm,true)
+//                        new DriveForwardCommand(drivetrain, -0.5)
                 ),
                 new ParallelCommandGroup(
-                        new TurnToCommand(drivetrain, 1.5, true),
+                        new TurnToCommand(drivetrain, 1, true),
                         new PrePickB3Command(slide, clawServos, arm)
                 ),
-                new DriveForwardCommand(drivetrain, -30.5),
+                new DriveForwardCommand(drivetrain, -33.9),
 
 
 
@@ -82,8 +84,8 @@ public class RightHighJunctionCommandNew extends SequentialCommandGroup{
                         new SlideHighFCommand(slide, arm, clawServos, true),
                         new DriveForwardCommand(drivetrain, 28.8)
                 ),
-                new TurnCommand(drivetrain, -46.5),//oprg:300 to -60
-                new DriveForwardCommand(drivetrain, 2.3),
+                new TurnCommand(drivetrain, -58),//oprg:300 to -60
+                new DriveForwardCommand(drivetrain, 5),
                 new DropAutoConeCommand(clawServos, slide, arm,true),
 
 
@@ -94,8 +96,8 @@ public class RightHighJunctionCommandNew extends SequentialCommandGroup{
                         new SlideResetUpAutonCommand(slide, arm, clawServos),
                         new TurnToCommand(drivetrain, 270)
                 ),
-                new DriveForwardCommand(drivetrain, -7),
-                new StrafeRightCommand(drivetrain, 36)
+                new DriveForwardCommand(drivetrain, -2)
+//                new StrafeRightCommand(drivetrain, 40)
         );
     }
 }

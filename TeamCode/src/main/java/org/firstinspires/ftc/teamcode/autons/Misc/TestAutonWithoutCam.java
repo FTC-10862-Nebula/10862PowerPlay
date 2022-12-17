@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.Junctions.RightHighJunctionCommandNew;
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.Junctions.RightHighJunctionCommandOld;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
+import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -47,7 +48,9 @@ public class TestAutonWithoutCam extends MatchOpMode {
 //        waitForStart();
         schedule(
                 new SequentialCommandGroup(
-                    new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos)
+//                        new DropAutoConeCommand(clawServos, slide, arm,true)
+
+                        new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos)
 
 //                        new RightSplineJunctionCommand(drivetrain, slide, arm, clawServos)
                 )
