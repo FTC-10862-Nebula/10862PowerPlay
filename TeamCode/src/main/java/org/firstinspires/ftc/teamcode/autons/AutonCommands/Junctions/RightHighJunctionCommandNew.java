@@ -46,15 +46,15 @@ public class RightHighJunctionCommandNew extends SequentialCommandGroup{
                 ),
                 new SequentialCommandGroup(
                         new TurnCommand(drivetrain, -60),//61 ish
-                        new DriveForwardCommand(drivetrain, 2.5),
+                        new DriveForwardCommand(drivetrain, 4.5),
                         new DropAutoConeCommand(clawServos, slide, arm,true)
 //                        new DriveForwardCommand(drivetrain, -0.5)
                 ),
                 new ParallelCommandGroup(
-                        new TurnToCommand(drivetrain, 0.5, true),
+                        new TurnToCommand(drivetrain, 0.8, true),
                         new PrePickB4Command(slide, clawServos, arm)
                 ),
-                new DriveForwardCommand(drivetrain, -32.5),
+                new DriveForwardCommand(drivetrain, -31.6),
 
 
 
@@ -66,15 +66,15 @@ public class RightHighJunctionCommandNew extends SequentialCommandGroup{
                 ),
                 new SequentialCommandGroup(
                         new TurnCommand(drivetrain, -58),//oprg:300 to -60
-                        new DriveForwardCommand(drivetrain, 2.6),
+                        new DriveForwardCommand(drivetrain, 3),
                         new DropAutoConeCommand(clawServos, slide, arm,true)
 //                        new DriveForwardCommand(drivetrain, -0.5)
                 ),
                 new ParallelCommandGroup(
-                        new TurnToCommand(drivetrain, 1, true),
+                        new TurnToCommand(drivetrain, 1.2, true),
                         new PrePickB3Command(slide, clawServos, arm)
                 ),
-                new DriveForwardCommand(drivetrain, -33.9),
+                new DriveForwardCommand(drivetrain, -32.6),
 
 
 
@@ -84,8 +84,8 @@ public class RightHighJunctionCommandNew extends SequentialCommandGroup{
                         new SlideHighFCommand(slide, arm, clawServos, true),
                         new DriveForwardCommand(drivetrain, 28.8)
                 ),
-                new TurnCommand(drivetrain, -58),//oprg:300 to -60
-                new DriveForwardCommand(drivetrain, 5),
+                new TurnCommand(drivetrain, -55.45),//oprg:300 to -60
+                new DriveForwardCommand(drivetrain, 4),
                 new DropAutoConeCommand(clawServos, slide, arm,true),
 
 
@@ -96,7 +96,7 @@ public class RightHighJunctionCommandNew extends SequentialCommandGroup{
                         new SlideResetUpAutonCommand(slide, arm, clawServos),
                         new TurnToCommand(drivetrain, 270)
                 ),
-                new DriveForwardCommand(drivetrain, -2)
+                new DriveForwardCommand(drivetrain, -4)
 //                new StrafeRightCommand(drivetrain, 40)
         );
     }

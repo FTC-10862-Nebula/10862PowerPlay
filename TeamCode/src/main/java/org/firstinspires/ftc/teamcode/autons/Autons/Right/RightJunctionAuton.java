@@ -62,7 +62,7 @@ public class RightJunctionAuton extends MatchOpMode {
                 schedule(
                         new SequentialCommandGroup(
                                 new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos),
-                                new StrafeLeftCommand(drivetrain, 17.5)
+                                new StrafeLeftCommand(drivetrain, 22)
                         )
                 );
                 return;
@@ -71,7 +71,7 @@ public class RightJunctionAuton extends MatchOpMode {
                 schedule(
                         new SequentialCommandGroup(
                                 new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos),
-                                new StrafeRightCommand(drivetrain, 13.5)
+                                new StrafeRightCommand(drivetrain, 12.1)
                         )
                 );
                 return;
