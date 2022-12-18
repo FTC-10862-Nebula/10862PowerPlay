@@ -17,11 +17,11 @@ public class SlideHighFCommand extends SequentialCommandGroup {
                             new InstantCommand(() ->
                                     new Thread(() -> {
                                         clawServos.clawClose();
-                                        slide.slideHigh();
+                                        slide.slideAutoHigh();
                                         arm.moveHighFAuto();
                                     }).start())
                     ),
-                    new WaitCommand(200),
+                    new WaitCommand(520),
                     new InstantCommand(clawServos::setFClawPos)
             );
         }

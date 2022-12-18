@@ -18,6 +18,7 @@ public class PrePickB4Command extends SequentialCommandGroup   {
                         new InstantCommand(arm::moveIntakeBAuto),
                         new InstantCommand(slide::slideCone4)
                 ),
+                new WaitCommand(150),
                 new InstantCommand(clawServos::setBClawPos),
                 new WaitCommand(150),
                 new InstantCommand(clawServos::clawOpen)

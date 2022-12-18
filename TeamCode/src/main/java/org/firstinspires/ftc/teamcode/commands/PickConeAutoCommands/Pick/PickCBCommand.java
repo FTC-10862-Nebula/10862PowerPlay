@@ -11,7 +11,7 @@ public class PickCBCommand extends SequentialCommandGroup  {
     public PickCBCommand(Slide slide, ClawServos clawServos){
         addCommands(
                 new InstantCommand(clawServos::clawAutoClose),
-                new WaitCommand(100),
+                new WaitCommand(200),
                 new InstantCommand(slide:: slideLow)
         );
     }

@@ -36,22 +36,40 @@ public class Slide extends SubsystemBase {
     private double encoderOffset = 0;
     private double encoderOffset2 = 0;
 
-    public static int RESTING_POS = 5;
-    public static int GROUND_POS = -30;
-    public static int LOW_POS = -663;
-    public static int MID_POS = -1149;
-    public static int HIGH_POS = -1365;
-    public static int AUTO_MID_POS = -1015;
+    public static int RESTING_POS = 6;
+    public static int GROUND_POS = -32;
+    public static int LOW_POS = -665;
+    public static int MID_POS = -1151;
+    public static int HIGH_POS = -1368;
+    public static int AUTO_MID_POS = -1017;
+    public static int AUTO_HIGH_POS = -1368;
 
 
     //Auto Slide Positions
-    public static int CONE_STACK_POS = -236;
-    public static int CONE_5_POS = -222;
+    public static int CONE_STACK_POS = -238;
+    public static int CONE_5_POS = -220;
     public static int CONE_4_POS = -177;
-    public static int CONE_3_POS = -115;
-    public static int CONE_2_POS = -100;
-    public static int CONE_1_POS = -10;
+    public static int CONE_3_POS = -116;
+    public static int CONE_2_POS = -101;
+    public static int CONE_1_POS = -11;
     double output = 0;
+//    public static int RESTING_POS = 5;
+//    public static int GROUND_POS = -30;
+//    public static int LOW_POS = -663;
+//    public static int MID_POS = -1149;
+//    public static int HIGH_POS = -1366;
+//    public static int AUTO_MID_POS = -1015;
+//    public static int AUTO_HIGH_POS = -1366;
+//
+//
+//    //Auto Slide Positions
+//    public static int CONE_STACK_POS = -236;
+//    public static int CONE_5_POS = -219;
+//    public static int CONE_4_POS = -176;
+//    public static int CONE_3_POS = -115;
+//    public static int CONE_2_POS = -100;
+//    public static int CONE_1_POS = -10;
+//    double output = 0;
 
     public static boolean lowBool = false;
 //    private static double POWER = 1.4,
@@ -291,6 +309,12 @@ public class Slide extends SubsystemBase {
         upController.setSetPoint(CONE_STACK_POS);
         liftPosition = 14;
     }
+    public void slideAutoHigh() {
+        slideAutomatic = true;
+        lowBool = false;
+        upController.setSetPoint(AUTO_HIGH_POS);
+        liftPosition = 15;
+    }
 
 
     public void liftEncoderReset() {
@@ -343,6 +367,10 @@ public class Slide extends SubsystemBase {
 //                break;
             case 13:
                 upController.setSetPoint(AUTO_MID_POS+500);
+                break;
+            case 15:
+                upController.setSetPoint(AUTO_HIGH_POS+870);
+                break;
         }
     }
 }

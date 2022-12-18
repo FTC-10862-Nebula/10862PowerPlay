@@ -33,9 +33,9 @@ public class Arm extends SubsystemBase {
                         POS_BACK = -252,
                         HIGH_POS_BACK = -158,
                         GROUND_POS_BACK = -240;
-    public static int HIGH_POS_AUTO_BACK = -139,
-                        INTAKE_POS_AUTO_BACK = -263,
-                        POS_AUTO_BACK = -164;
+    public static int HIGH_POS_AUTO_BACK = -129 ,
+            INTAKE_POS_AUTO_BACK = -270,
+                        POS_AUTO_BACK = -165;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
                         POS_FRONT = -POS_BACK,
@@ -235,7 +235,7 @@ public class Arm extends SubsystemBase {
 //                controller.setSetPoint(HIGH_POS_BACK-75);
 //                return;
             case 7:
-                controller.setSetPoint(HIGH_POS_AUTO_BACK-50);
+                controller.setSetPoint(HIGH_POS_AUTO_BACK-59);
                 return;
             case 8:
                 controller.setSetPoint(HIGH_POS_AUTO_FRONT+50);
