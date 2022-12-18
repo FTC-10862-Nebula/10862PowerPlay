@@ -22,8 +22,7 @@ public class TrajectoryTest extends LinearOpMode {
         TrajectoryVelocityConstraint vel = SampleMecanumDrive.getVelocityConstraint(DriveConstants.MAX_VEL, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH);
         TrajectoryAccelerationConstraint accel = SampleMecanumDrive.getAccelerationConstraint(DriveConstants.MAX_ACCEL);
 
-        Drivetrain normDrive = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
-        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        Drivetrain drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         ClawServos clawServos = new ClawServos(telemetry, hardwareMap);
         Arm arm = new Arm(telemetry, hardwareMap);
         Slide slide = new Slide(telemetry, hardwareMap);
@@ -31,40 +30,26 @@ public class TrajectoryTest extends LinearOpMode {
         clawServos.clawClose();
         Pose2d startPose = new Pose2d(0, 0,0);
 
-        TrajectorySequence preLoad = drive.trajectorySequenceBuilder(startPose)
-//                .forward(50, vel, accel).
-                .strafeRight(50)
-                .strafeRight(21)
-                .lineToSplineHeading(new Pose2d(70, 5))
-//                .line
-//                .addTemporalMarker(t.start())
-//                .addTemporalMarker(clawServos::clawOpen)
-//                .UNSTABLE_addTemporalMarkerOffset(.5, clawServos::clawOpen)
-                .build();
-
-        TrajectorySequence cycle1Pickup = drive.trajectorySequenceBuilder(preLoad.end())
+//        TrajectorySequence preLoad = drivetrain.trajectorySequenceBuilder(startPose)
+//                .strafeRight(50)
+//                .strafeRight(21)
+//                .lineToSplineHeading(new Pose2d(70, 5))
+//
+//                .build();
+//
+//        TrajectorySequence cycle1Pickup = drivetrain.trajectorySequenceBuilder(preLoad.end())
 //                .forward(5, vel, accel)
-                .strafeRight(5)
+//                .strafeRight(5)
+//
+//                .build();
 
-                .build();
 
-
-        drive.setPoseEstimate(startPose);
+        drivetrain.setPoseEstimate(startPose);
 
 
         waitForStart();
         if (isStopRequested()) return;
 
-
-//        Trajectory traj = drive.trajectoryBuilder(new Pose2d(-38,71.6, Math.toRadians(-3)), Math.toRadians(-3))
-//                .splineToSplineHeading(new Pose2d(-38.4,24.4, Math.toRadians(9)), Math.toRadians(9))
-//                .splineToSplineHeading(new Pose2d(-62.8,12, Math.toRadians(175)), Math.toRadians(175))
-//                .splineToSplineHeading(new Pose2d(-24.4,11.6, Math.toRadians(-85)), Math.toRadians(-85))
-//        .build();
-
         }
 
-        // Put pose in pose storage (so it can be used in teleOp)
-//        PoseStorage.currentPose = drive.getPoseEstimate();
-//    Test.currentAngle = drive.getAngle();
     }

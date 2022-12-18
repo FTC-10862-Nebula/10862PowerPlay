@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.TeleOps.Tests;
+package org.firstinspires.ftc.teamcode.TeleOps.Misc;
 
 import android.app.Activity;
 import android.graphics.Color;

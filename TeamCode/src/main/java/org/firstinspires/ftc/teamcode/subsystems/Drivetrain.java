@@ -295,4 +295,8 @@ public class Drivetrain extends SubsystemBase {
     public void turnAsync(double angle) {
         drive.turnAsync(angle);
     }
+
+    public void trajectorySequenceBuilder(Pose2d startPose){
+        drive.trajectorySequenceBuilder(startPose);
+    }
 }

@@ -1,9 +1,7 @@
-package org.firstinspires.ftc.teamcode.TeleOps.SubsystemTeleops.ClawServo;
+package org.firstinspires.ftc.teamcode.TeleOps.Misc;
 
 import static org.firstinspires.ftc.teamcode.subsystems.ClawServos.*;
 
-import com.arcrobotics.ftclib.hardware.motors.CRServo;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;

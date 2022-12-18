@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 @Autonomous(group = "RED/BLUE")
 public class TestAutonWithoutCam extends MatchOpMode {
@@ -51,5 +52,8 @@ public class TestAutonWithoutCam extends MatchOpMode {
 //                        new RightSplineJunctionCommand(drivetrain, slide, arm, clawServos)
                 )
         );
+        PoseStorage.currentPose = drivetrain.getPoseEstimate();
     }
+
+
 };

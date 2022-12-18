@@ -34,6 +34,4 @@ public class Trajectories {
 
 
     public static ProfileAccelerationConstraint accelConstraint = new ProfileAccelerationConstraint(MAX_ACCEL);
-
-//    @C_
 }
