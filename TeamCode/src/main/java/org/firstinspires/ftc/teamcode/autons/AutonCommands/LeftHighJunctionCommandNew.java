@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.AutonCommands.Junctions;
+package org.firstinspires.ftc.teamcode.autons.AutonCommands;
 
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;

@@ -4,7 +4,7 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.Junctions.RightHighJunctionCommandNew;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.RightHighJunctionCommandNew;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;

@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.Junctions.RightHighJunctionCommandNew;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.RightHighJunctionCommandNew;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;

@@ -30,24 +30,23 @@ public class TrajectoryTest extends LinearOpMode {
         clawServos.clawClose();
         Pose2d startPose = new Pose2d(0, 0,0);
 
-//        TrajectorySequence preLoad = drivetrain.trajectorySequenceBuilder(startPose)
-//                .strafeRight(50)
-//                .strafeRight(21)
-//                .lineToSplineHeading(new Pose2d(70, 5))
-//
-//                .build();
-//
-//        TrajectorySequence cycle1Pickup = drivetrain.trajectorySequenceBuilder(preLoad.end())
-//                .forward(5, vel, accel)
-//                .strafeRight(5)
-//
-//                .build();
 
+        TrajectorySequence preLoad = drivetrain.trajectorySequenceBuilder(startPose)
+                .strafeRight(50)
+                .strafeRight(21)
+                .lineToSplineHeading(new Pose2d(70, 5))
 
+                .build();
+
+        TrajectorySequence cycle1Pickup = drivetrain.trajectorySequenceBuilder(preLoad.end())
+                .forward(5, vel, accel)
+                .strafeRight(5)
+                .build();
         drivetrain.setPoseEstimate(startPose);
 
 
         waitForStart();
+
         if (isStopRequested()) return;
 
         }

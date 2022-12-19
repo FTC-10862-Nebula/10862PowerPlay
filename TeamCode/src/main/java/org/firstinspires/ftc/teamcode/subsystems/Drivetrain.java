@@ -20,6 +20,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCo
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 
 import java.util.List;
 
@@ -57,10 +58,11 @@ public class Drivetrain extends SubsystemBase {
 //    public void closeImu(){
 //        imu.close();
 //    }
-//    public Command inIMU(HardwareMap hM){
-//        imu = hM.get(BNO055IMU.class, "imu");
-//        return null;
-//    }
+    //TODO: TEST!
+    public void inIMU(HardwareMap hM){
+        imu = hM.get(BNO055IMU.class, "imu");
+//        imu.initialize(new BNO055IMU.Parameters());
+    }
 
 
 
@@ -296,7 +298,7 @@ public class Drivetrain extends SubsystemBase {
         drive.turnAsync(angle);
     }
 
-    public void trajectorySequenceBuilder(Pose2d startPose){
-        drive.trajectorySequenceBuilder(startPose);
+    public TrajectorySequenceBuilder trajectorySequenceBuilder(Pose2d startPose){
+        return drive.trajectorySequenceBuilder(startPose);
     }
 }
