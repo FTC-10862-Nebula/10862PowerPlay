@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-import org.firstinspires.ftc.teamcode.subsystems.Vision;
+import org.firstinspires.ftc.teamcode.subsystems.TagVision;
 
 @Autonomous(name="rightNEW")
 public class RightJunctionNEWAuton extends MatchOpMode {
@@ -40,7 +40,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
     private ClawServos clawServos;
     private Drivetrain drivetrain;
     private Slide slide;
-    private Vision vision;
+    private TagVision tagVision;
 
     @Override
     public void robotInit() {
@@ -51,17 +51,17 @@ public class RightJunctionNEWAuton extends MatchOpMode {
         slide = new Slide(telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
-        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+        tagVision = new TagVision(hardwareMap, "Webcam 1", telemetry);
         while (!isStarted() && !isStopRequested())
         {
-            vision.updateTagOfInterest();
-            vision.tagToTelemetry();
+            tagVision.updateTagOfInterest();
+            tagVision.tagToTelemetry();
             telemetry.update();
         }
         this.matchStart();
     }
 
-    public void matchStart() {tagNum = vision.getTag();
+    public void matchStart() {tagNum = tagVision.getTag();
 
 //        SequentialCommandGroup autonGroup;
         switch (tagNum) {

@@ -53,7 +53,7 @@ public class SensorColorTeleop extends MatchOpMode {
     private Slide slide;
     private SensorColor sensorColor;
 //    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
-    //    private Vision vision;
+    //    private TagVision vision;
 
 //    private Button one;
 
@@ -69,7 +69,7 @@ public class SensorColorTeleop extends MatchOpMode {
         slide = new Slide(telemetry, hardwareMap);
         sensorColor = new SensorColor(colorSensor, hardwareMap, telemetry);
 //        clawServos.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
-//        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+//        vision = new TagVision(hardwareMap, "Webcam 1", telemetry);
 
         sensorColor.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
 

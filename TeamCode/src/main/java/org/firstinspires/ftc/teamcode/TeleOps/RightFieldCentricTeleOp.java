@@ -51,7 +51,7 @@ public class RightFieldCentricTeleOp extends MatchOpMode {
     private Drivetrain drivetrain;
     private Slide slide;
 //    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
-    //    private Vision vision;
+    //    private TagVision vision;
 
 
     @Override
@@ -66,7 +66,7 @@ public class RightFieldCentricTeleOp extends MatchOpMode {
         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
-//        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
+//        vision = new TagVision(hardwareMap, "Webcam 1", telemetry);
 
 //        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 //        drivetrain.setPoseEstimate(PoseStorage.currentPose);

@@ -12,7 +12,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
-public class Vision extends SubsystemBase {
+public class TagVision extends SubsystemBase {
     OpenCvCamera camera;
     private Telemetry telemetry;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
@@ -40,7 +40,7 @@ public class Vision extends SubsystemBase {
     boolean tagFound = false;
     int tagFoundNum = 0;
 
-    public Vision (HardwareMap hw, String webCamName, Telemetry tl)
+    public TagVision(HardwareMap hw, String webCamName, Telemetry tl)
     {
         this.telemetry=tl;
 
