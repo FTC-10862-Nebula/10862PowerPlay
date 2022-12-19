@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.Trajectories;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 @Config
 public class DriveForwardCommand extends CommandBase{
@@ -40,7 +41,15 @@ public class DriveForwardCommand extends CommandBase{
             trajectory = new TrajectoryBuilder
                     (drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).forward(distance).build();
 
+//        if (distance < 0)
+//            trajectory = new TrajectoryBuilder
+//                    (PoseStorage.currentPose, constraint, Trajectories.accelConstraint).back(-distance).build();
+//        else
+//            trajectory = new TrajectoryBuilder
+//                    (PoseStorage.currentPose, constraint, Trajectories.accelConstraint).forward(distance).build();
+
         drive.followTrajectory(trajectory);
+
     }
 
     @Override
@@ -57,6 +66,7 @@ public class DriveForwardCommand extends CommandBase{
 
     @Override
     public boolean isFinished() {
+//        PoseStorage.currentPose = trajectory.end(); //TODO:Test
         return !drive.isBusy();
     }
 }

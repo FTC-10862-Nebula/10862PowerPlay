@@ -8,9 +8,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Util;
-
-import java.util.logging.Level;
 
 @Config
 public class Slide extends SubsystemBase {
@@ -36,46 +33,39 @@ public class Slide extends SubsystemBase {
     private double encoderOffset = 0;
     private double encoderOffset2 = 0;
 
-    public static int RESTING_POS = 6;
-    public static int GROUND_POS = -32;
-    public static int LOW_POS = -665;
-    public static int MID_POS = -1151;
-    public static int HIGH_POS = -1368;
-    public static int AUTO_MID_POS = -1017;
-    public static int AUTO_HIGH_POS = -1368;
+    public static int RESTING_POS = 5;
+    public static int GROUND_POS = -30;
+    public static int LOW_POS = -663;
+    public static int MID_POS = -1149;
+    public static int HIGH_POS = -1366;
+    public static int AUTO_MID_POS = -1015;
+    public static int AUTO_HIGH_POS = -1366;
 
 
     //Auto Slide Positions
-    public static int CONE_STACK_POS = -238;
-    public static int CONE_5_POS = -220;
-    public static int CONE_4_POS = -177;
-    public static int CONE_3_POS = -116;
-    public static int CONE_2_POS = -101;
-    public static int CONE_1_POS = -11;
+    public static int CONE_STACK_POS = -236;
+    public static int CONE_5_POS = -219;
+    public static int CONE_4_POS = -176;
+    public static int CONE_3_POS = -115;
+    public static int CONE_2_POS = -100;
+    public static int CONE_1_POS = -10;
     double output = 0;
-//    public static int RESTING_POS = 5;
-//    public static int GROUND_POS = -30;
-//    public static int LOW_POS = -663;
-//    public static int MID_POS = -1149;
-//    public static int HIGH_POS = -1366;
-//    public static int AUTO_MID_POS = -1015;
-//    public static int AUTO_HIGH_POS = -1366;
-//
-//
-//    //Auto Slide Positions
-//    public static int CONE_STACK_POS = -236;
-//    public static int CONE_5_POS = -219;
-//    public static int CONE_4_POS = -176;
-//    public static int CONE_3_POS = -115;
-//    public static int CONE_2_POS = -100;
-//    public static int CONE_1_POS = -10;
-//    double output = 0;
 
     public static boolean lowBool = false;
 //    private static double POWER = 1.4,
 //    LOW_POWER =0.7;
 
-    private static int liftPosition = 0;
+//    private static int liftPos = 0;
+
+    public enum LiftPos{
+        REST,
+        GROUND, LOW, MID, HIGH,
+        AUTO_MID, AUTO_HIGH,
+
+        CONE_STACK, FIVE, FOUR, THREE, TWO, ONE
+    }
+    LiftPos liftPos = LiftPos.REST;
+
 
     public Slide( Telemetry tl, HardwareMap hw) {
 //        this.slideM1 = slideM1;
@@ -100,18 +90,9 @@ public class Slide extends SubsystemBase {
 
         this.telemetry = tl;
         slideAutomatic = false;
+        liftPos = LiftPos.REST;
         setOffset();
     }
-
-//    public void toggleAutomatic() {
-//        automatic = !automatic;
-//    }
-//    public boolean isAutomatic() {
-//        return automatic;
-//    }
-//    public void automaticFalse(){
-//        automatic=false;
-//    }
 
     @Override
     public void periodic() {
@@ -137,9 +118,9 @@ public class Slide extends SubsystemBase {
         telemetry.addLine("Slide - ");
         telemetry.addData("     Lift Motor Output:", output);
 
-        Util.logger(this, telemetry, Level.INFO, "  Lift1 Encoder: ", slideM1.getCurrentPosition());
-        Util.logger(this, telemetry, Level.INFO, "  Lift2 Encoder: ", slideM2.getCurrentPosition());
-        telemetry.addData(" List Pos:", liftPosition);
+        telemetry.addData("     Lift1 Encoder: ", slideM1.getCurrentPosition());
+        telemetry.addData("     Lift2 Encoder: ", slideM2.getCurrentPosition());
+        telemetry.addData("     List Pos:", liftPos);
     }
 
     private double getEncoderDistance() {
@@ -150,39 +131,34 @@ public class Slide extends SubsystemBase {
         return slideM2.getDistance() - encoderOffset2;
     }
 
-//    public void upSlideManual(GamepadEx operatorGamepad, Slide slide) {
-//        new SlideDefaultCommand(slide, operatorGamepad);
-//        automatic = false;
-//    }
     public void upSlideManual(){
 //        slideAutomatic = false;
 //        slideM1.set(UP_SPEED);
 //        slideM2.set(UP_SPEED);
         slideAutomatic = true;
-        if((slideM1.getCurrentPosition()<-10)){
+        if((-1350<slideM1.getCurrentPosition())){
             upController.setSetPoint(slideM1.getCurrentPosition()-20);
         }
         else return;
 
     }
-
-    public void setPower(double power)
-    {
-        slideM1.set(power);
-        slideM2.set(power);
-    }
-
     public void downSlideManual() {
 //        slideAutomatic = false;
 //        slideM1.set(DOWN_SPEED);
 //        slideM2.set(DOWN_SPEED);
         slideAutomatic = true;
-        if((slideM1.getCurrentPosition()>-10)){
+        if((slideM1.getCurrentPosition()<-15)){
             upController.setSetPoint(slideM1.getCurrentPosition()+20);
         }
         else return;
-
     }
+
+    public void setPower(double power) {
+        slideM1.set(power);
+        slideM2.set(power);
+    }
+
+
 
     public void stopSlide() {
         slideM1.stopMotor();
@@ -214,7 +190,7 @@ public class Slide extends SubsystemBase {
         slideAutomatic = true;
         lowBool = true;
         upController.setSetPoint(RESTING_POS);
-        liftPosition = 0;
+        liftPos = LiftPos.REST;
     }
 
     public void encoderReset() {
@@ -227,25 +203,25 @@ public class Slide extends SubsystemBase {
         slideAutomatic = true;
         lowBool = true;
         upController.setSetPoint(GROUND_POS);
-        liftPosition = 1;
+        liftPos = LiftPos.GROUND;
     }
     public void slideLow() {
         slideAutomatic = true;
         lowBool = false;
         upController.setSetPoint(LOW_POS);
-        liftPosition = 2;
+        liftPos = LiftPos.LOW;
     }
     public void slideMid() {
         slideAutomatic = true;
         lowBool = false;
         upController.setSetPoint(MID_POS);
-        liftPosition = 3;
+        liftPos = LiftPos.MID;
     }
     public void slideHigh() {
         slideAutomatic = true;
         lowBool = false;
         upController.setSetPoint(HIGH_POS);
-        liftPosition = 4;
+        liftPos = LiftPos.HIGH;
     }
 
 
@@ -253,82 +229,76 @@ public class Slide extends SubsystemBase {
         slideAutomatic = true;
         lowBool = false;
         upController.setSetPoint(CONE_5_POS);
-        liftPosition = 5;
+        liftPos = LiftPos.FIVE;
     }
     public void slideCone4() {
         slideAutomatic = true;
         lowBool = false;
         upController.setSetPoint(CONE_4_POS);
-        liftPosition = 6;
+        liftPos = LiftPos.FOUR;
     }
     public void slideCone3() {
         slideAutomatic = true;
         lowBool = false;
         upController.setSetPoint(CONE_3_POS);
-        liftPosition = 7;
+        liftPos = LiftPos.THREE;
     }
     public void slideCone2() {
         slideAutomatic = true;
         lowBool = false;
         upController.setSetPoint(CONE_2_POS);
-        liftPosition = 8;
+        liftPos = LiftPos.TWO;
     }
     public void slideCone1() {
         slideAutomatic = true;
         lowBool = false;
         upController.setSetPoint(CONE_1_POS);
-        liftPosition = 9;
+        liftPos = LiftPos.ONE;
     }
 
-    public void autoPickSlideUp() {
-        slideAutomatic = true;
-        lowBool = false;
-        upController.setSetPoint(slideM1.getCurrentPosition()-200);
-//        liftPosition = 10;
-    }
-    public void autoDropSlideUp() {
-        slideAutomatic = true;
-        lowBool = false;
-        upController.setSetPoint(slideM1.getCurrentPosition()+200);
-//        liftPosition = 11;
-    }
+//    public void autoPickSlideUp() {
+//        slideAutomatic = true;
+//        lowBool = false;
+//        upController.setSetPoint(slideM1.getCurrentPosition()-200);
+////        liftPosition = 10;
+//    }
+//    public void autoDropSlideUp() {
+//        slideAutomatic = true;
+//        lowBool = false;
+//        upController.setSetPoint(slideM1.getCurrentPosition()+200);
+////        liftPosition = 11;
+//    }
 
     public void slidePickUp(){
         slideAutomatic = true;
         upController.setSetPoint(slideM1.getCurrentPosition()+200);
-//        liftPosition = 12;
     }
     public void slideAutoMid(){
         slideAutomatic = true;
         upController.setSetPoint(AUTO_MID_POS);
-        liftPosition = 13;
+        liftPos = LiftPos.AUTO_MID;
     }
     public void slideConeStack() {
         slideAutomatic = true;
         lowBool = false;
         upController.setSetPoint(CONE_STACK_POS);
-        liftPosition = 14;
+        liftPos = LiftPos.CONE_STACK;
     }
     public void slideAutoHigh() {
         slideAutomatic = true;
         lowBool = false;
         upController.setSetPoint(AUTO_HIGH_POS);
-        liftPosition = 15;
+        liftPos = LiftPos.AUTO_HIGH;
     }
 
 
-    public void liftEncoderReset() {
-        liftPosition = 0;
-    }
-
-    public void setLift(double angle) {
-        slideAutomatic = true;
-        upController.setSetPoint(angle);
-    }
-
-    public boolean atTargetAngle() {
-        return upController.atSetPoint();
-    }
+//    public void setLift(double angle) {
+//        slideAutomatic = true;
+//        upController.setSetPoint(angle);
+//    }
+//    public boolean atTargetAngle() {
+//        return upController.atSetPoint();
+//    }
 
 
     public void setOffset() {
@@ -340,35 +310,20 @@ public class Slide extends SubsystemBase {
     }
 
     public void dropSlide(){
-        switch (liftPosition){
-            case 2:
+        switch (liftPos){
+            case LOW:
                 upController.setSetPoint(LOW_POS+350);
                 break;
-            case 3:
+            case MID:
                 upController.setSetPoint(MID_POS+500);
                 break;
-            case 4:
+            case HIGH:
                 upController.setSetPoint(HIGH_POS+400);
                 break;
-//            case 5:
-//                upController.setSetPoint(CONE_5_POS+80);
-//                break;
-//            case 6:
-//                upController.setSetPoint(CONE_4_POS+80);
-//                break;
-//            case 7:
-//                upController.setSetPoint(CONE_3_POS+80);
-//                break;
-//            case 8:
-//                upController.setSetPoint(CONE_2_POS+80);
-//                break;
-//            case 9:
-//                upController.setSetPoint(CONE_1_POS+80);
-//                break;
-            case 13:
+            case AUTO_MID:
                 upController.setSetPoint(AUTO_MID_POS+500);
                 break;
-            case 15:
+            case AUTO_HIGH:
                 upController.setSetPoint(AUTO_HIGH_POS+870);
                 break;
         }

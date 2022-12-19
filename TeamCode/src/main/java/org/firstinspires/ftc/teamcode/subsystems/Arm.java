@@ -18,15 +18,15 @@ public class Arm extends SubsystemBase {
 
     public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.0025, 0.2, 0, 0.0);
     //I = 0.0008
-    private PIDFController controller;
+    private final PIDFController controller;
     private boolean armAutomatic;
 
     public static double CPR = 384.5;
-    public static double UP_SPEED = -0.55;
-    public static double DOWN_SPEED = 0.55;
+//    public static double UP_SPEED = -0.55;
+//    public static double DOWN_SPEED = 0.55;
 
-    private double encoderOffset = 0;
-    private double offsetNum = 0;
+    private final double encoderOffset = 0;
+//    private double offsetNum = 0;
     public static int INIT_POS = 0;
 
     public static int INTAKE_POS_BACK = -318,
@@ -34,7 +34,7 @@ public class Arm extends SubsystemBase {
                         HIGH_POS_BACK = -158,
                         GROUND_POS_BACK = -240;
     public static int HIGH_POS_AUTO_BACK = -129 ,
-            INTAKE_POS_AUTO_BACK = -270,
+                        INTAKE_POS_AUTO_BACK = -270,
                         POS_AUTO_BACK = -165;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
@@ -44,25 +44,33 @@ public class Arm extends SubsystemBase {
     public static int HIGH_POS_AUTO_FRONT = -HIGH_POS_AUTO_BACK,
                         INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
                         POS_AUTO_FRONT = -POS_AUTO_BACK;
+    public enum ArmPos{
+        RESET,
+        INTAKE_BACK, BACK, HIGH_BACK, GROUND_BACK,
+        INTAKE_FRONT, FRONT, HIGH_FRONT, GROUND_FRONT,
+        AUTO_INTAKE_BACK, AUTO_BACK, AUTO_HIGH_BACk,
+        AUTO_INTAKE_FRONT, AUTO_FRONT, AUTO_HIGH_FRONT,
+    }
+    ArmPos armPos = ArmPos.RESET;
 
 
 
-    private static double POWER = 0.93;
-    private static int clawPos = 0;
+    private final static double POWER = 0.93;
+//    private static int armPos = 0;
 
     Telemetry telemetry;
-    private MotorEx armMotor;
+    private final MotorEx armMotor;
 
     public Arm(Telemetry tl, HardwareMap hw) {
-        this.armMotor = new MotorEx(hw, "clawM");
+        armMotor = new MotorEx(hw, "clawM");
 
         //Reverse claw motor
-         this.armMotor.setInverted(true);
-        this.armMotor.resetEncoder();
+        armMotor.setInverted(true);
+        armMotor.resetEncoder();
 //        this.armMotor.setZeroPowerBehavior(BRAKE);
-        this.armMotor.setDistancePerPulse(360 / CPR);
+        armMotor.setDistancePerPulse(360 / CPR);
 
-        this.armMotor.set(0);
+        armMotor.set(0);
 
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
         controller.setTolerance(10);
@@ -70,6 +78,7 @@ public class Arm extends SubsystemBase {
         this.telemetry = tl;
         armAutomatic = false;
         setOffset();
+//        armPos = ArmPos.RESET;
     }
 
     @Override
@@ -89,15 +98,12 @@ public class Arm extends SubsystemBase {
 
         }
         Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", armMotor.getCurrentPosition());
-        Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", clawPos);
+        Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", armPos);
     }
 
 
     private double getEncoderDistance() {
         return armMotor.getDistance() - encoderOffset;
-    }
-    public void setAutomatic(boolean auto) {
-        this.armAutomatic = auto;
     }
     public double getAngle() {
         return getEncoderDistance();
@@ -106,21 +112,21 @@ public class Arm extends SubsystemBase {
     /****************************************************************************************/
 
     public void raiseClawManual() {
-        armAutomatic = false;
-        armMotor.set(UP_SPEED);
-//        armAutomatic = true;
-//        if((armMotor.getCurrentPosition()<250)){
-//            controller.setSetPoint(armMotor.getCurrentPosition()+5);
-//        }
+//        armAutomatic = false;
+//        armMotor.set(UP_SPEED);
+        armAutomatic = true;
+        if((armMotor.getCurrentPosition()<275)){
+            controller.setSetPoint(armMotor.getCurrentPosition()+5);
+        }
 //        else return;
     }
     public void lowerClawManual() {
-        armAutomatic = false;
-        armMotor.set(DOWN_SPEED);
-//        armAutomatic = true;
-//        if((armMotor.getCurrentPosition()>-250)){
-//            controller.setSetPoint(armMotor.getCurrentPosition()-5);
-//        }
+//        armAutomatic = false;
+//        armMotor.set(DOWN_SPEED);
+        armAutomatic = true;
+        if((armMotor.getCurrentPosition()>-275)){
+            controller.setSetPoint(armMotor.getCurrentPosition()-5);
+        }
 //        else return;
     }
 
@@ -135,121 +141,119 @@ public class Arm extends SubsystemBase {
     public void moveReset(){
         armAutomatic = true;
         controller.setSetPoint(INIT_POS);
-        clawPos = 0;
+        armPos = ArmPos.RESET;
     }
     public void moveIntakeF() {
         armAutomatic = true;
         controller.setSetPoint(INTAKE_POS_FRONT);
-        clawPos = 1;
+        armPos = ArmPos.INTAKE_FRONT;
     }
-    public void moveF() {
-        armAutomatic = true;
-        controller.setSetPoint(POS_FRONT);
-        clawPos = 2;
-    }
-    public void moveHighF() {
-        armAutomatic = true;
-        controller.setSetPoint(HIGH_POS_FRONT);
-        clawPos = 3;
-    }
-
     public void moveIntakeB() {
         armAutomatic = true;
         controller.setSetPoint(INTAKE_POS_BACK);
-        clawPos = 4;
-    }
-    public void moveB() {
-        armAutomatic = true;
-        controller.setSetPoint(POS_BACK);
-        clawPos = 5;
-    }
-    public void moveHighB() {
-        armAutomatic = true;
-        controller.setSetPoint(HIGH_POS_BACK);
-        clawPos = 6;
-    }
-    public void moveHighBAuto(){
-        armAutomatic = true;
-        controller.setSetPoint(HIGH_POS_AUTO_BACK);
-        clawPos = 7;
-    }
-    public void moveHighFAuto(){
-        armAutomatic = true;
-        controller.setSetPoint(HIGH_POS_AUTO_FRONT);
-        clawPos = 8;
-    }
-    public void moveIntakeFAuto() {
-        armAutomatic = true;
-        controller.setSetPoint(INTAKE_POS_AUTO_FRONT);
-        clawPos = 9;
-    }
-    public void moveBAuto() {
-        armAutomatic = true;
-        controller.setSetPoint(POS_AUTO_BACK);
-        clawPos = 10;
-    }
-    public void moveFAuto() {
-        armAutomatic = true;
-        controller.setSetPoint(POS_AUTO_FRONT);
-        clawPos = 11;
-    }
-    public void moveIntakeBAuto() {
-        armAutomatic = true;
-        controller.setSetPoint(INTAKE_POS_AUTO_BACK);
-        clawPos = 12;
+        armPos = ArmPos.INTAKE_BACK;
     }
     public void moveGroundB(){
         armAutomatic = true;
         controller.setSetPoint(GROUND_POS_BACK);
-        clawPos = 13;
+        armPos = ArmPos.GROUND_BACK;
     }
     public void moveGroundF(){
         armAutomatic = true;
         controller.setSetPoint(GROUND_POS_FRONT);
-        clawPos = 13;
+        armPos = ArmPos.GROUND_FRONT;
+    }
+    public void moveF() {
+        armAutomatic = true;
+        controller.setSetPoint(POS_FRONT);
+        armPos = ArmPos.FRONT;
+    }
+    public void moveB() {
+        armAutomatic = true;
+        controller.setSetPoint(POS_BACK);
+        armPos = ArmPos.BACK;
+    }
+    public void moveHighF() {
+        armAutomatic = true;
+        controller.setSetPoint(HIGH_POS_FRONT);
+        armPos = ArmPos.HIGH_FRONT;
+    }
+    public void moveHighB() {
+        armAutomatic = true;
+        controller.setSetPoint(HIGH_POS_BACK);
+        armPos = ArmPos.HIGH_BACK;
     }
 
+
+
+    public void moveHighBAuto(){
+        armAutomatic = true;
+        controller.setSetPoint(HIGH_POS_AUTO_BACK);
+        armPos = ArmPos.AUTO_HIGH_BACk;
+    }
+    public void moveHighFAuto(){
+        armAutomatic = true;
+        controller.setSetPoint(HIGH_POS_AUTO_FRONT);
+        armPos = ArmPos.AUTO_HIGH_FRONT;
+    }
+    public void moveIntakeFAuto() {
+        armAutomatic = true;
+        controller.setSetPoint(INTAKE_POS_AUTO_FRONT);
+        armPos = ArmPos.AUTO_INTAKE_FRONT;
+    }
+    public void moveIntakeBAuto() {
+        armAutomatic = true;
+        controller.setSetPoint(INTAKE_POS_AUTO_BACK);
+        armPos = ArmPos.AUTO_INTAKE_BACK;
+    }
+    public void moveBAuto() {
+        armAutomatic = true;
+        controller.setSetPoint(POS_AUTO_BACK);
+        armPos = ArmPos.AUTO_BACK;
+    }
+    public void moveFAuto() {
+        armAutomatic = true;
+        controller.setSetPoint(POS_AUTO_FRONT);
+        armPos = ArmPos.AUTO_FRONT;
+    }
+
+
+
     public void dropArmTeleop(){
-        switch (clawPos){
-            case 3:
+        switch (armPos){
+//            case 2:
+//                controller.setSetPoint(POS_FRONT+40);
+//                return;
+            case HIGH_FRONT:
                 controller.setSetPoint(HIGH_POS_FRONT+75);
                 return;
-            case 6:
+//            case 5:
+//                controller.setSetPoint(POS_BACK-40);
+//                return;
+            case HIGH_BACK:
                 controller.setSetPoint(HIGH_POS_BACK-75);
                 return;
         }
     }
 
     public void dropArmAuto(){
-        switch (clawPos){
-//            case 2:
-//                controller.setSetPoint(POS_FRONT+40);
-//                return;
-//            case 3:
-//                controller.setSetPoint(HIGH_POS_FRONT+75);
-//                return;
-//            case 5:
-//                controller.setSetPoint(POS_BACK-40);
-//                return;
-//            case 6:
-//                controller.setSetPoint(HIGH_POS_BACK-75);
-//                return;
-            case 7:
+        switch (armPos){
+            case AUTO_HIGH_BACk:
                 controller.setSetPoint(HIGH_POS_AUTO_BACK-59);
                 return;
-            case 8:
+            case AUTO_HIGH_FRONT:
                 controller.setSetPoint(HIGH_POS_AUTO_FRONT+50);
                 return;
-            case 9:
+            case AUTO_INTAKE_FRONT:
                 controller.setSetPoint(INTAKE_POS_AUTO_FRONT+25);
                 return;
-            case 10:
+            case AUTO_BACK:
                 controller.setSetPoint(POS_AUTO_BACK-35);
                 return;
-            case 11:
+            case AUTO_FRONT:
                 controller.setSetPoint(POS_AUTO_FRONT+35);
                 return;
-            case 12:
+            case AUTO_INTAKE_BACK:
                 controller.setSetPoint(INTAKE_POS_AUTO_BACK-25);
                 return;
         }
@@ -263,39 +267,14 @@ public class Arm extends SubsystemBase {
     /****************************************************************************************/
 
 
-//    public void setLift(double angle) {
-//        automatic = true;
-//        controller.setSetPoint(angle);
-//    }
-
-    public boolean atTargetAngle() {
-        return controller.atSetPoint();
-    }
-
-//    public void setPower(){
-//        clawMotor.set(5);
-//    }
-
     public void setOffset() {
         resetEncoder();
         controller.setSetPoint(getAngle());
     }
     public void clawEncoderReset() {
-        clawPos = 0;
+        armPos = ArmPos.RESET;
     }
     public void resetEncoder() {
         clawEncoderReset();
     }
-
-//    public void moveClawToCorrectHeight() {
-//        if(clawPos == 0) {
-//            moveIntakeF();
-//        } else if(clawPos == 1) {
-//            moveHighF();
-//        } else if(clawPos == 2) {
-//            moveIntakeB();
-//        } else if(clawPos == 3) {
-//            moveHighB();
-//        }
-//    }
 }

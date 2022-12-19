@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.TeleOps;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
@@ -66,7 +67,7 @@ public class LeftFieldCentricTeleOp extends MatchOpMode {
 //        vision = new Vision(hardwareMap, "Webcam 1", telemetry);
 
 //        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-        drivetrain.setPoseEstimate(PoseStorage.currentPose);
+//        drivetrain.setPoseEstimate(PoseStorage.currentPose);
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
     }
 
@@ -75,8 +76,9 @@ public class LeftFieldCentricTeleOp extends MatchOpMode {
     public void configureButtons() {
         //Drive Stuff - D1
         Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true, choice));
-//                    .whenPressed( new InstantCommand(drivetrain::closeImu));
+//                .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true, choice));
+                  .whenPressed( new InstantCommand(drivetrain::reInitializeIMU));
+
         Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
                 .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false, choice));
 
@@ -116,12 +118,14 @@ public class LeftFieldCentricTeleOp extends MatchOpMode {
                 .whileHeld(slide::downSlideManual);
 
         //Arm Manual - D2
-        Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
-                .whenPressed(arm::raiseClawManual)
-                .whenReleased(arm::stopClaw));
-        Button armLowerButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
-                .whenPressed(arm::lowerClawManual)
-                .whenReleased(arm::stopClaw));
+        Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
+                .whileHeld(arm::raiseClawManual);
+//                .whenPressed(arm::raiseClawManual)
+//                .whenReleased(arm::stopClaw));
+        Button armLowerButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
+                .whileHeld(arm::lowerClawManual);
+//                .whenPressed(arm::lowerClawManual)
+//                .whenReleased(arm::stopClaw));
 
         //Claw Servo 3 Buttons - D1
             /*Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))

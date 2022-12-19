@@ -21,6 +21,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnTo
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
+import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 import java.util.List;
 
@@ -51,20 +52,17 @@ public class Drivetrain extends SubsystemBase {
     public void init() {
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drive.setMotorPowers(0, 0, 0, 0);
-        drive.setPoseEstimate(new Pose2d());
+        drive.setPoseEstimate(PoseStorage.currentPose);
 //        imu = hardwareMap.get(BNO055IMU.class, "imu");
-
     }
 //    public void closeImu(){
 //        imu.close();
 //    }
-    //TODO: TEST!
-    public void inIMU(HardwareMap hM){
-        imu = hM.get(BNO055IMU.class, "imu");
-//        imu.initialize(new BNO055IMU.Parameters());
+//    //TODO: TEST!
+    public void reInitializeIMU(){
+//        imu = hM.get(BNO055IMU.class, "imu");
+        imu.initialize(new BNO055IMU.Parameters());
     }
-
-
 
     @Override
     public void periodic() {
@@ -301,4 +299,6 @@ public class Drivetrain extends SubsystemBase {
     public TrajectorySequenceBuilder trajectorySequenceBuilder(Pose2d startPose){
         return drive.trajectorySequenceBuilder(startPose);
     }
+
+
 }
