@@ -34,19 +34,19 @@ public class DriveForwardCommand extends CommandBase{
 
     @Override
     public void initialize() {
-        if (distance < 0)
-            trajectory = new TrajectoryBuilder
-                    (drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).back(-distance).build();
-        else
-            trajectory = new TrajectoryBuilder
-                    (drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).forward(distance).build();
-
 //        if (distance < 0)
 //            trajectory = new TrajectoryBuilder
-//                    (PoseStorage.currentPose, constraint, Trajectories.accelConstraint).back(-distance).build();
+//                    (drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).back(-distance).build();
 //        else
 //            trajectory = new TrajectoryBuilder
-//                    (PoseStorage.currentPose, constraint, Trajectories.accelConstraint).forward(distance).build();
+//                    (drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).forward(distance).build();
+
+        if (distance < 0)
+            trajectory = new TrajectoryBuilder
+                    (PoseStorage.currentPose, constraint, Trajectories.accelConstraint).back(-distance).build();
+        else
+            trajectory = new TrajectoryBuilder
+                    (PoseStorage.currentPose, constraint, Trajectories.accelConstraint).forward(distance).build();
 
         drive.followTrajectory(trajectory);
 
@@ -66,7 +66,7 @@ public class DriveForwardCommand extends CommandBase{
 
     @Override
     public boolean isFinished() {
-//        PoseStorage.currentPose = trajectory.end(); //TODO:Test
+        PoseStorage.currentPose = trajectory.end(); //TODO:Test
         return !drive.isBusy();
     }
 }
