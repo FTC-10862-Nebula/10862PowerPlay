@@ -275,15 +275,15 @@ public class Drivetrain extends SubsystemBase {
         }
     }
 
-    public void distanceCommand(double d){
-        new DriveForwardCommand(this, d);
-    }
-    public void turnCommand(double angle){
-        new TurnCommand(this, angle);
-    }
-    public void turnToCommand(double angle){
-        new TurnToCommand(this, angle);
-    }
+//    public void distanceCommand(double d){
+//        new DriveForwardCommand(this, d);
+//    }
+//    public void turnCommand(double angle){
+//        new TurnCommand(this, angle);
+//    }
+//    public void turnToCommand(double angle){
+//        new TurnToCommand(this, angle);
+//    }
 
     public void followTrajectoryAsync(Trajectory trajectory) {
         drive.followTrajectoryAsync(trajectory);
@@ -298,6 +298,10 @@ public class Drivetrain extends SubsystemBase {
 
     public TrajectorySequenceBuilder trajectorySequenceBuilder(Pose2d startPose){
         return drive.trajectorySequenceBuilder(startPose);
+    }
+
+    public void followTrajectorySequence(TrajectorySequence trajectorySequence) {
+        drive.followTrajectorySequenceAsync(trajectorySequence);
     }
 
 

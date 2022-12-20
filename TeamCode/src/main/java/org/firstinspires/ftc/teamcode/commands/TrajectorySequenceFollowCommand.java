@@ -1,14 +1,13 @@
-package org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands;
+package org.firstinspires.ftc.teamcode.commands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 public class TrajectorySequenceFollowCommand extends CommandBase {
     private final Drivetrain drive;
-    private final TrajectorySequence trajectorySequence;
+    TrajectorySequence trajectorySequence;
     public TrajectorySequenceFollowCommand(Drivetrain drive, TrajectorySequence trajectorySequence) {
         this.drive = drive;
         this.trajectorySequence = trajectorySequence;
@@ -16,7 +15,7 @@ public class TrajectorySequenceFollowCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        drive.followTrajectorySequenceAsync(trajectorySequence);
+        drive.followTrajectorySequence(trajectorySequence);
     }
 
     @Override
@@ -33,7 +32,6 @@ public class TrajectorySequenceFollowCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        PoseStorage.currentPose = trajectorySequence.end(); //TODO:Test
         return !drive.isBusy();
     }
 }

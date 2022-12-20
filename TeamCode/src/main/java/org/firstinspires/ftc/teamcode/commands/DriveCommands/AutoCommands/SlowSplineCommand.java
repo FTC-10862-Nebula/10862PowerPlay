@@ -9,6 +9,7 @@ import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.Trajectories;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 @Config
 public class SlowSplineCommand extends CommandBase{
@@ -40,10 +41,13 @@ public class SlowSplineCommand extends CommandBase{
 
     @Override
     public void initialize() {
-        trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), reverse, maxVelConstraint, Trajectories.accelConstraint)
+//        trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), reverse, maxVelConstraint, Trajectories.accelConstraint)
+//                .splineTo(splinePos, endHeading)
+//                .build();
+
+        trajectory = new TrajectoryBuilder(PoseStorage.currentPose, reverse, maxVelConstraint, Trajectories.accelConstraint)
                 .splineTo(splinePos, endHeading)
                 .build();
-
         drive.followTrajectory(trajectory);
 
     }
@@ -62,6 +66,7 @@ public class SlowSplineCommand extends CommandBase{
 
     @Override
     public boolean isFinished() {
+        PoseStorage.currentPose = trajectory.end(); //TODO:Test
         return !drive.isBusy();
     }
 }

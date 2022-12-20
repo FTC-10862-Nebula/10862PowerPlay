@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.Trajectories;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 @Config
 public class KindaSlowDriveForwardCommand extends CommandBase{
@@ -33,10 +34,15 @@ public class KindaSlowDriveForwardCommand extends CommandBase{
 
     @Override
     public void initialize() {
+//        if (distance > 0)
+//            trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).forward(distance).build();
+//        else
+//            trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).back(-distance).build();
+
         if (distance > 0)
-            trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).forward(distance).build();
+            trajectory = new TrajectoryBuilder(PoseStorage.currentPose, constraint, Trajectories.accelConstraint).forward(distance).build();
         else
-            trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).back(-distance).build();
+            trajectory = new TrajectoryBuilder(PoseStorage.currentPose, constraint, Trajectories.accelConstraint).back(-distance).build();
 
         drive.followTrajectory(trajectory);
 
@@ -56,6 +62,7 @@ public class KindaSlowDriveForwardCommand extends CommandBase{
 
     @Override
     public boolean isFinished() {
+        PoseStorage.currentPose = trajectory.end(); //TODO:Test
         return !drive.isBusy();
     }
 }

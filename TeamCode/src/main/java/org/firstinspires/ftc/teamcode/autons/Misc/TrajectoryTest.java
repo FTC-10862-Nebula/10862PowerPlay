@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
-@Disabled
+//@Disabled
 @Autonomous
 public class TrajectoryTest extends LinearOpMode {
     @Override
@@ -38,8 +38,9 @@ public class TrajectoryTest extends LinearOpMode {
         TrajectorySequence preLoad = drivetrain.trajectorySequenceBuilder(startPose)
                 .strafeRight(50)
                 .strafeRight(21)
-                .lineToSplineHeading(new Pose2d(70, 5))
+//                .lineToSplineHeading(new Pose2d(70, 5))
 //                .addDisplacementMarker(new SlideGroundBCommand(slide, arm, clawServos, true))
+                .addTemporalMarker(() -> new SlideMidFCommand(slide, arm, clawServos, true))
                 .build();
 
         TrajectorySequence cycle1Pickup = drivetrain.trajectorySequenceBuilder(preLoad.end())
@@ -59,6 +60,7 @@ public class TrajectoryTest extends LinearOpMode {
 
         drivetrain.followTrajectorySequenceAsync(preLoad);
         new SlideGroundBCommand(slide, arm, clawServos, true);
+
         if (isStopRequested()) return;
 
         }

@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.Trajectories;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 @Config
 public class StrafeRightCommand extends CommandBase{
@@ -30,15 +31,12 @@ public class StrafeRightCommand extends CommandBase{
     }
     @Override
     public void initialize() {
-//        trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), constraint, Trajectories.accelConstraint).strafeRight(distance).build();
-
-        trajectory = drive.trajectoryBuilder(drive.getPoseEstimate())
-                .strafeRight(distance)
-                .build();
-//        trajectory = drive.trajectoryBuilder(new Pose2d())
+//        trajectory = drive.trajectoryBuilder(drive.getPoseEstimate())
 //                .strafeRight(distance)
 //                .build();
-
+        trajectory = drive.trajectoryBuilder(PoseStorage.currentPose)
+                .strafeRight(distance)
+                .build();
         drive.followTrajectory(trajectory);
 
     }
@@ -58,6 +56,7 @@ public class StrafeRightCommand extends CommandBase{
 
     @Override
     public boolean isFinished() {
+        PoseStorage.currentPose = trajectory.end(); //TODO:Test
         return !drive.isBusy();
     }
 }
