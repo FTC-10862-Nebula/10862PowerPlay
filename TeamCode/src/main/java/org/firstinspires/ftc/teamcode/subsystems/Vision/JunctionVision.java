@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.subsystems;
+package org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -9,16 +9,14 @@ import org.firstinspires.ftc.teamcode.pipelines.FFRectDetector;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
 
 import java.util.logging.Level;
-//import org.firstinspires.ftc.teamcode.Util;
-
 
 public class JunctionVision extends SubsystemBase {
-    private Telemetry telemetry;
-    private FFRectDetector duckDetector;
+    private final Telemetry telemetry;
+    private final FFRectDetector duckDetector;
     private TeamMarkerPipeline.Position currentPos;
 
-    public JunctionVision(HardwareMap hw, String webcamName, Telemetry tl) {
-        duckDetector = new FFRectDetector(hw, webcamName);
+    public JunctionVision(HardwareMap hw, Telemetry tl) {
+        duckDetector = new FFRectDetector(hw, tl);
         duckDetector.init();
 
         duckDetector.setLeftRectangle(0.12, 0.25);

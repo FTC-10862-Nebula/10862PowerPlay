@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-import org.firstinspires.ftc.teamcode.subsystems.TagVision;
+import org.firstinspires.ftc.teamcode.subsystems.Vision.TagVision;
 
 @Autonomous(name="rightNEW")
 public class RightJunctionNEWAuton extends MatchOpMode {
@@ -51,7 +51,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
         slide = new Slide(telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
-        tagVision = new TagVision(hardwareMap, "Webcam 1", telemetry);
+        tagVision = new TagVision(hardwareMap,  telemetry);
         while (!isStarted() && !isStopRequested())
         {
             tagVision.updateTagOfInterest();

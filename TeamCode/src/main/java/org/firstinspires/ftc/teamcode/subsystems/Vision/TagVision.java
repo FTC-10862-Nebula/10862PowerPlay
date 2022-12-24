@@ -1,10 +1,11 @@
-package org.firstinspires.ftc.teamcode.subsystems;
+package org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.subsystems.AprilTagDetectionPipeline;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -40,12 +41,12 @@ public class TagVision extends SubsystemBase {
     boolean tagFound = false;
     int tagFoundNum = 0;
 
-    public TagVision(HardwareMap hw, String webCamName, Telemetry tl)
+    public TagVision(HardwareMap hw, Telemetry tl)
     {
         this.telemetry=tl;
 
         int cameraMonitorViewId = hw.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hw.appContext.getPackageName());
-        camera = OpenCvCameraFactory.getInstance().createWebcam(hw.get(WebcamName.class, webCamName), cameraMonitorViewId);
+        camera = OpenCvCameraFactory.getInstance().createWebcam(hw.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
 
         camera.setPipeline(aprilTagDetectionPipeline);
@@ -61,7 +62,7 @@ public class TagVision extends SubsystemBase {
             @Override
             public void onError(int errorCode)
             {
-                tl.addLine("ERROR!");
+                tl.addLine("ERROR for TagVision!");
             }
         });
     }
@@ -115,22 +116,13 @@ public class TagVision extends SubsystemBase {
         }
         else {
             telemetry.addData("Tag In Sight: ", tagFoundNum);
-//            telemetry.addData("Detected tag ID", tagFoundNum);
-
-//            telemetry.addData("Translation X in meters", tagOfInterest.pose.x);
-//            telemetry.addData("Translation Y in meters", tagOfInterest.pose.y);
-//            telemetry.addData("Translation Z in meters", tagOfInterest.pose.z);
-//            telemetry.addData("Rotation Yaw in degrees", Math.toDegrees(tagOfInterest.pose.yaw));
-//            telemetry.addData("Rotation Pitch degrees", Math.toDegrees(tagOfInterest.pose.pitch));
-//            telemetry.addData("Rotation Roll degrees", Math.toDegrees(tagOfInterest.pose.roll));
         }
         telemetry.addLine();
     }
 
 
-    public void getNumandsend() {
-        telemetry.addLine("in one of the command htins");
-
+    public void stopTagVision() {
+        camera.closeCameraDevice();
     }
 
 }

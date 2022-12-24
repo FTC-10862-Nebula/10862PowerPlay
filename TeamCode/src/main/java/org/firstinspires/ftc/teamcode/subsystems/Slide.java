@@ -328,4 +328,44 @@ public class Slide extends SubsystemBase {
                 break;
         }
     }
+
+    public void voltage() {
+//        if (voltreading > pixyMax || voltreading < pixyMin) {
+//            telemetry.addData("Out of Range", "");
+//            telemetry.update();
+//        } else if (voltreading > pixyCenter && xPosition > turretLow && xPosition < turretHigh) {
+//            if (voltreading > (pixyCenter + 1.7)) {
+//                xPosition = xPosition + 200;
+//            } else if (voltreading > (pixyCenter + 1.28)) {
+//                xPosition = xPosition + 75;
+//            } else if (voltreading > (pixyCenter + .885)) {
+//                xPosition = xPosition + 40;
+//            } else if (voltreading > (pixyCenter + .49)) {
+//                xPosition = xPosition + 15;
+//            } else if (voltreading > (pixyCenter + .1)) {
+//                xPosition = xPosition + 7;
+//            } else if (voltreading > (pixyCenter + .05)) {
+//                xPosition = xPosition + 1;
+//            } else if (voltreading > (pixyCenter + deadband)) {
+//                telemetry.addData("Pixy Centered",":)");
+//            }
+//        } else if (voltreading < pixyCenter) {
+//            if (voltreading < (pixyCenter - 1.7)) {
+//                xPosition = xPosition - 200;
+//            } else if (voltreading < (pixyCenter - 1.28)) {
+//                xPosition = xPosition - 75;
+//            } else if (voltreading < (pixyCenter - .885)) {
+//                xPosition = xPosition - 40;
+//            } else if (voltreading < (pixyCenter - .49)) {
+//                xPosition = xPosition - 15;
+//            } else if (voltreading < (pixyCenter - .1)) {
+//                xPosition = xPosition - 7;
+//            } else if (voltreading < (pixyCenter - .05)) {
+//                xPosition = xPosition - 1;
+//            } else if (voltreading < (pixyCenter - deadband)) {
+//                telemetry.addData(":) ","Pixy Centered");
+//            }
+//        }
+    }
+
 }
