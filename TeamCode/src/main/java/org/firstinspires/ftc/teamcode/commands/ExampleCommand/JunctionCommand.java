@@ -18,9 +18,13 @@ public class JunctionCommand extends SequentialCommandGroup{
 //                new InstantCommand(junctionVision::periodic),
         new SelectCommand(new HashMap<Object, Command>() {
             {
-            put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(new TurnCommand(drivetrain, -3)));
+            put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(
+                    new TurnCommand(drivetrain, -3)
+            ));
             put(TeamMarkerPipeline.Position.MIDDLE, new SequentialCommandGroup());
-            put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(new TurnCommand(drivetrain, 3)));
+            put(TeamMarkerPipeline.Position.RIGHT, new SequentialCommandGroup(
+                    new TurnCommand(drivetrain, 3)
+            ));
             }
         }, junctionVision::getCurrentPosition)
         );
