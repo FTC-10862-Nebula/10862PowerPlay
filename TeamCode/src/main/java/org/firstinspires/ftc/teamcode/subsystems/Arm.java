@@ -5,8 +5,11 @@ import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
+import com.qualcomm.robotcore.hardware.AnalogInput;
+import com.qualcomm.robotcore.hardware.AnalogInputController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Util;
@@ -20,6 +23,7 @@ public class Arm extends SubsystemBase {
     //I = 0.0008
     private final PIDFController controller;
     private boolean armAutomatic;
+    private final AnalogInput potentiometer;
 
     public static double CPR = 384.5;
 //    public static double UP_SPEED = -0.55;
@@ -79,6 +83,8 @@ public class Arm extends SubsystemBase {
         armAutomatic = false;
         setOffset();
 //        armPos = ArmPos.RESET;
+        potentiometer = hw.get(AnalogInput.class, "Potentiometer");
+//        potentiometer = new AnalogInput(null, 0);
     }
 
     @Override
@@ -99,6 +105,8 @@ public class Arm extends SubsystemBase {
         }
         Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", armMotor.getCurrentPosition());
         Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", armPos);
+        telemetry.addData("Current Voltage", potentiometer.getVoltage());
+
     }
 
 
@@ -276,5 +284,11 @@ public class Arm extends SubsystemBase {
     }
     public void resetEncoder() {
         clawEncoderReset();
+    }
+
+    //Check Documentation if confused
+    public double getPotentiometerAngle(){
+        double angle = potentiometer.getVoltage()*81.8;
+        return Range.scale(potentiometer.getVoltage(), 0, potentiometer.getMaxVoltage(), 0, 270);
     }
 }

@@ -37,6 +37,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
+import org.firstinspires.ftc.teamcode.util.Encoder;
 import org.firstinspires.ftc.teamcode.util.LynxModuleUtil;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.*;
 @Config
 public class SampleMecanumDrive extends MecanumDrive {
 //    private final SampleMecanumDrive drive;
+    private Encoder leftEncoder, rightEncoder, frontEncoder;
 
     private Telemetry telemetry;
     double[] powers = new double[4];
@@ -159,6 +161,7 @@ public class SampleMecanumDrive extends MecanumDrive {
 
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
+        setLocalizer(new StandardTrackingWheelLocalizer(leftEncoder, rightEncoder, frontEncoder, hardwareMap));
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
     }

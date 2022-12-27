@@ -4,6 +4,7 @@ import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
+import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
@@ -11,9 +12,9 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @Config
 public class Slide extends SubsystemBase {
-    private Telemetry telemetry;
-    private MotorEx slideM1;
-    private MotorEx slideM2;
+    private final Telemetry telemetry;
+    private final MotorEx slideM1;
+    private final MotorEx slideM2;
 
 //    public boolean liftTime;
 //    int liftError = 0, liftTargetPos = 0, setPos;
@@ -86,7 +87,6 @@ public class Slide extends SubsystemBase {
 
         upController = new PIDFController(pidfUpCoefficients.p, pidfUpCoefficients.i, pidfUpCoefficients.d, pidfUpCoefficients.f, getAngle(), getAngle());
         upController.setTolerance(10);
-
 
         this.telemetry = tl;
         slideAutomatic = false;

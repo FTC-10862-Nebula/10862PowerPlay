@@ -30,14 +30,14 @@ public class Drivetrain extends SubsystemBase {
 
     private final SampleMecanumDrive drive;
     private Telemetry telemetry;
-    private BNO055IMU imu;
+    private final BNO055IMU imu;
     private final int LFVal = 0,
             LRVal = 1,
             RFVal = 2,
             RRVal = 3;
     private final int AUTOFIXLEFTANGLE = -90,
-    AUTOFIXUPANGLE = 0,
-    AUTOFIXRIGHTANGLE = 90;
+                        AUTOFIXUPANGLE = 0,
+                        AUTOFIXRIGHTANGLE = 90;
 
     double[] powers = new double[4];
 
@@ -102,10 +102,6 @@ public class Drivetrain extends SubsystemBase {
         powers [LRVal] = (y - x + rx) / denominator;    //bLPower
         powers [RFVal] = (y - x - rx) / denominator;    //fRPower
         powers [RRVal] = (y + x - rx) / denominator;    //bRPower
-//        powers [LFVal] = (y + x + rx) / denominator;    //fLPower
-//        powers [LRVal] = (y - x + rx) / denominator;    //bLPower
-//        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
-//        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
 ////        Orginal Comp1 for noral mec drive
 
 //
