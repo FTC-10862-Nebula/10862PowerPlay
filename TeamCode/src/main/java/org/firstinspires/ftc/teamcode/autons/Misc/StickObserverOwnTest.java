@@ -1,48 +1,49 @@
 package org.firstinspires.ftc.teamcode.autons.Misc;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.drive.Drive;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.commands.ExampleCommand.JunctionCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.SingleServo;
 import org.firstinspires.ftc.teamcode.subsystems.Vision.JunctionVision;
+import org.firstinspires.ftc.teamcode.subsystems.Vision.StickVision;
 import org.firstinspires.ftc.teamcode.subsystems.Vision.TagVision;
+import org.opencv.core.Mat;
+import org.openftc.easyopencv.OpenCvCameraFactory;
 
 @Autonomous
-public class OWNJunctionAutonTest extends MatchOpMode {
-//    private ATDetector tagDetector;
-
-    private static final double startPoseX = 0;
-    private static final double startPoseY = 0;
-    private static final double startPoseHeading = 0;
-    private int tagNum = 0;
-
+public class StickObserverOwnTest extends MatchOpMode {
     //Gamepad
 //    private GamepadEx driverGamepad;
 
     // Subsystems
-    private SingleServo singleServo;
-    private TagVision tagVision;
-    private JunctionVision junctionVision;
+//    private SingleServo singleServo;
+    private Drivetrain drivetrain;
+//    private TagVision tagVision;
+//    private JunctionVision junctionVision;
+private StickVision stickVision;
 
     @Override
     public void robotInit() {
-//        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
-//        drivetrain.init();
+        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
+        drivetrain.init();
 //        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
 //        tagVision = new TagVision(hardwareMap, "Webcam 1", telemetry);
-        singleServo = new SingleServo(hardwareMap, telemetry);
-        junctionVision = new JunctionVision(hardwareMap, telemetry);
+        stickVision = new StickVision(hardwareMap, telemetry, this);
+
+//        singleServo = new SingleServo(hardwareMap, telemetry);
         while (!isStarted() && !isStopRequested())
         {
-            junctionVision.periodic();
 //            tagVision.updateTagOfInterest();
 //            tagVision.tagToTelemetry();
+//            stickVision.getTurning();
+//            stickVision.periodic();
             telemetry.update();
         }
         this.matchStart();
@@ -52,8 +53,10 @@ public class OWNJunctionAutonTest extends MatchOpMode {
 //        tagNum = tagVision.getTag();
 //        junctionVision = new JunctionVision(hardwareMap, telemetry);
         schedule(
-                new JunctionCommand(singleServo, junctionVision)
+//                new TurnCommand(drivetrain, stickVision.getTurning())
+
         );
+//        if matchLoop();        stickVision.stopCamera();
 
     }
 }

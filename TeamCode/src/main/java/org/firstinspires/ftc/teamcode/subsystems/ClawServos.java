@@ -36,7 +36,7 @@ public class ClawServos extends SubsystemBase {
                     clawS2, //0. - 0.78
     //    private CRServo clawS2;     //Super Speed that is CR
                     clawS3;     //Servo that turns claw
-
+//    public ClawServos( HardwareMap hw, Telemetry tl) { - //Change ITIITITITIIT
     public ClawServos(Telemetry tl, HardwareMap hw) {
 
         this.clawS1 = new SimpleServo(hw, "clawS1", 0, 360);

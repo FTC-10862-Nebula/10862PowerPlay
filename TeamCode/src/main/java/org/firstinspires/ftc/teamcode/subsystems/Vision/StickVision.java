@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.subsystems.Vision;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.pipelines.StickObserverPipeline;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -12,15 +14,38 @@ import org.openftc.easyopencv.OpenCvWebcam;
 
 public class StickVision {
     private final OpenCvWebcam webcam;
-    private StickObserverPipeline stickPipeline = null;
-    private LinearOpMode op;
+//    private StickObserverPipeline stickPipeline = null;
+    private StickObserverPipeline stickPipeline;
+
+    private MatchOpMode matchOpMode;
+    private LinearOpMode linearOpMode;
+
     private final Telemetry telemetry;
-    public StickVision(LinearOpMode p_op, Telemetry tl){
+    public StickVision(HardwareMap hw, Telemetry tl, MatchOpMode opmode){
         //you can input  a hardwareMap instead of linearOpMode if you want
         this.telemetry = tl;
-        op = p_op;
+        this.matchOpMode = opmode;
         //initialize webcam
-        webcam = OpenCvCameraFactory.getInstance().createWebcam(op.hardwareMap.get(WebcamName.class, "Webcam 1"));
+
+        int cameraMonitorViewId = hw
+                .appContext.getResources()
+                .getIdentifier("cameraMonitorViewId", "id", hw.appContext.getPackageName());
+        webcam = OpenCvCameraFactory.getInstance()
+                .createWebcam(hw.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+//        webcam = OpenCvCameraFactory.getInstance().createWebcam(op.hardwareMap.get(WebcamName.class, "Webcam 1"));
+    }
+    public StickVision(HardwareMap hw, Telemetry tl, LinearOpMode opmode){
+        //you can input  a hardwareMap instead of linearOpMode if you want
+        this.telemetry = tl;
+        this.linearOpMode = opmode;
+        //initialize webcam
+
+        int cameraMonitorViewId = hw
+                .appContext.getResources()
+                .getIdentifier("cameraMonitorViewId", "id", hw.appContext.getPackageName());
+        webcam = OpenCvCameraFactory.getInstance()
+                .createWebcam(hw.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+//        webcam = OpenCvCameraFactory.getInstance().createWebcam(op.hardwareMap.get(WebcamName.class, "Webcam 1"));
     }
     public void observeStick(){
         //create the pipeline
@@ -71,7 +96,17 @@ public class StickVision {
         webcam.stopStreaming();
     }
 
-//    public Mat returnInput(){
-//        stickPipeline.processFrame()
+//    public Mat returnInput(Mat mat){
+////        if (mat.cols())
+//        return stickPipeline.processFrame(mat);
 //    }
+
+    public double getTurning(){
+        return stickPipeline.getTurning();
+    }
+    public void periodic(){
+        telemetry.addData("Turning Number:", stickPipeline.getTurning());
+        telemetry.addData("Center of Pole:", stickPipeline.centerOfPole());
+
+    }
 }

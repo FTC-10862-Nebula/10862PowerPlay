@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.pipelines;
 
+import static java.lang.Math.PI;
+
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
@@ -10,10 +12,17 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import java.util.ArrayList;
 import java.util.List;
 
-//for dashboard
-/*@Config*/
-public class StickObserverPipeline extends OpenCvPipeline {
 
+//import com.acmerobotics.dashboard.config.Config;
+//
+//import org.opencv.core.MatOfPoint2f;
+//import org.opencv.core.RotatedRect;
+
+public class StickObserverPipeline extends OpenCvPipeline {
+    double centerOfPole = 0,
+            poleSize = 0,
+            degPerPix = 22.5/320, //Degree per pixal
+            widTimesDist = 16.007*58;   //____ Times Distance
     //backlog of frames to average out to reduce noise
     ArrayList<double[]> frameList;
     //these are public static to be tuned in dashboard
@@ -91,13 +100,37 @@ public class StickObserverPipeline extends OpenCvPipeline {
         masked.release();
         edges.release();
         thresh.release();
-        finalMask.release();
+//        finalMask.release();
         //change the return to whatever mat you want
         //for example, if I want to look at the lenient thresh:
         // return thresh;
         // note that you must not do thresh.release() if you want to return thresh
         // you also need to release the input if you return thresh(release as much as possible)
-        return input;
+//        return input;
+        return finalMask;
+    }
+
+    public double centerOfPole() {
+        double average=0;
+        for(int i=0;i<frameList.size();i++){
+            average+=frameList.get(i)[0];
+        }
+        return average/frameList.size();
+    }
+
+    public double poleSize() {
+        double average=0;
+        for(int i=0;i<frameList.size();i++){
+            average+=frameList.get(i)[1];
+        }
+        return average/frameList.size();
+    }
+
+    public double[] poleRotatedPolarCord() {
+        return new double[]{degPerPix * centerOfPole() * PI / 180, widTimesDist / poleSize()};
+    }
+    public double getTurning(){
+        return degPerPix * centerOfPole() * PI / 180;
     }
 
 

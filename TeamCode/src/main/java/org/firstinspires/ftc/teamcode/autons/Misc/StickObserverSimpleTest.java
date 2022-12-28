@@ -4,17 +4,16 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.pipelines.StickObserverPipeline;
 import org.firstinspires.ftc.teamcode.subsystems.Vision.StickVision;
 
 @Autonomous
-public class StickObserverTest extends LinearOpMode {
+public class StickObserverSimpleTest extends LinearOpMode {
     private Telemetry telemetry;
 
     @Override
     public void runOpMode() {
 //        initialize camera and pipeline
-        StickVision stickVision = new StickVision(this, telemetry);
+        StickVision stickVision = new StickVision(hardwareMap, telemetry, this);
 //      call the function to startStreaming
         stickVision.observeStick();
 
