@@ -6,7 +6,6 @@ import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.hardware.AnalogInput;
-import com.qualcomm.robotcore.hardware.AnalogInputController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.util.Range;
@@ -138,7 +137,7 @@ public class Arm extends SubsystemBase {
 //        else return;
     }
 
-    public void stopClaw() {
+    public void stopArm() {
         armMotor.stopMotor();
 //        controller.setSetPoint(getAngle());
         armAutomatic = false;

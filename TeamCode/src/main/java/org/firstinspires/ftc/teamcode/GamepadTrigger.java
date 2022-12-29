@@ -7,7 +7,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 
 public class GamepadTrigger extends Button {
-    private GamepadEx gamepad;
+    private final GamepadEx gamepad;
     private GamepadKeys.Trigger trigger;
 
     public GamepadTrigger(GamepadEx gamepad, GamepadKeys.Trigger trigger) {

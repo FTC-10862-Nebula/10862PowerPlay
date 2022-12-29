@@ -114,10 +114,10 @@ public class RobotCentricTeleOp extends MatchOpMode {
         //Arm Manual - D2
         Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER)
                 .whenPressed(arm::raiseClawManual)
-                .whenReleased(arm::stopClaw));
+                .whenReleased(arm::stopArm));
         Button armLowerButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER)
                 .whenPressed(arm::lowerClawManual)
-                .whenReleased(arm::stopClaw));
+                .whenReleased(arm::stopArm));
 
         //Claw Servo 3 Buttons - D1
             /*Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
