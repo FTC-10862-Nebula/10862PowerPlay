@@ -21,6 +21,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationCon
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 import com.arcrobotics.ftclib.command.Command;
+import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.Subsystem;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -41,6 +42,7 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuild
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
 import org.firstinspires.ftc.teamcode.util.Encoder;
 import org.firstinspires.ftc.teamcode.util.LynxModuleUtil;
+import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,12 +58,15 @@ public class SampleMecanumDrive extends MecanumDrive implements Subsystem {
 //    private final SampleMecanumDrive drive;
     private Encoder leftEncoder, rightEncoder, frontEncoder;
 
-    private Telemetry telemetry;
+//    private Telemetry telemetry;
     double[] powers = new double[4];
     private final int LFVal = 0,
             LRVal = 1,
             RFVal = 2,
             RRVal = 3;
+    private final int AUTOFIXLEFTANGLE = -90,
+            AUTOFIXUPANGLE = 0,
+            AUTOFIXRIGHTANGLE = 90;
 
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(10, 0, 0); //6,1,0
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(4.8, 0, 1);//0,0,0
@@ -105,27 +110,27 @@ public class SampleMecanumDrive extends MecanumDrive implements Subsystem {
         parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
         imu.initialize(parameters);
 
-        // TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
-        // not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
-        //
-        //             | +Z axis
-        //             |
-        //             |
-        //             |
-        //      _______|_____________     +Y axis
-        //     /       |_____________/|__________
-        //    /   REV / EXPANSION   //
-        //   /       / HUB         //
-        //  /_______/_____________//
-        // |_______/_____________|/
-        //        /
-        //       / +X axis
-        //
-        // This diagram is derived from the axes in section 3.4 https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf
-        // and the placement of the dot/orientation from https://docs.revrobotics.com/rev-control-system/control-system-overview/dimensions#imu-location
-        //
-        // For example, if +Y in this diagram faces downwards, you would use AxisDirection.NEG_Y.
-//         BNO055IMUUtil.remapZAxis(imu, AxisDirection.NEG_Y);
+        /* TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
+         not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
+
+                     | +Z axis
+                     |
+                     |
+                     |
+              _______|_____________     +Y axis
+             /       |_____________/|__________
+            /   REV / EXPANSION   //
+           /       / HUB         //
+          /_______/_____________//
+         |_______/_____________|/
+                /
+               / +X axis
+
+         This diagram is derived from the axes in section 3.4 https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf
+         and the placement of the dot/orientation from https://docs.revrobotics.com/rev-control-system/control-system-overview/dimensions#imu-location
+
+         For example, if +Y in this diagram faces downwards, you would use AxisDirection.NEG_Y.
+         BNO055IMUUtil.remapZAxis(imu, AxisDirection.NEG_Y);*/
 
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
@@ -345,30 +350,23 @@ public class SampleMecanumDrive extends MecanumDrive implements Subsystem {
 
 
 /******Drivetrain Code********/
-
     public void init() {
-        setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    //    setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         setMotorPowers(0, 0, 0, 0);
-        setPoseEstimate(new Pose2d());
-//        imu = hardwareMap.get(BNO055IMU.class, "imu");
-
+        setPoseEstimate(PoseStorage.currentPose);
     }
-    public void closeImu(){
-        imu.close();
-    }
-    public Command inIMU(HardwareMap hM){
-        imu = hM.get(BNO055IMU.class, "imu");
-        return null;
-    }
+        //    //TODO: TEST!
+        public void reInitializeIMU(){
+    //        imu = hM.get(BNO055IMU.class, "imu");
+            imu.initialize(new BNO055IMU.Parameters());
+        }
 
 
     public void setPowers(double leftF, double leftR, double rightR, double rightF) {
         setMotorPowers(leftF, leftR, rightR, rightF);
     }
 
-
     public void mecDrive(double y, double x, double rx) {
-
         // Denominator is the largest motor power (absolute value) or 1
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
@@ -379,17 +377,13 @@ public class SampleMecanumDrive extends MecanumDrive implements Subsystem {
         powers [LRVal] = (y - x + rx) / denominator;    //bLPower
         powers [RFVal] = (y - x - rx) / denominator;    //fRPower
         powers [RRVal] = (y + x - rx) / denominator;    //bRPower
-//        powers [LFVal] = (y + x + rx) / denominator;    //fLPower
-//        powers [LRVal] = (y - x + rx) / denominator;    //bLPower
-//        powers [RFVal] = (y - x - rx) / denominator;    //fRPower
-//        powers [RRVal] = (y + x - rx) / denominator;    //bRPower
-//        Orginal Comp1 for normal mec drive
-//
+//        Original Comp1 for normal mec drive
+
 //         powers [LFVal] =    (y + x + rx) / denominator;
 //         powers [LRVal] =     (y - x + rx) / denominator;
 //         powers [RFVal] =   (y - x - rx) / denominator;
 //         powers [RRVal] =     (y + x - rx) / denominator;
-//        //Everthing but turning works- Test
+//        //Everything but turning works- Test
 //
 //        double frontLPower = (-y - x - rx) / denominator;
 //        double frontRPower = (y - x - rx) / denominator;
@@ -398,9 +392,19 @@ public class SampleMecanumDrive extends MecanumDrive implements Subsystem {
         setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
     }
 
-    public void  fieldCentric(double y, double x, double rx){
-        double theta = -imu.getAngularOrientation().firstAngle;
-
+    public void  fieldCentric(double y, double x, double rx, int choice){
+        double theta = 0;
+        switch(choice){
+            case 1:
+                theta = -imu.getAngularOrientation().firstAngle+(AUTOFIXLEFTANGLE);
+                break;
+            case 2:
+                theta = -imu.getAngularOrientation().firstAngle+(AUTOFIXUPANGLE);
+                break;
+            case 3:
+                theta = -imu.getAngularOrientation().firstAngle+(AUTOFIXRIGHTANGLE);
+                break;
+        }
         double rotX = x * Math.cos(theta) - y * Math.sin(theta);
         double rotY = x * Math.sin(theta) + y * Math.cos(theta);
 
@@ -431,11 +435,9 @@ public class SampleMecanumDrive extends MecanumDrive implements Subsystem {
         //works
     }
 
-
     public void stop() {
         setPowers(0, 0, 0, 0);
     }
-
 
 //    private double clamp(double val, double min, double max) {
 //        return Math.max(min, Math.min(max, val));
@@ -446,46 +448,68 @@ public class SampleMecanumDrive extends MecanumDrive implements Subsystem {
      * the set minimum. If the value is greater than the set maximum,
      * then the method returns the maximum value.
      *
-     * @param value The value to clip.
+     * value - The value to clip.
      */
-    public double clipRange(double value) {
-        return value <= -1 ? -1
-                : value >= 1 ? 1
-                : value;
+//    public double clipRange(double value) {
+//        return value <= -1 ? -1
+//                : value >= 1 ? 1
+//                : value;
+//    }
+
+    /*protected void normalize(double[] wheelSpeeds, double magnitude) {
+        double maxMagnitude = Math.abs(wheelSpeeds[0]);
+        for (int i = 1; i < wheelSpeeds.length; i++) {
+            double temp = Math.abs(wheelSpeeds[i]);
+            if (maxMagnitude < temp) {
+                maxMagnitude = temp;
+            }
+        }
+        for (int i = 0; i < wheelSpeeds.length; i++) {
+            wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude) * magnitude;
+        }
+
     }
 
-    /**
-     * Normalize the wheel speeds
-     */
-//    protected void normalize(double[] wheelSpeeds, double magnitude) {
-//        double maxMagnitude = Math.abs(wheelSpeeds[0]);
-//        for (int i = 1; i < wheelSpeeds.length; i++) {
-//            double temp = Math.abs(wheelSpeeds[i]);
-//            if (maxMagnitude < temp) {
-//                maxMagnitude = temp;
-//            }
-//        }
-//        for (int i = 0; i < wheelSpeeds.length; i++) {
-//            wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude) * magnitude;
-//        }
-//
+//     Normalize the wheel speeds
+
+    protected void normalize(double[] wheelSpeeds) {
+        double maxMagnitude = Math.abs(wheelSpeeds[0]);
+        for (int i = 1; i < wheelSpeeds.length; i++) {
+            double temp = Math.abs(wheelSpeeds[i]);
+            if (maxMagnitude < temp) {
+                maxMagnitude = temp;
+            }
+        }
+        if(maxMagnitude > 1) {
+            for (int i = 0; i < wheelSpeeds.length; i++) {
+                wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude);
+            }
+        }
+    }*/
+
+
+
+    //Things in Subsystem Base
+    protected String m_name = this.getClass().getSimpleName();
+
+//    public SubsystemBase() {
+//        CommandScheduler.getInstance().registerSubsystem(this);
 //    }
-//
-//    /**
-//     * Normalize the wheel speeds
-//     */
-//    protected void normalize(double[] wheelSpeeds) {
-//        double maxMagnitude = Math.abs(wheelSpeeds[0]);
-//        for (int i = 1; i < wheelSpeeds.length; i++) {
-//            double temp = Math.abs(wheelSpeeds[i]);
-//            if (maxMagnitude < temp) {
-//                maxMagnitude = temp;
-//            }
-//        }
-//        if(maxMagnitude > 1) {
-//            for (int i = 0; i < wheelSpeeds.length; i++) {
-//                wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude);
-//            }
-//        }
-//    }
+
+    public String getName() {
+        return m_name;
+    }
+
+    public void setName(String name) {
+        m_name = name;
+    }
+
+    public String getSubsystem() {
+        return getName();
+    }
+
+    public void setSubsystem(String subsystem) {
+        setName(subsystem);
+    }
+
 }

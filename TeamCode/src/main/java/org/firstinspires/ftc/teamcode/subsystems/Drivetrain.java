@@ -53,11 +53,7 @@ public class Drivetrain extends SubsystemBase {
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         drive.setMotorPowers(0, 0, 0, 0);
         drive.setPoseEstimate(PoseStorage.currentPose);
-//        imu = hardwareMap.get(BNO055IMU.class, "imu");
     }
-//    public void closeImu(){
-//        imu.close();
-//    }
 //    //TODO: TEST!
     public void reInitializeIMU(){
 //        imu = hM.get(BNO055IMU.class, "imu");
@@ -91,7 +87,6 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void mecDrive(double y, double x, double rx) {
-
         // Denominator is the largest motor power (absolute value) or 1
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
@@ -102,20 +97,18 @@ public class Drivetrain extends SubsystemBase {
         powers [LRVal] = (y - x + rx) / denominator;    //bLPower
         powers [RFVal] = (y - x - rx) / denominator;    //fRPower
         powers [RRVal] = (y + x - rx) / denominator;    //bRPower
-////        Orginal Comp1 for noral mec drive
+//        Original Comp1 for normal mec drive
 
-//
 //         powers [LFVal] =    (y + x + rx) / denominator;
 //         powers [LRVal] =     (y - x + rx) / denominator;
 //         powers [RFVal] =   (y - x - rx) / denominator;
 //         powers [RRVal] =     (y + x - rx) / denominator;
-//        //Everthing but turning works- Test
+//        //Everything but turning works- Test
 //
-//
-////        double frontLPower = (-y - x - rx) / denominator;
-////        double frontRPower = (y - x - rx) / denominator;
-////        double backLPower = (-y + x - rx) / denominator;
-////        double backRPower = (y + x - rx) / denominator;
+//        double frontLPower = (-y - x - rx) / denominator;
+//        double frontRPower = (y - x - rx) / denominator;
+//        double backLPower = (-y + x - rx) / denominator;
+//        double backRPower = (y + x - rx) / denominator;
         drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
     }
 
@@ -150,8 +143,6 @@ public class Drivetrain extends SubsystemBase {
 //
     }
 
-
-
     public void setDrivePower(Pose2d drivePower) {
         drive.setDrivePower(drivePower);
     }
@@ -169,26 +160,6 @@ public class Drivetrain extends SubsystemBase {
     public double getAngle() {
         return imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
         //works
-    }
-
-    public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
-        return drive.trajectoryBuilder(startPose);
-    }
-
-    public TrajectoryBuilder trajectoryBuilder(Pose2d startPose, boolean reversed) {
-        return drive.trajectoryBuilder(startPose, reversed);
-    }
-
-    public TrajectoryBuilder trajectoryBuilder(Pose2d startPose, double startHeading) {
-        return drive.trajectoryBuilder(startPose, startHeading);
-    }
-
-    public void followTrajectory(Trajectory trajectory) {
-        drive.followTrajectoryAsync(trajectory);
-    }
-
-    public void followTrajectoryBlock(Trajectory trajectory) {
-        drive.followTrajectory(trajectory);
     }
 
     public boolean isBusy() {
@@ -236,10 +207,7 @@ public class Drivetrain extends SubsystemBase {
                 : value;
     }
 
-    /**
-     * Normalize the wheel speeds
-     */
-    protected void normalize(double[] wheelSpeeds, double magnitude) {
+    /*protected void normalize(double[] wheelSpeeds, double magnitude) {
         double maxMagnitude = Math.abs(wheelSpeeds[0]);
         for (int i = 1; i < wheelSpeeds.length; i++) {
             double temp = Math.abs(wheelSpeeds[i]);
@@ -253,9 +221,8 @@ public class Drivetrain extends SubsystemBase {
 
     }
 
-    /**
-     * Normalize the wheel speeds
-     */
+//     Normalize the wheel speeds
+
     protected void normalize(double[] wheelSpeeds) {
         double maxMagnitude = Math.abs(wheelSpeeds[0]);
         for (int i = 1; i < wheelSpeeds.length; i++) {
@@ -269,17 +236,28 @@ public class Drivetrain extends SubsystemBase {
                 wheelSpeeds[i] = (wheelSpeeds[i] / maxMagnitude);
             }
         }
+    }*/
+
+
+    public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
+        return drive.trajectoryBuilder(startPose);
     }
 
-//    public void distanceCommand(double d){
-//        new DriveForwardCommand(this, d);
-//    }
-//    public void turnCommand(double angle){
-//        new TurnCommand(this, angle);
-//    }
-//    public void turnToCommand(double angle){
-//        new TurnToCommand(this, angle);
-//    }
+    public TrajectoryBuilder trajectoryBuilder(Pose2d startPose, boolean reversed) {
+        return drive.trajectoryBuilder(startPose, reversed);
+    }
+
+    public TrajectoryBuilder trajectoryBuilder(Pose2d startPose, double startHeading) {
+        return drive.trajectoryBuilder(startPose, startHeading);
+    }
+
+    public void followTrajectory(Trajectory trajectory) {
+        drive.followTrajectoryAsync(trajectory);
+    }
+
+    public void followTrajectoryBlock(Trajectory trajectory) {
+        drive.followTrajectory(trajectory);
+    }
 
     public void followTrajectoryAsync(Trajectory trajectory) {
         drive.followTrajectoryAsync(trajectory);
