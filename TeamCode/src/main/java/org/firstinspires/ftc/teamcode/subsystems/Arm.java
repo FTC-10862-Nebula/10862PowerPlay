@@ -22,7 +22,7 @@ public class Arm extends SubsystemBase {
     //I = 0.0008
     private final PIDFController controller;
     private boolean armAutomatic;
-    private final AnalogInput potentiometer;
+//    private final AnalogInput potentiometer;
 
     public static double CPR = 384.5;
 //    public static double UP_SPEED = -0.55;
@@ -82,7 +82,7 @@ public class Arm extends SubsystemBase {
         armAutomatic = false;
         setOffset();
 //        armPos = ArmPos.RESET;
-        potentiometer = hw.get(AnalogInput.class, "Potentiometer");
+//        potentiometer = hw.get(AnalogInput.class, "Potentiometer");
 //        potentiometer = new AnalogInput(null, 0);
     }
 
@@ -104,7 +104,7 @@ public class Arm extends SubsystemBase {
         }
         Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", armMotor.getCurrentPosition());
         Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", armPos);
-        telemetry.addData("Current Voltage", potentiometer.getVoltage());
+//        telemetry.addData("Current Voltage", potentiometer.getVoltage());
 
     }
 
@@ -286,8 +286,8 @@ public class Arm extends SubsystemBase {
     }
 
     //Check Documentation if confused
-    public double getPotentiometerAngle(){
-        double angle = potentiometer.getVoltage()*81.8;
-        return Range.scale(potentiometer.getVoltage(), 0, potentiometer.getMaxVoltage(), 0, 270);
-    }
+//    public double getPotentiometerAngle(){
+//        double angle = potentiometer.getVoltage()*81.8;
+//        return Range.scale(potentiometer.getVoltage(), 0, potentiometer.getMaxVoltage(), 0, 270);
+//    }
 }
