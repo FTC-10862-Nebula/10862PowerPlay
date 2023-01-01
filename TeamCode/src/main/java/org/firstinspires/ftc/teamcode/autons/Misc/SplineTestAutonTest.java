@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.autons.Misc;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
@@ -11,30 +10,19 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveF
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
+
 @Disabled
 @Autonomous(group = "RED/BLUE")
 public class SplineTestAutonTest extends MatchOpMode {
-//    private ATDetector tagDetector;
-
-    private static double startPoseX = 0;
-    private static double startPoseY = 0;
-    private static double startPoseHeading = 0;
-
-    // Gamepad
-//    private GamepadEx driverGamepad;
 
     // Subsystems
-    private Drivetrain drivetrain;
-
+    private MecanumDrive drivetrain;
 
     @Override
     public void robotInit() {
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
+        drivetrain = new MecanumDrive(hardwareMap);
         drivetrain.init();
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
-
     }
 
     public void matchStart() {

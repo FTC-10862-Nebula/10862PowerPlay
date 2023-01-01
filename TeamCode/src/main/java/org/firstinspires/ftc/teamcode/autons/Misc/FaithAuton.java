@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.autons.Misc;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -10,10 +9,9 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAut
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 @Disabled
 @Autonomous(name = "FaithCam", group = "RED/BLUE")
@@ -27,19 +25,18 @@ public class FaithAuton extends MatchOpMode {
     // Gamepad
 //    private GamepadEx driverGamepad;
 
-    Drivetrain drivetrain;
+    MecanumDrive drivetrain;
     Slide slide;
     Arm arm;
     ClawServos clawServos;
     @Override
     public void robotInit() {
-         drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
+        drivetrain = new MecanumDrive(hardwareMap);
         drivetrain.init();
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         slide= new Slide(telemetry,hardwareMap);
-         arm = new Arm(telemetry,hardwareMap);
-         clawServos = new ClawServos(telemetry,hardwareMap);
+        arm = new Arm(telemetry,hardwareMap);
+        clawServos = new ClawServos(telemetry,hardwareMap);
         while (!isStarted() && !isStopRequested()){
             waitForStart();
         }

@@ -2,16 +2,15 @@ package org.firstinspires.ftc.teamcode.commands.DriveCommands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 public class TurnCommandSampleMecDrive extends CommandBase {
 
-    private final SampleMecanumDrive mecanumDrive;
+    private final MecanumDrive mecanumDrive;
     private final double angle;
 
     //Turns in a Counterclockwise direction
-    public TurnCommandSampleMecDrive(SampleMecanumDrive mecanumDrive, double angle) {
+    public TurnCommandSampleMecDrive(MecanumDrive mecanumDrive, double angle) {
         this.mecanumDrive = mecanumDrive;
         this.angle = angle;
 

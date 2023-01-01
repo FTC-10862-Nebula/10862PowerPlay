@@ -5,15 +5,15 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
+import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class BlueIntakeCommand extends ParallelCommandGroup {
 
-    public BlueIntakeCommand(Drivetrain drivetrain, Slide slide, ClawServos clawServos, Arm arm, SensorColor sensorColor) {
+    public BlueIntakeCommand(MecanumDrive drivetrain, Slide slide, ClawServos clawServos, Arm arm, SensorColor sensorColor) {
         addRequirements(clawServos, sensorColor);
         addCommands(
 //                new WaitUntilCommand(sensorColor::grabbedBlueCone).withTimeout(9),

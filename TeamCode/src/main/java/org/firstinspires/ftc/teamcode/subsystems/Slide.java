@@ -19,7 +19,7 @@ public class Slide extends SubsystemBase {
 //    public boolean liftTime;
 //    int liftError = 0, liftTargetPos = 0, setPos;
 
-    public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(.005, 0.00, 0,0);//.0075, 0., .003, 0)
+    public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(2, 0.00, 0,0);//.0075, 0., .003, 0)
 //    public static PIDFCoefficients pidfDownCoefficients = new PIDFCoefficients(0.01, 0.00, 0, 0);
 
     //I = 0.0008
@@ -38,8 +38,8 @@ public class Slide extends SubsystemBase {
     public static int GROUND_POS = -30;
     public static int LOW_POS = -663;
     public static int MID_POS = -1149;
-    public static int HIGH_POS = -1366;
-//public static int HIGH_POS = -1750;
+//    public static int HIGH_POS = -1366;
+public static int HIGH_POS = -1750;
 
     public static int AUTO_MID_POS = -1015;
     public static int AUTO_HIGH_POS = -1366;

@@ -16,10 +16,9 @@ import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Pick.PickCBC
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.driveTrainAuton.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision.TagVision;
 
@@ -38,7 +37,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private Drivetrain drivetrain;
+    private MecanumDrive drivetrain;
     private Slide slide;
     private TagVision tagVision;
 
@@ -46,7 +45,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
     public void robotInit() {
         clawServos = new ClawServos( telemetry, hardwareMap);
         arm = new Arm( telemetry, hardwareMap);
-        drivetrain = new Drivetrain(new SampleMecanumDrive(hardwareMap), telemetry, hardwareMap);
+        drivetrain = new MecanumDrive(hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));

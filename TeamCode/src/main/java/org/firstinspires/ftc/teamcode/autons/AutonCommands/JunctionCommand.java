@@ -5,14 +5,14 @@ import com.arcrobotics.ftclib.command.SelectCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
+import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Vision.JunctionVision;
 
 import java.util.HashMap;
 
 public class JunctionCommand extends SequentialCommandGroup {
-    public  JunctionCommand (JunctionVision junctionVision, Drivetrain drivetrain){
+    public  JunctionCommand (JunctionVision junctionVision, MecanumDrive drivetrain){
         addCommands(
                 new SelectCommand(new HashMap<Object, Command>() {{
                     put(TeamMarkerPipeline.Position.LEFT, new SequentialCommandGroup(

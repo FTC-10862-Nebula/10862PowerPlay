@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.driveTrainAuton;
+package org.firstinspires.ftc.teamcode.subsystems;
 
 import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.FORWARD;
 import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.REVERSE;
@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.control.PIDCoefficients;
 import com.acmerobotics.roadrunner.drive.DriveSignal;
-import com.acmerobotics.roadrunner.drive.MecanumDrive;
 import com.acmerobotics.roadrunner.followers.HolonomicPIDVAFollower;
 import com.acmerobotics.roadrunner.followers.TrajectoryFollower;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
@@ -20,10 +19,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.ProfileAccelerationConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
 import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
-import com.arcrobotics.ftclib.command.Command;
-import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.Subsystem;
-import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -33,7 +29,6 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
@@ -42,7 +37,6 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuild
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
 import org.firstinspires.ftc.teamcode.util.Encoder;
 import org.firstinspires.ftc.teamcode.util.LynxModuleUtil;
-import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,19 +48,17 @@ import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.*;
  * Simple mecanum drive hardware implementation for REV hardware.
  */
 @Config
-public class SampleMecanumDrive extends MecanumDrive implements Subsystem {
-//    private final SampleMecanumDrive drive;
+public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive implements Subsystem {
     private Encoder leftEncoder, rightEncoder, frontEncoder;
 
-//    private Telemetry telemetry;
     double[] powers = new double[4];
     private final int LFVal = 0,
             LRVal = 1,
             RFVal = 2,
             RRVal = 3;
     private final int AUTOFIXLEFTANGLE = -90,
-            AUTOFIXUPANGLE = 0,
-            AUTOFIXRIGHTANGLE = 90;
+                        AUTOFIXUPANGLE = 0,
+                        AUTOFIXRIGHTANGLE = 90;
 
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(10, 0, 0); //6,1,0
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(4.8, 0, 1);//0,0,0
@@ -90,7 +82,7 @@ public class SampleMecanumDrive extends MecanumDrive implements Subsystem {
     private BNO055IMU imu;
     private VoltageSensor batteryVoltageSensor;
 
-    public SampleMecanumDrive(HardwareMap hardwareMap) {
+    public MecanumDrive(HardwareMap hardwareMap) {
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
 
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
@@ -352,12 +344,14 @@ public class SampleMecanumDrive extends MecanumDrive implements Subsystem {
 /******Drivetrain Code********/
     public void init() {
     //    setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        new Pose2d(0,0,0);
         setMotorPowers(0, 0, 0, 0);
-        setPoseEstimate(PoseStorage.currentPose);
+        setPoseEstimate(new Pose2d(0, 0, Math.toRadians(0)));
     }
-        //    //TODO: TEST!
+
+        //TODO: TEST!
         public void reInitializeIMU(){
-    //        imu = hM.get(BNO055IMU.class, "imu");
+//            imu = hardwareMap.get(BNO055IMU.class, "imu");
             imu.initialize(new BNO055IMU.Parameters());
         }
 
