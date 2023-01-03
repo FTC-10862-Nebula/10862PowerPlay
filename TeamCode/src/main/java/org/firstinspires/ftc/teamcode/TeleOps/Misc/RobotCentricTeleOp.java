@@ -50,7 +50,7 @@ public class RobotCentricTeleOp extends MatchOpMode {
 
         arm = new Arm(telemetry, hardwareMap);
         clawServos = new ClawServos(telemetry, hardwareMap);
-        drivetrain = new MecanumDrive(hardwareMap);
+        drivetrain = new MecanumDrive(hardwareMap, telemetry);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
 //        vision = new TagVision(hardwareMap, "Webcam 1", telemetry);

@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands;
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Util;
+import org.firstinspires.ftc.teamcode.util.Util;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 import java.util.logging.Level;

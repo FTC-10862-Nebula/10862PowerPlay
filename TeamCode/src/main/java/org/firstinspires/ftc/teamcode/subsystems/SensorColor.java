@@ -8,11 +8,6 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-import org.firstinspires.ftc.teamcode.Util;
-
-import java.util.Locale;
-import java.util.logging.Level;
 
 public class SensorColor extends SubsystemBase implements HardwareDevice {
 

@@ -20,7 +20,7 @@ private StickVision stickVision;
 
     @Override
     public void robotInit() {
-        drivetrain = new MecanumDrive(hardwareMap);
+        drivetrain = new MecanumDrive(hardwareMap, telemetry);
         drivetrain.init();
 //        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 

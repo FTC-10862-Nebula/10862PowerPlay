@@ -21,6 +21,7 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropCon
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetFCommandT;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.StandardTrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -55,7 +56,7 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
 
         arm = new Arm(telemetry, hardwareMap);
         clawServos = new ClawServos(telemetry, hardwareMap);
-        drivetrain = new MecanumDrive(hardwareMap);
+        drivetrain = new MecanumDrive(hardwareMap, telemetry);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
 //        vision = new TagVision(hardwareMap, "Webcam 1", telemetry);
@@ -168,12 +169,15 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
 
     @Override
     public void matchLoop() {
-
     }
     @Override
     public void disabledPeriodic() { }
     @Override
     public void matchStart() { }
     @Override
-    public void robotPeriodic(){ }
+    public void robotPeriodic(){
+//        telemetry.addData("Front Encoder: ", StandardTrackingWheelLocalizer.frontEncoderPos);
+//        telemetry.addData("Left Encoder: ", StandardTrackingWheelLocalizer.leftEncoderPos);
+//        telemetry.addData("Right Encoder: ", StandardTrackingWheelLocalizer.rightEncoderPos);
+    }
 }

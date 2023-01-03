@@ -2,11 +2,9 @@ package org.firstinspires.ftc.teamcode.pipelines;
 
 import com.acmerobotics.dashboard.config.Config;
 
-import org.firstinspires.ftc.teamcode.Util;
-import org.firstinspires.ftc.teamcode.util.LoggingUtil;
+import org.firstinspires.ftc.teamcode.util.Util;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Config
 public class TeamMarkerPipeline extends FFRectMarkerPipeline {

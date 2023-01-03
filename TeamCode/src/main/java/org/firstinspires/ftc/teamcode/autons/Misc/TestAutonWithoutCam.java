@@ -39,7 +39,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
         clawServos = new ClawServos( telemetry, hardwareMap);
         arm = new Arm(telemetry, hardwareMap);
         slide = new Slide(telemetry, hardwareMap);
-        mecanumDrive = new MecanumDrive(hardwareMap);
+        mecanumDrive = new MecanumDrive(hardwareMap, telemetry);
 //        drivetrain = new Drivetrain(new MecanumDrive(hardwareMap), telemetry, hardwareMap);
 //        drivetrain.init();
 //        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
@@ -56,7 +56,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
                         new WaitCommand(1500),
                         new SlideHighBCommand(slide, arm, clawServos,true),
                         new WaitCommand(1500),
-new SlideResetFCommandT(slide, arm, clawServos)
+                        new SlideResetFCommandT(slide, arm, clawServos)
 
 //                        new DropAutoConeCommand(clawServos, slide, arm,true)
 
