@@ -51,7 +51,7 @@ import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.*;
  */
 @Config
 public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive implements Subsystem {
-    private Encoder leftEncoder, rightEncoder, frontEncoder;
+//    private Encoder leftEncoder, rightEncoder, frontEncoder;
 
     double[] powers = new double[4];
     private final int LFVal = 0,
@@ -165,11 +165,8 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
         this.telemetry = telemetry;
-//        leftEncoder = new Encoder(leftFront);
-//        rightEncoder = new Encoder(rightRear);
-//        frontEncoder = new Encoder(leftRear);
 
-        setLocalizer(new StandardTrackingWheelLocalizer(leftEncoder, rightEncoder, frontEncoder, hardwareMap, telemetry));
+        setLocalizer(new StandardTrackingWheelLocalizer(hardwareMap, telemetry));
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
     }

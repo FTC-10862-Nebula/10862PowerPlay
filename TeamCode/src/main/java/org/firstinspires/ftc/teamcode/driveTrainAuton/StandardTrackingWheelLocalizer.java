@@ -43,20 +43,18 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
     public static double FORWARD_OFFSET = 6.25;
     // in; offset of the lateral wheel - positive when in front of the wheels and negative when behind the wheels (closer to the back).
 
-    private Encoder leftEncoder, rightEncoder, frontEncoder;
-    private Telemetry telemetry;
+    private final Encoder leftEncoder, rightEncoder, frontEncoder;
+    private final Telemetry telemetry;
 
 //    public static int leftEncoderPos, rightEncoderPos, frontEncoderPos;
 
-    public StandardTrackingWheelLocalizer(Encoder leftEncoder, Encoder rightEncoder, Encoder frontEncoder, HardwareMap hardwareMap, Telemetry tl) {
+    public StandardTrackingWheelLocalizer(HardwareMap hardwareMap, Telemetry tl) {
         super(Arrays.asList(
                 new Pose2d(0, LATERAL_DISTANCE / 2, 0), // left
                 new Pose2d(0, -LATERAL_DISTANCE / 2, 0), // right
                 new Pose2d(FORWARD_OFFSET, 0, Math.toRadians(90)) // front
         ));
-        this.leftEncoder = leftEncoder;
-        this.rightEncoder = rightEncoder;
-        this.frontEncoder = frontEncoder;
+
         this.telemetry = tl;
 
         leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "leftFront"));
@@ -83,7 +81,7 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
     @NonNull
     @Override
     public List<Double> getWheelVelocities() {
-        // TODO: If your encoder velocity can exceed 32767 counts / second (such as the REV Through Bore and other
+        //  If your encoder velocity can exceed 32767 counts / second (such as the REV Through Bore and other
         //  competing magnetic encoders), change Encoder.getRawVelocity() to Encoder.getCorrectedVelocity() to enable a
         //  compensation method
 
