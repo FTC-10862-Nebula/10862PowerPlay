@@ -28,15 +28,15 @@ public class ClawServos extends SubsystemBase {
 
 
     Telemetry telemetry;
-    private final ServoEx clawS1,//  -0.95
-                    clawS2, //0. - 0.78
+    private final ServoEx //clawS1,//  -0.95
+                clawS2, //0. - 0.78
     //    private CRServo clawS2;     //Super Speed that is CR
                     clawS3;     //Servo that turns claw
 //    public ClawServos( HardwareMap hw, Telemetry tl) { - //Change ITIITITITIIT
     public ClawServos(Telemetry tl, HardwareMap hw) {
 
-        this.clawS1 = new SimpleServo(hw, "clawS1", 0, 360);
-        this.clawS1.setPosition(CLOSE_POS_S1);  //Port 2
+//        this.clawS1 = new SimpleServo(hw, "clawS1", 0, 360);
+//        this.clawS1.setPosition(CLOSE_POS_S1);  //Port 2
         this.clawS2 = new SimpleServo(hw, "clawS2", 0, 360);
         this.clawS2.setPosition(CLOSE_POS_S2);  //Port 3
 
@@ -48,14 +48,14 @@ public class ClawServos extends SubsystemBase {
 
     @Override
     public void periodic() {
-        telemetry.addData("Claw Servo 1 Pos: ", clawS1.getPosition());
+//        telemetry.addData("Claw Servo 1 Pos: ", clawS1.getPosition());
         telemetry.addData("Claw Servo 2 Pos: ", clawS2.getPosition());
         telemetry.addData("Claw Servo 3 Pos: ", clawS3.getPosition());
     }
 
-    public void setClawS1(double clawServo1Pos) {
-        clawS1.setPosition(clawServo1Pos);
-    }
+//    public void setClawS1(double clawServo1Pos) {
+//        clawS1.setPosition(clawServo1Pos);
+//    }
     public void setClawS2(double clawServo2Pos) {
         clawS2.setPosition(clawServo2Pos);
     }
@@ -65,16 +65,16 @@ public class ClawServos extends SubsystemBase {
 
 
     public void clawAutoClose() {
-        setClawS1(AUTO_CLOSE_S1);
+//        setClawS1(AUTO_CLOSE_S1);
         setClawS2(AUTO_CLOSE_S2);
     }
     public void clawClose() {
-        setClawS1(CLOSE_POS_S1);
+//        setClawS1(CLOSE_POS_S1);
         setClawS2(CLOSE_POS_S2);
     }
 
     public void clawOpen() {
-        setClawS1(OPEN_POS_S1);
+//        setClawS1(OPEN_POS_S1);
         setClawS2(OPEN_POS_S2);
     }
 

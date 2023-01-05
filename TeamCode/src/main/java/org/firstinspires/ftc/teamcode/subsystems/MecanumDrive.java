@@ -85,7 +85,7 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     private VoltageSensor batteryVoltageSensor;
     private Telemetry telemetry;
 
-    public MecanumDrive(HardwareMap hardwareMap, Telemetry telemetry) {
+    public MecanumDrive(HardwareMap hardwareMap, Telemetry telemetry, boolean isUsingImu) {
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
 
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
@@ -101,10 +101,13 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
 
         // TODO: adjust the names of the following hardware devices to match your configuration
         //Remove following Lines
-        imu = hardwareMap.get(BNO055IMU.class, "imu");
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
-        imu.initialize(parameters);
+
+        if(isUsingImu) {
+            imu = hardwareMap.get(BNO055IMU.class, "imu");
+            BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+            parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+            imu.initialize(parameters);
+        }
 
         /* TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
          not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
@@ -153,14 +156,14 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
 
         // TODO: reverse any motors using DcMotor.setDirection()
 
+        leftFront.setDirection(FORWARD);
+        leftRear.setDirection(FORWARD);
+        rightFront.setDirection(REVERSE);
+        rightRear.setDirection(REVERSE);
 //        leftFront.setDirection(REVERSE);
-//        leftRear.setDirection(FORWARD);
-//        rightFront.setDirection(REVERSE);
+//        leftRear.setDirection(REVERSE);
+//        rightFront.setDirection(FORWARD);
 //        rightRear.setDirection(FORWARD);
-        leftFront.setDirection(REVERSE);
-        leftRear.setDirection(REVERSE);
-        rightFront.setDirection(FORWARD);
-        rightRear.setDirection(FORWARD);
 
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
@@ -414,10 +417,10 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
 //
-        powers [LFVal] = (-rotY - rotX - rx) / denominator;
-        powers [LRVal] = (-rotY + rotX - rx) / denominator;
-        powers [RFVal] = (-rotY - rotX + rx) / denominator;
-        powers [RRVal] = (-rotY + rotX + rx) / denominator;
+        powers [LFVal] = (-rotY - rotX + rx) / denominator;
+        powers [LRVal] = (-rotY + rotX + rx) / denominator;
+        powers [RFVal] = (-rotY - rotX - rx) / denominator;
+        powers [RRVal] = (-rotY + rotX - rx) / denominator;
         //WORKS!!!!!!!!!!!!!!!!
 
         setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[3]);

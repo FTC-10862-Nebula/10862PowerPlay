@@ -22,7 +22,7 @@ import java.util.Objects;
  * <p>
  * Further fine tuning of MAX_ANG_VEL may be desired.
  */
-@Disabled
+//@Disabled
 @Config
 @Autonomous(group = "drive")
 public class MaxAngularVeloTuner extends LinearOpMode {
@@ -33,7 +33,7 @@ public class MaxAngularVeloTuner extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        MecanumDrive drive = new MecanumDrive(hardwareMap, telemetry);
+        MecanumDrive drive = new MecanumDrive(hardwareMap, telemetry, false);
 
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 

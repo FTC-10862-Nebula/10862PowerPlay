@@ -45,7 +45,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
     public void robotInit() {
         clawServos = new ClawServos( telemetry, hardwareMap);
         arm = new Arm( telemetry, hardwareMap);
-        drivetrain = new MecanumDrive(hardwareMap, telemetry);
+        drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));

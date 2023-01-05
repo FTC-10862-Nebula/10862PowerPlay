@@ -21,7 +21,7 @@ public class SplineTestAutonTest extends MatchOpMode {
 
     @Override
     public void robotInit() {
-        drivetrain = new MecanumDrive(hardwareMap, telemetry);
+        drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
         drivetrain.init();
     }
 

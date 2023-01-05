@@ -25,7 +25,7 @@ import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
  * This opmode is designed as a convenient, coarse tuning for the follower PID coefficients. It
  * is recommended that you use the FollowerPIDTuner opmode for further fine tuning.
  */
-@Disabled
+//@Disabled
 @Config
 @Autonomous(group = "drive")
 public class BackAndForth extends LinearOpMode {
@@ -34,7 +34,7 @@ public class BackAndForth extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        MecanumDrive drive = new MecanumDrive(hardwareMap, telemetry);
+        MecanumDrive drive = new MecanumDrive(hardwareMap, telemetry, false);
 
         Trajectory trajectoryForward = drive.trajectoryBuilder(new Pose2d())
                 .forward(DISTANCE)

@@ -13,12 +13,12 @@ import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 /*
  * This is an example of a more complex path to really test the tuning.
  */
-@Disabled
+//@Disabled
 @Autonomous(group = "drive")
 public class SplineTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        MecanumDrive drive = new MecanumDrive(hardwareMap, telemetry);
+        MecanumDrive drive = new MecanumDrive(hardwareMap, telemetry, false);
 
         waitForStart();
 

@@ -74,7 +74,7 @@ public class ManualFeedforwardTuner extends LinearOpMode {
 
         Telemetry telemetry = new MultipleTelemetry(this.telemetry, dashboard.getTelemetry());
 
-        drive = new MecanumDrive(hardwareMap, telemetry);
+        drive = new MecanumDrive(hardwareMap, telemetry, false);
 
         mode = Mode.TUNING_MODE;
 

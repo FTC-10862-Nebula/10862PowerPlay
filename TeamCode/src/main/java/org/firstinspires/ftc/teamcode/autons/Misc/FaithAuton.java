@@ -31,7 +31,7 @@ public class FaithAuton extends MatchOpMode {
     ClawServos clawServos;
     @Override
     public void robotInit() {
-        drivetrain = new MecanumDrive(hardwareMap, telemetry);
+        drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
         drivetrain.init();
 
         slide= new Slide(telemetry,hardwareMap);

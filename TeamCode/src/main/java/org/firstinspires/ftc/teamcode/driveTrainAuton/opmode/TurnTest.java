@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 /*
  * This is a simple routine to test turning capabilities.
  */
-@Disabled
+//@Disabled
 @Config
 @Autonomous(group = "drive")
 public class TurnTest extends LinearOpMode {
@@ -18,7 +18,7 @@ public class TurnTest extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        MecanumDrive drive = new MecanumDrive(hardwareMap, telemetry);
+        MecanumDrive drive = new MecanumDrive(hardwareMap, telemetry, false);
 
         waitForStart();
 

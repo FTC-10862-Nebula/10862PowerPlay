@@ -48,7 +48,7 @@ public class LeftFieldCentricTeleOp extends MatchOpMode {
 
         arm = new Arm(telemetry, hardwareMap);
         clawServos = new ClawServos(telemetry, hardwareMap);
-        drivetrain = new MecanumDrive(hardwareMap, telemetry);
+        drivetrain = new MecanumDrive(hardwareMap, telemetry, true);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
 //        vision = new TagVision(hardwareMap, "Webcam 1", telemetry);
