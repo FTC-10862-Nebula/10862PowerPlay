@@ -19,7 +19,7 @@ public class Slide extends SubsystemBase {
 //    public boolean liftTime;
 //    int liftError = 0, liftTargetPos = 0, setPos;
 
-    public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(2, 0.00, 0,0);//.0075, 0., .003, 0)
+    public static PIDFCoefficients pidfUpCoefficients = new PIDFCoefficients(0.05, 0.00, 0,0);//.0075, 0., .003, 0)
 //    public static PIDFCoefficients pidfDownCoefficients = new PIDFCoefficients(0.01, 0.00, 0, 0);
 
     //I = 0.0008
@@ -273,7 +273,7 @@ public static int HIGH_POS = -1750;
 
     public void slidePickUp(){
         slideAutomatic = true;
-        upController.setSetPoint(slideM1.getCurrentPosition()+200);
+        upController.setSetPoint(slideM1.getCurrentPosition()-30);
     }
     public void slideAutoMid(){
         slideAutomatic = true;

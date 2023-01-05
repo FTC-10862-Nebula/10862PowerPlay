@@ -55,11 +55,11 @@ public class ClawServoTest extends OpMode {
         }
 
         if(gamepad1.right_bumper){
-            pos = CLOSE_POS_S1;
+//            pos = CLOSE_POS_S1;
             pos2  = CLOSE_POS_S2;
         }
         else if(gamepad1.left_bumper){
-            pos = OPEN_POS_S1;
+//            pos = OPEN_POS_S1;
             pos2  = OPEN_POS_S2;
         }
 

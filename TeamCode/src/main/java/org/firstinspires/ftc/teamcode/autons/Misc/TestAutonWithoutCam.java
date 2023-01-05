@@ -1,14 +1,13 @@
 package org.firstinspires.ftc.teamcode.autons.Misc;
 
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TurnCommandSampleMecDrive;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetFCommandT;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplineCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplinetoSplineCommand;
+import org.firstinspires.ftc.teamcode.commands.DriveCommands.ResetPoseCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -49,14 +48,37 @@ public class TestAutonWithoutCam extends MatchOpMode {
 //        waitForStart();
         schedule(
                 new SequentialCommandGroup(
+                        new SplinetoSplineCommand(mecanumDrive, new Pose2d(50, -10, Math.toRadians(5)), Math.toRadians(45))
+//new ResetPoseCommand(mecanumDrive, new Pose2d(50, -10, Math.toRadians(5)))
+//                        new SplinetoSplineCommand()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //                        new TurnCommandSampleMecDrive(mecanumDrive, 12),
 //                        new SlideLowBCommand(slide, arm, clawServos,true),
 //                        new WaitCommand(1500),
-                        new SlideMidBCommand(slide, arm, clawServos,true),
-                        new WaitCommand(1500),
-                        new SlideHighBCommand(slide, arm, clawServos,true),
-                        new WaitCommand(1500),
-                        new SlideResetFCommandT(slide, arm, clawServos)
+//                        new SlideMidBCommand(slide, arm, clawServos,true),
+//                        new WaitCommand(1500),
+//                        new SlideHighBCommand(slide, arm, clawServos,true),
+//                        new WaitCommand(1500),
+//                        new SlideResetFCommandT(slide, arm, clawServos)
 
 //                        new DropAutoConeCommand(clawServos, slide, arm,true)
 

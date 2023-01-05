@@ -17,6 +17,9 @@ import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideGrou
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.*;
+
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideResetBCommandT;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetFCommandT;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
@@ -88,16 +91,16 @@ public class RightFieldCentricTeleOp extends MatchOpMode {
 
         //Slide positions - D2
         Button groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                .whenPressed(new SlideGroundBCommand(slide, arm, clawServos, false)));
+                .whenPressed(new SlideGroundFCommand(slide, arm, clawServos, false)));
         Button lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                .whenPressed(new SlideLowBCommand(slide, arm, clawServos, false)));
+                .whenPressed(new SlideLowFCommand(slide, arm, clawServos, false)));
         Button midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                .whenPressed(new SlideMidBCommand(slide, arm, clawServos, false)));
+                .whenPressed(new SlideMidFCommand(slide, arm, clawServos, false)));
         Button highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                .whenPressed(new SlideHighBCommand(slide, arm, clawServos, false)));
+                .whenPressed(new SlideHighFCommand(slide, arm, clawServos, false)));
 
-        Button resetFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                .whenPressed(new SlideResetFCommandT(slide, arm, clawServos)));
+        Button resetBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
+                .whenPressed(new SlideResetBCommandT(slide, arm, clawServos)));
         Button resetArmUp = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
                 .whenPressed(arm::moveReset));
 
