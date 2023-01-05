@@ -84,12 +84,21 @@ public class TrackingWheelLateralDistanceTuner extends LinearOpMode {
         telemetry.addLine("Press Y/△ to stop the routine.");
         telemetry.update();
 
+//        telemetry.addLine("beforeStart");
+//        telemetry.update();
+//        sleep(5000);
         waitForStart();
+//        telemetry.addLine("beforestoprequest");
+//        telemetry.update();
 
         if (isStopRequested()) return;
+//        telemetry.addLine("beforeclearall");
+//        telemetry.update();
 
         telemetry.clearAll();
         telemetry.update();
+//        telemetry.addLine("afterclearall");
+//        telemetry.update();
 
         double headingAccumulator = 0;
         double lastHeading = 0;
@@ -98,12 +107,23 @@ public class TrackingWheelLateralDistanceTuner extends LinearOpMode {
 
         while (!isStopRequested() && !tuningFinished) {
             Pose2d vel = new Pose2d(0, 0, -gamepad1.right_stick_x);
+//            telemetry.addLine("one");
+//            telemetry.update();
+//            sleep(5000);
             drive.setDrivePower(vel);
 
+//            telemetry.addLine("two");
+//            telemetry.update();
+//            sleep(5000);
             drive.update();
+
+//            telemetry.addLine("three");
+//            telemetry.update();
+//            sleep(5000);
 
             double heading = drive.getPoseEstimate().getHeading();
             double deltaHeading = heading - lastHeading;
+
 
             headingAccumulator += Angle.normDelta(deltaHeading);
             lastHeading = heading;

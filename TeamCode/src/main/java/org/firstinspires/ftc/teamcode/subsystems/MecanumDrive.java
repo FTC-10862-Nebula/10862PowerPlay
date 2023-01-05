@@ -230,7 +230,6 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     }
 
     public void update() {
-
         updatePoseEstimate();
         DriveSignal signal = trajectorySequenceRunner.update(getPoseEstimate(), getPoseVelocity());
         if (signal != null) setDriveSignal(signal);
@@ -422,9 +421,9 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
 //
     }
 
-    public void setDrivePower(Pose2d drivePower) {
-        setDrivePower(drivePower);
-    }
+//    public void setDrivePower(Pose2d drivePower) {
+//        super.setDrivePower(drivePower);
+//    }
 
     public double getHeading() {
         return Math.toDegrees(getExternalHeading());
