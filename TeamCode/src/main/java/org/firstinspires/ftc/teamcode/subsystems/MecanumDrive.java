@@ -99,9 +99,7 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
 
-        // TODO: adjust the names of the following hardware devices to match your configuration
-        //Remove following Lines
-
+        //Remove following Lines for Auto
         if(isUsingImu) {
             imu = hardwareMap.get(BNO055IMU.class, "imu");
             BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -154,8 +152,7 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
             setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);
         }
 
-        // TODO: reverse any motors using DcMotor.setDirection()
-
+        /****Motor DIrection*****/
         leftFront.setDirection(FORWARD);
         leftRear.setDirection(FORWARD);
         rightFront.setDirection(REVERSE);
@@ -168,7 +165,6 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
         this.telemetry = telemetry;
-
         setLocalizer(new StandardTrackingWheelLocalizer(hardwareMap, telemetry));
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
@@ -353,7 +349,6 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
 
 /******Drivetrain Code********/
     public void init() {
-    //    setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         new Pose2d(0,0,0);
         setMotorPowers(0, 0, 0, 0);
         setPoseEstimate(new Pose2d(0, 0, Math.toRadians(0)));

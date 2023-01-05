@@ -1,15 +1,14 @@
 package org.firstinspires.ftc.teamcode.driveTrainAuton.opmode;
 
+
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.util.Angle;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.RobotLog;
-
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.StandardTrackingWheelLocalizer;
+import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 /**
  * Opmode designed to assist the user in tuning the `StandardTrackingWheelLocalizer`'s
@@ -62,7 +61,7 @@ import org.firstinspires.ftc.teamcode.driveTrainAuton.StandardTrackingWheelLocal
  * slightly but your heading will still be fine. This does not affect your overall tracking
  * precision. The heading should still line up.
  */
-//@Disabled
+
 @Config
 @TeleOp(group = "drive")
 public class TrackingWheelLateralDistanceTuner extends LinearOpMode {
@@ -75,7 +74,7 @@ public class TrackingWheelLateralDistanceTuner extends LinearOpMode {
         if (!(drive.getLocalizer() instanceof StandardTrackingWheelLocalizer)) {
             RobotLog.setGlobalErrorMsg("StandardTrackingWheelLocalizer is not being set in the "
                     + "drive class. Ensure that \"setLocalizer(new StandardTrackingWheelLocalizer"
-                    + "(hardwareMap));\" is called in MecanumDrive.java");
+                    + "(hardwareMap));\" is called in SampleMecanumDrive.java");
         }
 
         telemetry.addLine("Prior to beginning the routine, please read the directions "

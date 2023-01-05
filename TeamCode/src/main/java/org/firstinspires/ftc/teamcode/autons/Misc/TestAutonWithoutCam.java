@@ -44,11 +44,12 @@ public class TestAutonWithoutCam extends MatchOpMode {
 //        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     }
 
+
     public void matchStart() {
 //        waitForStart();
         schedule(
                 new SequentialCommandGroup(
-                        new SplinetoSplineCommand(mecanumDrive, new Pose2d(50, -10, Math.toRadians(5)), Math.toRadians(45))
+                        new SplinetoSplineCommand(mecanumDrive, new Pose2d(50, 10, Math.toRadians(5)), Math.toRadians(45))
 //new ResetPoseCommand(mecanumDrive, new Pose2d(50, -10, Math.toRadians(5)))
 //                        new SplinetoSplineCommand()
 
