@@ -29,10 +29,6 @@ public class SplineTestAutonTest extends MatchOpMode {
 //        waitForStart();
         schedule(
                 new SequentialCommandGroup(
-                        new StrafeRightCommand(drivetrain, 52),
-                        new StrafeRightCommand(drivetrain, 17),
-//                        new SplinetoSplineCommand(drivetrain, new Pose2d(-30, -50), 0, true),
-                        new DriveForwardCommand(drivetrain, -24.4),
 //                        new SplineCommand(drivetrain, new Vector2d(-24, -70), Math.toRadians(-360), true),
                         new WaitCommand(1000),
                         new SplineCommand(drivetrain, new  Vector2d(0, -68), Math.toRadians(320)),

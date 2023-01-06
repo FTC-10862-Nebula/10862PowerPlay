@@ -24,6 +24,7 @@ public class TrajectoryTest extends LinearOpMode {
         TrajectoryAccelerationConstraint accel = MecanumDrive.getAccelerationConstraint(DriveConstants.MAX_ACCEL);
 
         MecanumDrive drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
+        drivetrain.init();
         ClawServos clawServos = new ClawServos(telemetry, hardwareMap);
         Arm arm = new Arm(telemetry, hardwareMap);
         Slide slide = new Slide(telemetry, hardwareMap);

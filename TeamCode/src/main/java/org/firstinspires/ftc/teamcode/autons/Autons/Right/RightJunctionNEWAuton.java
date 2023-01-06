@@ -31,9 +31,6 @@ public class RightJunctionNEWAuton extends MatchOpMode {
     private static final double startPoseHeading = 0;
     private int tagNum = 0;
 
-    //Gamepad
-//    private GamepadEx driverGamepad;
-
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
@@ -48,7 +45,6 @@ public class RightJunctionNEWAuton extends MatchOpMode {
         drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         tagVision = new TagVision(hardwareMap,  telemetry);
         while (!isStarted() && !isStopRequested())

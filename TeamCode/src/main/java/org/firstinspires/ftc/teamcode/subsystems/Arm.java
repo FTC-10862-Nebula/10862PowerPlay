@@ -30,10 +30,10 @@ public class Arm extends SubsystemBase {
 //    private double offsetNum = 0;
     public static int INIT_POS = 0;
 
-    public static int INTAKE_POS_BACK = -318,
-                        POS_BACK = -252,
+    public static int INTAKE_POS_BACK = -310,
+                        POS_BACK = -248,
                         HIGH_POS_BACK = -158,
-                        GROUND_POS_BACK = -240;
+                        GROUND_POS_BACK = -239;
     public static int HIGH_POS_AUTO_BACK = -129 ,
                         INTAKE_POS_AUTO_BACK = -270,
                         POS_AUTO_BACK = -165;
@@ -100,8 +100,8 @@ public class Arm extends SubsystemBase {
             armMotor.set(output * POWER);
 
         }
-        Util.logger(this, telemetry, Level.INFO, "Claw Encoder Pos: ", armMotor.getCurrentPosition());
-        Util.logger(this, telemetry, Level.INFO, "Claw Pos: ", armPos);
+        Util.logger(this, telemetry, Level.INFO, "Arm Encoder Pos: ", armMotor.getCurrentPosition());
+        Util.logger(this, telemetry, Level.INFO, "Arm Pos: ", armPos);
 //        telemetry.addData("Current Voltage", potentiometer.getVoltage());
 
     }

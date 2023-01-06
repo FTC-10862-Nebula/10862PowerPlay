@@ -38,11 +38,10 @@ public class Slide extends SubsystemBase {
     public static int GROUND_POS = -30;
     public static int LOW_POS = -663;
     public static int MID_POS = -1149;
-//    public static int HIGH_POS = -1366;
-public static int HIGH_POS = -1750;
+    public static int HIGH_POS = -1235;
 
     public static int AUTO_MID_POS = -1015;
-    public static int AUTO_HIGH_POS = -1366;
+    public static int AUTO_HIGH_POS = -1236;
 
 
     //Auto Slide Positions
@@ -55,7 +54,7 @@ public static int HIGH_POS = -1750;
     double output = 0;
 
     public static boolean lowBool = false;
-//    private static double POWER = 1.4,
+//    private static double POWER = 1.4;
 //    LOW_POWER =0.7;
 
 //    private static int liftPos = 0;
@@ -75,7 +74,7 @@ public static int HIGH_POS = -1750;
 //        this.slideM2 = slideM2;
 
         slideM1 = new MotorEx(hw, "lift");
-       slideM2 = new MotorEx(hw, "lift2");
+        slideM2 = new MotorEx(hw, "lift2");
 
         //Reverse lift motor
         slideM1.setInverted(true);
@@ -105,7 +104,7 @@ public static int HIGH_POS = -1750;
 //            if (output >= 1) output = 1;
 //            if (output <= -1) output = -1;
 
-            slideM1.set(output);
+            slideM1.set(output );
             slideM2.set(output);
 
 //            if (lowBool) {

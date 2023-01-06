@@ -22,8 +22,6 @@ public class RightHighJunctionCommandNew extends SequentialCommandGroup{
     public RightHighJunctionCommandNew(MecanumDrive drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         /*Turn is Counterclockwise*/
         addCommands(
-//                new DropAutoConeCommand(clawServos, slide, arm,true),
-
                 new ParallelCommandGroup(
                         new SlideMidFCommand(slide, arm, clawServos, true),
                         new StrafeRightCommand(drivetrain, 52.51)

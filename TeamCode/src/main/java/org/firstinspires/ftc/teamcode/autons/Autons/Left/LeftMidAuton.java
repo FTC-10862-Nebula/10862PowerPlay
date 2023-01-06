@@ -61,7 +61,6 @@ public class LeftMidAuton extends MatchOpMode
         drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
         drivetrain.init();
         slide = new Slide( telemetry, hardwareMap);
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 
         tagVision = new TagVision(hardwareMap, telemetry);
 //        tagVision.init(hardwareMap);
