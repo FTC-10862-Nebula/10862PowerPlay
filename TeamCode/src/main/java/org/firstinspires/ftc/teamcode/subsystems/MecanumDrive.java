@@ -58,12 +58,15 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
             LRVal = 1,
             RFVal = 2,
             RRVal = 3;
-    private final int AUTOFIXLEFTANGLE = -90,
+    private final int AUTOFIXLEFTANGLE = 90,
                         AUTOFIXUPANGLE = 0,
-                        AUTOFIXRIGHTANGLE = 90;
+                        AUTOFIXRIGHTANGLE = -90;
 
-    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(10, 0, 0); //6,1,0
-    public static PIDCoefficients HEADING_PID = new PIDCoefficients(4.8, 0, 1);//0,0,0
+
+    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(4.9, 0, 0); //6,1,0
+    public static PIDCoefficients HEADING_PID = new PIDCoefficients(5.3, 0, 0);//0,0,0
+//    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(10, 0, 0); //6,1,0
+//    public static PIDCoefficients HEADING_PID = new PIDCoefficients(4.8, 0, 1);//0,0,0
 
     public static double LATERAL_MULTIPLIER = 1;
 
@@ -146,21 +149,22 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
             setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
 
-        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //Made not be brake mode
+        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         if (RUN_USING_ENCODER && MOTOR_VELO_PID != null) {
             setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);
         }
 
-        /****Motor DIrection*****/
-        leftFront.setDirection(FORWARD);
-        leftRear.setDirection(FORWARD);
-        rightFront.setDirection(REVERSE);
-        rightRear.setDirection(REVERSE);
-//        leftFront.setDirection(REVERSE);
-//        leftRear.setDirection(REVERSE);
-//        rightFront.setDirection(FORWARD);
-//        rightRear.setDirection(FORWARD);
+        /****Motor Direction*****/
+//        leftFront.setDirection(FORWARD);
+//        leftRear.setDirection(FORWARD);
+//        rightFront.setDirection(REVERSE);
+//        rightRear.setDirection(REVERSE);
+        leftFront.setDirection(REVERSE);
+        leftRear.setDirection(REVERSE);
+        rightFront.setDirection(FORWARD);
+        rightRear.setDirection(FORWARD);
 
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
@@ -411,13 +415,18 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
 //
-        powers [LFVal] = (-rotY - rotX + rx) / denominator;
-        powers [LRVal] = (-rotY + rotX + rx) / denominator;
-        powers [RFVal] = (-rotY - rotX - rx) / denominator;
-        powers [RRVal] = (-rotY + rotX - rx) / denominator;
-        //WORKS!!!!!!!!!!!!!!!!
+        /*powers [LFVal] = (-rotY - rotX - rx) / denominator;
+        powers [LRVal] = (-rotY + rotX - rx) / denominator;
+        powers [RFVal] = (-rotY - rotX + rx) / denominator;
+        powers [RRVal] = (-rotY + rotX + rx) / denominator;*/
+        //Original
 
-        setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[3]);
+        powers [LFVal] = (rotY + rotX - rx) / denominator;
+        powers [LRVal] = (rotY - rotX - rx) / denominator;
+        powers [RFVal] = (rotY + rotX + rx) / denominator;
+        powers [RRVal] = (rotY - rotX + rx) / denominator;
+
+        setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
 //
     }
 
