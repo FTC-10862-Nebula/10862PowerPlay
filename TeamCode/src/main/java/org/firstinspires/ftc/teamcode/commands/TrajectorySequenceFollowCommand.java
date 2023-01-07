@@ -2,13 +2,14 @@ package org.firstinspires.ftc.teamcode.commands;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 public class TrajectorySequenceFollowCommand extends CommandBase {
-    private final MecanumDrive drive;
+    private final Drivetrain drive;
     TrajectorySequence trajectorySequence;
-    public TrajectorySequenceFollowCommand(MecanumDrive drive, TrajectorySequence trajectorySequence) {
+    public TrajectorySequenceFollowCommand(Drivetrain drive, TrajectorySequence trajectorySequence) {
         this.drive = drive;
         this.trajectorySequence = trajectorySequence;
     }

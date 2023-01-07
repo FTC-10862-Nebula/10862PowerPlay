@@ -10,15 +10,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Vision.TagVision;
 
 @Autonomous
 public class OWNJunctionAutonTest extends MatchOpMode {
-//    private ATDetector tagDetector;
-
-    private static final double startPoseX = 0;
-    private static final double startPoseY = 0;
-    private static final double startPoseHeading = 0;
     private int tagNum = 0;
-
-    //Gamepad
-//    private GamepadEx driverGamepad;
 
     // Subsystems
     private SingleServo singleServo;

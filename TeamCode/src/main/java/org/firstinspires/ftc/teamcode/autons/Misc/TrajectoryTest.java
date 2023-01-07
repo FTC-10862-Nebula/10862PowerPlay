@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideGroundBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
@@ -23,7 +24,7 @@ public class TrajectoryTest extends LinearOpMode {
         TrajectoryVelocityConstraint vel = MecanumDrive.getVelocityConstraint(DriveConstants.MAX_VEL, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH);
         TrajectoryAccelerationConstraint accel = MecanumDrive.getAccelerationConstraint(DriveConstants.MAX_ACCEL);
 
-        MecanumDrive drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
+        Drivetrain drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
         ClawServos clawServos = new ClawServos(telemetry, hardwareMap);
         Arm arm = new Arm(telemetry, hardwareMap);

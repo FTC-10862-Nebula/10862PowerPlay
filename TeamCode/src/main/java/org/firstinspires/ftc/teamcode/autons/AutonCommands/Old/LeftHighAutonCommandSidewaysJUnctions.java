@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowB
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
@@ -23,7 +24,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
 public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGroup{
-    public LeftHighAutonCommandSidewaysJUnctions(MecanumDrive drivetrain, Slide slide, Arm arm, ClawServos clawServos){
+    public LeftHighAutonCommandSidewaysJUnctions(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         addCommands(    //Turn is Counterclockwise
 //                new TurnToCommand(drivetrain, 90),
 //                new TurnToCommand(drivetrain, 180),

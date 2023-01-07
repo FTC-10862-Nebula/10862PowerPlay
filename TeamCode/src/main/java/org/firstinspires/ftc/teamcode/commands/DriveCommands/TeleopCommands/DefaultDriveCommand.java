@@ -1,19 +1,21 @@
 package org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands;
 
+import com.acmerobotics.roadrunner.drive.Drive;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 public class DefaultDriveCommand extends CommandBase {
-    private MecanumDrive drive;
+    private Drivetrain drive;
     private GamepadEx driverGamepad;
 
     protected double multiplier;
     boolean mecDrive = true;
     int choice = 0;
 
-    public DefaultDriveCommand(MecanumDrive drive, GamepadEx driverGamepad, boolean mecDrive, int choice) {
+    public DefaultDriveCommand(Drivetrain drive, GamepadEx driverGamepad, boolean mecDrive, int choice) {
 
         this.drive = drive;
         this.driverGamepad = driverGamepad;
@@ -42,28 +44,6 @@ public class DefaultDriveCommand extends CommandBase {
                     choice
             );
         }
-
-//      Arcade Drive
-//      drive.arcadeDrive(driverGamepad.getLeftY() * multiplier, driverGamepad.getRightX() * multiplier);
-//      Tank Drive
-//      https://github.com/FTCLib/RoadRunner-FTCLib-Quickstart/blob/main/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/commands/MecanumDriveCommand.java
-//      drive.tankDrive(driverGamepad.getLeftY() * multiplier, driverGamepad.getRightY() * multiplier)
-
-
-//      Mecanum drive
-//        drive.mecDrive(
-//                -driverGamepad.getLeftY(), //Removed - from drivergamepad
-//                -driverGamepad.getLeftX() * multiplier,
-//                -driverGamepad.getRightX() //Changed from -driverGamepad.getLeftY(), so the drive mturns right
-//        );
-
-//        FieldCentric
-//        drive.fieldCentric(
-//                -driverGamepad.getLeftY(),
-//                -driverGamepad.getLeftX(),
-//                -driverGamepad.getRightX()
-//
-//        );
     }
 
 

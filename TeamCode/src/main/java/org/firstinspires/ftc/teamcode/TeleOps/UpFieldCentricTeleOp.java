@@ -24,6 +24,7 @@ import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideRese
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideResetFCommandT;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.StandardTrackingWheelLocalizer;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -45,7 +46,7 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private MecanumDrive drivetrain;
+    private Drivetrain drivetrain;
     private Slide slide;
 //    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
     //    private TagVision vision;
@@ -58,7 +59,7 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
 
         arm = new Arm(telemetry, hardwareMap);
         clawServos = new ClawServos(telemetry, hardwareMap);
-        drivetrain = new MecanumDrive(hardwareMap, telemetry, true);
+        drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
 //        vision = new TagVision(hardwareMap, "Webcam 1", telemetry);

@@ -14,13 +14,14 @@ import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFCone
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideLowBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
-    public LeftHigh2AutonCommandSideways(MecanumDrive drivetrain, Slide slide, Arm arm, ClawServos clawServos){
+    public LeftHigh2AutonCommandSideways(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         addCommands(    //Turn is Counterclockwise
 //                new TurnToCommand(drivetrain, 90),
 //                new TurnToCommand(drivetrain, 180),

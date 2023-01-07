@@ -27,6 +27,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
@@ -50,7 +51,7 @@ public class LeftMidAuton extends MatchOpMode
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private MecanumDrive drivetrain;
+    private Drivetrain drivetrain;
     private Slide slide;
     private TagVision tagVision;
 
@@ -58,7 +59,7 @@ public class LeftMidAuton extends MatchOpMode
     public void robotInit() {
         clawServos = new ClawServos(telemetry, hardwareMap);
         arm = new Arm( telemetry, hardwareMap);
-        drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
+        drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide( telemetry, hardwareMap);
 

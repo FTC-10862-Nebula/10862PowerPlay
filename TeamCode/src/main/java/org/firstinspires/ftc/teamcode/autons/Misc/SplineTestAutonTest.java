@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveF
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
 @Disabled
@@ -17,11 +18,11 @@ import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 public class SplineTestAutonTest extends MatchOpMode {
 
     // Subsystems
-    private MecanumDrive drivetrain;
+    private Drivetrain drivetrain;
 
     @Override
     public void robotInit() {
-        drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
+        drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
     }
 

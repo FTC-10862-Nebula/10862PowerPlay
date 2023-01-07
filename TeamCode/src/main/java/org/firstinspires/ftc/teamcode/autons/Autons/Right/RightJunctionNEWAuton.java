@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Pick.PickCBC
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
@@ -34,7 +35,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
     // Subsystems
     private Arm arm;
     private ClawServos clawServos;
-    private MecanumDrive drivetrain;
+    private Drivetrain drivetrain;
     private Slide slide;
     private TagVision tagVision;
 
@@ -42,7 +43,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
     public void robotInit() {
         clawServos = new ClawServos( telemetry, hardwareMap);
         arm = new Arm( telemetry, hardwareMap);
-        drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
+        drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
 

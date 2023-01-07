@@ -341,4 +341,7 @@ public class Drivetrain extends SubsystemBase {
     }
 
 
+    public void followTrajectorySequence(TrajectorySequence trajectorySequence) {
+        drive.followTrajectorySequence(trajectorySequence);
+    }
 }

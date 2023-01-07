@@ -7,25 +7,26 @@ import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.Trajectories;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 @Config
 public class SlowDriveForwardCommand extends CommandBase{
 
-    MecanumDrive drive;
+    Drivetrain drive;
     double distance;
     Trajectory trajectory;
     MinVelocityConstraint constraint;
 
-    public SlowDriveForwardCommand(MecanumDrive drive, double distance) {
+    public SlowDriveForwardCommand(Drivetrain drive, double distance) {
         this.drive = drive;
         this.distance = distance;
         constraint = Trajectories.slowVelConstraint;
         this.addRequirements(drive);
     }
 
-    public SlowDriveForwardCommand(MecanumDrive drive, double distance, MinVelocityConstraint constraint) {
+    public SlowDriveForwardCommand(Drivetrain drive, double distance, MinVelocityConstraint constraint) {
         this.drive = drive;
         this.distance = distance;
         this.constraint = constraint;

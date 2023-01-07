@@ -3,24 +3,18 @@ package org.firstinspires.ftc.teamcode.autons.Misc;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Vision.StickVision;
 
 @Autonomous
 public class StickObserverOwnTest extends MatchOpMode {
-    //Gamepad
-//    private GamepadEx driverGamepad;
-
-    // Subsystems
-//    private SingleServo singleServo;
-    private MecanumDrive drivetrain;
-//    private TagVision tagVision;
-//    private JunctionVision junctionVision;
-private StickVision stickVision;
+    private Drivetrain drivetrain;
+    private StickVision stickVision;
 
     @Override
     public void robotInit() {
-        drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
+        drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
 //        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 

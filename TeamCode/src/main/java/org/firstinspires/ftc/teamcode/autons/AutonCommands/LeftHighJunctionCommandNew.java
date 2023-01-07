@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickFCone
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
@@ -23,7 +24,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
 public class LeftHighJunctionCommandNew extends SequentialCommandGroup{
-    public LeftHighJunctionCommandNew(MecanumDrive drivetrain, Slide slide, Arm arm, ClawServos clawServos){
+    public LeftHighJunctionCommandNew(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         /*Turn is Counterclockwise*/
         addCommands(
                 new ParallelCommandGroup(

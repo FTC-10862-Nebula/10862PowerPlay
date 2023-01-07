@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAut
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
@@ -25,13 +26,13 @@ public class FaithAuton extends MatchOpMode {
     // Gamepad
 //    private GamepadEx driverGamepad;
 
-    MecanumDrive drivetrain;
+    Drivetrain drivetrain;
     Slide slide;
     Arm arm;
     ClawServos clawServos;
     @Override
     public void robotInit() {
-        drivetrain = new MecanumDrive(hardwareMap, telemetry, false);
+        drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
 
         slide= new Slide(telemetry,hardwareMap);
