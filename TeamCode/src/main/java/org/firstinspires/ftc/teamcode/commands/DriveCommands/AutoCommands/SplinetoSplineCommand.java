@@ -17,12 +17,12 @@ public class SplinetoSplineCommand extends CommandBase{
 
     Drivetrain drive;
     Trajectory trajectory;
-    boolean reverse = false;
+    boolean reverse;
     Pose2d splinePos;
     double endHeading;
 
     MinVelocityConstraint maxVelConstraint;
-    public SplinetoSplineCommand(Drivetrain drive, MinVelocityConstraint constraint, boolean reverse, Pose2d splinePos, double endHeading) {
+    public SplinetoSplineCommand(Drivetrain drive, MinVelocityConstraint constraint, Pose2d splinePos, double endHeading, boolean reverse) {
         this.drive = drive;
         this.maxVelConstraint = constraint;
         this.reverse = reverse;
@@ -33,11 +33,11 @@ public class SplinetoSplineCommand extends CommandBase{
     }
 
     public SplinetoSplineCommand(Drivetrain drive, Pose2d splinePos, double endHeading) {
-        this(drive, Trajectories.velConstraint, false, splinePos, endHeading);
+        this(drive, Trajectories.velConstraint, splinePos, endHeading, false);
     }
 
     public SplinetoSplineCommand(Drivetrain drive, Pose2d splinePos, double endHeading, boolean reverse) {
-        this(drive, Trajectories.velConstraint, reverse, splinePos, endHeading);
+        this(drive, Trajectories.velConstraint, splinePos, endHeading, reverse);
     }
 
 

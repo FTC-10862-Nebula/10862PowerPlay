@@ -1,8 +1,7 @@
-package org.firstinspires.ftc.teamcode.autons.Misc.Things;
+package org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.roadrunner.drive.Drive;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
 import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
@@ -10,47 +9,45 @@ import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.Trajectories;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 @Config
-public class SplineCommandDrivetrain extends CommandBase{
+public class SplinetoLinearCommand extends CommandBase{
 
     Drivetrain drive;
     Trajectory trajectory;
-    boolean reverse = false;
-    Vector2d splinePos;
+    boolean reverse;
+    Pose2d splinePos;
     double endHeading;
 
     MinVelocityConstraint maxVelConstraint;
-    public SplineCommandDrivetrain(Drivetrain drive, MinVelocityConstraint constraint, boolean reverse, Vector2d splinePos, double endHeading) {
+    public SplinetoLinearCommand(Drivetrain drive, MinVelocityConstraint constraint, Pose2d splinePos, double endHeading, boolean reverse) {
         this.drive = drive;
+        this.maxVelConstraint = constraint;
         this.reverse = reverse;
         this.splinePos = splinePos;
         this.endHeading = endHeading;
-        this.maxVelConstraint = constraint;
+
         this.addRequirements(drive);
     }
 
-    public SplineCommandDrivetrain(Drivetrain drive, Vector2d splinePos, double endHeading) {
-        this(drive, Trajectories.velConstraint, false, splinePos, endHeading);
+    public SplinetoLinearCommand(Drivetrain drive, Pose2d splinePos, double endHeading) {
+        this(drive, Trajectories.velConstraint, splinePos, endHeading, false);
     }
 
-    public SplineCommandDrivetrain(Drivetrain drive, Vector2d splinePos, double endHeading, boolean reverse) {
-        this(drive, Trajectories.velConstraint, reverse, splinePos, endHeading);
+    public SplinetoLinearCommand(Drivetrain drive, Pose2d splinePos, double endHeading, boolean reverse) {
+        this(drive, Trajectories.velConstraint, splinePos, endHeading, reverse);
     }
 
 
     @Override
     public void initialize() {
-//        trajectory = new TrajectoryBuilder
-//                (drive.getPoseEstimate(), reverse, maxVelConstraint, Trajectories.accelConstraint)
-//                .splineTo(splinePos, endHeading)
+//        trajectory = new TrajectoryBuilder(drive.getPoseEstimate(), reverse, maxVelConstraint, Trajectories.accelConstraint)
+//                .splineToSplineHeading(splinePos, endHeading)
 //                .build();
 
-        trajectory = new TrajectoryBuilder
-                (PoseStorage.currentPose, reverse, maxVelConstraint, Trajectories.accelConstraint)
-                .splineTo(splinePos, endHeading)
+        trajectory = new TrajectoryBuilder(PoseStorage.currentPose, reverse, maxVelConstraint, Trajectories.accelConstraint)
+                .splineToLinearHeading(splinePos, endHeading)
                 .build();
         drive.followTrajectory(trajectory);
 
