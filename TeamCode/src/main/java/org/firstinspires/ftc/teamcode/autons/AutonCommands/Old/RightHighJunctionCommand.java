@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.autons.AutonCommands;
+package org.firstinspires.ftc.teamcode.autons.AutonCommands.Old;
 
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -13,14 +13,13 @@ import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.PrePickBCone
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
-public class RightHighJunctionCommandNew extends SequentialCommandGroup{
-    public RightHighJunctionCommandNew(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
+public class RightHighJunctionCommand extends SequentialCommandGroup{
+    public RightHighJunctionCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
         /*Turn is Counterclockwise*/
         addCommands(
                 new ParallelCommandGroup(

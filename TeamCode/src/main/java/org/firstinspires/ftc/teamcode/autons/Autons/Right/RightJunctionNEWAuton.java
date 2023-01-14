@@ -1,12 +1,11 @@
 package org.firstinspires.ftc.teamcode.autons.Autons.Right;
 
-import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.RightHighJunctionCommandNew;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.Old.RightHighJunctionCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
@@ -64,7 +63,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
             case 1: { //Left
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos),
+                                new RightHighJunctionCommand(drivetrain, slide, arm, clawServos),
                                 /***Cone 3***/
                                 new PickCBCommand(slide, clawServos),
                                 new DriveForwardCommand(drivetrain, 51),
@@ -95,7 +94,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
             case 2: { //Mid
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos),
+                                new RightHighJunctionCommand(drivetrain, slide, arm, clawServos),
                                 /***Cone 3***/
                                 new PickCBCommand(slide, clawServos),
                                 new ParallelCommandGroup(
@@ -124,7 +123,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
             default: { //High
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighJunctionCommandNew(drivetrain, slide, arm, clawServos),
+                                new RightHighJunctionCommand(drivetrain, slide, arm, clawServos),
                                 new PickCBCommand(slide, clawServos),
                                 new WaitCommand(1000),
 
