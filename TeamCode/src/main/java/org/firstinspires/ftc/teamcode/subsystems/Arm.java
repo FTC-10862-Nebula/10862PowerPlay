@@ -16,7 +16,8 @@ import java.util.logging.Level;
 @Config
 public class Arm extends SubsystemBase {
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.0025, 0.2, 0, 0.0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(.005, 0.00, 0,0);
+//    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.0025, 0.2, 0, 0.0);//325 Motor
     //I = 0.0008
     private final PIDFController controller;
     private boolean armAutomatic;
@@ -28,21 +29,21 @@ public class Arm extends SubsystemBase {
 
     private final double encoderOffset = 0;
 //    private double offsetNum = 0;
-    public static int INIT_POS = 0;
+    public int INIT_POS = 0;
 
-    public static int INTAKE_POS_BACK = -310,
-                        POS_BACK = -248,
+    public int INTAKE_POS_BACK = -275,
+                        POS_BACK = -225,
                         HIGH_POS_BACK = -158,
                         GROUND_POS_BACK = -239;
-    public static int HIGH_POS_AUTO_BACK = -129 ,
-                        INTAKE_POS_AUTO_BACK = -270,
+    public int HIGH_POS_AUTO_BACK = -30,
+                        INTAKE_POS_AUTO_BACK = -148,
                         POS_AUTO_BACK = -165;
 
-    public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
+    public int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
                         POS_FRONT = -POS_BACK,
                         HIGH_POS_FRONT = -HIGH_POS_BACK,
                         GROUND_POS_FRONT = -GROUND_POS_BACK;
-    public static int HIGH_POS_AUTO_FRONT = -HIGH_POS_AUTO_BACK,
+    public int HIGH_POS_AUTO_FRONT = -HIGH_POS_AUTO_BACK,
                         INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
                         POS_AUTO_FRONT = -POS_AUTO_BACK;
     public enum ArmPos{

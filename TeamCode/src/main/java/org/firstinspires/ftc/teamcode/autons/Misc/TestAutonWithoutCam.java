@@ -55,34 +55,45 @@ public class TestAutonWithoutCam extends MatchOpMode {
                 new SequentialCommandGroup(
                         new ParallelCommandGroup(
                                 new SlideHighFCommand(slide, arm, clawServos, true),
-                                new SplineCommand(drivetrain, new Vector2d(58, 8.5), Math.toRadians(23))    //Cycle
+                                new SplineCommand(drivetrain, new Vector2d(58.5, 9), Math.toRadians(36))    //Cycle
                         ),
+                        new WaitCommand(500),
                         new DropAutoConeCommand(clawServos, slide, arm, true),
+                        new WaitCommand(500),
                         new ParallelCommandGroup(
                                 new PrePickB5Command(slide, clawServos, arm),
-                                new SplineCommand(drivetrain, new Vector2d(55.8, -25), Math.toRadians(270), true)   //Load
-                        ),
-                        new MuliplyCommand(4,
-                                new ParallelCommandGroup(
-                                        new SlideHighFCommand(slide, arm, clawServos, true),
-                                        new SplineCommand(drivetrain, new Vector2d(58, 8.5), Math.toRadians(23), PoseStorage.cycle)    //Cycle
-                                ),
-                                new DropAutoConeCommand(clawServos, slide, arm, true),
-                                new ParallelCommandGroup(
-                                        new PrePickB5Command(slide, clawServos, arm),
-                                        new SplineCommand(drivetrain, new Vector2d(55.8, -25), Math.toRadians(270), PoseStorage.load, true)   //Load
-                                )
-                        ),
-
-
-                        /**Cone 1**/
-                        new ParallelCommandGroup(
-                                new SlideHighFCommand(slide, arm, clawServos, true),
-                                new SplineCommand(drivetrain, new Vector2d(58, 8.5), Math.toRadians(23), PoseStorage.cycle)    //Cycle
-                        ),
-                        new DropAutoConeCommand(clawServos, slide, arm, true),
-
-                        new TurnToCommand(drivetrain, 0)
+                                new SplineCommand(drivetrain, new Vector2d(56, -22), Math.toRadians(268), true)   //Load
+                        )
+//
+//
+//                        new ParallelCommandGroup(
+//                                new SlideHighFCommand(slide, arm, clawServos, true),
+//                                new SplineCommand(drivetrain, new Vector2d(58, 8.5), Math.toRadians(23), PoseStorage.cycle)    //Cycle
+//                        ),
+//                        new DropAutoConeCommand(clawServos, slide, arm, true),
+//                        new ParallelCommandGroup(
+//                                new PrePickB5Command(slide, clawServos, arm),
+//                                new SplineCommand(drivetrain, new Vector2d(55.8, -25), Math.toRadians(270), PoseStorage.load, true)   //Load
+//                        ),
+//
+//                        new ParallelCommandGroup(
+//                                new SlideHighFCommand(slide, arm, clawServos, true),
+//                                new SplineCommand(drivetrain, new Vector2d(58, 8.5), Math.toRadians(23), PoseStorage.cycle)    //Cycle
+//                        ),
+//                        new DropAutoConeCommand(clawServos, slide, arm, true),
+//                        new ParallelCommandGroup(
+//                                new PrePickB5Command(slide, clawServos, arm),
+//                                new SplineCommand(drivetrain, new Vector2d(55.8, -25), Math.toRadians(270), PoseStorage.load, true)   //Load
+//                        ),
+//
+//                        /**Cone 1**/
+//                        new ParallelCommandGroup(
+//                                new SlideHighFCommand(slide, arm, clawServos, true),
+//                                new SplineCommand(drivetrain, new Vector2d(58, 8.5), Math.toRadians(23), PoseStorage.cycle)    //Cycle
+//                        ),
+//                        new DropAutoConeCommand(clawServos, slide, arm, true),
+//
+//                        new TurnToCommand(drivetrain, 0)
                 )
         );
 //        PoseStorage.currentPose = drivetrain.getPoseEstimate();

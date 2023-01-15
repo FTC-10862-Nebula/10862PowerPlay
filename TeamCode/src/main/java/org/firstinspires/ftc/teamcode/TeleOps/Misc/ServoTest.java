@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 //@Disabled
-@TeleOp (name="ServoTest")
+@TeleOp (name="ServoTestforClawS3")
 public class ServoTest extends OpMode {
     //hardware initialization stuff
     Servo servo;

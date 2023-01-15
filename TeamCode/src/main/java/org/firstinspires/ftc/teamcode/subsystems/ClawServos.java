@@ -16,14 +16,14 @@ public class ClawServos extends SubsystemBase {
                                 AUTO_CLOSE_S1 = 0.477,
                                 OPEN_POS_S1 = 0.141,
 
-                                CLOSE_POS_S2 = 0.537,
-                                AUTO_CLOSE_S2 = 0.529,
-                                OPEN_POS_S2 = 0.65;
+                                CLOSE_POS_S2 = 0.7,
+                                AUTO_CLOSE_S2 = 0.8,
+                                OPEN_POS_S2 = 0.85;
 
 //    private static double INTAKE_POWER = -1;
 //    private static double OUTTAKE_POWER = 1;
 
-    private static final double F_POS_S3 = 0.84,
+    public static final double F_POS_S3 = 0.84,
             B_POS_S3 = 0.173999;//299;
 
 

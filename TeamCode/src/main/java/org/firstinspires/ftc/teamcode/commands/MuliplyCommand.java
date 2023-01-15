@@ -8,13 +8,11 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
 //TODO: TEST!!!
 public class MuliplyCommand extends SequentialCommandGroup{
-    public MuliplyCommand( int multiply, Command... command){
-        for(int num = 0; num != multiply; num++)
-        {
+    public MuliplyCommand( int multiply, CommandBase... command){
+
             addCommands(
                     command
+//                    clearGroupedCommand();
             );
-        };
-
     }
 }

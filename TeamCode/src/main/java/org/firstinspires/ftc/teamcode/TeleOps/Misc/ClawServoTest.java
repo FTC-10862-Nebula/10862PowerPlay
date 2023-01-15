@@ -9,18 +9,18 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp
 public class ClawServoTest extends OpMode {
     //hardware initialization stuff
-    Servo servo1;
+    Servo servo3;
     Servo servo2;
-    double pos = 0.5, pos2 = 0.5;
+    double pos = F_POS_S3, pos2 = 0.75;
 
 
 
 
-    public static double INTAKE_POWER = -1;
-    public static double OUTTAKE_POWER = 1;
-
-    public static double FRONT_POS_S3 = 0.16;
-    public static double BACK_POS_S3 = 0.83;
+//    public static double INTAKE_POWER = -1;
+//    public static double OUTTAKE_POWER = 1;
+//
+//    public static double  FRONT_POS_S3 = 0.16;
+//    public static double BACK_POS_S3 = 0.83;
 
     /**
      * User defined init method
@@ -29,8 +29,8 @@ public class ClawServoTest extends OpMode {
      */
     @Override
     public void init() {
-        servo1 = hardwareMap.get(Servo.class, "clawS1");
-        servo2 = hardwareMap.get(Servo.class, "clawS2"); //
+        servo3 = hardwareMap.get(Servo.class, "clawS3");
+        servo2 = hardwareMap.get(Servo.class, "clawS2");
     }
 
     /**
@@ -79,8 +79,8 @@ public class ClawServoTest extends OpMode {
 //        }
 
          pos = Math.min(Math.max(pos, 0), 1);
-        servo1.setPosition(pos);
-        telemetry.addData("Servo pos1: ",servo1.getPosition());
+        servo3.setPosition(pos);
+        telemetry.addData("Servo pos1: ",servo3.getPosition());
         telemetry.addData("Desired pos1: ", pos);
 
         pos2 = Math.min(Math.max(pos2, 0), 1);

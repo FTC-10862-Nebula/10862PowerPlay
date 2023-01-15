@@ -12,16 +12,17 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 public class PrePickB5Command extends SequentialCommandGroup   {
     public PrePickB5Command(Slide slide, ClawServos clawServos, Arm arm){
         addCommands(
+                new InstantCommand(clawServos::setBClawPos),
+                new WaitCommand(250),
                 new ParallelCommandGroup(
                         new InstantCommand(clawServos::clawClose),
 //                        new InstantCommand(clawServos::clawAutoClose),
                         new InstantCommand(arm::moveIntakeBAuto),
                         new InstantCommand(slide::slideCone5)
                 ),
-                new WaitCommand(250),
-                new InstantCommand(clawServos::setBClawPos),
                 new WaitCommand(150),
                 new InstantCommand(clawServos::clawOpen)
         );
+//        addCommands();
     }
 }
