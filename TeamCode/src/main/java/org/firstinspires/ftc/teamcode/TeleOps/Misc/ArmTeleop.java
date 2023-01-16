@@ -51,12 +51,12 @@ public class ArmTeleop extends MatchOpMode {
 
     @Override
     public void configureButtons() {
-        Button intakeButonAuto = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
-                .whenPressed(new InstantCommand(arm::moveIntakeBAuto)));
-        Button backAuto = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
-            .whenPressed(new InstantCommand(arm::moveBAuto)));
-        Button highAuto = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                .whenPressed(new InstantCommand(arm::moveHighBAuto)));
+            Button intakeButonAuto = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
+                    .whenPressed(new InstantCommand(arm::moveIntakeBAuto)));
+            Button backAuto = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
+                .whenPressed(new InstantCommand(arm::moveBAuto)));
+            Button highAuto = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
+                    .whenPressed(new InstantCommand(arm::moveHighBAuto)));
 
 
             Button groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
@@ -74,6 +74,14 @@ public class ArmTeleop extends MatchOpMode {
 //            PIDF Controllers Resets
             Button armMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
                     .whenPressed(arm::encoderReset);
+
+
+
+
+
+//            new GamepadButton(operatorGamepad, GamepadKeys.Button.START)
+//                    .whenPressed(arm::setArm)
+//                    .whenPressed(()->(arm.setArm(2));
     }
 
     @Override

@@ -293,4 +293,8 @@ public class Arm extends SubsystemBase {
 //        double angle = potentiometer.getVoltage()*81.8;
 //        return Range.scale(potentiometer.getVoltage(), 0, potentiometer.getMaxVoltage(), 0, 270);
 //    }
+
+    public void setArm(int point){
+        controller.setSetPoint(point);
+    }
 }
