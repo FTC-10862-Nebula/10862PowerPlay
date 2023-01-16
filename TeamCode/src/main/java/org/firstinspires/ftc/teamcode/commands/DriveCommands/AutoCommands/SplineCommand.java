@@ -85,7 +85,7 @@ public class SplineCommand extends CommandBase{
     public boolean isFinished() {
 //        new ResetPoseCommand(drive, splinePos, endHeading);
 //        PoseStorage.currentPose = new Pose2d(splinePos.getX(), splinePos.getY(), endHeading);
-        PoseStorage.currentPose = trajectory.end(); //TODO:Test
+        PoseStorage.currentPose = trajectory.end();
         if(num==1)
         {
             PoseStorage.cycle = trajectory.end();
@@ -96,10 +96,10 @@ public class SplineCommand extends CommandBase{
 
         return !drive.isBusy();
     }
-    public Vector2d returnVector(){
-        return new Vector2d(trajectory.end().getX(), trajectory.end().getY());
-    }
-    public double returnHeading(){
-        return trajectory.end().getHeading();
-    }
+//    public Vector2d returnVector(){
+//        return new Vector2d(trajectory.end().getX(), trajectory.end().getY());
+//    }
+//    public double returnHeading(){
+//        return trajectory.end().getHeading();
+//    }
 }

@@ -38,10 +38,10 @@ public class Slide extends SubsystemBase {
     public static int GROUND_POS = -30;
     public static int LOW_POS = -663;
     public static int MID_POS = -1149;
-    public static int HIGH_POS = -1235;
+    public static int HIGH_POS = -1236;
 
     public static int AUTO_MID_POS = -1015;
-    public static int AUTO_HIGH_POS = -1210;
+    public static int AUTO_HIGH_POS = -1240;
 
 
     //Auto Slide Positions
@@ -137,7 +137,7 @@ public class Slide extends SubsystemBase {
 //        slideM1.set(UP_SPEED);
 //        slideM2.set(UP_SPEED);
         slideAutomatic = true;
-        if((-1350<slideM1.getCurrentPosition())){
+        if((HIGH_POS<slideM1.getCurrentPosition())){
             upController.setSetPoint(slideM1.getCurrentPosition()-20);
         }
         else return;
@@ -148,7 +148,7 @@ public class Slide extends SubsystemBase {
 //        slideM1.set(DOWN_SPEED);
 //        slideM2.set(DOWN_SPEED);
         slideAutomatic = true;
-        if((slideM1.getCurrentPosition()<-15)){
+        if((-15>slideM1.getCurrentPosition())){
             upController.setSetPoint(slideM1.getCurrentPosition()+20);
         }
         else return;

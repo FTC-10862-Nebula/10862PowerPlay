@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.RightSpline;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplinetoLinearCommand;
@@ -53,47 +54,8 @@ public class TestAutonWithoutCam extends MatchOpMode {
 //        waitForStart();
         schedule(
                 new SequentialCommandGroup(
-                        new ParallelCommandGroup(
-                                new SlideHighFCommand(slide, arm, clawServos, true),
-                                new SplineCommand(drivetrain, new Vector2d(58.5, 9), Math.toRadians(36))    //Cycle
-                        ),
-                        new WaitCommand(500),
-                        new DropAutoConeCommand(clawServos, slide, arm, true),
-                        new WaitCommand(500),
-                        new ParallelCommandGroup(
-                                new PrePickB5Command(slide, clawServos, arm),
-                                new SplineCommand(drivetrain, new Vector2d(56, -22), Math.toRadians(268), true)   //Load
-                        )
-//
-//
-//                        new ParallelCommandGroup(
-//                                new SlideHighFCommand(slide, arm, clawServos, true),
-//                                new SplineCommand(drivetrain, new Vector2d(58, 8.5), Math.toRadians(23), PoseStorage.cycle)    //Cycle
-//                        ),
-//                        new DropAutoConeCommand(clawServos, slide, arm, true),
-//                        new ParallelCommandGroup(
-//                                new PrePickB5Command(slide, clawServos, arm),
-//                                new SplineCommand(drivetrain, new Vector2d(55.8, -25), Math.toRadians(270), PoseStorage.load, true)   //Load
-//                        ),
-//
-//                        new ParallelCommandGroup(
-//                                new SlideHighFCommand(slide, arm, clawServos, true),
-//                                new SplineCommand(drivetrain, new Vector2d(58, 8.5), Math.toRadians(23), PoseStorage.cycle)    //Cycle
-//                        ),
-//                        new DropAutoConeCommand(clawServos, slide, arm, true),
-//                        new ParallelCommandGroup(
-//                                new PrePickB5Command(slide, clawServos, arm),
-//                                new SplineCommand(drivetrain, new Vector2d(55.8, -25), Math.toRadians(270), PoseStorage.load, true)   //Load
-//                        ),
-//
-//                        /**Cone 1**/
-//                        new ParallelCommandGroup(
-//                                new SlideHighFCommand(slide, arm, clawServos, true),
-//                                new SplineCommand(drivetrain, new Vector2d(58, 8.5), Math.toRadians(23), PoseStorage.cycle)    //Cycle
-//                        ),
-//                        new DropAutoConeCommand(clawServos, slide, arm, true),
-//
-//                        new TurnToCommand(drivetrain, 0)
+                        new RightSpline(drivetrain, slide, arm, clawServos)
+//                      new LeftSpline(drivetrain, slide, arm, clawServos)
                 )
         );
 //        PoseStorage.currentPose = drivetrain.getPoseEstimate();

@@ -6,10 +6,10 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 
-//TODO: TEST!!!
+//TODO: TEST!!! - Doesn't Work
 public class MuliplyCommand extends SequentialCommandGroup{
     public MuliplyCommand( int multiply, CommandBase... command){
-
+//            Command ff = requireUngrouped(command);
             addCommands(
                     command
 //                    clearGroupedCommand();

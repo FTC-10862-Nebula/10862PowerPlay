@@ -34,7 +34,7 @@ public class TrajectorySequenceFollowCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        PoseStorage.currentPose = trajectorySequence.end(); //TODO:Test
+        PoseStorage.currentPose = trajectorySequence.end();
         return !drive.isBusy();
     }
 }

@@ -57,7 +57,7 @@ public class StrafeLeftCommand extends CommandBase{
 
     @Override
     public boolean isFinished() {
-        PoseStorage.currentPose = trajectory.end(); //TODO:Test
+        PoseStorage.currentPose = trajectory.end();
         return !drive.isBusy();
     }
 }

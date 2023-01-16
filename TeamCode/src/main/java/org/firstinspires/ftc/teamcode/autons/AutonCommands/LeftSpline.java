@@ -43,16 +43,14 @@ public class LeftSpline extends SequentialCommandGroup{
                 ),
 
 
-                new MuliplyCommand(4,
-                        new ParallelCommandGroup(
-                                new SlideHighFCommand(slide, arm, clawServos, true),
-                                new SplineCommand(drivetrain, new Vector2d(58, -8.5), Math.toRadians(337), PoseStorage.cycle)    //Cycle
-                        ),
-                        new DropAutoConeCommand(clawServos, slide, arm, true),
-                        new ParallelCommandGroup(
-                                new PrePickB5Command(slide, clawServos, arm),
-                                new SplineCommand(drivetrain, new Vector2d(55.8, 25), Math.toRadians(90), PoseStorage.load, true)   //Load
-                        )
+                new ParallelCommandGroup(
+                        new SlideHighFCommand(slide, arm, clawServos, true),
+                        new SplineCommand(drivetrain, new Vector2d(58, -8.5), Math.toRadians(337), PoseStorage.cycle)    //Cycle
+                ),
+                new DropAutoConeCommand(clawServos, slide, arm, true),
+                new ParallelCommandGroup(
+                        new PrePickB5Command(slide, clawServos, arm),
+                        new SplineCommand(drivetrain, new Vector2d(55.8, 25), Math.toRadians(90), PoseStorage.load, true)   //Load
                 ),
 
 

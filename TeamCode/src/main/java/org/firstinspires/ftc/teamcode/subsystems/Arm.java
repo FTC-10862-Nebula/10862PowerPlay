@@ -16,7 +16,7 @@ import java.util.logging.Level;
 @Config
 public class Arm extends SubsystemBase {
 
-    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(.005, 0.00, 0,0);
+    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(.005, 0.00, 0.0,0);
 //    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.0025, 0.2, 0, 0.0);//325 Motor
     //I = 0.0008
     private final PIDFController controller;
@@ -31,26 +31,26 @@ public class Arm extends SubsystemBase {
 //    private double offsetNum = 0;
     public int INIT_POS = 0;
 
-    public int INTAKE_POS_BACK = -275,
-                        POS_BACK = -225,
-                        HIGH_POS_BACK = -158,
-                        GROUND_POS_BACK = -239;
-    public int HIGH_POS_AUTO_BACK = -30,
-                        INTAKE_POS_AUTO_BACK = -148,
-                        POS_AUTO_BACK = -165;
+    public static int INTAKE_POS_BACK = -218,
+                        POS_BACK = -200,
+                        HIGH_POS_BACK = -90,
+                        GROUND_POS_BACK = -197;
+    public static int HIGH_POS_AUTO_BACK = -90,
+                        INTAKE_POS_AUTO_BACK = -190,
+                        POS_AUTO_BACK = -140;
 
-    public int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
+    public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
                         POS_FRONT = -POS_BACK,
                         HIGH_POS_FRONT = -HIGH_POS_BACK,
                         GROUND_POS_FRONT = -GROUND_POS_BACK;
-    public int HIGH_POS_AUTO_FRONT = -HIGH_POS_AUTO_BACK,
+    public static int HIGH_POS_AUTO_FRONT = -HIGH_POS_AUTO_BACK,
                         INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
                         POS_AUTO_FRONT = -POS_AUTO_BACK;
     public enum ArmPos{
         RESET,
         INTAKE_BACK, BACK, HIGH_BACK, GROUND_BACK,
         INTAKE_FRONT, FRONT, HIGH_FRONT, GROUND_FRONT,
-        AUTO_INTAKE_BACK, AUTO_BACK, AUTO_HIGH_BACk,
+        AUTO_INTAKE_BACK, AUTO_BACK, AUTO_HIGH_BACK,
         AUTO_INTAKE_FRONT, AUTO_FRONT, AUTO_HIGH_FRONT,
     }
     ArmPos armPos = ArmPos.RESET;
@@ -195,7 +195,7 @@ public class Arm extends SubsystemBase {
     public void moveHighBAuto(){
         armAutomatic = true;
         controller.setSetPoint(HIGH_POS_AUTO_BACK);
-        armPos = ArmPos.AUTO_HIGH_BACk;
+        armPos = ArmPos.AUTO_HIGH_BACK;
     }
     public void moveHighFAuto(){
         armAutomatic = true;
@@ -227,37 +227,41 @@ public class Arm extends SubsystemBase {
 
     public void dropArmTeleop(){
         switch (armPos){
-//            case 2:
-//                controller.setSetPoint(POS_FRONT+40);
-//                return;
-            case HIGH_FRONT:
-                controller.setSetPoint(HIGH_POS_FRONT+75);
+            case FRONT:
+                controller.setSetPoint(POS_FRONT+5);
                 return;
-//            case 5:
-//                controller.setSetPoint(POS_BACK-40);
-//                return;
+            case BACK:
+                controller.setSetPoint(POS_BACK-5);
+                return;
+
+
             case HIGH_BACK:
                 controller.setSetPoint(HIGH_POS_BACK-75);
+                return;
+            case HIGH_FRONT:
+                controller.setSetPoint(HIGH_POS_FRONT+75);
                 return;
         }
     }
 
     public void dropArmAuto(){
         switch (armPos){
-            case AUTO_HIGH_BACk:
-                controller.setSetPoint(HIGH_POS_AUTO_BACK-59);
+            case AUTO_HIGH_BACK:
+                controller.setSetPoint(HIGH_POS_AUTO_BACK-60);
                 return;
             case AUTO_HIGH_FRONT:
-                controller.setSetPoint(HIGH_POS_AUTO_FRONT+50);
+                controller.setSetPoint(HIGH_POS_AUTO_FRONT+60);
                 return;
-            case AUTO_INTAKE_FRONT:
-                controller.setSetPoint(INTAKE_POS_AUTO_FRONT+25);
-                return;
+
             case AUTO_BACK:
                 controller.setSetPoint(POS_AUTO_BACK-35);
                 return;
             case AUTO_FRONT:
                 controller.setSetPoint(POS_AUTO_FRONT+35);
+                return;
+
+            case AUTO_INTAKE_FRONT:
+                controller.setSetPoint(INTAKE_POS_AUTO_FRONT+25);
                 return;
             case AUTO_INTAKE_BACK:
                 controller.setSetPoint(INTAKE_POS_AUTO_BACK-25);
