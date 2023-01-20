@@ -4,12 +4,11 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.LeftSpline;
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.RightSpline;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 @Autonomous(group = "RED/BLUE")
@@ -17,7 +16,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
 
     // Subsystems
     private Arm arm;
-    private ClawServos clawServos;
+    private Claw claw;
     private Drivetrain drivetrain;
     private Slide slide;
 //    public MecanumDrive mecanumDrive;
@@ -25,7 +24,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
 
     @Override
     public void robotInit() {
-        clawServos = new ClawServos( telemetry, hardwareMap);
+        claw = new Claw( telemetry, hardwareMap);
         arm = new Arm(telemetry, hardwareMap);
         slide = new Slide(telemetry, hardwareMap);
 //        mecanumDrive = new MecanumDrive(hardwareMap, telemetry, false);
@@ -40,8 +39,8 @@ public class TestAutonWithoutCam extends MatchOpMode {
 //        waitForStart();
         schedule(
                 new SequentialCommandGroup(
-//                        new RightSpline(drivetrain, slide, arm, clawServos)
-                      new LeftSpline(drivetrain, slide, arm, clawServos)
+//                        new RightSpline(drivetrain, slide, arm, claw)
+                      new LeftSpline(drivetrain, slide, arm, claw)
                 )
         );
 //        PoseStorage.currentPose = drivetrain.getPoseEstimate();

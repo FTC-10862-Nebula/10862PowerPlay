@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 @Config
@@ -23,7 +23,7 @@ public class TestTeleop extends MatchOpMode {
 
     // Subsystems
     private Arm arm;
-    private ClawServos clawServos;
+    private Claw claw;
     private Drivetrain drivetrain;
     private Slide slide;
 //    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
@@ -36,7 +36,7 @@ public class TestTeleop extends MatchOpMode {
         operatorGamepad = new GamepadEx(gamepad2);
 
         arm = new Arm(telemetry, hardwareMap);
-        clawServos = new ClawServos(telemetry, hardwareMap);
+        claw = new Claw(telemetry, hardwareMap);
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);

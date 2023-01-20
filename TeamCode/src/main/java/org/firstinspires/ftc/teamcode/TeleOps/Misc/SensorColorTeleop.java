@@ -19,7 +19,7 @@ import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 @Disabled
@@ -48,7 +48,7 @@ public class SensorColorTeleop extends MatchOpMode {
 
     // Subsystems
     private Arm arm;
-    private ClawServos clawServos;
+    private Claw claw;
     private Drivetrain drivetrain;
     private Slide slide;
     private SensorColor sensorColor;
@@ -63,15 +63,15 @@ public class SensorColorTeleop extends MatchOpMode {
         operatorGamepad = new GamepadEx(gamepad2);
 
         arm = new Arm(telemetry, hardwareMap);
-        clawServos = new ClawServos( telemetry, hardwareMap);
+        claw = new Claw( telemetry, hardwareMap);
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
         sensorColor = new SensorColor(hardwareMap, telemetry);
-//        clawServos.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
+//        claw.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, claw, arm, sensorColor));
 //        vision = new TagVision(hardwareMap, "Webcam 1", telemetry);
 
-        sensorColor.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
+        sensorColor.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, claw, arm, sensorColor));
 
         drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, 2));
@@ -81,10 +81,10 @@ public class SensorColorTeleop extends MatchOpMode {
     @Override
     public void configureButtons() {
         Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-//                    .whenPressed(new SlideLowBCommand(slide, arm, clawServos))
-                .whenPressed(new InstantCommand(clawServos::clawOpen));
+//                    .whenPressed(new SlideLowBCommand(slide, arm, claw))
+                .whenPressed(new InstantCommand(claw::clawOpen));
         Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                .whenPressed(new InstantCommand(clawServos::clawClose));
+                .whenPressed(new InstantCommand(claw::clawClose));
     }
 
     @Override

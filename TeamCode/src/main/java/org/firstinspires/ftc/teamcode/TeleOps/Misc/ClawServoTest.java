@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.TeleOps.Misc;
 
-import static org.firstinspires.ftc.teamcode.subsystems.ClawServos.*;
+import static org.firstinspires.ftc.teamcode.subsystems.Claw.*;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -56,11 +56,11 @@ public class ClawServoTest extends OpMode {
 
         if(gamepad1.right_bumper){
 //            pos = CLOSE_POS_S1;
-            pos2  = CLOSE_POS_S2;
+            pos2  = CLOSE_POS_S1;
         }
         else if(gamepad1.left_bumper){
 //            pos = OPEN_POS_S1;
-            pos2  = OPEN_POS_S2;
+            pos2  = OPEN_POS_S1;
         }
 
 

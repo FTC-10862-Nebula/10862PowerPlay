@@ -7,22 +7,22 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class BlueIntakeCommand extends ParallelCommandGroup {
 
-    public BlueIntakeCommand(MecanumDrive drivetrain, Slide slide, ClawServos clawServos, Arm arm, SensorColor sensorColor) {
-        addRequirements(clawServos, sensorColor);
+    public BlueIntakeCommand(MecanumDrive drivetrain, Slide slide, Claw claw, Arm arm, SensorColor sensorColor) {
+        addRequirements(claw, sensorColor);
         addCommands(
 //                new WaitUntilCommand(sensorColor::grabbedBlueCone).withTimeout(9),
                 new ConditionalCommand(
                         new SequentialCommandGroup( //When True
-                                new InstantCommand(clawServos::clawClose)
+                                new InstantCommand(claw::clawClose)
 //                                new InstantCommand(slide::autoPickSlideUp)
                         ),
-                        new SequentialCommandGroup( /*When False*/                                 new InstantCommand(clawServos::clawOpen)
+                        new SequentialCommandGroup( /*When False*/                                 new InstantCommand(claw::clawOpen)
                         ),
                         sensorColor::grabbedBlueCone    //What they R checking
                 )

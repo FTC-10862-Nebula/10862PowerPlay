@@ -6,25 +6,25 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class SlideResetFCommandT extends SequentialCommandGroup {
-    public SlideResetFCommandT(Slide slide, Arm arm, ClawServos clawServos){
+    public SlideResetFCommandT(Slide slide, Arm arm, Claw claw){
         addRequirements(arm);
         addCommands(
-                new InstantCommand(clawServos::setFClawPos),
+                new InstantCommand(claw::setFClawPos),
                 new ParallelCommandGroup(
                         new InstantCommand(
                             () -> new Thread(() -> {
-                                clawServos.clawClose();
+                                claw.clawClose();
                                 arm.moveIntakeF();
                                 slide.slideResting();
                         }).start()
                     )
                 ),
                 new WaitCommand(800),
-                new InstantCommand(clawServos::clawOpen)
+                new InstantCommand(claw::clawOpen)
         );
     }
 }

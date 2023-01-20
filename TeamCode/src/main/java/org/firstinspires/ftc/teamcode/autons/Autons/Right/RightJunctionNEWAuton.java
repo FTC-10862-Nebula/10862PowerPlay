@@ -15,10 +15,10 @@ import org.firstinspires.ftc.teamcode.commands.PickConeAutoCommands.Pick.PickCBC
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Vision.TagVision;
 
@@ -33,14 +33,14 @@ public class RightJunctionNEWAuton extends MatchOpMode {
 
     // Subsystems
     private Arm arm;
-    private ClawServos clawServos;
+    private Claw claw;
     private Drivetrain drivetrain;
     private Slide slide;
     private TagVision tagVision;
 
     @Override
     public void robotInit() {
-        clawServos = new ClawServos( telemetry, hardwareMap);
+        claw = new Claw( telemetry, hardwareMap);
         arm = new Arm( telemetry, hardwareMap);
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
@@ -63,25 +63,25 @@ public class RightJunctionNEWAuton extends MatchOpMode {
             case 1: { //Left
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighJunctionCommand(drivetrain, slide, arm, clawServos),
+                                new RightHighJunctionCommand(drivetrain, slide, arm, claw),
                                 /***Cone 3***/
-                                new PickCBCommand(slide, clawServos),
+                                new PickCBCommand(slide, claw),
                                 new DriveForwardCommand(drivetrain, 51),
 
 //                                new ParallelCommandGroup(
-//                                        new SlideHighFCommand(slide, arm, clawServos, true),
+//                                        new SlideHighFCommand(slide, arm, claw, true),
 //                                        new DriveForwardCommand(drivetrain, 29.3)
 //                                ),
 //                                new TurnCommand(drivetrain, -52.47),//oprg:300 to -60
 //                                new DriveForwardCommand(drivetrain, 5.95),
-//                                new DropAutoConeCommand(clawServos, slide, arm,true),
+//                                new DropAutoConeCommand(claw, slide, arm,true),
 
 
 
 
                                 //Parking
                                 new ParallelCommandGroup(
-                                        new SlideResetUpAutonCommand(slide, arm, clawServos),
+                                        new SlideResetUpAutonCommand(slide, arm, claw),
                                         new TurnToCommand(drivetrain, 270, true)
                                 )
 //                                new DriveForwardCommand(drivetrain, -4),
@@ -94,23 +94,23 @@ public class RightJunctionNEWAuton extends MatchOpMode {
             case 2: { //Mid
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighJunctionCommand(drivetrain, slide, arm, clawServos),
+                                new RightHighJunctionCommand(drivetrain, slide, arm, claw),
                                 /***Cone 3***/
-                                new PickCBCommand(slide, clawServos),
+                                new PickCBCommand(slide, claw),
                                 new ParallelCommandGroup(
-                                        new SlideHighFCommand(slide, arm, clawServos, true),
+                                        new SlideHighFCommand(slide, arm, claw, true),
                                         new DriveForwardCommand(drivetrain, 29.5)
                                 ),
                                 new TurnCommand(drivetrain, -54.8),//oprg:300 to -60
                                 new DriveForwardCommand(drivetrain, 6),
-                                new DropAutoConeCommand(clawServos, slide, arm,true),
+                                new DropAutoConeCommand(claw, slide, arm,true),
 
 
 
 
                                 //Parking
                                 new ParallelCommandGroup(
-                                        new SlideResetUpAutonCommand(slide, arm, clawServos),
+                                        new SlideResetUpAutonCommand(slide, arm, claw),
                                         new TurnToCommand(drivetrain, 270)
                                 ),
                                 new DriveForwardCommand(drivetrain, -4),
@@ -123,26 +123,26 @@ public class RightJunctionNEWAuton extends MatchOpMode {
             default: { //High
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighJunctionCommand(drivetrain, slide, arm, clawServos),
-                                new PickCBCommand(slide, clawServos),
+                                new RightHighJunctionCommand(drivetrain, slide, arm, claw),
+                                new PickCBCommand(slide, claw),
                                 new WaitCommand(1000),
 
 //                                /***Cone 3***/
-//                                new PickCBCommand(slide, clawServos),
+//                                new PickCBCommand(slide, claw),
 //                                new ParallelCommandGroup(
-//                                        new SlideHighFCommand(slide, arm, clawServos, true),
+//                                        new SlideHighFCommand(slide, arm, claw, true),
 //                                        new DriveForwardCommand(drivetrain, 29.3)
 //                                ),
 //                                new TurnCommand(drivetrain, -53.5),//oprg:300 to -60
 //                                new DriveForwardCommand(drivetrain, 5.95),
-//                                new DropAutoConeCommand(clawServos, slide, arm,true),
+//                                new DropAutoConeCommand(claw, slide, arm,true),
 
 
 
 
                                 //Parking
                                 new ParallelCommandGroup(
-                                        new SlideResetUpAutonCommand(slide, arm, clawServos),
+                                        new SlideResetUpAutonCommand(slide, arm, claw),
                                         new TurnToCommand(drivetrain, 270, true)
                                 )
 //                                new DriveForwardCommand(drivetrain, -4),

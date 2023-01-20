@@ -18,82 +18,82 @@ import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideMidB
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
 public class LeftHighJunctionCommand extends SequentialCommandGroup{
-    public LeftHighJunctionCommand(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
+    public LeftHighJunctionCommand(Drivetrain drivetrain, Slide slide, Arm arm, Claw claw){
         /*Turn is Counterclockwise*/
         addCommands(
                 new ParallelCommandGroup(
-                        new SlideMidBCommand(slide, arm, clawServos, true),
+                        new SlideMidBCommand(slide, arm, claw, true),
                         new StrafeRightCommand(drivetrain, 51.9)
                 ),
-                new DropAutoConeCommand(clawServos, slide, arm,true),
+                new DropAutoConeCommand(claw, slide, arm,true),
                 new ParallelCommandGroup(
                         new StrafeRightCommand(drivetrain, 20.6),
-                        new PrePick5FCommand(slide, clawServos, arm)
+                        new PrePick5FCommand(slide, claw, arm)
                 ),
                 new DriveForwardCommand(drivetrain, 26.85),
 
 
 
                 /***Cone 5***/
-                new PickCFCommand(slide, clawServos),
+                new PickCFCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideHighBCommand(slide, arm, clawServos, true),
+                        new SlideHighBCommand(slide, arm, claw, true),
                         new DriveForwardCommand(drivetrain, 29)
                 ),
                 new SequentialCommandGroup(
                         new TurnCommand(drivetrain, 52.5),//61 ish
                         new DriveForwardCommand(drivetrain, -2.5),
-                        new DropAutoConeCommand(clawServos, slide, arm,true),
+                        new DropAutoConeCommand(claw, slide, arm,true),
                         new DriveForwardCommand(drivetrain, 4.88)
                 ),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 1, true),
-                        new PrePickB4Command(slide, clawServos, arm)
+                        new PrePickB4Command(slide, claw, arm)
                 ),
                 new DriveForwardCommand(drivetrain, 29.9),
 
 
 
                 /***Cone 4***/
-                new PickCFCommand(slide, clawServos),
+                new PickCFCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideHighBCommand(slide, arm, clawServos, true),
+                        new SlideHighBCommand(slide, arm, claw, true),
                         new DriveForwardCommand(drivetrain, -30)
                 ),
                 new SequentialCommandGroup(
                         new TurnCommand(drivetrain, 50.5),//oprg:300 to -60
                         new DriveForwardCommand(drivetrain, -2.3),
-                        new DropAutoConeCommand(clawServos, slide, arm,true),
+                        new DropAutoConeCommand(claw, slide, arm,true),
                         new DriveForwardCommand(drivetrain, 4.5)
                 ),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 1.5, true),
-                        new PrePickB3Command(slide, clawServos, arm)
+                        new PrePickB3Command(slide, claw, arm)
                 ),
                 new DriveForwardCommand(drivetrain, 30.5),
 
 
 
                 /***Cone 3***/
-                new PickCFCommand(slide, clawServos),
+                new PickCFCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideHighBCommand(slide, arm, clawServos, true),
+                        new SlideHighBCommand(slide, arm, claw, true),
                         new DriveForwardCommand(drivetrain, -28.8)
                 ),
                 new TurnCommand(drivetrain, -46.5),//oprg:300 to -60
                 new DriveForwardCommand(drivetrain, 2.3),
-                new DropAutoConeCommand(clawServos, slide, arm,true),
+                new DropAutoConeCommand(claw, slide, arm,true),
 
 
 
                 //Parking - Remove!!!!!!!!!!!!
                 new ParallelCommandGroup(
-                        new SlideResetUpAutonCommand(slide, arm, clawServos),
+                        new SlideResetUpAutonCommand(slide, arm, claw),
                         new TurnToCommand(drivetrain, 270)
                 ),
                 new DriveForwardCommand(drivetrain, -7),

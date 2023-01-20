@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickCon
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.*;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
@@ -34,7 +34,7 @@ public class RobotCentricTeleOp extends MatchOpMode {
 
     // Subsystems
     private Arm arm;
-    private ClawServos clawServos;
+    private Claw claw;
     private Drivetrain drivetrain;
     private Slide slide;
 //    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
@@ -47,7 +47,7 @@ public class RobotCentricTeleOp extends MatchOpMode {
         operatorGamepad = new GamepadEx(gamepad2);
 
         arm = new Arm(telemetry, hardwareMap);
-        clawServos = new ClawServos(telemetry, hardwareMap);
+        claw = new Claw(telemetry, hardwareMap);
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
@@ -71,26 +71,26 @@ public class RobotCentricTeleOp extends MatchOpMode {
 
         //Claw Servo Intake/Outtake - D1
             /*Button intakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-                .whenPressed(new PickConeCommand(clawServos, slide, arm));
+                .whenPressed(new PickConeCommand(claw, slide, arm));
             Button outtakeD1Trigger = (new GamepadTrigger(driverGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                .whenPressed(new DropConeCommand(clawServos, slide, arm, drivetrain));*/
+                .whenPressed(new DropConeCommand(claw, slide, arm, drivetrain));*/
         Button intakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-                .whenPressed(new PickConeCommand(clawServos, slide, arm));
+                .whenPressed(new PickConeCommand(claw, slide, arm));
         Button outtakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
-                .whenPressed(new DropConeCommand(clawServos, slide, arm));
+                .whenPressed(new DropConeCommand(claw, slide, arm));
 
         //Slide positions - D2
         Button groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                .whenPressed(new SlideGroundFCommand(slide, arm, clawServos, false)));
+                .whenPressed(new SlideGroundFCommand(slide, arm, claw, false)));
         Button lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                .whenPressed(new SlideLowFCommand(slide, arm, clawServos, false)));
+                .whenPressed(new SlideLowFCommand(slide, arm, claw, false)));
         Button midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                .whenPressed(new SlideMidFCommand(slide, arm, clawServos, false)));
+                .whenPressed(new SlideMidFCommand(slide, arm, claw, false)));
         Button highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                .whenPressed(new SlideHighFCommand(slide, arm, clawServos, false)));
+                .whenPressed(new SlideHighFCommand(slide, arm, claw, false)));
 
         Button resetFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                .whenPressed(new SlideResetFCommandT(slide, arm, clawServos)));
+                .whenPressed(new SlideResetFCommandT(slide, arm, claw)));
         Button resetArmUp = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
                 .whenPressed(arm::moveReset));
 
@@ -110,9 +110,9 @@ public class RobotCentricTeleOp extends MatchOpMode {
 
         //Claw Servo 3 Buttons - D1
             /*Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
-                    .whenPressed(clawServos::setFClawPos);
+                    .whenPressed(claw::setFClawPos);
             Button s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
-                    .whenPressed(clawServos::setBClawPos);*/
+                    .whenPressed(claw::setBClawPos);*/
 
 
 
@@ -130,25 +130,25 @@ public class RobotCentricTeleOp extends MatchOpMode {
 
             /*
             Button groundFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                    .whenPressed(new SlideGroundFCommand(slide, clawMotors, clawServos)));
+                    .whenPressed(new SlideGroundFCommand(slide, clawMotors, claw)));
             Button lowFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                    .whenPressed(new SlideLowFCommand(slide, clawMotors, clawServos)));
+                    .whenPressed(new SlideLowFCommand(slide, clawMotors, claw)));
             Button midFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                    .whenPressed(new SlideMidFCommand(slide, clawMotors, clawServos)));
+                    .whenPressed(new SlideMidFCommand(slide, clawMotors, claw)));
             Button highFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                    .whenPressed(new SlideHighFCommand(slide, clawMotors, clawServos)));
+                    .whenPressed(new SlideHighFCommand(slide, clawMotors, claw)));
 
 
             //Claw Servo Manual Rotation - D1
             Button plusClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
-                    .whenPressed(clawServos::addClaw3Pos);
+                    .whenPressed(claw::addClaw3Pos);
             Button subClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN))
-                    .whenPressed(clawServos::subClaw3Pos);
+                    .whenPressed(claw::subClaw3Pos);
             //Claw Servo Manual In/Out - D1
             Button plusClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT))
-                    .whenPressed(clawServos::addClaw1Pos);
+                    .whenPressed(claw::addClaw1Pos);
             Button subClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT))
-                    .whenPressed(clawServos::subClaw1Pos);
+                    .whenPressed(claw::subClaw1Pos);
             */
 
 

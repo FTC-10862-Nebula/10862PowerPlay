@@ -9,10 +9,10 @@ import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAut
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideHighBCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 @Disabled
 @Autonomous(name = "FaithCam", group = "RED/BLUE")
@@ -29,7 +29,7 @@ public class FaithAuton extends MatchOpMode {
     Drivetrain drivetrain;
     Slide slide;
     Arm arm;
-    ClawServos clawServos;
+    Claw claw;
     @Override
     public void robotInit() {
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
@@ -37,7 +37,7 @@ public class FaithAuton extends MatchOpMode {
 
         slide= new Slide(telemetry,hardwareMap);
         arm = new Arm(telemetry,hardwareMap);
-        clawServos = new ClawServos(telemetry,hardwareMap);
+        claw = new Claw(telemetry,hardwareMap);
         while (!isStarted() && !isStopRequested()){
             waitForStart();
         }
@@ -48,9 +48,9 @@ public class FaithAuton extends MatchOpMode {
         schedule(
                 new SequentialCommandGroup(
                         new StrafeRightCommand( drivetrain, 55),
-                        new SlideHighBCommand(slide,arm, clawServos, true),
-                        new DropAutoConeCommand(clawServos, slide, arm,true),
-                        new SlideResetUpAutonCommand(slide, arm, clawServos)
+                        new SlideHighBCommand(slide,arm, claw, true),
+                        new DropAutoConeCommand(claw, slide, arm,true),
+                        new SlideResetUpAutonCommand(slide, arm, claw)
 //                        new
         )
         );

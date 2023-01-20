@@ -19,47 +19,46 @@ import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCom
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 
 public class RightHighJunctionCommandOld extends SequentialCommandGroup{
-    public RightHighJunctionCommandOld(Drivetrain drivetrain, Slide slide, Arm arm, ClawServos clawServos){
+    public RightHighJunctionCommandOld(Drivetrain drivetrain, Slide slide, Arm arm, Claw claw){
         /*
 Turn is Counterclockwise*/
         addCommands(
                 new ParallelCommandGroup(
-                        new SlideMidFCommand(slide, arm, clawServos, true),
+                        new SlideMidFCommand(slide, arm, claw, true),
                         new StrafeRightCommand(drivetrain, 52)
                 ),
                 new ParallelCommandGroup(
                         new SlowDriveForwardCommand(drivetrain, 1),
-                        new DropAutoConeCommand(clawServos, slide, arm,true)
+                        new DropAutoConeCommand(claw, slide, arm,true)
                         ),
                 new ParallelCommandGroup(
                         new StrafeRightCommand(drivetrain, 17.8),
-                        new PrePickB5Command(slide, clawServos, arm)
+                        new PrePickB5Command(slide, claw, arm)
                 ),
                 new DriveForwardCommand(drivetrain, -24.4),
 //                new TurnToCommand(drivetrain, 0),
 
 
 
-                new PickCBCommand(slide, clawServos),
+                new PickCBCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideLowFCommand(slide, arm, clawServos, true),
+                        new SlideLowFCommand(slide, arm, claw, true),
                         new TurnToCommand(drivetrain, 61, true)
                 ),
                 new ParallelCommandGroup(
                         new SlowDriveForwardCommand(drivetrain, 3.47),
                         new WaitCommand(200),
-                        new DropAutoConeCommand(clawServos, slide, arm,true)
+                        new DropAutoConeCommand(claw, slide, arm,true)
                         ),
                 new ParallelCommandGroup(
                         new SlowDriveForwardCommand(drivetrain, -1.77),
-                        new PrePickB5Command(slide, clawServos, arm)
+                        new PrePickB5Command(slide, claw, arm)
                 ),
                 new TurnToCommand(drivetrain, 0),
                 new ParallelCommandGroup(
@@ -68,10 +67,10 @@ Turn is Counterclockwise*/
                 ),
 
 
-                new PickCBCommand(slide, clawServos),
+                new PickCBCommand(slide, claw),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 0),   //or remove
-                        new SlideHighFCommand(slide, arm, clawServos, true)
+                        new SlideHighFCommand(slide, arm, claw, true)
                 ),
                 new InstantCommand(arm::moveReset),
 
@@ -86,13 +85,13 @@ Turn is Counterclockwise*/
 //                new SlowDriveForwardCommand(drivetrain, 0.85),
                 new ParallelCommandGroup(
                         new SlowDriveForwardCommand(drivetrain, -1.43),
-                        new DropAutoConeCommand(clawServos, slide, arm,true)
+                        new DropAutoConeCommand(claw, slide, arm,true)
                         ),
 
                 new SlowDriveForwardCommand(drivetrain, -3),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 271),
-                        new SlideResetUpAutonCommand(slide, arm, clawServos)
+                        new SlideResetUpAutonCommand(slide, arm, claw)
                 )
         );
     }

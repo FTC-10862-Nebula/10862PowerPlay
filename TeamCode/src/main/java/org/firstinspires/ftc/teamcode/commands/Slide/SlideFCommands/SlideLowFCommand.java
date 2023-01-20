@@ -6,23 +6,23 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class SlideLowFCommand extends SequentialCommandGroup {
-    public SlideLowFCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto) {
+    public SlideLowFCommand(Slide slide, Arm arm, Claw claw, boolean auto) {
         if (auto){
             addCommands(
                     new ParallelCommandGroup(
                             new InstantCommand(() ->
                                     new Thread(() -> {
-                                        clawServos.clawClose();
+                                        claw.clawClose();
                                         slide.slideLow();
                                         arm.moveFAuto();
                                     }).start())
                     ),
                     new WaitCommand(200),
-                    new InstantCommand(clawServos::setFClawPos)
+                    new InstantCommand(claw::setFClawPos)
             );
         }
         else {
@@ -30,13 +30,13 @@ public class SlideLowFCommand extends SequentialCommandGroup {
                     new ParallelCommandGroup(
                             new InstantCommand(() ->
                                     new Thread(() -> {
-                                        clawServos.clawClose();
+                                        claw.clawClose();
                                         slide.slideLow();
                                         arm.moveF();
                                     }).start())
                     ),
                     new WaitCommand(800),
-                    new InstantCommand(clawServos::setFClawPos)
+                    new InstantCommand(claw::setFClawPos)
             );
         }
     }

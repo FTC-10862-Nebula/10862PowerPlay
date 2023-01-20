@@ -6,18 +6,18 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
+import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class SlideGroundFCommand extends SequentialCommandGroup {
-    public SlideGroundFCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto) {
+    public SlideGroundFCommand(Slide slide, Arm arm, Claw claw, boolean auto) {
         if (auto){
             addCommands(
-//                    new InstantCommand(clawServos::setFClawPos),
+//                    new InstantCommand(claw::setFClawPos),
                     new ParallelCommandGroup(
                             new InstantCommand(() ->
                                     new Thread(() -> {
-                                        clawServos.setFClawPos();
+                                        claw.setFClawPos();
                                         slide.slideGround();
                                     }).start())
                     ),
@@ -25,7 +25,7 @@ public class SlideGroundFCommand extends SequentialCommandGroup {
                     new ParallelCommandGroup(
                             new InstantCommand(() ->
                                     new Thread(() -> {
-                                        clawServos.clawClose();
+                                        claw.clawClose();
 //                                        slide.slideGround();
                                         arm.moveFAuto();
                                     }).start())
@@ -34,11 +34,11 @@ public class SlideGroundFCommand extends SequentialCommandGroup {
         }
         else {
             addCommands(
-//                    new InstantCommand(clawServos::setFClawPos),
+//                    new InstantCommand(claw::setFClawPos),
                     new ParallelCommandGroup(
                             new InstantCommand(() ->
                                     new Thread(() -> {
-                                        clawServos.setFClawPos();
+                                        claw.setFClawPos();
                                         slide.slideGround();
                                     }).start())
                     ),
@@ -46,7 +46,7 @@ public class SlideGroundFCommand extends SequentialCommandGroup {
                     new ParallelCommandGroup(
                             new InstantCommand(() ->
                                     new Thread(() -> {
-                                        clawServos.clawClose();
+                                        claw.clawClose();
 //                                        slide.slideGround();
                                         arm.moveGroundF();
                                     }).start())
