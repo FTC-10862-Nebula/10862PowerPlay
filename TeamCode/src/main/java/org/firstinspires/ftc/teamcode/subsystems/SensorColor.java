@@ -18,8 +18,7 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
         this.colorSensor = colorSensor;
     }
 
-    public SensorColor(ColorSensor colorSensor, HardwareMap hardwareMap , Telemetry tl) {
-        this.colorSensor = colorSensor;
+    public SensorColor(HardwareMap hardwareMap , Telemetry tl) {
         this.colorSensor = hardwareMap.get(ColorSensor.class, "colorSensor");
         this.telemetry = tl;
 

@@ -26,6 +26,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.ClawServos;
+import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 @Config
@@ -44,6 +45,7 @@ public class RightFieldCentricTeleOp extends MatchOpMode {
     private ClawServos clawServos;
     private Drivetrain drivetrain;
     private Slide slide;
+    private SensorColor sensorColor;
 //    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
     //    private TagVision vision;
 
@@ -62,6 +64,7 @@ public class RightFieldCentricTeleOp extends MatchOpMode {
 
 //        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 //        drivetrain.setPoseEstimate(PoseStorage.currentPose);
+        sensorColor = new SensorColor(hardwareMap, telemetry);
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
     }
 

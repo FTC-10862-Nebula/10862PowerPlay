@@ -67,7 +67,7 @@ public class SensorColorTeleop extends MatchOpMode {
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
-        sensorColor = new SensorColor(colorSensor, hardwareMap, telemetry);
+        sensorColor = new SensorColor(hardwareMap, telemetry);
 //        clawServos.setDefaultCommand(new RedIntakeCommand(drivetrain, slide, clawServos, arm, sensorColor));
 //        vision = new TagVision(hardwareMap, "Webcam 1", telemetry);
 

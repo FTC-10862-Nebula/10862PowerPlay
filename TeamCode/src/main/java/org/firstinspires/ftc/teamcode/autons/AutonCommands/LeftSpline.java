@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.autons.AutonCommands;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
@@ -22,34 +23,34 @@ public class LeftSpline extends SequentialCommandGroup{
         addCommands(
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, clawServos, true),
-                        new SplineCommand(drivetrain, new Vector2d(58.8, -8.4), Math.toRadians(337))    //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(59, -1.), Math.toRadians(337))    //Cycle
                 ),
                 new DropAutoConeCommand(clawServos, slide, arm, true),
                 new ParallelCommandGroup(
                         new PrePickB5Command(slide, clawServos, arm),
-                        new SplineCommand(drivetrain, new Vector2d(52.5, -23), Math.toRadians(90), true)   //Load
+                        new SplineCommand(drivetrain, new Vector2d(56.9, 29), Math.toRadians(90), true)   //Load
                 ),
 
 
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, clawServos, true),
-                        new SplineCommand(drivetrain, new Vector2d(58.8, -8.4), Math.toRadians(337), PoseStorage.cycle)    //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(59, -1.), Math.toRadians(337), PoseStorage.cycle)    //Cycle
                 ),
                 new DropAutoConeCommand(clawServos, slide, arm, true),
                 new ParallelCommandGroup(
                         new PrePickB5Command(slide, clawServos, arm),
-                        new SplineCommand(drivetrain, new Vector2d(52.5, -23), Math.toRadians(90), PoseStorage.load, true)   //Load
-                ),
+                        new SplineCommand(drivetrain, new Vector2d(56.9, 29), Math.toRadians(90), PoseStorage.load, true)   //Load
+                )
 
 
-                /**Cone 1**/
-                new ParallelCommandGroup(
-                        new SlideHighFCommand(slide, arm, clawServos, true),
-                        new SplineCommand(drivetrain, new Vector2d(58.8, -8.4), Math.toRadians(337), PoseStorage.cycle)    //Cycle
-                ),
-                new DropAutoConeCommand(clawServos, slide, arm, true),
-
-                new TurnToCommand(drivetrain, 0)
+//                /**Cone 1**/
+//                new ParallelCommandGroup(
+//                        new SlideHighFCommand(slide, arm, clawServos, true),
+//                        new SplineCommand(drivetrain, new Vector2d(58.8, -6), Math.toRadians(337), PoseStorage.cycle)    //Cycle
+//                ),
+//                new DropAutoConeCommand(clawServos, slide, arm, true),
+//
+//                new TurnToCommand(drivetrain, 0)
         );
     }
 }

@@ -13,30 +13,45 @@ public class SlideGroundFCommand extends SequentialCommandGroup {
     public SlideGroundFCommand(Slide slide, Arm arm, ClawServos clawServos, boolean auto) {
         if (auto){
             addCommands(
+//                    new InstantCommand(clawServos::setFClawPos),
+                    new ParallelCommandGroup(
+                            new InstantCommand(() ->
+                                    new Thread(() -> {
+                                        clawServos.setFClawPos();
+                                        slide.slideGround();
+                                    }).start())
+                    ),
+                    new WaitCommand(800),
                     new ParallelCommandGroup(
                             new InstantCommand(() ->
                                     new Thread(() -> {
                                         clawServos.clawClose();
-                                        slide.slideGround();
+//                                        slide.slideGround();
                                         arm.moveFAuto();
                                     }).start())
-                    ),
-                    new WaitCommand(200),
-                    new InstantCommand(clawServos::setFClawPos)
+                    )
             );
         }
         else {
             addCommands(
+//                    new InstantCommand(clawServos::setFClawPos),
+                    new ParallelCommandGroup(
+                            new InstantCommand(() ->
+                                    new Thread(() -> {
+                                        clawServos.setFClawPos();
+                                        slide.slideGround();
+                                    }).start())
+                    ),
+                    new WaitCommand(1500),
                     new ParallelCommandGroup(
                             new InstantCommand(() ->
                                     new Thread(() -> {
                                         clawServos.clawClose();
-                                        slide.slideGround();
+//                                        slide.slideGround();
                                         arm.moveGroundF();
                                     }).start())
-                    ),
-                    new WaitCommand(800),
-                    new InstantCommand(clawServos::setFClawPos)
+                    )
+
             );
         }
 
