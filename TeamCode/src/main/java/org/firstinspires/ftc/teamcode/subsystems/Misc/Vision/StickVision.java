@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.subsystems.Vision;
+package org.firstinspires.ftc.teamcode.subsystems.Misc.Vision;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;

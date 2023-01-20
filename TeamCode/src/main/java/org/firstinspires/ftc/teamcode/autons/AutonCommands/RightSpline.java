@@ -12,31 +12,32 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 
 public class RightSpline extends SequentialCommandGroup{
-    public RightSpline(Drivetrain drivetrain, Slide slide, Arm arm, Claw claw){
+    public RightSpline(Drivetrain drivetrain, Slide slide, Arm arm, Claw claw, TurnServo turnServo){
         /*Turn is Counterclockwise*/
         addCommands(
                 new ParallelCommandGroup(
-                        new SlideHighFCommand(slide, arm, claw, true),
+                        new SlideHighFCommand(slide, arm, claw, turnServo, true),
                         new SplineCommand(drivetrain, new Vector2d(58.8, 8.4), Math.toRadians(32))    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
-                        new PrePickB5Command(slide, claw, arm),
+                        new PrePickB5Command(slide, claw, arm, turnServo),
                         new SplineCommand(drivetrain, new Vector2d(52.5, -23), Math.toRadians(268), true)   //Load
                 ),
 
 
                 new ParallelCommandGroup(
-                        new SlideHighFCommand(slide, arm, claw, true),
+                        new SlideHighFCommand(slide, arm, claw, turnServo, true),
                         new SplineCommand(drivetrain, new Vector2d(58.8, 8.4), Math.toRadians(32), PoseStorage.cycle)    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
-                        new PrePickB5Command(slide, claw, arm),
+                        new PrePickB5Command(slide, claw, arm, turnServo),
                         new SplineCommand(drivetrain, new Vector2d(52.5, -23), Math.toRadians(268), PoseStorage.load, true)   //Load
                 )
 

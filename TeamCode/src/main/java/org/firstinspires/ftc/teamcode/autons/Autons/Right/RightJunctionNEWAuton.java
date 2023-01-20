@@ -20,7 +20,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-import org.firstinspires.ftc.teamcode.subsystems.Vision.TagVision;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.Vision.TagVision;
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 @Autonomous(name="rightNEW")
 public class RightJunctionNEWAuton extends MatchOpMode {
@@ -37,6 +38,8 @@ public class RightJunctionNEWAuton extends MatchOpMode {
     private Drivetrain drivetrain;
     private Slide slide;
     private TagVision tagVision;
+    private TurnServo turnServo;
+
 
     @Override
     public void robotInit() {
@@ -45,6 +48,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
+        turnServo = new TurnServo(telemetry, hardwareMap);
 
         tagVision = new TagVision(hardwareMap,  telemetry);
         while (!isStarted() && !isStopRequested())
@@ -63,7 +67,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
             case 1: { //Left
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighJunctionCommand(drivetrain, slide, arm, claw),
+                                new RightHighJunctionCommand(drivetrain, slide, arm, claw, turnServo),
                                 /***Cone 3***/
                                 new PickCBCommand(slide, claw),
                                 new DriveForwardCommand(drivetrain, 51),
@@ -81,7 +85,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
 
                                 //Parking
                                 new ParallelCommandGroup(
-                                        new SlideResetUpAutonCommand(slide, arm, claw),
+                                        new SlideResetUpAutonCommand(slide, arm, claw, turnServo),
                                         new TurnToCommand(drivetrain, 270, true)
                                 )
 //                                new DriveForwardCommand(drivetrain, -4),
@@ -94,11 +98,11 @@ public class RightJunctionNEWAuton extends MatchOpMode {
             case 2: { //Mid
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighJunctionCommand(drivetrain, slide, arm, claw),
+                                new RightHighJunctionCommand(drivetrain, slide, arm, claw, turnServo),
                                 /***Cone 3***/
                                 new PickCBCommand(slide, claw),
                                 new ParallelCommandGroup(
-                                        new SlideHighFCommand(slide, arm, claw, true),
+                                        new SlideHighFCommand(slide, arm, claw, turnServo, true),
                                         new DriveForwardCommand(drivetrain, 29.5)
                                 ),
                                 new TurnCommand(drivetrain, -54.8),//oprg:300 to -60
@@ -110,7 +114,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
 
                                 //Parking
                                 new ParallelCommandGroup(
-                                        new SlideResetUpAutonCommand(slide, arm, claw),
+                                        new SlideResetUpAutonCommand(slide, arm, claw, turnServo),
                                         new TurnToCommand(drivetrain, 270)
                                 ),
                                 new DriveForwardCommand(drivetrain, -4),
@@ -123,7 +127,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
             default: { //High
                 schedule(
                         new SequentialCommandGroup(
-                                new RightHighJunctionCommand(drivetrain, slide, arm, claw),
+                                new RightHighJunctionCommand(drivetrain, slide, arm, claw, turnServo),
                                 new PickCBCommand(slide, claw),
                                 new WaitCommand(1000),
 
@@ -142,7 +146,7 @@ public class RightJunctionNEWAuton extends MatchOpMode {
 
                                 //Parking
                                 new ParallelCommandGroup(
-                                        new SlideResetUpAutonCommand(slide, arm, claw),
+                                        new SlideResetUpAutonCommand(slide, arm, claw, turnServo),
                                         new TurnToCommand(drivetrain, 270, true)
                                 )
 //                                new DriveForwardCommand(drivetrain, -4),

@@ -20,20 +20,21 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 
 public class LeftHighJunctionCommand extends SequentialCommandGroup{
-    public LeftHighJunctionCommand(Drivetrain drivetrain, Slide slide, Arm arm, Claw claw){
+    public LeftHighJunctionCommand(Drivetrain drivetrain, Slide slide, Arm arm, Claw claw, TurnServo turnServo){
         /*Turn is Counterclockwise*/
         addCommands(
                 new ParallelCommandGroup(
-                        new SlideMidBCommand(slide, arm, claw, true),
+                        new SlideMidBCommand(slide, arm, claw, turnServo, true),
                         new StrafeRightCommand(drivetrain, 51.9)
                 ),
                 new DropAutoConeCommand(claw, slide, arm,true),
                 new ParallelCommandGroup(
                         new StrafeRightCommand(drivetrain, 20.6),
-                        new PrePick5FCommand(slide, claw, arm)
+                        new PrePick5FCommand(slide, claw, arm, turnServo)
                 ),
                 new DriveForwardCommand(drivetrain, 26.85),
 
@@ -42,7 +43,7 @@ public class LeftHighJunctionCommand extends SequentialCommandGroup{
                 /***Cone 5***/
                 new PickCFCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideHighBCommand(slide, arm, claw, true),
+                        new SlideHighBCommand(slide, arm, claw, turnServo, true),
                         new DriveForwardCommand(drivetrain, 29)
                 ),
                 new SequentialCommandGroup(
@@ -53,7 +54,7 @@ public class LeftHighJunctionCommand extends SequentialCommandGroup{
                 ),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 1, true),
-                        new PrePickB4Command(slide, claw, arm)
+                        new PrePickB4Command(slide, claw, arm, turnServo)
                 ),
                 new DriveForwardCommand(drivetrain, 29.9),
 
@@ -62,7 +63,7 @@ public class LeftHighJunctionCommand extends SequentialCommandGroup{
                 /***Cone 4***/
                 new PickCFCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideHighBCommand(slide, arm, claw, true),
+                        new SlideHighBCommand(slide, arm, claw, turnServo, true),
                         new DriveForwardCommand(drivetrain, -30)
                 ),
                 new SequentialCommandGroup(
@@ -73,7 +74,7 @@ public class LeftHighJunctionCommand extends SequentialCommandGroup{
                 ),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 1.5, true),
-                        new PrePickB3Command(slide, claw, arm)
+                        new PrePickB3Command(slide, claw, arm, turnServo)
                 ),
                 new DriveForwardCommand(drivetrain, 30.5),
 
@@ -82,7 +83,7 @@ public class LeftHighJunctionCommand extends SequentialCommandGroup{
                 /***Cone 3***/
                 new PickCFCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideHighBCommand(slide, arm, claw, true),
+                        new SlideHighBCommand(slide, arm, claw, turnServo, true),
                         new DriveForwardCommand(drivetrain, -28.8)
                 ),
                 new TurnCommand(drivetrain, -46.5),//oprg:300 to -60
@@ -93,7 +94,7 @@ public class LeftHighJunctionCommand extends SequentialCommandGroup{
 
                 //Parking - Remove!!!!!!!!!!!!
                 new ParallelCommandGroup(
-                        new SlideResetUpAutonCommand(slide, arm, claw),
+                        new SlideResetUpAutonCommand(slide, arm, claw, turnServo),
                         new TurnToCommand(drivetrain, 270)
                 ),
                 new DriveForwardCommand(drivetrain, -7),

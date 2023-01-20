@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.TeleOps.Misc;
 
 import static org.firstinspires.ftc.teamcode.subsystems.Claw.*;
+import static org.firstinspires.ftc.teamcode.subsystems.TurnServo.F_POS_S3;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -12,15 +13,6 @@ public class ClawServoTest extends OpMode {
     Servo servo3;
     Servo servo2;
     double pos = F_POS_S3, pos2 = 0.75;
-
-
-
-
-//    public static double INTAKE_POWER = -1;
-//    public static double OUTTAKE_POWER = 1;
-//
-//    public static double  FRONT_POS_S3 = 0.16;
-//    public static double BACK_POS_S3 = 0.83;
 
     /**
      * User defined init method

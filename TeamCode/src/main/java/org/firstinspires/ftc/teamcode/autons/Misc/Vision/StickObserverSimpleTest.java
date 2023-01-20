@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.subsystems.Vision.StickVision;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.Vision.StickVision;
 
 @Autonomous
 public class StickObserverSimpleTest extends LinearOpMode {

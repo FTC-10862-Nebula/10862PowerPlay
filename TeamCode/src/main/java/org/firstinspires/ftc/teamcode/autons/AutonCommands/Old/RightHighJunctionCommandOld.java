@@ -22,15 +22,16 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 
 public class RightHighJunctionCommandOld extends SequentialCommandGroup{
-    public RightHighJunctionCommandOld(Drivetrain drivetrain, Slide slide, Arm arm, Claw claw){
+    public RightHighJunctionCommandOld(Drivetrain drivetrain, Slide slide, Arm arm, Claw claw, TurnServo turnServo){
         /*
 Turn is Counterclockwise*/
         addCommands(
                 new ParallelCommandGroup(
-                        new SlideMidFCommand(slide, arm, claw, true),
+                        new SlideMidFCommand(slide, arm, claw, turnServo, true),
                         new StrafeRightCommand(drivetrain, 52)
                 ),
                 new ParallelCommandGroup(
@@ -39,7 +40,7 @@ Turn is Counterclockwise*/
                         ),
                 new ParallelCommandGroup(
                         new StrafeRightCommand(drivetrain, 17.8),
-                        new PrePickB5Command(slide, claw, arm)
+                        new PrePickB5Command(slide, claw, arm, turnServo)
                 ),
                 new DriveForwardCommand(drivetrain, -24.4),
 //                new TurnToCommand(drivetrain, 0),
@@ -48,7 +49,7 @@ Turn is Counterclockwise*/
 
                 new PickCBCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideLowFCommand(slide, arm, claw, true),
+                        new SlideLowFCommand(slide, arm, claw, turnServo, true),
                         new TurnToCommand(drivetrain, 61, true)
                 ),
                 new ParallelCommandGroup(
@@ -58,7 +59,7 @@ Turn is Counterclockwise*/
                         ),
                 new ParallelCommandGroup(
                         new SlowDriveForwardCommand(drivetrain, -1.77),
-                        new PrePickB5Command(slide, claw, arm)
+                        new PrePickB5Command(slide, claw, arm, turnServo)
                 ),
                 new TurnToCommand(drivetrain, 0),
                 new ParallelCommandGroup(
@@ -70,7 +71,7 @@ Turn is Counterclockwise*/
                 new PickCBCommand(slide, claw),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 0),   //or remove
-                        new SlideHighFCommand(slide, arm, claw, true)
+                        new SlideHighFCommand(slide, arm, claw, turnServo, true)
                 ),
                 new InstantCommand(arm::moveReset),
 
@@ -91,7 +92,7 @@ Turn is Counterclockwise*/
                 new SlowDriveForwardCommand(drivetrain, -3),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 271),
-                        new SlideResetUpAutonCommand(slide, arm, claw)
+                        new SlideResetUpAutonCommand(slide, arm, claw, turnServo)
                 )
         );
     }

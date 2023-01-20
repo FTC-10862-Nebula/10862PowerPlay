@@ -34,31 +34,31 @@ public class TrajectoryTest extends LinearOpMode {
         Pose2d startPose = new Pose2d(0, 0,0);
 
 
-        TrajectorySequence preLoad = drivetrain.trajectorySequenceBuilder(startPose)
-                .strafeRight(50)
-                .strafeRight(21)
-//                .lineToSplineHeading(new Pose2d(70, 5))
-//                .addDisplacementMarker(new SlideGroundBCommand(slide, arm, claw, true))
-                .addTemporalMarker(() -> new SlideMidFCommand(slide, arm, claw, true))
-                .build();
-
-        TrajectorySequence cycle1Pickup = drivetrain.trajectorySequenceBuilder(preLoad.end())
-                .forward(5, vel, accel)
-                .strafeRight(5)
-                .addDisplacementMarker(claw::clawOpen)
-                .addTemporalMarker(() -> {
-                    slide.slideMid();
-                    new InstantCommand(slide::dropSlide);
-                    new SlideMidFCommand(slide, arm, claw, true);
-                })
-                .build();
+//        TrajectorySequence preLoad = drivetrain.trajectorySequenceBuilder(startPose)
+//                .strafeRight(50)
+//                .strafeRight(21)
+////                .lineToSplineHeading(new Pose2d(70, 5))
+////                .addDisplacementMarker(new SlideGroundBCommand(slide, arm, claw, true))
+//                .addTemporalMarker(() -> new SlideMidFCommand(slide, arm, claw, true))
+//                .build();
+//
+//        TrajectorySequence cycle1Pickup = drivetrain.trajectorySequenceBuilder(preLoad.end())
+//                .forward(5, vel, accel)
+//                .strafeRight(5)
+//                .addDisplacementMarker(claw::clawOpen)
+//                .addTemporalMarker(() -> {
+//                    slide.slideMid();
+//                    new InstantCommand(slide::dropSlide);
+//                    new SlideMidFCommand(slide, arm, claw, true);
+//                })
+//                .build();
         drivetrain.setPoseEstimate(startPose);
 
 
         waitForStart();
 
-        drivetrain.followTrajectorySequenceAsync(preLoad);
-        new SlideGroundBCommand(slide, arm, claw, true);
+//        drivetrain.followTrajectorySequenceAsync(preLoad);
+//        new SlideGroundBCommand(slide, arm, claw, true);
 
         if (isStopRequested()) return;
 

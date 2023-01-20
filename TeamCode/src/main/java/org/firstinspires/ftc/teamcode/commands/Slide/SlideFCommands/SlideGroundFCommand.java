@@ -8,16 +8,17 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 public class SlideGroundFCommand extends SequentialCommandGroup {
-    public SlideGroundFCommand(Slide slide, Arm arm, Claw claw, boolean auto) {
+    public SlideGroundFCommand(Slide slide, Arm arm, Claw claw, TurnServo turnServo, boolean auto) {
         if (auto){
             addCommands(
 //                    new InstantCommand(claw::setFClawPos),
                     new ParallelCommandGroup(
                             new InstantCommand(() ->
                                     new Thread(() -> {
-                                        claw.setFClawPos();
+                                        turnServo.setFClawPos();
                                         slide.slideGround();
                                     }).start())
                     ),
@@ -38,7 +39,7 @@ public class SlideGroundFCommand extends SequentialCommandGroup {
                     new ParallelCommandGroup(
                             new InstantCommand(() ->
                                     new Thread(() -> {
-                                        claw.setFClawPos();
+                                        turnServo.setFClawPos();
                                         slide.slideGround();
                                     }).start())
                     ),

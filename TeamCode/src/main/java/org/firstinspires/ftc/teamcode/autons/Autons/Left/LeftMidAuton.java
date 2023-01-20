@@ -31,21 +31,14 @@ import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-import org.firstinspires.ftc.teamcode.subsystems.Vision.TagVision;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.Vision.TagVision;
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 @Disabled
 @Autonomous
 public class LeftMidAuton extends MatchOpMode
 {
-    //    private ATDetector tagDetector;
-
-    private static final double startPoseX = 0;
-    private static final double startPoseY = 0;
-    private static final double startPoseHeading = 0;
     private int tagNum = 0;
-
-    //Gamepad
-//    private GamepadEx driverGamepad;
 
     // Subsystems
     private Arm arm;
@@ -53,6 +46,8 @@ public class LeftMidAuton extends MatchOpMode
     private Drivetrain drivetrain;
     private Slide slide;
     private TagVision tagVision;
+    private TurnServo turnServo;
+
 
     @Override
     public void robotInit() {
@@ -61,6 +56,7 @@ public class LeftMidAuton extends MatchOpMode
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide( telemetry, hardwareMap);
+        turnServo = new TurnServo(telemetry, hardwareMap);
 
         tagVision = new TagVision(hardwareMap, telemetry);
 //        tagVision.init(hardwareMap);

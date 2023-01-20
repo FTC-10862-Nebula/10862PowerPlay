@@ -6,8 +6,8 @@ import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
-import org.firstinspires.ftc.teamcode.subsystems.SingleServo;
-import org.firstinspires.ftc.teamcode.subsystems.Vision.JunctionVision;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.SingleServo;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.Vision.JunctionVision;
 
 import java.util.HashMap;
 

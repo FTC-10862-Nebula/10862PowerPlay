@@ -31,26 +31,26 @@ public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGrou
 //                new TurnToCommand(drivetrain, 360),
 //                new TurnToCommand(drivetrain, 0),
 
-                new SlideMidBCommand(slide, arm, claw, true),
+                /*new SlideMidBCommand(slide, arm, claw, turnServo, true),
                 new StrafeRightCommand(drivetrain, 52.7),
                 new SlowDriveForwardCommand(drivetrain, -0.8),
                 new DropAutoConeCommand(claw, slide, arm,true),
                 new InstantCommand(claw::clawOpen),
 
                 new WaitCommand(500),
-                new PrePick5FCommand(slide, claw, arm),
+                new PrePick5FCommand(slide, claw, arm, turnServo),
                 new StrafeRightCommand(drivetrain, 16.5),
                 new DriveForwardCommand(drivetrain, 26.5),
 
 
                 new PickCFCommand(slide, claw),
-                new SlideLowBCommand(slide, arm, claw, true),
+                new SlideLowBCommand(slide, arm, claw, turnServo, true),
                 new TurnCommand(drivetrain, -55.3),
                 new SlowDriveForwardCommand(drivetrain, -3),
                 new DropAutoConeCommand(claw, slide, arm,true),
                 new WaitCommand(200),
                 new SlowDriveForwardCommand(drivetrain, 1.8),
-                new PrePick5FCommand(slide, claw, arm),
+                new PrePick5FCommand(slide, claw, arm, turnServo),
                 new TurnToCommand(drivetrain, 3, true),
                 new SlowDriveForwardCommand(drivetrain, 3),
                 new InstantCommand(slide::slideCone4),
@@ -97,7 +97,7 @@ public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGrou
 //                new InstantCommand(arm::moveReset, arm),
 //                new DriveForwardCommand(drivetrain, 50)
                 new SlideResetUpAutonCommand(slide, arm, claw),
-                new StrafeRightCommand(drivetrain, 19)
+                new StrafeRightCommand(drivetrain, 19)*/
         );
     }
 }

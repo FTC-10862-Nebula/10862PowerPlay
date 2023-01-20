@@ -8,10 +8,11 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 public class SlideMidFCommand extends SequentialCommandGroup {
 
-    public SlideMidFCommand(Slide slide, Arm arm, Claw claw, boolean auto) {
+    public SlideMidFCommand(Slide slide, Arm arm, Claw claw, TurnServo turnServo, boolean auto) {
         if (auto){
             addCommands(
                     new ParallelCommandGroup(
@@ -23,7 +24,7 @@ public class SlideMidFCommand extends SequentialCommandGroup {
                                     }).start())
                     ),
                     new WaitCommand(200),
-                    new InstantCommand(claw::setFClawPos)
+                    new InstantCommand(turnServo::setFClawPos)
             );
         }
         else {
@@ -37,7 +38,7 @@ public class SlideMidFCommand extends SequentialCommandGroup {
                                     }).start())
                     ),
                     new WaitCommand(800),
-                    new InstantCommand(claw::setFClawPos)
+                    new InstantCommand(turnServo::setFClawPos)
             );
         }
 

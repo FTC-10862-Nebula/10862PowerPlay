@@ -16,20 +16,21 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 
 public class RightHighJunctionCommand extends SequentialCommandGroup{
-    public RightHighJunctionCommand(Drivetrain drivetrain, Slide slide, Arm arm, Claw claw){
+    public RightHighJunctionCommand(Drivetrain drivetrain, Slide slide, Arm arm, Claw claw, TurnServo turnServo){
         /*Turn is Counterclockwise*/
         addCommands(
                 new ParallelCommandGroup(
-                        new SlideMidFCommand(slide, arm, claw, true),
+                        new SlideMidFCommand(slide, arm, claw, turnServo, true),
                         new StrafeRightCommand(drivetrain, 52.51)
                 ),
                 new DropAutoConeCommand(claw, slide, arm,true),
                 new ParallelCommandGroup(
                         new StrafeRightCommand(drivetrain, 20.15),
-                        new PrePickB5Command(slide, claw, arm)
+                        new PrePickB5Command(slide, claw, arm, turnServo)
                 ),
                 new DriveForwardCommand(drivetrain, -26.6),
 
@@ -38,7 +39,7 @@ public class RightHighJunctionCommand extends SequentialCommandGroup{
                 /***Cone 5***/
                 new PickCBCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideHighFCommand(slide, arm, claw, true),
+                        new SlideHighFCommand(slide, arm, claw, turnServo, true),
                         new DriveForwardCommand(drivetrain, 29.9)
                 ),
                 new SequentialCommandGroup(
@@ -49,7 +50,7 @@ public class RightHighJunctionCommand extends SequentialCommandGroup{
                 ),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 1, true),
-                        new PrePickB4Command(slide, claw, arm)
+                        new PrePickB4Command(slide, claw, arm, turnServo)
                 ),
                 new DriveForwardCommand(drivetrain, -31.7),
 
@@ -58,7 +59,7 @@ public class RightHighJunctionCommand extends SequentialCommandGroup{
                 /***Cone 4***/
                 new PickCBCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideHighFCommand(slide, arm, claw, true),
+                        new SlideHighFCommand(slide, arm, claw, turnServo, true),
                         new DriveForwardCommand(drivetrain, 30.9)
                 ),
                 new SequentialCommandGroup(
@@ -69,7 +70,7 @@ public class RightHighJunctionCommand extends SequentialCommandGroup{
                 ),
                 new ParallelCommandGroup(
                         new TurnToCommand(drivetrain, 1.3, true),
-                        new PrePickB3Command(slide, claw, arm)
+                        new PrePickB3Command(slide, claw, arm, turnServo)
                 ),
                 new DriveForwardCommand(drivetrain, -31.)
 

@@ -4,7 +4,7 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.subsystems.MotorSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.MotorSubsystem;
 
 public class MotorAuton extends MatchOpMode {
 //    private ATDetector tagDetector;

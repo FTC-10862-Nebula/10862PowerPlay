@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.Vision.StickVision;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.Vision.StickVision;
 
 @Autonomous
 public class StickObserverOwnTest extends MatchOpMode {

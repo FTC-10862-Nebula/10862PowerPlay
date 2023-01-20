@@ -8,9 +8,10 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 public class PrePickB4Command extends SequentialCommandGroup   {
-    public PrePickB4Command(Slide slide, Claw claw, Arm arm){
+    public PrePickB4Command(Slide slide, Claw claw, Arm arm, TurnServo turnServo){
         addCommands(
                 new ParallelCommandGroup(
                         new InstantCommand(claw::clawClose),
@@ -19,7 +20,7 @@ public class PrePickB4Command extends SequentialCommandGroup   {
                         new InstantCommand(slide::slideCone4)
                 ),
                 new WaitCommand(150),
-                new InstantCommand(claw::setBClawPos),
+                new InstantCommand(turnServo::setBClawPos),
                 new WaitCommand(150),
                 new InstantCommand(claw::clawOpen)
         );

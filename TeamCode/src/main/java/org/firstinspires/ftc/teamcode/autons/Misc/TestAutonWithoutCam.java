@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 @Autonomous(group = "RED/BLUE")
 public class TestAutonWithoutCam extends MatchOpMode {
@@ -19,6 +20,8 @@ public class TestAutonWithoutCam extends MatchOpMode {
     private Claw claw;
     private Drivetrain drivetrain;
     private Slide slide;
+    private TurnServo turnServo;
+
 //    public MecanumDrive mecanumDrive;
 
 
@@ -27,11 +30,9 @@ public class TestAutonWithoutCam extends MatchOpMode {
         claw = new Claw( telemetry, hardwareMap);
         arm = new Arm(telemetry, hardwareMap);
         slide = new Slide(telemetry, hardwareMap);
-//        mecanumDrive = new MecanumDrive(hardwareMap, telemetry, false);
+        turnServo = new TurnServo(telemetry, hardwareMap);
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
-        //        mecanumDrive.init();
-//        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
     }
 
 
@@ -40,7 +41,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
         schedule(
                 new SequentialCommandGroup(
 //                        new RightSpline(drivetrain, slide, arm, claw)
-                      new LeftSpline(drivetrain, slide, arm, claw)
+                      new LeftSpline(drivetrain, slide, arm, claw, turnServo)
                 )
         );
 //        PoseStorage.currentPose = drivetrain.getPoseEstimate();

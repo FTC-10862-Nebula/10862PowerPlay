@@ -7,9 +7,10 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 public class PrePickC2FCommand extends ParallelCommandGroup {
-    public PrePickC2FCommand(Slide slide, Claw claw, Arm arm){
+    public PrePickC2FCommand(Slide slide, Claw claw, Arm arm, TurnServo turnServo){
         addCommands(
                 new ParallelCommandGroup(
                         new InstantCommand(claw::clawClose),
@@ -17,7 +18,7 @@ public class PrePickC2FCommand extends ParallelCommandGroup {
                         new InstantCommand(arm::moveIntakeFAuto),
                         new InstantCommand(slide::slideCone2)
                 ),
-                new InstantCommand(claw::setFClawPos),
+                new InstantCommand(turnServo::setFClawPos),
                 new WaitCommand(150),
                 new InstantCommand(claw::clawOpen)
         );

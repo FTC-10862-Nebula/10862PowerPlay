@@ -17,15 +17,6 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 @Disabled
 @Autonomous(name = "FaithCam", group = "RED/BLUE")
 public class FaithAuton extends MatchOpMode {
-//    private ATDetector tagDetector;
-
-    private static double startPoseX = 0;
-    private static double startPoseY = 0;
-    private static double startPoseHeading = 0;
-
-    // Gamepad
-//    private GamepadEx driverGamepad;
-
     Drivetrain drivetrain;
     Slide slide;
     Arm arm;
@@ -47,11 +38,10 @@ public class FaithAuton extends MatchOpMode {
 //        Drivetrain drivetrain;
         schedule(
                 new SequentialCommandGroup(
-                        new StrafeRightCommand( drivetrain, 55),
-                        new SlideHighBCommand(slide,arm, claw, true),
-                        new DropAutoConeCommand(claw, slide, arm,true),
-                        new SlideResetUpAutonCommand(slide, arm, claw)
-//                        new
+//                        new StrafeRightCommand( drivetrain, 55),
+//                        new SlideHighBCommand(slide,arm, claw, true),
+//                        new DropAutoConeCommand(claw, slide, arm,true),
+//                        new SlideResetUpAutonCommand(slide, arm, claw)
         )
         );
 

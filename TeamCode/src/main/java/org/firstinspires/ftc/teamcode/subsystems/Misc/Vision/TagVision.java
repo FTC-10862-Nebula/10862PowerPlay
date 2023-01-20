@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.subsystems.Vision;
+package org.firstinspires.ftc.teamcode.subsystems.Misc.Vision;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;

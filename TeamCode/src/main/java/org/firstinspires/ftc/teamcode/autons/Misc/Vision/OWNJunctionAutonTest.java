@@ -4,9 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.commands.ExampleCommand.JunctionCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
-import org.firstinspires.ftc.teamcode.subsystems.SingleServo;
-import org.firstinspires.ftc.teamcode.subsystems.Vision.JunctionVision;
-import org.firstinspires.ftc.teamcode.subsystems.Vision.TagVision;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.SingleServo;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.Vision.JunctionVision;
+import org.firstinspires.ftc.teamcode.subsystems.Misc.Vision.TagVision;
 
 @Autonomous
 public class OWNJunctionAutonTest extends MatchOpMode {
