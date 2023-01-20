@@ -59,13 +59,13 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
         //TODO:Change the color
 //        telemetry.addLine("Got Blue Cone");
 //        return (blue()>100);
-        return (colorSensor.red() > 150) && (colorSensor.green() > 150);
+        return (colorSensor.blue() > 500);
     }
     public boolean grabbedRedCone() {
         //TODO:Change the color
 //        telemetry.addLine("Got Red Cone");
 //        return (red() > 150);
-        return (colorSensor.red() > 150) && (colorSensor.green() > 150);
+        return (colorSensor.red() > 500);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TeleOps;
+package org.firstinspires.ftc.teamcode.TeleOps.Blue;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -9,27 +9,29 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.GamepadTrigger;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.*;
-
-
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
+import org.firstinspires.ftc.teamcode.commands.SensorCommands.BlueIntakeTeleopCommand;
+import org.firstinspires.ftc.teamcode.commands.SensorCommands.RedIntakeTeleopCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideResetBCommandT;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideGroundFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
+import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
+import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
-
-import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 @Config
-@TeleOp(name = "Up")
-public class UpFieldCentricTeleOp extends MatchOpMode {
+@TeleOp(name = "BLUE Up")
+public class BlueUpTeleOp extends MatchOpMode {
     int choice = 2;
 
 
@@ -47,10 +49,6 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
     private SensorColor sensorColor;
     private TurnServo turnServo;
 
-//    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
-    //    private TagVision vision;
-
-
     @Override
     public void robotInit() {
         driverGamepad = new GamepadEx(gamepad1);
@@ -62,9 +60,9 @@ public class UpFieldCentricTeleOp extends MatchOpMode {
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, true), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
-//        vision = new TagVision(hardwareMap, "Webcam 1", telemetry);
 
         sensorColor = new SensorColor(hardwareMap, telemetry);
+//        claw.setDefaultCommand(new BlueIntakeTeleopCommand(slide, claw, sensorColor));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
     }
 

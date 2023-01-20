@@ -12,27 +12,18 @@ import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-public class RedIntakeCommand extends ParallelCommandGroup {
+public class RedIntakeTeleopCommand extends ParallelCommandGroup {
 
-    public RedIntakeCommand(Drivetrain drivetrain, Slide slide, Claw claw, Arm arm, SensorColor sensorColor) {
-        addRequirements(sensorColor, claw);
+    public RedIntakeTeleopCommand(Slide slide, Claw claw, SensorColor sensorColor) {
+        addRequirements(sensorColor, claw, slide);
         addCommands(
-                new WaitUntilCommand(sensorColor::grabbedRedCone).withTimeout(9),
                 new ConditionalCommand(
                         new SequentialCommandGroup( //When True
-                                new InstantCommand(claw::clawClose)
-//                                new InstantCommand(slide::autoPickSlideUp)
+                                new InstantCommand(claw::clawClose),
+                                new InstantCommand(slide::slidePickUp)
 
-//                                new InstantCommand(claw::stopClaw)
                         ),
                         new SequentialCommandGroup( //When False
-//                                new InstantCommand(slide::autoDropSlideUp)
-//                                new DriveForwardCommand(drivetrain,5)
-
-                                new InstantCommand(claw::clawOpen)
-//                                new InstantCommand(claw::intakeClaw),
-//                                new WaitCommand(100),
-//                                new InstantCommand(claw::stopClaw)
                         ),
                         sensorColor::grabbedRedCone
                 )

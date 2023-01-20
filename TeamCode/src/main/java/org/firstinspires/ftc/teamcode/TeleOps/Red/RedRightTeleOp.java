@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TeleOps;
+package org.firstinspires.ftc.teamcode.TeleOps.Red;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.InstantCommand;
@@ -13,7 +13,9 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.Defa
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
+import org.firstinspires.ftc.teamcode.commands.SensorCommands.RedIntakeTeleopCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.*;
+
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideResetBCommandT;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
@@ -25,9 +27,12 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 @Config
-@TeleOp(name = "Left")
-public class LeftFieldCentricTeleOp extends MatchOpMode {
-    int choice = 1;
+@TeleOp(name = "RED Right")
+public class RedRightTeleOp extends MatchOpMode {
+    int choice = 3;
+
+//    private Encoder leftEncoder, rightEncoder, frontEncoder;
+
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
 
@@ -39,9 +44,6 @@ public class LeftFieldCentricTeleOp extends MatchOpMode {
     private Slide slide;
     private SensorColor sensorColor;
     private TurnServo turnServo;
-//    private StandardTrackingWheelLocalizer standardTrackingWheelLocalizer;
-    //    private TagVision vision;
-
 
     @Override
     public void robotInit() {
@@ -54,8 +56,9 @@ public class LeftFieldCentricTeleOp extends MatchOpMode {
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, true), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
-//        vision = new TagVision(hardwareMap, "Webcam 1", telemetry);
+
         sensorColor = new SensorColor(hardwareMap, telemetry);
+//        sensorColor.setDefaultCommand(new RedIntakeTeleopCommand(slide, claw, sensorColor));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
     }
 
@@ -65,7 +68,7 @@ public class LeftFieldCentricTeleOp extends MatchOpMode {
         //Drive Stuff - D1
         Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
 //                .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,  true, choice));
-                  .whenPressed( new InstantCommand(drivetrain::reInitializeIMU));
+                .whenPressed( new InstantCommand(drivetrain::reInitializeIMU));
 
         Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
                 .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false, choice));
