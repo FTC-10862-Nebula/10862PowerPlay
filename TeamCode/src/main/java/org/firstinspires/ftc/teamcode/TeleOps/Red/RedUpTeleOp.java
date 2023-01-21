@@ -1,24 +1,13 @@
 package org.firstinspires.ftc.teamcode.TeleOps.Red;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.arcrobotics.ftclib.command.InstantCommand;
-import com.arcrobotics.ftclib.command.button.Button;
-import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.GamepadTrigger;
 import org.firstinspires.ftc.teamcode.TeleOps.ButtonCommand;
-import org.firstinspires.ftc.teamcode.commands.SensorCommands.RedIntakeTeleopCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.*;
 
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.SlowDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideResetBCommandT;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -62,7 +51,7 @@ public class RedUpTeleOp extends MatchOpMode {
         slide = new Slide(telemetry, hardwareMap);
 
         sensorColor = new SensorColor(hardwareMap, telemetry);
-//        sensorColor.setDefaultCommand(new RedIntakeTeleopCommand(slide, claw, sensorColor));
+//        sensorColor.setDefaultCommand(new RedIntakeAutoCommand(slide, claw, sensorColor));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
     }
 

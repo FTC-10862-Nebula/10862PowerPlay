@@ -23,7 +23,7 @@ public class DriveConstants {
      * These are motor constants that should be listed online for your motors.
      */
     public static final double TICKS_PER_REV = 384.5;
-    public static final double MAX_RPM = 430;   //435 Motors
+    public static final double MAX_RPM = 425;   //435 Motors - Changed from 430
 
     /*
      * Set RUN_USING_ENCODER to true to enable built-in hub velocity control using drive encoders.
@@ -87,8 +87,8 @@ public class DriveConstants {
      * You are free to raise this on your own if you would like. It is best determined through experimentation.
 
      */
-    public static double MAX_VEL = 57;  //57
-    public static double MAX_ACCEL = 57;    //57
+    public static double MAX_VEL = 56;  //57
+    public static double MAX_ACCEL = 56;    //57
     public static double MAX_ANG_VEL = Math.toRadians(300.704976);  //According to guide make 180 deg - 300.704976
     public static double MAX_ANG_ACCEL = Math.toRadians(300.704976);  //According to guide make 180 deg - 300.704976
 

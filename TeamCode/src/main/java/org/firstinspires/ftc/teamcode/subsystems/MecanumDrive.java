@@ -133,14 +133,15 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
             MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();
             motorConfigurationType.setAchieveableMaxRPMFraction(1.0);
             motor.setMotorType(motorConfigurationType);
+
+            setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //Made not be brake mode
+//        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         }
 
         if (RUN_USING_ENCODER) {
             setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
 
-        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //Made not be brake mode
-//        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         if (RUN_USING_ENCODER && MOTOR_VELO_PID != null) {
             setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);

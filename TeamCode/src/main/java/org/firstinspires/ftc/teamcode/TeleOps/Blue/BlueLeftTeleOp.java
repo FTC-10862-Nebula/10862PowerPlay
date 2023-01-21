@@ -1,26 +1,11 @@
 package org.firstinspires.ftc.teamcode.TeleOps.Blue;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.arcrobotics.ftclib.command.InstantCommand;
-import com.arcrobotics.ftclib.command.button.Button;
-import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.GamepadTrigger;
 import org.firstinspires.ftc.teamcode.TeleOps.ButtonCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.SlowDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropConeCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.PickConeCommand;
-import org.firstinspires.ftc.teamcode.commands.SensorCommands.BlueIntakeTeleopCommand;
-import org.firstinspires.ftc.teamcode.commands.SensorCommands.RedIntakeTeleopCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideBackCommands.SlideResetBCommandT;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideGroundFCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
@@ -59,7 +44,7 @@ public class BlueLeftTeleOp extends MatchOpMode {
         slide = new Slide(telemetry, hardwareMap);
 
         sensorColor = new SensorColor(hardwareMap, telemetry);
-//        sensorColor.setDefaultCommand(new BlueIntakeTeleopCommand(slide, claw,sensorColor));
+//        sensorColor.setDefaultCommand(new BlueIntakeAutoCommand(slide, claw,sensorColor));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
     }
 

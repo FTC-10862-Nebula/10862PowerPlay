@@ -14,7 +14,8 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.GamepadTrigger;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.SensorCommands.RedIntakeTeleopCommand;
+import org.firstinspires.ftc.teamcode.commands.SensorCommands.RedIntakeAutoCommand;
+import org.firstinspires.ftc.teamcode.commands.SensorCommands.Teleop.RedIntakeTeleopCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
@@ -31,16 +32,6 @@ public class SensorColorTeleop extends MatchOpMode {
     private static double startPoseY = 0;
     private static double startPoseHeading = 0;
 
-    //Motors and Servos
-    private MotorEx armMotor;
-    private ServoEx clawS1, clawS3;
-        private ServoEx clawS2;
-//    private CRServo clawS2;
-    private MotorEx leftFront, leftRear, rightRear, rightFront;
-    private MotorEx liftMotor1, liftMotor2;
-    private ColorSensor colorSensor;
-
-//    private Encoder leftEncoder, rightEncoder, frontEncoder;
 
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
@@ -66,7 +57,6 @@ public class SensorColorTeleop extends MatchOpMode {
         sensorColor = new SensorColor(hardwareMap, telemetry);
         sensorColor.setDefaultCommand(new RedIntakeTeleopCommand(slide, claw, sensorColor));
 
-        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, 2));
     }
 
