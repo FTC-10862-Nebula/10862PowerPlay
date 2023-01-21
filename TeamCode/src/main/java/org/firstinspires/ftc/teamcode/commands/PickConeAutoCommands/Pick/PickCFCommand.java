@@ -10,7 +10,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 public class PickCFCommand extends SequentialCommandGroup  {
     public PickCFCommand(Slide slide, Claw claw){
         addCommands(
-                new InstantCommand(claw::clawAutoClose),
+                new InstantCommand(claw::clawClose),
+//                new InstantCommand(claw::clawAutoClose),
                 new WaitCommand(100),
                 new InstantCommand(slide:: slideLow)
         );

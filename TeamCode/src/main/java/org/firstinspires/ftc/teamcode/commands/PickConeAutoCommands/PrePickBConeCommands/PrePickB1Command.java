@@ -16,11 +16,14 @@ public class PrePickB1Command extends SequentialCommandGroup   {
                 new ParallelCommandGroup(
                         new InstantCommand(claw::clawClose),
 //                        new InstantCommand(claw::clawAutoClose),
-                        new InstantCommand(arm::moveIntakeBAuto),
-                        new InstantCommand(slide::slideCone1)
+                        new InstantCommand(arm::moveIntakeBAuto)
+
                 ),
                 new WaitCommand(150),
-                new InstantCommand(turnServo::setBClawPos),
+                new ParallelCommandGroup(
+                        new InstantCommand(slide::slideCone1),
+                        new InstantCommand(turnServo::setBClawPos)
+                ),
                 new WaitCommand(150),
                 new InstantCommand(claw::clawOpen)
         );

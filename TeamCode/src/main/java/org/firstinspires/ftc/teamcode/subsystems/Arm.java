@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
@@ -35,8 +36,8 @@ public class Arm extends SubsystemBase {
                         POS_BACK = -200,
                         HIGH_POS_BACK = -100,
                         GROUND_POS_BACK = -197;
-    public static int HIGH_POS_AUTO_BACK = -100,
-                        INTAKE_POS_AUTO_BACK = -208,
+    public static int HIGH_POS_AUTO_BACK = -109,
+                        INTAKE_POS_AUTO_BACK = -210,
                         POS_AUTO_BACK = -140;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
@@ -80,6 +81,8 @@ public class Arm extends SubsystemBase {
         this.telemetry = tl;
         armAutomatic = false;
         setOffset();
+        //TODO: isAuto for Brake Mode
+        armMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE); //Remove for practice and stuff
 //        armPos = ArmPos.RESET;
 //        potentiometer = hw.get(AnalogInput.class, "Potentiometer");
 //        potentiometer = new AnalogInput(null, 0);
