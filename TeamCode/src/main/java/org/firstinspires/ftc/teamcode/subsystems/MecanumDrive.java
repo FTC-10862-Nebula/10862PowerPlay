@@ -52,17 +52,6 @@ import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.*;
  */
 @Config
 public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive {
-//    private Encoder leftEncoder, rightEncoder, frontEncoder;
-
-    double[] powers = new double[4];
-    private final int LFVal = 0,
-            LRVal = 1,
-            RFVal = 2,
-            RRVal = 3;
-    private final int AUTOFIXLEFTANGLE = 90,
-                        AUTOFIXUPANGLE = 0,
-                        AUTOFIXRIGHTANGLE = -90;
-
 
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(8, 0, 0); //6,1,0
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(9, 0, 0);//0,0,0

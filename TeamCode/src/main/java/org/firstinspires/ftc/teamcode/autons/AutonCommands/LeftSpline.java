@@ -22,23 +22,23 @@ public class LeftSpline extends SequentialCommandGroup{
         addCommands(
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo, true),
-                        new SplineCommand(drivetrain, new Vector2d(59, -1.), Math.toRadians(337))    //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(58.9, -1.5), Math.toRadians(332))    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new PrePickB5Command(slide, claw, arm, turnServo),
-                        new SplineCommand(drivetrain, new Vector2d(56.9, 29), Math.toRadians(90), true)   //Load
+                        new SplineCommand(drivetrain, new Vector2d(56.8, 26.5), Math.toRadians(90), true)   //Load
                 ),
 
 
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo,true),
-                        new SplineCommand(drivetrain, new Vector2d(59, -1.), Math.toRadians(337), PoseStorage.cycle)    //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(58.9, -1.5), Math.toRadians(332), PoseStorage.cycle)    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new PrePickB5Command(slide, claw, arm, turnServo),
-                        new SplineCommand(drivetrain, new Vector2d(56.9, 29), Math.toRadians(90), PoseStorage.load, true)   //Load
+                        new SplineCommand(drivetrain, new Vector2d(56.8, 26.5), Math.toRadians(90), PoseStorage.load, true)   //Load
                 )
 
 

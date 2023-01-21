@@ -14,26 +14,16 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 @Config
 @TeleOp
 public class ArmTeleop extends MatchOpMode {
-    int choice = 2;
-
-
-//    private Encoder leftEncoder, rightEncoder, frontEncoder;
-
     // Gamepad
-    private GamepadEx driverGamepad, operatorGamepad;
-
-
+    private GamepadEx operatorGamepad;
     // Subsystems
     private Arm arm;
-
 
     @Override
     public void robotInit() {
         operatorGamepad = new GamepadEx(gamepad2);
-
         arm = new Arm(telemetry, hardwareMap);
     }
-
 
     @Override
     public void configureButtons() {
@@ -79,8 +69,5 @@ public class ArmTeleop extends MatchOpMode {
     public void matchStart() { }
     @Override
     public void robotPeriodic(){
-//        telemetry.addData("Front Encoder: ", StandardTrackingWheelLocalizer.frontEncoderPos);
-//        telemetry.addData("Left Encoder: ", StandardTrackingWheelLocalizer.leftEncoderPos);
-//        telemetry.addData("Right Encoder: ", StandardTrackingWheelLocalizer.rightEncoderPos);
     }
 }
