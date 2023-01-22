@@ -27,34 +27,34 @@ public class LeftSpline extends SequentialCommandGroup{
         addCommands(
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo, true),
-                        new SplineCommand(drivetrain, new Vector2d(58.15, -2.5), Math.toRadians(333.5))    //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(57.6, -3.2), Math.toRadians(328))    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new PrePickB5Command(slide, claw, arm, turnServo),
-                        new SplineCommand(drivetrain, new Vector2d(57., 27.4), Math.toRadians(89), true)   //Load
+                        new SplineCommand(drivetrain, new Vector2d(57., 26.15), Math.toRadians(90), true)   //Load
                 ),
                 new ParallelCommandGroup(
-                        new SlowDriveForwardCommand(drivetrain, -1.),
-                        new PickCBCommand(slide, claw),
-                        new InstantCommand(arm::moveIntakeBAuto)
+//                        new SlowDriveForwardCommand(drivetrain, -1.),
+                        new PickCBCommand(slide, claw)
+//                        new InstantCommand(arm::moveIntakeBAuto)
                 ),
 
 
 
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo,true),
-                        new SplineCommand(drivetrain, new Vector2d(58.3, -2.5), Math.toRadians(333.5), PoseStorage.cycle)    //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(57.6, -3.2), Math.toRadians(328), PoseStorage.cycle)    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new PrePickB5Command(slide, claw, arm, turnServo),
-                        new SplineCommand(drivetrain, new Vector2d(57., 27.4), Math.toRadians(89), PoseStorage.load, true)   //Load
+                        new SplineCommand(drivetrain, new Vector2d(57., 26.15), Math.toRadians(90), PoseStorage.load, true)   //Load
                 ),
                 new ParallelCommandGroup(
-                        new SlowDriveForwardCommand(drivetrain, -1.),
-                        new PickCBCommand(slide, claw),
-                        new InstantCommand(arm::moveIntakeBAuto)
+//                        new SlowDriveForwardCommand(drivetrain, -1.),
+                        new PickCBCommand(slide, claw)
+//                        new InstantCommand(arm::moveIntakeBAuto)
                 )
 //                new PickCBCommand(slide, claw)
 

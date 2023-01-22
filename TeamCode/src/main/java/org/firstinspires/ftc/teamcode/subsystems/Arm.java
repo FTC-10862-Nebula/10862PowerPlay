@@ -36,7 +36,7 @@ public class Arm extends SubsystemBase {
                         POS_BACK = -200,
                         HIGH_POS_BACK = -100,
                         GROUND_POS_BACK = -197;
-    public static int HIGH_POS_AUTO_BACK = -111,
+    public static int HIGH_POS_AUTO_BACK = -116,
                         INTAKE_POS_AUTO_BACK = -220,
                         POS_AUTO_BACK = -140;
 
@@ -250,10 +250,10 @@ public class Arm extends SubsystemBase {
     public void dropArmAuto(){
         switch (armPos){
             case AUTO_HIGH_BACK:
-                controller.setSetPoint(HIGH_POS_AUTO_BACK-100);
+                controller.setSetPoint(HIGH_POS_AUTO_BACK-110);
                 return;
             case AUTO_HIGH_FRONT:
-                controller.setSetPoint(HIGH_POS_AUTO_FRONT+100);
+                controller.setSetPoint(HIGH_POS_AUTO_FRONT+110);
                 return;
 
             case AUTO_BACK:
