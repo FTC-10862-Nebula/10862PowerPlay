@@ -32,12 +32,12 @@ public class Arm extends SubsystemBase {
 //    private double offsetNum = 0;
     public int INIT_POS = 0;
 
-    public static int INTAKE_POS_BACK = -218,
+    public static int INTAKE_POS_BACK = -220,
                         POS_BACK = -200,
                         HIGH_POS_BACK = -100,
                         GROUND_POS_BACK = -197;
     public static int HIGH_POS_AUTO_BACK = -116,
-                        INTAKE_POS_AUTO_BACK = -220,
+                        INTAKE_POS_AUTO_BACK = -223,
                         POS_AUTO_BACK = -140;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,

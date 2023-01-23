@@ -22,7 +22,7 @@ public class Trajectories {
     ));
     public static MinVelocityConstraint kindaSlowVelConstraint = new MinVelocityConstraint(Arrays.asList(
             new AngularVelocityConstraint(MAX_ANG_VEL),
-            new TankVelocityConstraint(MAX_VEL/2, TRACK_WIDTH)
+            new TankVelocityConstraint(MAX_VEL/1.3, TRACK_WIDTH)
     ));    public static MinVelocityConstraint slowVelConstraint = new MinVelocityConstraint(Arrays.asList(
             new AngularVelocityConstraint(MAX_ANG_VEL),
             new TankVelocityConstraint(MAX_VEL/6, TRACK_WIDTH)

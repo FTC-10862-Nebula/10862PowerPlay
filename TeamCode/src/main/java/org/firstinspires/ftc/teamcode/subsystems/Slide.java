@@ -44,10 +44,10 @@ public class Slide extends SubsystemBase {
 
     //Auto Slide Positions
     public static int CONE_STACK_POS = -236;
-    public static int CONE_5_POS = -172;
-    public static int CONE_4_POS = -140;
-    public static int CONE_3_POS = -94;
-    public static int CONE_2_POS = -80;
+    public static int CONE_5_POS = -122;
+    public static int CONE_4_POS = -110;
+    public static int CONE_3_POS = -80;
+    public static int CONE_2_POS = -68;
     public static int CONE_1_POS = -10;
     double output = 0;
 
@@ -135,10 +135,10 @@ public class Slide extends SubsystemBase {
 //        slideM1.set(UP_SPEED);
 //        slideM2.set(UP_SPEED);
         slideAutomatic = true;
-        if((HIGH_POS<slideM1.getCurrentPosition())){
+//        if((HIGH_POS<slideM1.getCurrentPosition())){
             upController.setSetPoint(slideM1.getCurrentPosition()-20);
-        }
-        else return;
+//        }
+//        else return;
 
     }
     public void downSlideManual() {
@@ -146,10 +146,10 @@ public class Slide extends SubsystemBase {
 //        slideM1.set(DOWN_SPEED);
 //        slideM2.set(DOWN_SPEED);
         slideAutomatic = true;
-        if((-15>slideM1.getCurrentPosition())){
+//        if((-15>slideM1.getCurrentPosition())){
             upController.setSetPoint(slideM1.getCurrentPosition()+20);
-        }
-        else return;
+//        }
+//        else return;
     }
 
     public void setPower(double power) {

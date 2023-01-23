@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.LeftSpline;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.Test;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -42,6 +43,8 @@ public class TestAutonWithoutCam extends MatchOpMode {
                 new SequentialCommandGroup(
 //                        new RightSpline(drivetrain, slide, arm, claw)
                       new LeftSpline(drivetrain, slide, arm, claw, turnServo)
+//                        new Test(drivetrain, slide, arm, claw, turnServo)
+
                 )
         );
 //        PoseStorage.currentPose = drivetrain.getPoseEstimate();
