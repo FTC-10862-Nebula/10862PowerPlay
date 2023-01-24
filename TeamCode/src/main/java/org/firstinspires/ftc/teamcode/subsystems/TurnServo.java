@@ -11,8 +11,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @Config
 public class TurnServo extends SubsystemBase {
-    public static final double F_POS_S3 = 0.07,
-            B_POS_S3 = 0.73499;
+    public static final double F_POS_S3 = 0.743,
+            B_POS_S3 = 0.04;
 
     Telemetry telemetry;
     private final ServoEx clawS3;     //Servo that turns claw

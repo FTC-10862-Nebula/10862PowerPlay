@@ -12,9 +12,9 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 @Config
 public class Claw extends SubsystemBase {
     //Claw Variables
-    public final static double CLOSE_POS_S1 = 0.61,
-                                AUTO_CLOSE_S1 = 0.89,
-                                OPEN_POS_S1 = 0.91;
+    public final static double CLOSE_POS_S1 = 0.51,
+                                AUTO_CLOSE_S1 = 0.8245,
+                                OPEN_POS_S1 = 0.827;
 
 
 
