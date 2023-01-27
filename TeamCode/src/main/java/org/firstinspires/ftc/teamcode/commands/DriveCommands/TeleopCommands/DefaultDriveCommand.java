@@ -38,8 +38,8 @@ public class DefaultDriveCommand extends CommandBase {
             );
         } else{
             drive.fieldCentric(
-                    -driverGamepad.getLeftY() * multiplier,
-                    -driverGamepad.getLeftX() * multiplier,
+                    driverGamepad.getLeftY() * multiplier,
+                    driverGamepad.getLeftX() * multiplier,
                     -driverGamepad.getRightX() * multiplier,
                     choice
             );

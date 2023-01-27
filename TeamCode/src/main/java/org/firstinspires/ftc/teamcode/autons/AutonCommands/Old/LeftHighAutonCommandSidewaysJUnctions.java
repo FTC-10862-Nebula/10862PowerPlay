@@ -77,7 +77,7 @@ public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGrou
 //                new WaitCommand(400),
 //                new SlowDriveForwardCommand(drivetrain, 1.8),
 //                new TurnToCommand(drivetrain, 8),
-//                new PrePickC2FCommand(slide, claw, arm),
+//                new PrePick2FCommand(slide, claw, arm),
 //                new WaitCommand(200),
 
 

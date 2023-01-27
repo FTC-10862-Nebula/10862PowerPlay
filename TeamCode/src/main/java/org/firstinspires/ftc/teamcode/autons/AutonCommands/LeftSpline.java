@@ -22,53 +22,28 @@ public class LeftSpline extends SequentialCommandGroup{
         /*Turn is Counterclockwise*/
         addCommands(
                 new ParallelCommandGroup(
-                        new SlideHighFCommand(slide, arm, claw, turnServo, true),
-                        new SplineCommand(drivetrain, new Vector2d(57.39, -3.6), Math.toRadians(321.7))    //Cycle
+//                        new SlideHighFCommand(slide, arm, claw, turnServo, true),
+                        new SplineCommand(drivetrain, new Vector2d(57.2, -3.7), Math.toRadians(319))    //Cycle
                 ),
-                new DropAutoConeCommand(claw, slide, arm, true),
+//                new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
-                        new PrePickB5Command(slide, claw, arm, turnServo),
-                        new SlowSplineCommand(drivetrain, new Vector2d(58.8, 26.3), Math.toRadians(89.9), true)   //Load
+//                        new PrePickB5Command(slide, claw, arm, turnServo),
+                        new SlowSplineCommand(drivetrain, new Vector2d(56.4, 25.9), Math.toRadians(89.9), true)   //Load
                 ),
-                new PickCBCommand(slide, claw),
+//                new PickCBCommand(slide, claw),
 
-
-
-                new ParallelCommandGroup(
-                        new SlideHighFCommand(slide, arm, claw, turnServo,true),
-                        new SplineCommand(drivetrain, new Vector2d(57.39, -3.6), Math.toRadians(321.7), PoseStorage.cycle)    //Cycle
-                ),
-                new DropAutoConeCommand(claw, slide, arm, true),
-                new ParallelCommandGroup(
-                        new PrePickB5Command(slide, claw, arm, turnServo),
-                        new SlowSplineCommand(drivetrain, new Vector2d(58.8, 26.3), Math.toRadians(89.9), PoseStorage.load, true)   //Load
-                ),
-                new PickCBCommand(slide, claw),
 
 
                 new ParallelCommandGroup(
-                        new SlideHighFCommand(slide, arm, claw, turnServo,true),
-                        new SplineCommand(drivetrain, new Vector2d(57.39, -3.6), Math.toRadians(321.7), PoseStorage.cycle)    //Cycle
+//                        new SlideHighFCommand(slide, arm, claw, turnServo,true),
+                        new SplineCommand(drivetrain, new Vector2d(57.2, -3.7), Math.toRadians(319), PoseStorage.cycle)    //Cycle
                 ),
-                new DropAutoConeCommand(claw, slide, arm, true),
+//                new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
-                        new PrePickB5Command(slide, claw, arm, turnServo),
-                        new SlowSplineCommand(drivetrain, new Vector2d(58.8, 26.3), Math.toRadians(89.9), PoseStorage.load, true)   //Load
-                ),
-                new PickCBCommand(slide, claw),
-
-
-                new ParallelCommandGroup(
-                        new SlideHighFCommand(slide, arm, claw, turnServo,true),
-                        new SplineCommand(drivetrain, new Vector2d(57.39, -3.6), Math.toRadians(321.7), PoseStorage.cycle)    //Cycle
-                ),
-                new DropAutoConeCommand(claw, slide, arm, true),
-                new ParallelCommandGroup(
-                        new PrePickB5Command(slide, claw, arm, turnServo),
-                        new SlowSplineCommand(drivetrain, new Vector2d(58.8, 26.3), Math.toRadians(89.9), PoseStorage.load, true)   //Load
-                ),
-                new PickCBCommand(slide, claw)
-
+//                        new PrePickB5Command(slide, claw, arm, turnServo),
+                        new SlowSplineCommand(drivetrain, new Vector2d(56.4, 25.9), Math.toRadians(89.9), PoseStorage.load, true)   //Load
+                )
+//                new PickCBCommand(slide, claw)
 
 //                /**Cone 1**/
 //                new ParallelCommandGroup(
@@ -78,6 +53,7 @@ public class LeftSpline extends SequentialCommandGroup{
 //                new DropAutoConeCommand(claw, slide, arm, true),
 //
 //                new TurnToCommand(drivetrain, 0)
+
         );
     }
 }

@@ -25,8 +25,8 @@ public class Arm extends SubsystemBase {
 //    private final AnalogInput potentiometer;
 
     public static double CPR = 384.5;
-//    public static double UP_SPEED = -0.55;
-//    public static double DOWN_SPEED = 0.55;
+    public static double UP_SPEED = -0.55;
+    public static double DOWN_SPEED = 0.55;
 
     private final double encoderOffset = 0;
 //    private double offsetNum = 0;
@@ -34,7 +34,7 @@ public class Arm extends SubsystemBase {
 
     public static int INTAKE_POS_BACK = -220,
                         POS_BACK = -200,
-                        HIGH_POS_BACK = -100,
+                        HIGH_POS_BACK = -110,
                         GROUND_POS_BACK = -197;
     public static int HIGH_POS_AUTO_BACK = -116,
                         INTAKE_POS_AUTO_BACK = -223,
@@ -121,21 +121,21 @@ public class Arm extends SubsystemBase {
     /****************************************************************************************/
 
     public void raiseClawManual() {
-//        armAutomatic = false;
-//        armMotor.set(UP_SPEED);
-        armAutomatic = true;
-        if((armMotor.getCurrentPosition()<275)){
-            controller.setSetPoint(armMotor.getCurrentPosition()+5);
-        }
-//        else return;
+        armAutomatic = false;
+        armMotor.set(UP_SPEED);
+////        armAutomatic = true;
+////        if((armMotor.getCurrentPosition()<275)){
+//            controller.setSetPoint(armMotor.getCurrentPosition()+5);
+////        }
+////        else return;
     }
     public void lowerClawManual() {
-//        armAutomatic = false;
-//        armMotor.set(DOWN_SPEED);
-        armAutomatic = true;
-        if((armMotor.getCurrentPosition()>-275)){
-            controller.setSetPoint(armMotor.getCurrentPosition()-5);
-        }
+        armAutomatic = false;
+        armMotor.set(DOWN_SPEED);
+//        armAutomatic = true;
+//        if((armMotor.getCurrentPosition()>-275)){
+////            controller.setSetPoint(armMotor.getCurrentPosition()-5);
+//        }
 //        else return;
     }
 

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
@@ -19,7 +20,11 @@ public class DropConeCommand extends SequentialCommandGroup  {
                             claw.clawOpen();
                         }).start()),
                 new WaitCommand(300),
-                new InstantCommand(arm::moveReset)
+                new ParallelCommandGroup(
+                        new InstantCommand(arm::moveReset),
+                        new InstantCommand(claw::clawClose)
+                )
+
         );
     }
 

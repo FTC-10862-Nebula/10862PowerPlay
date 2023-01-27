@@ -131,25 +131,25 @@ public class Slide extends SubsystemBase {
     }
 
     public void upSlideManual(){
-//        slideAutomatic = false;
-//        slideM1.set(UP_SPEED);
-//        slideM2.set(UP_SPEED);
-        slideAutomatic = true;
-//        if((HIGH_POS<slideM1.getCurrentPosition())){
-            upController.setSetPoint(slideM1.getCurrentPosition()-20);
-//        }
-//        else return;
+        slideAutomatic = false;
+        slideM1.set(UP_SPEED);
+        slideM2.set(UP_SPEED);
+//        slideAutomatic = true;
+////        if((HIGH_POS<slideM1.getCurrentPosition())){
+//            upController.setSetPoint(slideM1.getCurrentPosition()-20);
+////        }
+////        else return;
 
     }
     public void downSlideManual() {
-//        slideAutomatic = false;
-//        slideM1.set(DOWN_SPEED);
-//        slideM2.set(DOWN_SPEED);
-        slideAutomatic = true;
-//        if((-15>slideM1.getCurrentPosition())){
-            upController.setSetPoint(slideM1.getCurrentPosition()+20);
-//        }
-//        else return;
+        slideAutomatic = false;
+        slideM1.set(DOWN_SPEED);
+        slideM2.set(DOWN_SPEED);
+//        slideAutomatic = true;
+////        if((-15>slideM1.getCurrentPosition())){
+//            upController.setSetPoint(slideM1.getCurrentPosition()+20);
+////        }
+////        else return;
     }
 
     public void setPower(double power) {

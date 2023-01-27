@@ -102,13 +102,13 @@ public class StandardTrackingWheelLocalizer extends ThreeTrackingWheelLocalizer 
         telemetry.addData("Right Encoder: ", rightEncoder.getCurrentPosition());
     }
 
-//    public void returnFrontPos() {
-//        leftEncoderPos =frontEncoder.getCurrentPosition();
-//    }
-//    public void returnLeftPos() {
-//        leftEncoderPos =leftEncoder.getCurrentPosition();
-//    }
-//    public void returnRightPos() {
-//        leftEncoderPos = rightEncoder.getCurrentPosition();
-//    }
+    public int returnFrontPos() {
+        return frontEncoder.getCurrentPosition();
+    }
+    public int returnLeftPos() {
+        return leftEncoder.getCurrentPosition();
+    }
+    public int returnRightPos() {
+        return rightEncoder.getCurrentPosition();
+    }
 }

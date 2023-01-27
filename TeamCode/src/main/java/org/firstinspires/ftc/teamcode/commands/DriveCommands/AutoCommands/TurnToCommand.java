@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands;
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.StandardTrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.util.PoseStorage;
 import org.firstinspires.ftc.teamcode.util.Util;
 import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 
@@ -31,6 +33,7 @@ public class TurnToCommand extends CommandBase {
 
     @Override
     public void initialize() {
+//        double firstAngle = (drive.getRightAngle()- drive.getLeftAngle())/(StandardTrackingWheelLocalizer.LATERAL_DISTANCE);
         double firstAngle = drive.getHeading();
         Util.logger(this, Level.INFO, "curr angle", firstAngle);
         if (weird && firstAngle > 180) firstAngle = firstAngle - 360;

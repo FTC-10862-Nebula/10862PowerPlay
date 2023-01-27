@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp
 public class ClawServoTest extends OpMode {
     //hardware initialization stuff
-    Servo servo3;
+//    Servo servo3;
     Servo servo2;
     double pos = F_POS_S3, pos2 = 0.75;
 
@@ -21,7 +21,7 @@ public class ClawServoTest extends OpMode {
      */
     @Override
     public void init() {
-        servo3 = hardwareMap.get(Servo.class, "clawS3");
+//        servo3 = hardwareMap.get(Servo.class, "clawS3");
         servo2 = hardwareMap.get(Servo.class, "clawS2");
     }
 
@@ -32,12 +32,12 @@ public class ClawServoTest extends OpMode {
      */
     @Override
     public void loop() {
-        if(gamepad1.a){
-            pos -= 0.001;
-        }
-        else if(gamepad1.y){
-            pos += 0.001;
-        }
+//        if(gamepad1.a){
+//            pos -= 0.001;
+//        }
+//        else if(gamepad1.y){
+//            pos += 0.001;
+//        }
 
         if(gamepad1.dpad_down){
             pos2 -= 0.001;
@@ -70,10 +70,10 @@ public class ClawServoTest extends OpMode {
 //            clawS2.stop();
 //        }
 
-         pos = Math.min(Math.max(pos, 0), 1);
-        servo3.setPosition(pos);
-        telemetry.addData("Servo pos1: ",servo3.getPosition());
-        telemetry.addData("Desired pos1: ", pos);
+//         pos = Math.min(Math.max(pos, 0), 1);
+//        servo3.setPosition(pos);
+//        telemetry.addData("Servo pos1: ",servo3.getPosition());
+//        telemetry.addData("Desired pos1: ", pos);
 
         pos2 = Math.min(Math.max(pos2, 0), 1);
         servo2.setPosition(pos2);

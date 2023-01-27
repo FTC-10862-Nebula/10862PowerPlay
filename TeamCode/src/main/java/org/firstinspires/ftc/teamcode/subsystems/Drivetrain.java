@@ -31,9 +31,13 @@ public class Drivetrain extends SubsystemBase {
             LRVal = 1,
             RFVal = 2,
             RRVal = 3;
-    private final int AUTOFIXLEFTANGLE = -90,
-    AUTOFIXUPANGLE = 0,
-    AUTOFIXRIGHTANGLE = 90;
+//    private final int AUTOFIXLEFTANGLE = 90,
+//    AUTOFIXUPANGLE = 270,
+//    AUTOFIXRIGHTANGLE = -90;
+
+    private final int AUTOFIXLEFTANGLE = 90,
+            AUTOFIXUPANGLE = 0,
+            AUTOFIXRIGHTANGLE = -90;
 
     double[] powers = new double[4];
 
@@ -344,4 +348,13 @@ public class Drivetrain extends SubsystemBase {
     public void followTrajectorySequence(TrajectorySequence trajectorySequence) {
         drive.followTrajectorySequence(trajectorySequence);
     }
+
+    public int getRightAngle(){
+        return drive.getRightAngle();
+    }
+    public int getLeftAngle(){
+        return drive.getLeftAngle();
+
+    }
+
 }
