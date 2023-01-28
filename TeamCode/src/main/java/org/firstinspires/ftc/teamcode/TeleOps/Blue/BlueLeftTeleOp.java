@@ -45,7 +45,7 @@ public class BlueLeftTeleOp extends MatchOpMode {
         slide = new Slide(telemetry, hardwareMap);
 
         sensorColor = new SensorColor(hardwareMap, telemetry);
-        claw.setDefaultCommand(new BlueIntakeTeleopCommand(slide, claw, sensorColor));
+        claw.setDefaultCommand(new BlueIntakeTeleopCommand(slide, claw, sensorColor,arm));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
     }
 

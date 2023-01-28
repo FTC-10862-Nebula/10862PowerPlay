@@ -49,7 +49,7 @@ public class RedUpTeleOp extends MatchOpMode {
         sensorColor = new SensorColor(hardwareMap, telemetry);
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
 
-        claw.setDefaultCommand(new RedIntakeTeleopCommand(slide, claw, sensorColor));
+        claw.setDefaultCommand(new RedIntakeTeleopCommand(slide, claw, sensorColor,arm));
     }
 
 

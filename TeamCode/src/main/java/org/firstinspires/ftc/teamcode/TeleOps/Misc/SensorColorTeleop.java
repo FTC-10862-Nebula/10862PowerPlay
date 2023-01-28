@@ -50,7 +50,7 @@ public class SensorColorTeleop extends MatchOpMode {
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
         sensorColor = new SensorColor(hardwareMap, telemetry);
-        sensorColor.setDefaultCommand(new RedIntakeTeleopCommand(slide, claw, sensorColor));
+        sensorColor.setDefaultCommand(new RedIntakeTeleopCommand(slide, claw, sensorColor,arm));
 
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, 2));
     }
