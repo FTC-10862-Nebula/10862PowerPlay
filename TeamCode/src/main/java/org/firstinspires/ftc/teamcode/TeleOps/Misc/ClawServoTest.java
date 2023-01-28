@@ -12,7 +12,7 @@ public class ClawServoTest extends OpMode {
     //hardware initialization stuff
 //    Servo servo3;
     Servo servo2;
-    double pos = F_POS_S3, pos2 = 0.75;
+    double pos = F_POS_S3, pos2 = CLOSE_POS_S1;
 
     /**
      * User defined init method

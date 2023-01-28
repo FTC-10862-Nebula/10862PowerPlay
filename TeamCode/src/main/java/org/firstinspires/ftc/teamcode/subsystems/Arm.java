@@ -34,7 +34,7 @@ public class Arm extends SubsystemBase {
 
     public static int INTAKE_POS_BACK = -220,
                         POS_BACK = -200,
-                        HIGH_POS_BACK = -110,
+                        HIGH_POS_BACK = -117,
                         GROUND_POS_BACK = -197;
     public static int HIGH_POS_AUTO_BACK = -116,
                         INTAKE_POS_AUTO_BACK = -223,
@@ -123,7 +123,8 @@ public class Arm extends SubsystemBase {
     public void raiseClawManual() {
         armAutomatic = false;
         armMotor.set(UP_SPEED);
-////        armAutomatic = true;
+
+//        armAutomatic = true;
 ////        if((armMotor.getCurrentPosition()<275)){
 //            controller.setSetPoint(armMotor.getCurrentPosition()+5);
 ////        }
@@ -132,9 +133,10 @@ public class Arm extends SubsystemBase {
     public void lowerClawManual() {
         armAutomatic = false;
         armMotor.set(DOWN_SPEED);
+
 //        armAutomatic = true;
 //        if((armMotor.getCurrentPosition()>-275)){
-////            controller.setSetPoint(armMotor.getCurrentPosition()-5);
+//            controller.setSetPoint(armMotor.getCurrentPosition()-5);
 //        }
 //        else return;
     }

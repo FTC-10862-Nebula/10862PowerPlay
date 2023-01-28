@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.TeleOps.ButtonCommand;
 
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.SensorCommands.Teleop.RedIntakeTeleopCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -22,13 +23,8 @@ import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 @TeleOp(name = "RED Up")
 public class RedUpTeleOp extends MatchOpMode {
     int choice = 2;
-
-
-//    private Encoder leftEncoder, rightEncoder, frontEncoder;
-
     // Gamepad
     private GamepadEx driverGamepad, operatorGamepad;
-
 
     // Subsystems
     private Arm arm;
@@ -51,8 +47,9 @@ public class RedUpTeleOp extends MatchOpMode {
         slide = new Slide(telemetry, hardwareMap);
 
         sensorColor = new SensorColor(hardwareMap, telemetry);
-//        sensorColor.setDefaultCommand(new RedIntakeAutoCommand(slide, claw, sensorColor));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
+
+        claw.setDefaultCommand(new RedIntakeTeleopCommand(slide, claw, sensorColor));
     }
 
 

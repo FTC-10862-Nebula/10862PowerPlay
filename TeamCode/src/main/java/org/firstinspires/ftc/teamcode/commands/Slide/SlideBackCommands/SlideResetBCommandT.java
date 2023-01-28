@@ -18,13 +18,20 @@ public class SlideResetBCommandT extends SequentialCommandGroup {
                         new InstantCommand(
                                 () -> new Thread(() -> {
                                     claw.clawClose();
-                                    arm.moveIntakeB();
                                     slide.slideResting();
                                 }).start()
                         )
                 ),
-                new WaitCommand(800),
-                new InstantCommand(claw::clawOpen)
+                new WaitCommand(500),
+                new ParallelCommandGroup(
+                        new InstantCommand(
+                                () -> new Thread(() -> {
+                                    claw.clawOpen();
+                                    arm.moveIntakeB();
+
+                                }).start()
+                        )
+                )
 
         );
     }
