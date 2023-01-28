@@ -25,12 +25,12 @@ public class LeftRedSpline extends SequentialCommandGroup{
         addCommands(
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo, true),
-                        new SplineCommand(drivetrain, new Vector2d(57.2, -2.1), Math.toRadians(322.5))    //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(57.2, -2.1), Math.toRadians(326))    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
-                        new PrePickB5Command(slide, claw, arm, turnServo),
-                        new SlowSplineCommand(drivetrain, new Vector2d(55.35, 26.78), Math.toRadians(90), true)   //Load
+                        new PrePickB5Command(slide, claw, arm, turnServo)  ,
+                        new SlowSplineCommand(drivetrain, new Vector2d(54, 27.8), Math.toRadians(90), true)   //Load
                 ),
                 new RedIntakeAutoCommand(drivetrain, slide, claw, sensorColor, true),
 
@@ -38,12 +38,12 @@ public class LeftRedSpline extends SequentialCommandGroup{
 
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo,true),
-                        new SplineCommand(drivetrain, new Vector2d(57.2, -2.1), Math.toRadians(322.5), PoseStorage.cycle)    //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(57.2, -2.1), Math.toRadians(326), PoseStorage.cycle)    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new PrePickB5Command(slide, claw, arm, turnServo),
-                        new SlowSplineCommand(drivetrain, new Vector2d(55.35, 26.78), Math.toRadians(90), PoseStorage.load, true)   //Load
+                        new SlowSplineCommand(drivetrain, new Vector2d(55.1, 27.8), Math.toRadians(90), PoseStorage.load, true)   //Load
                 ),
                 new RedIntakeAutoCommand(drivetrain, slide, claw, sensorColor, true)
 //
