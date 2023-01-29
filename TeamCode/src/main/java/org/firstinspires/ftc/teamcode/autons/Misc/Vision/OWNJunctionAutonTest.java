@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamcode.autons.Misc.Vision;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.commands.ExampleCommand.JunctionCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Misc.SingleServo;
 import org.firstinspires.ftc.teamcode.subsystems.Misc.Vision.JunctionVision;
 import org.firstinspires.ftc.teamcode.subsystems.Misc.Vision.TagVision;
-
+@Disabled
 @Autonomous
 public class OWNJunctionAutonTest extends MatchOpMode {
     private int tagNum = 0;

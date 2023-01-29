@@ -3,10 +3,11 @@ package org.firstinspires.ftc.teamcode.TeleOps.Misc;
 import static org.firstinspires.ftc.teamcode.subsystems.Claw.*;
 import static org.firstinspires.ftc.teamcode.subsystems.TurnServo.F_POS_S3;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
-//@Disabled
+@Disabled
 @TeleOp
 public class ClawServoTest extends OpMode {
     //hardware initialization stuff

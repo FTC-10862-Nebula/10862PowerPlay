@@ -24,7 +24,7 @@ package org.firstinspires.ftc.teamcode.autons.Autons.Left;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.LeftBlueSpline;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.LeftSpline;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
@@ -38,7 +38,7 @@ import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 //@Disabled
 @Autonomous
-public class LeftBlueSplineAuto extends MatchOpMode
+public class LeftSplineAuto extends MatchOpMode
 {
     private int tagNum = 0;
 
@@ -62,12 +62,15 @@ public class LeftBlueSplineAuto extends MatchOpMode
         turnServo = new TurnServo(telemetry, hardwareMap);
         sensorColor = new SensorColor(hardwareMap, telemetry);
         tagVision = new TagVision(hardwareMap, telemetry);
+        sensorColor = new SensorColor(hardwareMap, telemetry);
 //        tagVision.init(hardwareMap);
         while (!isStarted() && !isStopRequested())
         {
             tagVision.updateTagOfInterest();
             tagVision.tagToTelemetry();
             telemetry.update();
+//            new InstantCommand(tagVision::getsend, tagVision);
+
         }
         this.matchStart();
     }
@@ -79,27 +82,26 @@ public class LeftBlueSplineAuto extends MatchOpMode
         switch (tagNum) {
             case 1: { //Left
                 autonGroup = new SequentialCommandGroup(
-                       new LeftBlueSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
+                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
                 );
             }
             case 2: { //Mid
                 autonGroup = new SequentialCommandGroup(
-                        new LeftBlueSpline(drivetrain, slide, arm, claw, turnServo, sensorColor),
-                        new DriveForwardCommand(drivetrain, 10)
+                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor),
+                        new DriveForwardCommand(drivetrain, 12)
                 );
 
             }
             case 3: { //High
                 autonGroup =new SequentialCommandGroup(
-                        new LeftBlueSpline(drivetrain, slide, arm, claw, turnServo, sensorColor),
-                        new DriveForwardCommand(drivetrain, 20)
-
+                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor),
+                        new DriveForwardCommand(drivetrain, 32)
                 );
             }
             default: {
                 autonGroup = new SequentialCommandGroup(
-                        new LeftBlueSpline(drivetrain, slide, arm, claw, turnServo, sensorColor),
-                        new DriveForwardCommand(drivetrain, 20)
+                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor),
+                        new DriveForwardCommand(drivetrain, 32)
                 );
             }
         }

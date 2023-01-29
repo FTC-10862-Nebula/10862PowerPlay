@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode.autons.Misc;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.LeftRedSpline;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.JustONECone;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.LeftSpline;
+import org.firstinspires.ftc.teamcode.autons.LeftStrafe;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -43,45 +45,11 @@ public class TestAutonWithoutCam extends MatchOpMode {
 //        waitForStart();
         schedule(
                 new SequentialCommandGroup(
+                        new JustONECone(drivetrain, slide, arm, claw, turnServo, sensorColor)
+//                        new LeftStrafe(drivetrain, slide, arm, turnServo, sensorColor, claw)
 //                        new RightSpline(drivetrain, slide, arm, claw)
-                      new LeftRedSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
+//                      new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
 //                        new Test(drivetrain, slide, arm, claw, turnServo)
-
-                      /* new ParallelCommandGroup(
-                                new DriveForwardCommand(drivetrain, 50),
-                                new SlideHighFCommand(slide, arm, claw, turnServo, true)
-                        ),
-                        new TurnToCommand(drivetrain, 330, true),
-                        new DriveForwardCommand(drivetrain, 8),
-
-                        new DropAutoConeCommand(claw, slide, arm, true),
-                        new DriveForwardCommand(drivetrain, -8),
-
-                        new TurnToCommand(drivetrain, 90),
-                        new ParallelCommandGroup(
-                                new DriveForwardCommand(drivetrain, -10),
-                                new PrePickB5Command(slide,claw,arm, turnServo)
-                        ),
-                        new PickConeCommand(claw, slide, arm),
-
-
-                        new ParallelCommandGroup(
-                                new TurnCommand(drivetrain, -55.3),
-                                new SlideLowFCommand(slide, arm, claw, turnServo, true)
-                        ),
-                        new ParallelCommandGroup(
-                                new SlowDriveForwardCommand(drivetrain, 3),
-                                new DropAutoConeCommand(claw, slide, arm,true)
-                        ),
-
-                        new ParallelCommandGroup(
-                                new SlowDriveForwardCommand(drivetrain, -3),
-                                new PrePick5FCommand(slide, claw, arm, turnServo)
-                        ),
-                        new ParallelCommandGroup(
-                                new TurnToCommand(drivetrain, 0, true),
-                                new PrePickB4Command(slide,claw, arm, turnServo)
-                        )*/
                 )
         );
 //        PoseStorage.currentPose = drivetrain.getPoseEstimate();

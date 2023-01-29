@@ -2,10 +2,11 @@ package org.firstinspires.ftc.teamcode.TeleOps.Misc;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.WaitCommand;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Misc.MotorSubsystem;
-
+@Disabled
 public class MotorAuton extends MatchOpMode {
 //    private ATDetector tagDetector;
 

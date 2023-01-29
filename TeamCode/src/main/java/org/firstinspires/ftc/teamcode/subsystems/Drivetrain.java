@@ -35,9 +35,9 @@ public class Drivetrain extends SubsystemBase {
 //    AUTOFIXUPANGLE = 270,
 //    AUTOFIXRIGHTANGLE = -90;
 
-    private final int AUTOFIXLEFTANGLE = 90,
+    private final int AUTOFIXLEFTANGLE = -90,
             AUTOFIXUPANGLE = 0,
-            AUTOFIXRIGHTANGLE = -90;
+            AUTOFIXRIGHTANGLE = 90;
 
     double[] powers = new double[4];
 

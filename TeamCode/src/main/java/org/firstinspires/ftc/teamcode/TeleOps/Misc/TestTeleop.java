@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.TeleOps.Misc;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultArmCommand;
@@ -12,7 +13,7 @@ import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-
+@Disabled
 @Config
 @TeleOp(name = "Test")
 public class TestTeleop extends MatchOpMode {

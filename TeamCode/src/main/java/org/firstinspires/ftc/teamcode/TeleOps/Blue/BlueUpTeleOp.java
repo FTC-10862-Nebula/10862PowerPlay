@@ -48,7 +48,7 @@ public class BlueUpTeleOp extends MatchOpMode {
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
 
-        sensorColor = new SensorColor(hardwareMap, telemetry);
+//        sensorColor = new SensorColor(hardwareMap, telemetry);
 //        claw.setDefaultCommand(new BlueIntakeTeleopCommand(slide, claw, sensorColor));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
     }

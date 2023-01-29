@@ -65,9 +65,11 @@ public class ButtonCommand extends SequentialCommandGroup{
 
         //Slide Manual - D2
         Button slideUpButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
-                .whileHeld(slide::upSlideManual);
+                .whileHeld(slide::upSlideManual)
+                .whenReleased(slide::stopSlide);
         Button slideDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN))
-                .whileHeld(slide::downSlideManual);
+                .whileHeld(slide::downSlideManual)
+                .whenReleased(slide::stopSlide);
 
         //Arm Manual - D2
         Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
