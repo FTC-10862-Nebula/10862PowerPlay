@@ -13,16 +13,26 @@ public class DropConeCommand extends SequentialCommandGroup  {
 
     public DropConeCommand(Claw claw, Slide slide, Arm arm){
         addCommands(
-                new InstantCommand(() ->
-                        new Thread(() -> {
-                            arm.dropArmTeleop();
-                            slide.dropSlide();
-                            claw.clawOpen();
-                        }).start()),
-                new WaitCommand(300),
+                new InstantCommand(arm::dropArmTeleop),
+//                new WaitCommand(10),
+
+//new InstantCommand(slide::dropSlide),
+//                new InstantCommand(() ->
+//                        new Thread(() -> {
+//                            arm.dropArmTeleop();
+//                            slide.dropSlide();
+////                            claw.clawOpen();
+//                        }).start()),
+                new WaitCommand(10),
+                new InstantCommand(claw::clawOpen),
+                new WaitCommand(200),
+                new InstantCommand(slide::dropSlide),
+
+//        new WaitCommand(1000),
                 new ParallelCommandGroup(
-                        new InstantCommand(arm::moveReset),
-                        new InstantCommand(claw::clawClose)
+//                        new InstantCommand(slide::dropSlide)
+//                        new InstantCommand(arm::moveReset),
+//                        new InstantCommand(claw::clawClose)
                 )
 
         );

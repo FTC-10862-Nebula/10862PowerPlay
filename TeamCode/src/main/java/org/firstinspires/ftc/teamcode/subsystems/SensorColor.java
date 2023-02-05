@@ -36,35 +36,22 @@ public class SensorColor extends SubsystemBase implements HardwareDevice {
         telemetry.update();
     }
 
-    public int[] HSVtoARGB(int alpha, float[] hsv) {
-        int color = Color.HSVToColor(alpha, hsv);
-        return new int[]{Color.alpha(color), Color.red(color), Color.green(color), Color.blue(color)};
-    }
-
-    public float[] RGBtoHSV(int red, int green, int blue, float[] hsv) {
-        Color.RGBToHSV(red, green, blue, hsv);
-        return hsv;
-    }
-
-//    public int[] getARGB() {
-//        return new int[]{alpha(), red(), green(), blue()};
+//    public int[] HSVtoARGB(int alpha, float[] hsv) {
+//        int color = Color.HSVToColor(alpha, hsv);
+//        return new int[]{Color.alpha(color), Color.red(color), Color.green(color), Color.blue(color)};
+//    }
+//
+//    public float[] RGBtoHSV(int red, int green, int blue, float[] hsv) {
+//        Color.RGBToHSV(red, green, blue, hsv);
+//        return hsv;
 //    }
 
-//    public int alpha() {return colorSensor.alpha();}
-//    public int red() {return colorSensor.red();}
-//    public int green() {return colorSensor.green();}
-//    public int blue() {return colorSensor.blue();}
-
     public boolean grabbedBlueCone() {
-        //TODO:Change the color
 //        telemetry.addLine("Got Blue Cone");
-//        return (blue()>100);
         return (colorSensor.blue() > 500);
     }
     public boolean grabbedRedCone() {
-        //TODO:Change the color
 //        telemetry.addLine("Got Red Cone");
-//        return (red() > 150);
         return (colorSensor.red() > 500);
     }
 

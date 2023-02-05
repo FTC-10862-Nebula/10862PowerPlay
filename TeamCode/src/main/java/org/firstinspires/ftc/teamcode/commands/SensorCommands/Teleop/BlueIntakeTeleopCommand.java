@@ -24,7 +24,7 @@ public class BlueIntakeTeleopCommand extends SequentialCommandGroup {
                                 new InstantCommand(arm::moveReset)
                         ),
                         new InstantCommand(),
-                        ()-> (sensorColor.grabbedBlueCone() && claw.isClawOpen())
+                        ()-> (sensorColor.grabbedBlueCone() && claw.isClawOpen() && arm.shouldSensorWork)
                 )
         );
     }

@@ -35,7 +35,7 @@ public class Slide extends SubsystemBase {
     public static int RESTING_POS = 5;
     public static int GROUND_POS = -30;
     public static int LOW_POS = -663;
-    public static int MID_POS = -1149;
+    public static int MID_POS = -1132;
     public static int HIGH_POS = -1240;
 
     public static int AUTO_MID_POS = -1015;
@@ -310,17 +310,17 @@ public class Slide extends SubsystemBase {
 
     public void dropSlide(){
         switch (liftPos){
-            case LOW:
-                upController.setSetPoint(LOW_POS+350);
-                break;
-            case MID:
-                upController.setSetPoint(MID_POS+500);
-                break;
+//            case LOW:
+//                upController.setSetPoint(LOW_POS+350);
+//                break;
+//            case MID:
+//                upController.setSetPoint(MID_POS+200);
+//                break;
             case HIGH:
-                upController.setSetPoint(HIGH_POS+400);
+                upController.setSetPoint(HIGH_POS+450);
                 break;
             case AUTO_MID:
-                upController.setSetPoint(AUTO_MID_POS+500);
+                upController.setSetPoint(AUTO_MID_POS+200);
                 break;
             case AUTO_HIGH:
                 upController.setSetPoint(AUTO_HIGH_POS+120);

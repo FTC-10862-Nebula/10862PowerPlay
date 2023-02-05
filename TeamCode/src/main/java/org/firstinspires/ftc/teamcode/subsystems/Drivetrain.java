@@ -108,23 +108,24 @@ public class Drivetrain extends SubsystemBase {
         }
         double rotX = x * Math.cos(theta) - y * Math.sin(theta);
         double rotY = x * Math.sin(theta) + y * Math.cos(theta);
+        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
 
-        // Denominator is the largest motor power (absolute value) or 1
+        // ^^^^^^ Denominator is the largest motor power (absolute value) or 1
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
-        double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
-//
-        /*powers [LFVal] = (-rotY - rotX - rx) / denominator;
-        powers [LRVal] = (-rotY + rotX - rx) / denominator;
-        powers [RFVal] = (-rotY - rotX + rx) / denominator;
-        powers [RRVal] = (-rotY + rotX + rx) / denominator;*/
-        //Original
+
+
 
         powers [LFVal] = (rotY + rotX - rx) / denominator;
         powers [LRVal] = (rotY - rotX - rx) / denominator;
         powers [RFVal] = (rotY + rotX + rx) / denominator;
         powers [RRVal] = (rotY - rotX + rx) / denominator;
 
+/*powers [LFVal] = (-rotY - rotX - rx) / denominator;
+        powers [LRVal] = (-rotY + rotX - rx) / denominator;
+        powers [RFVal] = (-rotY - rotX + rx) / denominator;
+        powers [RRVal] = (-rotY + rotX + rx) / denominator;*/
+        //Original
         drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
     }
 

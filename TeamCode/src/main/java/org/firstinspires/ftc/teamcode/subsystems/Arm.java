@@ -18,24 +18,23 @@ import java.util.logging.Level;
 public class Arm extends SubsystemBase {
 
     public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(.005, 0.00, 0.0,0);
-//    public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(0.0025, 0.2, 0, 0.0);//325 Motor
-    //I = 0.0008
     private final PIDFController controller;
     private boolean armAutomatic;
-//    private final AnalogInput potentiometer;
+    public boolean shouldSensorWork = true;
+
 
     public static double CPR = 384.5;
     public static double UP_SPEED = -0.55;
     public static double DOWN_SPEED = 0.55;
 
     private final double encoderOffset = 0;
-//    private double offsetNum = 0;
     public int INIT_POS = 0;
 
     public static int INTAKE_POS_BACK = -220,
                         POS_BACK = -200,
-                        HIGH_POS_BACK = -113,
-                        GROUND_POS_BACK = -197;
+                        HIGH_POS_BACK = -113 ,
+                        GROUND_POS_BACK = -197,
+    DROP_BACK = -398;
     public static int HIGH_POS_AUTO_BACK = -115,
                         INTAKE_POS_AUTO_BACK = -223,
                         POS_AUTO_BACK = -140;
@@ -43,14 +42,15 @@ public class Arm extends SubsystemBase {
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
                         POS_FRONT = -POS_BACK,
                         HIGH_POS_FRONT = -HIGH_POS_BACK,
-                        GROUND_POS_FRONT = -GROUND_POS_BACK;
+                        GROUND_POS_FRONT = -GROUND_POS_BACK,
+    DROP_FRONT = -DROP_BACK;
     public static int HIGH_POS_AUTO_FRONT = -HIGH_POS_AUTO_BACK,
                         INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
                         POS_AUTO_FRONT = -POS_AUTO_BACK;
     public enum ArmPos{
         RESET,
-        INTAKE_BACK, BACK, HIGH_BACK, GROUND_BACK,
-        INTAKE_FRONT, FRONT, HIGH_FRONT, GROUND_FRONT,
+        INTAKE_BACK, BACK, HIGH_BACK, GROUND_BACK, DROP_BACK,
+        INTAKE_FRONT, FRONT, HIGH_FRONT, GROUND_FRONT, DROP_FRONT,
         AUTO_INTAKE_BACK, AUTO_BACK, AUTO_HIGH_BACK,
         AUTO_INTAKE_FRONT, AUTO_FRONT, AUTO_HIGH_FRONT,
     }
@@ -70,7 +70,7 @@ public class Arm extends SubsystemBase {
         //Reverse claw motor
         armMotor.setInverted(true);
         armMotor.resetEncoder();
-//        this.armMotor.setZeroPowerBehavior(BRAKE);
+//        this.armMotor.setZeroPowerBehavior(BRAKE); // TODO: FOR COMP
         armMotor.setDistancePerPulse(360 / CPR);
 
         armMotor.set(0);
@@ -153,46 +153,55 @@ public class Arm extends SubsystemBase {
         armAutomatic = true;
         controller.setSetPoint(INIT_POS);
         armPos = ArmPos.RESET;
+        shouldSensorWork = true;
     }
     public void moveIntakeF() {
         armAutomatic = true;
         controller.setSetPoint(INTAKE_POS_FRONT);
         armPos = ArmPos.INTAKE_FRONT;
+        shouldSensorWork = true;
     }
     public void moveIntakeB() {
         armAutomatic = true;
         controller.setSetPoint(INTAKE_POS_BACK);
         armPos = ArmPos.INTAKE_BACK;
+        shouldSensorWork = true;
     }
     public void moveGroundB(){
         armAutomatic = true;
         controller.setSetPoint(GROUND_POS_BACK);
         armPos = ArmPos.GROUND_BACK;
+        shouldSensorWork = false;
     }
     public void moveGroundF(){
         armAutomatic = true;
         controller.setSetPoint(GROUND_POS_FRONT);
         armPos = ArmPos.GROUND_FRONT;
+        shouldSensorWork = false;
     }
     public void moveF() {
         armAutomatic = true;
         controller.setSetPoint(POS_FRONT);
         armPos = ArmPos.FRONT;
+        shouldSensorWork = false;
     }
     public void moveB() {
         armAutomatic = true;
         controller.setSetPoint(POS_BACK);
         armPos = ArmPos.BACK;
+        shouldSensorWork = false;
     }
     public void moveHighF() {
         armAutomatic = true;
         controller.setSetPoint(HIGH_POS_FRONT);
         armPos = ArmPos.HIGH_FRONT;
+        shouldSensorWork = false;
     }
     public void moveHighB() {
         armAutomatic = true;
         controller.setSetPoint(HIGH_POS_BACK);
         armPos = ArmPos.HIGH_BACK;
+        shouldSensorWork = false;
     }
 
 
@@ -201,50 +210,69 @@ public class Arm extends SubsystemBase {
         armAutomatic = true;
         controller.setSetPoint(HIGH_POS_AUTO_BACK);
         armPos = ArmPos.AUTO_HIGH_BACK;
+        shouldSensorWork = false;
     }
     public void moveHighFAuto(){
         armAutomatic = true;
         controller.setSetPoint(HIGH_POS_AUTO_FRONT);
         armPos = ArmPos.AUTO_HIGH_FRONT;
+        shouldSensorWork = false;
     }
     public void moveIntakeFAuto() {
         armAutomatic = true;
         controller.setSetPoint(INTAKE_POS_AUTO_FRONT);
         armPos = ArmPos.AUTO_INTAKE_FRONT;
+        shouldSensorWork = true;
     }
     public void moveIntakeBAuto() {
         armAutomatic = true;
         controller.setSetPoint(INTAKE_POS_AUTO_BACK);
         armPos = ArmPos.AUTO_INTAKE_BACK;
+        shouldSensorWork = true;
     }
     public void moveBAuto() {
         armAutomatic = true;
         controller.setSetPoint(POS_AUTO_BACK);
         armPos = ArmPos.AUTO_BACK;
+        shouldSensorWork = false;
     }
     public void moveFAuto() {
         armAutomatic = true;
         controller.setSetPoint(POS_AUTO_FRONT);
         armPos = ArmPos.AUTO_FRONT;
+        shouldSensorWork = false;
     }
-
+    public void moveBDrop() {
+        armAutomatic = true;
+        controller.setSetPoint(DROP_BACK);
+        armPos = ArmPos.DROP_BACK;
+        shouldSensorWork = false;
+    }
+    public void moveFDrop() {
+        armAutomatic = true;
+        controller.setSetPoint(DROP_FRONT);
+        armPos = ArmPos.DROP_FRONT;
+        shouldSensorWork = false;
+    }
 
 
     public void dropArmTeleop(){
         switch (armPos){
             case FRONT:
-                controller.setSetPoint(POS_FRONT+5);
+                controller.setSetPoint(POS_FRONT+50);
                 return;
             case BACK:
-                controller.setSetPoint(POS_BACK-5);
+                controller.setSetPoint(POS_BACK-50);
                 return;
 
 
             case HIGH_BACK:
-                controller.setSetPoint(HIGH_POS_BACK-75);
+//                controller.setSetPoint(HIGH_POS_BACK-120);
+                controller.setSetPoint(DROP_BACK    );
                 return;
             case HIGH_FRONT:
-                controller.setSetPoint(HIGH_POS_FRONT+75);
+//                controller.setSetPoint(HIGH_POS_FRONT+120);
+                controller.setSetPoint(DROP_FRONT);
                 return;
         }
     }
@@ -267,9 +295,11 @@ public class Arm extends SubsystemBase {
 
             case AUTO_INTAKE_FRONT:
                 controller.setSetPoint(INTAKE_POS_AUTO_FRONT+25);
+                shouldSensorWork = true;
                 return;
             case AUTO_INTAKE_BACK:
                 controller.setSetPoint(INTAKE_POS_AUTO_BACK-25);
+                shouldSensorWork = true;
                 return;
         }
     }

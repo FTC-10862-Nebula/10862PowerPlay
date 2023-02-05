@@ -23,7 +23,7 @@ public class RedIntakeTeleopCommand extends SequentialCommandGroup {
                         ),
 
                         new InstantCommand(),
-                        ()-> (sensorColor.grabbedRedCone() && claw.isClawOpen())
+                        ()-> (sensorColor.grabbedRedCone() && claw.isClawOpen() && arm.shouldSensorWork)
                 )
         );
     }
