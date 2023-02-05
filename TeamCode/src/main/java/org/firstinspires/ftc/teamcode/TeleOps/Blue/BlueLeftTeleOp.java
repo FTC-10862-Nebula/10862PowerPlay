@@ -52,7 +52,7 @@ public class BlueLeftTeleOp extends MatchOpMode {
 
     @Override
     public void configureButtons() {
-        new ButtonCommand(driverGamepad, operatorGamepad, drivetrain,  arm, slide, turnServo, claw, choice);
+        new ButtonCommand(driverGamepad, operatorGamepad, drivetrain,  arm, slide, turnServo, claw, sensorColor, choice);
     }
 
     @Override

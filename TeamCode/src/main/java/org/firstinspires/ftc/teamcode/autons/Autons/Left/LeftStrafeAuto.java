@@ -23,11 +23,10 @@ package org.firstinspires.ftc.teamcode.autons.Autons.Left;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.LeftSpline;
-import org.firstinspires.ftc.teamcode.autons.LeftStrafe;
+import org.firstinspires.ftc.teamcode.autons.AutonCommands.LeftStrafe;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
@@ -38,7 +37,7 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
-//@Disabled
+@Disabled
 @Autonomous
 public class LeftStrafeAuto extends MatchOpMode
 {

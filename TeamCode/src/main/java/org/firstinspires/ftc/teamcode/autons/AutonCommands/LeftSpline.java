@@ -17,6 +17,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
+import org.firstinspires.ftc.teamcode.util.LeftSplineValues;
 import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 
@@ -26,12 +27,12 @@ public class LeftSpline extends SequentialCommandGroup{
         addCommands(
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo, true),
-                        new SplineCommand(drivetrain, new Vector2d(57.2, -3.2), Math.toRadians(328.4))    //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.ToHigh.x1, LeftSplineValues.ToHigh.y1), Math.toRadians(LeftSplineValues.ToHigh.heading1))    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new PrePickB5Command(slide, claw, arm, turnServo)  ,
-                        new SlowSplineCommand(drivetrain, new Vector2d(54, 27.), Math.toRadians(90), true)   //Load
+                        new SlowSplineCommand(drivetrain, new Vector2d(54, 22), Math.toRadians(LeftSplineValues.ToCone.heading), true)   //Load
                 ),
                 new IntakeAutoCommand(drivetrain, slide, claw, sensorColor, true),
 
@@ -52,12 +53,12 @@ public class LeftSpline extends SequentialCommandGroup{
 //                /**Cone 1**/
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo,true),
-                        new SplineCommand(drivetrain, new Vector2d(57.2, -3.2), Math.toRadians(328.4), PoseStorage.cycle)    //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.ToHigh.x1, LeftSplineValues.ToHigh.y1), Math.toRadians(LeftSplineValues.ToHigh.heading1), PoseStorage.cycle)    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new SlideResetUpAutonCommand(slide, arm, claw, turnServo),
-                        new SlowSplineCommand(drivetrain, new Vector2d(54, 27.), Math.toRadians(90), PoseStorage.load, true)   //Load
+                        new SlowSplineCommand(drivetrain, new Vector2d(LeftSplineValues.ToCone.x, LeftSplineValues.ToCone.y), Math.toRadians(LeftSplineValues.ToCone.heading), PoseStorage.load, true)   //Load
                 )
 
         );

@@ -14,15 +14,13 @@ public class DropAutoConeCommand extends SequentialCommandGroup {
     public DropAutoConeCommand(Claw claw, Slide slide, Arm arm, boolean auto){
 //        if(auto){
             addCommands(
-                    new ParallelCommandGroup(
-                            new InstantCommand(arm::dropArmAuto),
-                            new InstantCommand(slide::dropSlide)
-
-                    ),
+                    new InstantCommand(arm::dropArmAuto),
                     new WaitCommand(10),
                     new InstantCommand(claw::clawOpen),
-                    new WaitCommand(350),
-                    new InstantCommand(arm::moveReset)
+                    new WaitCommand(10),
+                    new InstantCommand(slide::dropSlide)
+//                    new WaitCommand(350)
+//                    new InstantCommand(arm::moveReset)
             );
 //        }else{
 //            addCommands(

@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.Old.RightHighJunctionCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
@@ -22,7 +23,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.Misc.Vision.TagVision;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
-
+@Disabled
 @Autonomous(name="rightNEW")
 public class RightJunctionNEWAuton extends MatchOpMode {
 //    private ATDetector tagDetector;

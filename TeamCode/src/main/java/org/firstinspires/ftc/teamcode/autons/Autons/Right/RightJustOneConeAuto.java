@@ -23,6 +23,7 @@ package org.firstinspires.ftc.teamcode.autons.Autons.Right;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.JustONECone;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeLeftCommand;
@@ -37,7 +38,7 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
-//@Disabled
+@Disabled
 @Autonomous
 public class RightJustOneConeAuto extends MatchOpMode
 {

@@ -4,8 +4,6 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.autons.AutonCommands.JustONECone;
-import org.firstinspires.ftc.teamcode.autons.AutonCommands.LeftSpline;
-import org.firstinspires.ftc.teamcode.autons.LeftStrafe;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
@@ -48,7 +46,7 @@ public class TestAutonWithoutCam extends MatchOpMode {
                         new JustONECone(drivetrain, slide, arm, claw, turnServo, sensorColor)
 //                        new LeftStrafe(drivetrain, slide, arm, turnServo, sensorColor, claw)
 //                        new RightSpline(drivetrain, slide, arm, claw)
-//                      new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
+//                      new LeftSplineValues(drivetrain, slide, arm, claw, turnServo, sensorColor)
 //                        new Test(drivetrain, slide, arm, claw, turnServo)
                 )
         );

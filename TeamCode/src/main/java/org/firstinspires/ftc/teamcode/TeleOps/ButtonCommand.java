@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.GamepadTrigger;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
@@ -20,16 +21,18 @@ import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCom
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 //nowadays lance isnt a very common name, but in older times people were named lance a lot
 public class ButtonCommand extends SequentialCommandGroup{
-    public ButtonCommand(GamepadEx driverGamepad, GamepadEx operatorGamepad, Drivetrain drivetrain, Arm arm, Slide slide, TurnServo turnServo, Claw claw, int choice){
+    public ButtonCommand(GamepadEx driverGamepad, GamepadEx operatorGamepad, Drivetrain drivetrain, Arm arm, Slide slide, TurnServo turnServo, Claw claw, SensorColor sensorColor, int choice){
 
         //Drive Stuff - D1
-        Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                .whenPressed( new InstantCommand(drivetrain::reInitializeIMU));
+        //TODO:Test
+//        Button robotDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
+//                .whenPressed( new InstantCommand(drivetrain::reInitializeIMU));
 
         Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
                 .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad,false, choice));
@@ -73,13 +76,11 @@ public class ButtonCommand extends SequentialCommandGroup{
 
         //Arm Manual - D2
         Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                .whileHeld(arm::raiseClawManual);
-//                .whenPressed(arm::raiseClawManual)
-//                .whenReleased(arm::stopClaw));
+                .whileHeld(arm::raiseClawManual)
+                .whenReleased(arm::stopArm);
         Button armLowerButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
-                .whileHeld(arm::lowerClawManual);
-//                .whenPressed(arm::lowerClawManual)
-//                .whenReleased(arm::stopClaw));
+                .whileHeld(arm::lowerClawManual)
+                .whenReleased(arm::stopArm);
 
         //Claw Servo 3 Buttons - D1
             /*Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
@@ -98,10 +99,8 @@ public class ButtonCommand extends SequentialCommandGroup{
             /*Button armFButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT))
                     .whenPressed(arm::moveF);
             Button armBButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT))
-                    .whenPressed(arm::moveB);*/
+                    .whenPressed(arm::moveB);
 
-
-            /*
             Button groundFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
                     .whenPressed(new SlideGroundFCommand(slide, clawMotors, claw)));
             Button lowFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
@@ -123,5 +122,8 @@ public class ButtonCommand extends SequentialCommandGroup{
             Button subClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT))
                     .whenPressed(claw::subClaw1Pos);
             */
+
+        Button turnColorSensorOff = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
+                .whenPressed(sensorColor::disable);
     }
 }
