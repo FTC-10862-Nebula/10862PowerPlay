@@ -53,7 +53,7 @@ public class LeftSpline extends SequentialCommandGroup{
 //                /**Cone 1**/
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo,true),
-                        new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.AToHighTwo.x1, LeftSplineValues.AToHighTwo.y1), Math.toRadians(LeftSplineValues.AToHighOne.heading1))    //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.CToHighTwo.x1, LeftSplineValues.CToHighTwo.y1), Math.toRadians(LeftSplineValues.CToHighTwo.heading1))    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(

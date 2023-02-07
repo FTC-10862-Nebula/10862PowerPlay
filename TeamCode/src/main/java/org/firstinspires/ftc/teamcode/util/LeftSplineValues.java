@@ -6,23 +6,23 @@ import com.acmerobotics.dashboard.config.Config;
 public class LeftSplineValues {
     public static AToHighOne aToHighOne;
     public static class AToHighOne {
-        public static double x1 = 60,
-                            y1 =-5.5,
+        public static double x1 = 57.59,
+                            y1 =-5.49,
                             heading1 =313;
         }
 
     public static BToConeOne bToCone;
     public static class BToConeOne {
-        public static double x2 = 54.4,
-                            y2 =22.5,
+        public static double x2 = 54,
+                            y2 =19.5,
                             heading2 =90;
     }
 
-    public static AToHighTwo aToHighTwo;
-    public static class AToHighTwo {
-        public static double x1 = 60.8,
-                y1 =-5,
-                heading1 =324;
+    public static CToHighTwo cToHighTwo;
+    public static class CToHighTwo {
+        public static double x1 = 56.59,
+                y1 =-6.59,
+                heading1 =326.7;
     }
 
 //    public static CToMid cToMid;
