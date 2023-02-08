@@ -31,7 +31,7 @@ public class Arm extends SubsystemBase {
     public int INIT_POS = 0;
 
     public static int INTAKE_POS_BACK = -220,
-                        POS_BACK = -200,
+                        POS_BACK = -115,
                         HIGH_POS_BACK = -113 ,
                         GROUND_POS_BACK = -197,
     DROP_BACK = -398;
@@ -281,10 +281,9 @@ public class Arm extends SubsystemBase {
         switch (armPos){
             case AUTO_HIGH_BACK:
                 controller.setSetPoint(HIGH_POS_AUTO_BACK-124);
-                return;
+                return;//TODO:break;
             case AUTO_HIGH_FRONT:
-                controller.setSetPoint(HIGH_POS_AUTO_FRONT+124
-                );
+                controller.setSetPoint(HIGH_POS_AUTO_FRONT+124);
                 return;
 
             case AUTO_BACK:
@@ -302,6 +301,15 @@ public class Arm extends SubsystemBase {
                 controller.setSetPoint(INTAKE_POS_AUTO_BACK-25);
                 shouldSensorWork = true;
                 return;
+
+            case BACK:
+                controller.setSetPoint(POS_BACK-25);
+                shouldSensorWork = true;
+                break;
+            case FRONT:
+                controller.setSetPoint(POS_FRONT+25);
+                shouldSensorWork = true;
+                break;
         }
     }
 

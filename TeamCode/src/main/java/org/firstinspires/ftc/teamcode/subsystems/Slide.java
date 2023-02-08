@@ -34,8 +34,8 @@ public class Slide extends SubsystemBase {
 
     public static int RESTING_POS = 5;
     public static int GROUND_POS = -30;
-    public static int LOW_POS = -663;
-    public static int MID_POS = -1132;
+    public static int LOW_POS = -315;
+    public static int MID_POS = -728;
     public static int HIGH_POS = -1240;
 
     public static int AUTO_MID_POS = -1015;
