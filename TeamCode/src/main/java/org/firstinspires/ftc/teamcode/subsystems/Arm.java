@@ -303,11 +303,11 @@ public class Arm extends SubsystemBase {
                 return;
 
             case BACK:
-                controller.setSetPoint(POS_BACK-25);
+                controller.setSetPoint(POS_BACK-124);
                 shouldSensorWork = true;
                 break;
             case FRONT:
-                controller.setSetPoint(POS_FRONT+25);
+                controller.setSetPoint(POS_FRONT+124);
                 shouldSensorWork = true;
                 break;
         }

@@ -19,9 +19,9 @@ public class RedIntakeTeleopCommand extends SequentialCommandGroup {
                 new WaitUntilCommand(sensorColor::grabbedRedCone).withTimeout(14),
                 new ConditionalCommand(
                         new SequentialCommandGroup(
-                                new InstantCommand(claw::clawClose),
-                                new WaitCommand(200),
-                                new InstantCommand(arm::moveReset)
+                                new InstantCommand(claw::clawClose)
+//                                new WaitCommand(200),
+//                                new InstantCommand(arm::moveReset)
                         ),
 
                         new InstantCommand(),

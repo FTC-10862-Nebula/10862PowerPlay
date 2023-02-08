@@ -21,9 +21,9 @@ public class BlueIntakeTeleopCommand extends SequentialCommandGroup {
                 new WaitUntilCommand(sensorColor::grabbedBlueCone).withTimeout(14),
                 new ConditionalCommand(
                         new SequentialCommandGroup(
-                                new InstantCommand(claw::clawClose),
-                                new WaitCommand(200),
-                                new InstantCommand(arm::moveReset)
+                                new InstantCommand(claw::clawClose)
+//                                new WaitCommand(200),
+//                                new InstantCommand(arm::moveReset)
                         ),
                         new InstantCommand(),
                         ()-> (sensorColor.grabbedBlueCone() && claw.isClawOpen() && arm.shouldSensorWork)
