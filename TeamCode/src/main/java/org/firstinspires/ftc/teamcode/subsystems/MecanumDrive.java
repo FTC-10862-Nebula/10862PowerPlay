@@ -20,6 +20,7 @@ import com.qualcomm.robotcore.hardware.*;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.driveTrainAuton.ImprovedMecDrive;
 import org.firstinspires.ftc.teamcode.driveTrainAuton.StandardTrackingWheelLocalizer;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
@@ -36,7 +37,7 @@ import static org.firstinspires.ftc.teamcode.driveTrainAuton.DriveConstants.*;
  * Simple mecanum drive hardware implementation for REV hardware.
  */
 @Config
-public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive {
+public class MecanumDrive extends ImprovedMecDrive {
 
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(8, 0, 0); //6,1,0
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(9, 0, 0);//0,0,0
@@ -65,7 +66,7 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     private StandardTrackingWheelLocalizer wheelLocalizer;
 
     public MecanumDrive(HardwareMap hardwareMap, Telemetry telemetry, boolean isUsingImu) {
-        super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);//TODO:FIX THIS!
+//        super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);//TODO:FIX THIS!
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER, hardwareMap.voltageSensor.iterator().next());
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
                 new Pose2d(0.5, 0.5, Math.toRadians(5.0)), 0.5);
@@ -133,7 +134,7 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
             setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);
         }
 
-        /****Motor Direction*****/
+        //Motor Direction
         leftFront.setDirection(REVERSE);
         leftRear.setDirection(REVERSE);
         rightFront.setDirection(FORWARD);
