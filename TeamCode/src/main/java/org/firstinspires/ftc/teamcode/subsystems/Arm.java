@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.util.Util;
 import java.util.logging.Level;
 
 @Config
-public class Arm extends SubsystemBase {
+public class  Arm extends SubsystemBase {
 
     public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(.005, 0.00, 0.0,0);
     private final PIDFController controller;
@@ -35,8 +35,8 @@ public class Arm extends SubsystemBase {
                         HIGH_POS_BACK = -113 ,
                         GROUND_POS_BACK = -197,
     DROP_BACK = -398;
-    public static int HIGH_POS_AUTO_BACK = -113,
-                        INTAKE_POS_AUTO_BACK = -220,
+    public static int HIGH_POS_AUTO_BACK = -108,
+                        INTAKE_POS_AUTO_BACK = -228,
                         POS_AUTO_BACK = -140;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
@@ -280,10 +280,10 @@ public class Arm extends SubsystemBase {
     public void dropArmAuto(){
         switch (armPos){
             case AUTO_HIGH_BACK:
-                controller.setSetPoint(HIGH_POS_AUTO_BACK-124);
+                controller.setSetPoint(HIGH_POS_AUTO_BACK-130);
                 return;//TODO:break;
             case AUTO_HIGH_FRONT:
-                controller.setSetPoint(HIGH_POS_AUTO_FRONT+124);
+                controller.setSetPoint(HIGH_POS_AUTO_FRONT+130);
                 return;
 
             case AUTO_BACK:

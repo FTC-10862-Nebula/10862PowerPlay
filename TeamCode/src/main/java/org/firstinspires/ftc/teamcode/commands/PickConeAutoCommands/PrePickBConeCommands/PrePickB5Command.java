@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 public class PrePickB5Command extends SequentialCommandGroup   {
     public PrePickB5Command(Slide slide, Claw claw, Arm arm, TurnServo turnServo){
         addCommands(
-                new WaitCommand(40),
+                new WaitCommand(67),
                 new ParallelCommandGroup(
                         new InstantCommand(claw::clawClose),
 //                        new InstantCommand(claw::clawAutoClose),
