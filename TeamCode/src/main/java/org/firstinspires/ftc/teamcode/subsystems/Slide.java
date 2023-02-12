@@ -38,16 +38,17 @@ public class  Slide extends SubsystemBase {
     public static int MID_POS = -728;
     public static int HIGH_POS = -1240;
 
-    public static int AUTO_MID_POS = -1015;
-    public static int AUTO_HIGH_POS = -1260;
+    public static int AUTO_MID_POS = -900;
+    public static int AUTO_HIGH_POS = -1261;
 
 
     //Auto Slide Positions
-    public static int CONE_STACK_POS = -237;
-    public static int CONE_5_POS = -237;
-    public static int CONE_4_POS = -135;
-    public static int CONE_3_POS = -87;
-    public static int CONE_2_POS = -68;
+    public static int CONE_STACK_POS = -265;
+
+    public static int CONE_5_POS = -494;
+    public static int CONE_4_POS = -400;
+    public static int CONE_3_POS = -90;
+    public static int CONE_2_POS = -70;
     public static int CONE_1_POS = -10;
     double output = 0;
 
@@ -317,54 +318,14 @@ public class  Slide extends SubsystemBase {
 //                upController.setSetPoint(MID_POS+200);
 //                break;
             case HIGH:
-                upController.setSetPoint(HIGH_POS+450);
+                upController.setSetPoint(HIGH_POS+550);
                 break;
             case AUTO_MID:
-                upController.setSetPoint(AUTO_MID_POS+200);
+                upController.setSetPoint(AUTO_MID_POS+290);
                 break;
             case AUTO_HIGH:
-                upController.setSetPoint(AUTO_HIGH_POS+350);
+                upController.setSetPoint(AUTO_HIGH_POS+400);
                 break;
         }
     }
-
-    public void voltage() {
-//        if (voltreading > pixyMax || voltreading < pixyMin) {
-//            telemetry.addData("Out of Range", "");
-//            telemetry.update();
-//        } else if (voltreading > pixyCenter && xPosition > turretLow && xPosition < turretHigh) {
-//            if (voltreading > (pixyCenter + 1.7)) {
-//                xPosition = xPosition + 200;
-//            } else if (voltreading > (pixyCenter + 1.28)) {
-//                xPosition = xPosition + 75;
-//            } else if (voltreading > (pixyCenter + .885)) {
-//                xPosition = xPosition + 40;
-//            } else if (voltreading > (pixyCenter + .49)) {
-//                xPosition = xPosition + 15;
-//            } else if (voltreading > (pixyCenter + .1)) {
-//                xPosition = xPosition + 7;
-//            } else if (voltreading > (pixyCenter + .05)) {
-//                xPosition = xPosition + 1;
-//            } else if (voltreading > (pixyCenter + deadband)) {
-//                telemetry.addData("Pixy Centered",":)");
-//            }
-//        } else if (voltreading < pixyCenter) {
-//            if (voltreading < (pixyCenter - 1.7)) {
-//                xPosition = xPosition - 200;
-//            } else if (voltreading < (pixyCenter - 1.28)) {
-//                xPosition = xPosition - 75;
-//            } else if (voltreading < (pixyCenter - .885)) {
-//                xPosition = xPosition - 40;
-//            } else if (voltreading < (pixyCenter - .49)) {
-//                xPosition = xPosition - 15;
-//            } else if (voltreading < (pixyCenter - .1)) {
-//                xPosition = xPosition - 7;
-//            } else if (voltreading < (pixyCenter - .05)) {
-//                xPosition = xPosition - 1;
-//            } else if (voltreading < (pixyCenter - deadband)) {
-//                telemetry.addData(":) ","Pixy Centered");
-//            }
-//        }
-    }
-
 }

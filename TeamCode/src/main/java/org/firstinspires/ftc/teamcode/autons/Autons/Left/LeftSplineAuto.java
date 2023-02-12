@@ -89,21 +89,21 @@ public class LeftSplineAuto extends MatchOpMode
             }
             case 2: { //Mid
                 autonGroup = new SequentialCommandGroup(
-                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor),
-                        new DriveForwardCommand(drivetrain, 12)
+                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
+//                        new DriveForwardCommand(drivetrain, 12)
                 );
 
             }
             case 3: { //High
                 autonGroup =new SequentialCommandGroup(
-                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor),
-                        new DriveForwardCommand(drivetrain, 32)
+                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
+//                        new DriveForwardCommand(drivetrain, 32)
                 );
             }
             default: {
                 autonGroup = new SequentialCommandGroup(
-                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor),
-                        new DriveForwardCommand(drivetrain, 32)
+                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
+//                        new DriveForwardCommand(drivetrain, 32)
                 );
             }
         }

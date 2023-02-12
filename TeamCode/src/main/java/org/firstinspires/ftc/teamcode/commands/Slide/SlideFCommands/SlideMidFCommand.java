@@ -24,7 +24,8 @@ public class SlideMidFCommand extends SequentialCommandGroup {
                                     }).start())
                     ),
                     new WaitCommand(200),
-                    new InstantCommand(turnServo::setFClawPos)
+                    new InstantCommand(turnServo::setFClawPos),
+                    new WaitCommand(100)
             );
         }
         else {

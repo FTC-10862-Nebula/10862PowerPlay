@@ -114,25 +114,23 @@ public class Drivetrain extends SubsystemBase {
         // This ensures all the powers maintain the same ratio, but only when
         // at least one is out of the range [-1, 1]
 
-
-
         powers [LFVal] = (rotY + rotX - rx) / denominator;
         powers [LRVal] = (rotY - rotX - rx) / denominator;
         powers [RFVal] = (rotY + rotX + rx) / denominator;
         powers [RRVal] = (rotY - rotX + rx) / denominator;
 
-/*powers [LFVal] = (-rotY - rotX - rx) / denominator;
-        powers [LRVal] = (-rotY + rotX - rx) / denominator;
-        powers [RFVal] = (-rotY - rotX + rx) / denominator;
-        powers [RRVal] = (-rotY + rotX + rx) / denominator;*/
-        //Original
+
+        if(Math.abs(powers[LFVal])<0.25&Math.abs(powers[LRVal])<0.25&Math.abs(powers[RFVal])<0.25&Math.abs(powers[RRVal])<0.25){
+            for (int i = 0; i <= 3; i++) {
+                powers[i] = squareInput(powers[i]);
+            }//TODO:Test
+        }
         drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
     }
 
-//    public void setDrivePower(Pose2d drivePower) {
-//        super.setDrivePower(drivePower);
-//    }
-
+    private double squareInput(double input) {
+        return input * Math.abs(input);
+    }
     public double getHeading() {
         return Math.toDegrees(drive.getExternalHeading());
     }

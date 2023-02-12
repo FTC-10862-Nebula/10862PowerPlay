@@ -84,8 +84,8 @@ public class SplineCommand extends CommandBase{
     @Override
     public boolean isFinished() {
 //        new ResetPoseCommand(drive, splinePos, endHeading);
-//        PoseStorage.currentPose = new Pose2d(splinePos.getX(), splinePos.getY(), endHeading);
-        PoseStorage.currentPose = trajectory.end();
+        PoseStorage.currentPose = new Pose2d(splinePos.getX(), splinePos.getY(), endHeading);
+//        PoseStorage.currentPose = trajectory.end();
         if(num==3)
         {
             PoseStorage.cycle = trajectory.end();

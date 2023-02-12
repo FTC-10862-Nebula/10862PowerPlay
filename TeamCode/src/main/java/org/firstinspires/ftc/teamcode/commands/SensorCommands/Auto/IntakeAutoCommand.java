@@ -24,7 +24,7 @@ public class IntakeAutoCommand extends SequentialCommandGroup {
 //                                new InstantCommand(claw::clawClose)
                             ),
                             new SequentialCommandGroup( //When False
-                                    new DriveForwardCommand(drivetrain, -2)
+                                    new DriveForwardCommand(drivetrain, -1)
                             ),
                             ()-> ((sensorColor.grabbedBlueCone()||sensorColor.grabbedRedCone()) && claw.isClawOpen())
                     ),
@@ -38,7 +38,7 @@ public class IntakeAutoCommand extends SequentialCommandGroup {
 //                                new InstantCommand(claw::clawClose)
                             ),
                             new SequentialCommandGroup( //When False
-                                    new DriveForwardCommand(drivetrain, -2)
+                                    new DriveForwardCommand(drivetrain, -1)
                             ),
                             ()-> ((sensorColor.grabbedBlueCone()||sensorColor.grabbedRedCone()) && claw.isClawOpen())
                     ),
