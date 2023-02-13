@@ -39,16 +39,16 @@ public class LeftSpline extends SequentialCommandGroup{
 
 
 
-//                new ParallelCommandGroup(
-//                        new SlideHighFCommand(slide, arm, claw, turnServo,true),
-//                        new SplineCommand(drivetrain, new Vector2d(57.2, -2.8), Math.toRadians(327.4), PoseStorage.cycle)    //Cycle
-//                ),
-//                new DropAutoConeCommand(claw, slide, arm, true),
-//                new ParallelCommandGroup(
-//                        new PrePickB5Command(slide, claw, arm, turnServo),
-//                        new SlowSplineCommand(drivetrain, new Vector2d(55.1, 27.), Math.toRadians(90), PoseStorage.load, true)   //Load
-//                ),
-//                new IntakeAutoCommand(drivetrain, slide, claw, sensorColor, true),
+                new ParallelCommandGroup(
+                        new SlideMidFCommand(slide, arm, claw, turnServo,true),
+                        new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.CToMid.x3, LeftSplineValues.CToMid.y3), Math.toRadians(LeftSplineValues.CToMid.heading3))    //Cycle
+                ),
+                new DropAutoConeCommand(claw, slide, arm, true),
+                new ParallelCommandGroup(
+                        new PrePickB5Command(slide, claw, arm, turnServo),
+                        new SlowSplineCommand(drivetrain, new Vector2d(LeftSplineValues.DToConeOne.x2, LeftSplineValues.DToConeOne.y2), Math.toRadians(LeftSplineValues.DToConeOne.heading2), true)   //Load
+                ),
+                new IntakeAutoCommand(drivetrain, slide, claw, sensorColor, true),
 
 
 //                /**Cone 1**/
@@ -58,12 +58,12 @@ public class LeftSpline extends SequentialCommandGroup{
 //                ),
                 new ParallelCommandGroup(
                         new SlideMidFCommand(slide, arm, claw, turnServo,true),
-                        new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.CToMid.x3, LeftSplineValues.CToMid.y3), Math.toRadians(LeftSplineValues.CToMid.heading3))   //Cycle
+                        new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.EToMid.x3, LeftSplineValues.EToMid.y3), Math.toRadians(LeftSplineValues.EToMid.heading3))   //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new SlideResetUpAutonCommand(slide, arm, claw, turnServo),
-                        new SlowSplineCommand(drivetrain, new Vector2d(LeftSplineValues.DToConeOne.x2, LeftSplineValues.DToConeOne.y2), Math.toRadians(LeftSplineValues.DToConeOne.heading2), PoseStorage.cycle, true)   //Load
+                        new SlowSplineCommand(drivetrain, LeftSplineValues.FToConeOne.fVector, Math.toRadians(LeftSplineValues.FToConeOne.heading2), PoseStorage.cycle, true)   //Load
                 )
 
         );
