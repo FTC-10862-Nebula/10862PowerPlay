@@ -9,14 +9,11 @@ import com.acmerobotics.roadrunner.trajectory.constraints.MinVelocityConstraint;
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.Trajectories;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.ResetPoseCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 @Config
-public class SlowSplineCommand extends CommandBase{
-    private static int num =1;//BAD BAD BAD
+public class KindaSlowSplineCommand extends CommandBase{
 
     Drivetrain drive;
     Trajectory trajectory;
@@ -26,7 +23,7 @@ public class SlowSplineCommand extends CommandBase{
     Pose2d poseToUse;
 
     MinVelocityConstraint maxVelConstraint;
-    public SlowSplineCommand(Drivetrain drive, MinVelocityConstraint constraint, boolean reverse, Vector2d splinePos, double endHeading, Pose2d poseToUse) {
+    public KindaSlowSplineCommand(Drivetrain drive, MinVelocityConstraint constraint, boolean reverse, Vector2d splinePos, double endHeading, Pose2d poseToUse) {
         this.drive = drive;
         this.reverse = reverse;
         this.splinePos = splinePos;
@@ -37,20 +34,20 @@ public class SlowSplineCommand extends CommandBase{
 
     }
 
-    public SlowSplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading) {
-        this(drive, Trajectories.slowVelConstraint, false, splinePos, endHeading, PoseStorage.currentPose);
+    public KindaSlowSplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading) {
+        this(drive, Trajectories.kindaSlowVelConstraint, false, splinePos, endHeading, PoseStorage.currentPose);
     }
 
-    public SlowSplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading, boolean reverse) {
-        this(drive, Trajectories.slowVelConstraint, reverse, splinePos, endHeading, PoseStorage.currentPose);
+    public KindaSlowSplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading, boolean reverse) {
+        this(drive, Trajectories.kindaSlowVelConstraint, reverse, splinePos, endHeading, PoseStorage.currentPose);
     }
 
-    public SlowSplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading, Pose2d poseToUse) {
-        this(drive, Trajectories.slowVelConstraint, false, splinePos, endHeading, poseToUse);
+    public KindaSlowSplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading, Pose2d poseToUse) {
+        this(drive, Trajectories.kindaSlowVelConstraint, false, splinePos, endHeading, poseToUse);
     }
 
-    public SlowSplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading, Pose2d poseToUse, boolean reverse) {
-        this(drive, Trajectories.slowVelConstraint, reverse, splinePos, endHeading, poseToUse);
+    public KindaSlowSplineCommand(Drivetrain drive, Vector2d splinePos, double endHeading, Pose2d poseToUse, boolean reverse) {
+        this(drive, Trajectories.kindaSlowVelConstraint, reverse, splinePos, endHeading, poseToUse);
     }
 
 
@@ -84,16 +81,8 @@ public class SlowSplineCommand extends CommandBase{
     @Override
     public boolean isFinished() {
 //        new ResetPoseCommand(drive, splinePos, endHeading);
-//        PoseStorage.currentPose = new Pose2d(splinePos.getX(), splinePos.getY(), endHeading);
-        PoseStorage.currentPose = trajectory.end();
-//        if(num==1)
-//        {
-//            PoseStorage.cycle = trajectory.end();
-//            num++;
-//        } else
-        if (num==1){
-            PoseStorage.load = trajectory.end();
-        }
+        PoseStorage.currentPose = new Pose2d(splinePos.getX(), splinePos.getY(), endHeading);
+//        PoseStorage.currentPose = trajectory.end();
 
         return !drive.isBusy();
     }
