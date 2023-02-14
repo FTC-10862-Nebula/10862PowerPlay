@@ -53,6 +53,8 @@ public class ButtonCommand extends SequentialCommandGroup{
 
         //Slide positions - D2
         Button groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
+//                .whenPressed(new InstantCommand(slide::slideCone5))
+//                .whenPressed(new InstantCommand(arm::moveIntakeBAuto)));
                 .whenPressed(new SlideGroundFCommand(slide, arm, claw, turnServo, false)));
         Button lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
                 .whenPressed(new SlideLowFCommand(slide, arm, claw, turnServo, false)));

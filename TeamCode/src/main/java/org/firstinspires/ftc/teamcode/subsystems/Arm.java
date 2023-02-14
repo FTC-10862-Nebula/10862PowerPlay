@@ -36,7 +36,7 @@ public class  Arm extends SubsystemBase {
                         GROUND_POS_BACK = -197,
     DROP_BACK = -398;
     public static int HIGH_POS_AUTO_BACK = -111,
-                        INTAKE_POS_AUTO_BACK = -398,
+                        INTAKE_POS_AUTO_BACK = -300,
                         POS_AUTO_BACK = -140,
     DROP_AUTO_BACK = -390;
 

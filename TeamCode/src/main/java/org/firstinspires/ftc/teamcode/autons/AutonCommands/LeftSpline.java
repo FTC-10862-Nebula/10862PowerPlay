@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.autons.AutonCommands;
 
-import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
@@ -28,12 +27,12 @@ public class LeftSpline extends SequentialCommandGroup{
         addCommands(
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo, true),
-                        new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.AToHighOne.x1, LeftSplineValues.AToHighOne.y1), Math.toRadians(LeftSplineValues.AToHighOne.heading1))    //Cycle
+                        new SplineCommand(drivetrain, LeftSplineValues.AToHighOne.aHighVector, Math.toRadians(LeftSplineValues.AToHighOne.heading1))    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new PrePickB5Command(slide, claw, arm, turnServo)  ,
-                        new SlowSplineCommand(drivetrain, new Vector2d(LeftSplineValues.BToConeOne.x2, LeftSplineValues.BToConeOne.y2), Math.toRadians(LeftSplineValues.BToConeOne.heading2), true)   //Load
+                        new SlowSplineCommand(drivetrain, LeftSplineValues.BToConeOne.aConeVector, Math.toRadians(LeftSplineValues.BToConeOne.heading2), true)   //Load
                 ),
                 new IntakeAutoCommand(drivetrain, slide, claw, sensorColor, true),
 
@@ -41,12 +40,12 @@ public class LeftSpline extends SequentialCommandGroup{
 
                 new ParallelCommandGroup(
                         new SlideMidFCommand(slide, arm, claw, turnServo,true),
-                        new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.CToMid.x3, LeftSplineValues.CToMid.y3), Math.toRadians(LeftSplineValues.CToMid.heading3))    //Cycle
+                        new SplineCommand(drivetrain, LeftSplineValues.BToMid.bMidVector, Math.toRadians(LeftSplineValues.BToMid.heading3))    //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new PrePickB5Command(slide, claw, arm, turnServo),
-                        new SlowSplineCommand(drivetrain, new Vector2d(LeftSplineValues.DToConeOne.x2, LeftSplineValues.DToConeOne.y2), Math.toRadians(LeftSplineValues.DToConeOne.heading2), true)   //Load
+                        new SlowSplineCommand(drivetrain, LeftSplineValues.CToConeOne.bConeVector, Math.toRadians(LeftSplineValues.CToConeOne.heading2), true)   //Load
                 ),
                 new IntakeAutoCommand(drivetrain, slide, claw, sensorColor, true),
 
@@ -58,12 +57,12 @@ public class LeftSpline extends SequentialCommandGroup{
 //                ),
                 new ParallelCommandGroup(
                         new SlideMidFCommand(slide, arm, claw, turnServo,true),
-                        new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.EToMid.x3, LeftSplineValues.EToMid.y3), Math.toRadians(LeftSplineValues.EToMid.heading3))   //Cycle
+                        new SplineCommand(drivetrain, LeftSplineValues.CToMid.cMidVector, Math.toRadians(LeftSplineValues.CToMid.heading3))   //Cycle
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new SlideResetUpAutonCommand(slide, arm, claw, turnServo),
-                        new SlowSplineCommand(drivetrain, LeftSplineValues.FToConeOne.fVector, Math.toRadians(LeftSplineValues.FToConeOne.heading2), PoseStorage.cycle, true)   //Load
+                        new SlowSplineCommand(drivetrain, LeftSplineValues.DToConeOne.cConeVector, Math.toRadians(LeftSplineValues.DToConeOne.heading2), PoseStorage.cycle, true)   //Load
                 )
 
         );

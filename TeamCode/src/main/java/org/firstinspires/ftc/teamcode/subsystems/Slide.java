@@ -45,11 +45,11 @@ public class  Slide extends SubsystemBase {
     //Auto Slide Positions
     public static int CONE_STACK_POS = -265;
 
-    public static int CONE_5_POS = -610;
-    public static int CONE_4_POS = -550;
-    public static int CONE_3_POS = -500;
-    public static int CONE_2_POS = -450;
-    public static int CONE_1_POS = -400;
+    public static int CONE_1_POS = -20;
+    public static int CONE_2_POS = -150;
+    public static int CONE_3_POS = -187;
+    public static int CONE_4_POS = -210;
+    public static int CONE_5_POS = -294;
     double output = 0;
 
     public static boolean lowBool = false;
@@ -318,7 +318,7 @@ public class  Slide extends SubsystemBase {
 //                upController.setSetPoint(MID_POS+200);
 //                break;
             case HIGH:
-                upController.setSetPoint(HIGH_POS+690);
+                upController.setSetPoint(HIGH_POS+740);
                 break;
             case AUTO_MID:
                 upController.setSetPoint(AUTO_MID_POS+290);
