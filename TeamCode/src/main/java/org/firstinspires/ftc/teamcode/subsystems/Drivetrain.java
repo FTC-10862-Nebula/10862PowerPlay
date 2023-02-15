@@ -194,6 +194,7 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         update();
+        drive.returnData();
     }
 
 

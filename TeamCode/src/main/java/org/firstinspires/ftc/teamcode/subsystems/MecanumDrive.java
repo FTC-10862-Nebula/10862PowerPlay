@@ -80,12 +80,12 @@ public class MecanumDrive extends ImprovedMecDrive {
         }
 
         //Remove following Lines for Auto
-        if(isUsingImu) {
+//        if(isUsingImu) {
             imu = hardwareMap.get(BNO055IMU.class, "imu");
             BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
             parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
             imu.initialize(parameters);
-        }
+//        }
 
         /* TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
          not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
@@ -143,8 +143,8 @@ public class MecanumDrive extends ImprovedMecDrive {
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
         this.telemetry = telemetry;
-        wheelLocalizer = new StandardTrackingWheelLocalizer(hardwareMap, telemetry);
-        setLocalizer(wheelLocalizer);
+//        wheelLocalizer = new StandardTrackingWheelLocalizer(hardwareMap, telemetry);
+//        setLocalizer(wheelLocalizer);//TODO:REMOVAE COMPLETELY
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
     }
@@ -322,4 +322,11 @@ public class MecanumDrive extends ImprovedMecDrive {
         return wheelLocalizer.returnLeftPos();
     }
 
+    public void returnData(){
+        this.telemetry.addData("leftFront", leftFront.getCurrentPosition());
+        this.telemetry.addData("leftrear", leftRear.getCurrentPosition());
+        this.telemetry.addData("rightFront", rightFront.getCurrentPosition());
+        this.telemetry.addData("rightrear", rightRear.getCurrentPosition());
+
+    }
 }

@@ -51,11 +51,12 @@ public class DriveConstants {
 
     /*
      * These are the feedforward parameters used to model the drive motor behavior. If you are using
-     * the built-in velocity PID, *these values are fine as is*. However, if you do not have drive
+     * the built-in velocity PID,
+     * *these values are fine as is*. However, if you do not have drive
      * motor encoders or have elected not to use them for velocity control, these values should be
      * empirically tuned.
      */
-    public static double kV = 0.0126;
+    public static double kV = 0.011;
     public static double kA = 0.0025;
     public static double kStatic = 0.01;
 //    public static double kV = 0.0181;//0.0185

@@ -8,7 +8,7 @@ public class LeftSplineValues {
     public static AToHighOne a1ToHighOne;
     public static class AToHighOne {
         public static double x1 = 58.6,
-                            y1 =-6.3,
+                            y1 =-2,
                             heading1 =310.5;
         public static Vector2d aHighVector = new Vector2d(x1, y1);
     }
@@ -19,14 +19,14 @@ public class LeftSplineValues {
     public static BToConeOne b2ToConeTwo;
     public static class BToConeOne {
         public static double x2 = 54.1,
-                            y2 =25.4,
+                            y2 =30,
                             heading2 =90;
         public static Vector2d aConeVector = new Vector2d(x2, y2);
     }
     public static BToMid b3ToMid;
     public static class BToMid {
         public static double x3 = 47.94,
-                y3 =-4.85,
+                y3 =-1,
                 heading3 =219;
         public static Vector2d bMidVector = new Vector2d(x3, y3);
     }
