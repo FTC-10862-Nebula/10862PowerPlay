@@ -7,9 +7,9 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 public class LeftSplineValues {
     public static AToHighOne a1ToHighOne;
     public static class AToHighOne {
-        public static double x1 = 58.6,
-                            y1 =-2,
-                            heading1 =310.5;
+        public static double x1 = 63.5,
+                y1 =-0.5,
+                heading1 =316;
         public static Vector2d aHighVector = new Vector2d(x1, y1);
     }
 
@@ -18,15 +18,15 @@ public class LeftSplineValues {
 
     public static BToConeOne b2ToConeTwo;
     public static class BToConeOne {
-        public static double x2 = 54.1,
-                            y2 =30,
-                            heading2 =90;
-        public static Vector2d aConeVector = new Vector2d(x2, y2);
+        public static double x = 54.24,
+                y2 =36.75,
+                heading2 =90;
+        public static Vector2d aConeVector = new Vector2d(x, y2);
     }
-    public static BToMid b3ToMid;
+    public static BToMid b3ToMidTwo;
     public static class BToMid {
-        public static double x3 = 47.94,
-                y3 =-1,
+        public static double x3 = 51,
+                y3 =3.5,
                 heading3 =219;
         public static Vector2d bMidVector = new Vector2d(x3, y3);
     }
@@ -36,16 +36,15 @@ public class LeftSplineValues {
 
     public static CToConeOne c4ToCone;
     public static class CToConeOne {
-        public static double x2 = 47.2,
-                y2 =24.7,
+        public static double x2 = 52.5,
+                y2 =38.7,
                 heading2 =90;
         public static Vector2d bConeVector = new Vector2d(x2, y2);
     }
-public static CToMid c5ToMid;
+    public static CToMid c5ToMid;
     public static class CToMid {
-        public static double x3 = 43.84,
-                y3 =-5.79
-                ,
+        public static double x3 = 48.1,
+                y3 = 5.3,
                 heading3 =219;
         public static Vector2d cMidVector = new Vector2d(x3, y3);
     }
@@ -55,8 +54,8 @@ public static CToMid c5ToMid;
 
     public static DToConeOne d6ToCone;
     public static class DToConeOne {
-        public static double x2 = 40.,
-                y2 =25,
+        public static double x2 = 56.6,
+                y2 =43,
                 heading2 =90;
         public static Vector2d cConeVector = new Vector2d(x2, y2);
     }
