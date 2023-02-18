@@ -12,7 +12,7 @@ public class PickCFCommand extends SequentialCommandGroup  {
         addCommands(
                 new InstantCommand(claw::clawClose),
 //                new InstantCommand(claw::clawAutoClose),
-                new WaitCommand(100),
+                new WaitCommand(250),
                 new InstantCommand(slide:: slideLow)
         );
     }

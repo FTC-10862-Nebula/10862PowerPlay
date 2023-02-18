@@ -3,6 +3,9 @@ package org.firstinspires.ftc.teamcode.TeleOps.Misc;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
+
 //@Disabled
 @TeleOp (name="ServoTestforClawS3")
 public class ServoTest extends OpMode {
@@ -32,6 +35,12 @@ public class ServoTest extends OpMode {
         }
         else if(gamepad1.b){
             pos += 0.001;
+        }
+        else if(gamepad1.dpad_down){
+            pos = TurnServo.F_POS_S3;
+        }
+        else if(gamepad1.dpad_up){
+            pos = TurnServo.B_POS_S3;
         }
 
         pos = Math.min(Math.max(pos, 0), 1);
