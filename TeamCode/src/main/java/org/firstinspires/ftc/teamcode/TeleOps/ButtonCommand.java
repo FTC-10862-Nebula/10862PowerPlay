@@ -27,7 +27,7 @@ import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 //nowadays lance isnt a very common name, but in older times people were named lance a lot
 public class ButtonCommand extends SequentialCommandGroup{
-    public ButtonCommand(GamepadEx driverGamepad, GamepadEx operatorGamepad, Drivetrain drivetrain, Arm arm, Slide slide, TurnServo turnServo, Claw claw, SensorColor sensorColor, int choice){
+    public ButtonCommand(GamepadEx driverGamepad, GamepadEx operatorGamepad, Drivetrain drivetrain, Arm arm, Slide slide, TurnServo turnServo, Claw claw,  int choice){
 
         //Drive Stuff - D1
         //TODO:Test
@@ -125,7 +125,7 @@ public class ButtonCommand extends SequentialCommandGroup{
                     .whenPressed(claw::subClaw1Pos);
             */
 
-        Button turnColorSensorOff = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
-                .whenPressed(sensorColor::disable);
+//        Button turnColorSensorOff = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
+//                .whenPressed(sensorColor::disable);
     }
 }

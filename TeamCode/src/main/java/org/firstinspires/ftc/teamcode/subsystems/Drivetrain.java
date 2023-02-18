@@ -122,8 +122,9 @@ public class Drivetrain extends SubsystemBase {
 
         if(Math.abs(powers[LFVal])<0.25&Math.abs(powers[LRVal])<0.25&Math.abs(powers[RFVal])<0.25&Math.abs(powers[RRVal])<0.25){
             for (int i = 0; i <= 3; i++) {
-                powers[i] = squareInput(powers[i]);
-            }//TODO:Test
+//                powers[i] = squareInput(powers[i]);
+                powers[i] = cubeInput(powers[i]);
+            }
         }
         drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
     }
@@ -131,6 +132,10 @@ public class Drivetrain extends SubsystemBase {
     private double squareInput(double input) {
         return input * Math.abs(input);
     }
+    private double cubeInput(double input) {
+        return input * Math.abs(input)*Math.abs(input);
+    }
+
     public double getHeading() {
         return Math.toDegrees(drive.getExternalHeading());
     }

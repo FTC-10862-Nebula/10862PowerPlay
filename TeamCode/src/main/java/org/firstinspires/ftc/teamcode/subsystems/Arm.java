@@ -276,21 +276,13 @@ public class  Arm extends SubsystemBase {
     public void dropArmTeleop(){
         switch (armPos){
             case FRONT:
-                controller.setSetPoint(POS_FRONT+50);
-                return;
-            case BACK:
-                controller.setSetPoint(POS_BACK-50);
-                return;
-
-
-            case HIGH_BACK:
-//                controller.setSetPoint(HIGH_POS_BACK-120);
-                controller.setSetPoint(DROP_BACK    );
-                return;
             case HIGH_FRONT:
-//                controller.setSetPoint(HIGH_POS_FRONT+120);
                 controller.setSetPoint(DROP_FRONT);
-                return;
+                break;
+            case BACK:
+            case HIGH_BACK:
+                controller.setSetPoint(DROP_BACK);
+                break;
         }
     }
 

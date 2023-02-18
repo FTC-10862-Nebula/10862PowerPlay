@@ -8,6 +8,6 @@ import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 public class SlowDriveCommand extends DefaultDriveCommand {
     public SlowDriveCommand(Drivetrain drive, GamepadEx driverGamepad, int choice) {
         super(drive, driverGamepad, false, choice);
-        this.multiplier = 0.5;
+        this.multiplier = 0.35;
     }
 }
