@@ -51,7 +51,7 @@ public class LeftSplineAuto extends MatchOpMode
     private Slide slide;
     private TagVision tagVision;
     private TurnServo turnServo;
-    private SensorColor sensorColor;
+//    private SensorColor sensorColor;
 
 
     @Override
@@ -62,9 +62,9 @@ public class LeftSplineAuto extends MatchOpMode
         drivetrain.init();
         slide = new Slide( telemetry, hardwareMap);
         turnServo = new TurnServo(telemetry, hardwareMap);
-        sensorColor = new SensorColor(hardwareMap, telemetry);
+//        sensorColor = new SensorColor(hardwareMap, telemetry);
         tagVision = new TagVision(hardwareMap, telemetry);
-        sensorColor = new SensorColor(hardwareMap, telemetry);
+//        sensorColor = new SensorColor(hardwareMap, telemetry);
 //        tagVision.init(hardwareMap);
         while (!isStarted() && !isStopRequested())
         {
@@ -84,25 +84,25 @@ public class LeftSplineAuto extends MatchOpMode
         switch (tagNum) {
             case 1: { //Left
                 autonGroup = new SequentialCommandGroup(
-                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
+                        new LeftSpline(drivetrain, slide, arm, claw, turnServo)
                 );
             }
             case 2: { //Mid
                 autonGroup = new SequentialCommandGroup(
-                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
+                        new LeftSpline(drivetrain, slide, arm, claw, turnServo)
 //                        new DriveForwardCommand(drivetrain, 12)
                 );
 
             }
             case 3: { //High
                 autonGroup =new SequentialCommandGroup(
-                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
+                        new LeftSpline(drivetrain, slide, arm, claw, turnServo)
 //                        new DriveForwardCommand(drivetrain, 32)
                 );
             }
             default: {
                 autonGroup = new SequentialCommandGroup(
-                        new LeftSpline(drivetrain, slide, arm, claw, turnServo, sensorColor)
+                        new LeftSpline(drivetrain, slide, arm, claw, turnServo)
 //                        new DriveForwardCommand(drivetrain, 32)
                 );
             }

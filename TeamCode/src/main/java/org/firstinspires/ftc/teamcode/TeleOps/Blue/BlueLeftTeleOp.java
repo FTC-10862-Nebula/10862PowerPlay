@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.TeleOps.Blue;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.TeleOps.ButtonCommand;
@@ -15,7 +16,7 @@ import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
-
+@Disabled
 @Config
 @TeleOp(name = "BLUE Left")
 public class BlueLeftTeleOp extends MatchOpMode {
@@ -52,7 +53,7 @@ public class BlueLeftTeleOp extends MatchOpMode {
 
     @Override
     public void configureButtons() {
-        new ButtonCommand(driverGamepad, operatorGamepad, drivetrain,  arm, slide, turnServo, claw, sensorColor, choice);
+        new ButtonCommand(driverGamepad, operatorGamepad, drivetrain,  arm, slide, turnServo, claw,  choice);
     }
 
     @Override

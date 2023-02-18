@@ -33,7 +33,7 @@ public class BlueUpTeleOp extends MatchOpMode {
     private Claw claw;
     private Drivetrain drivetrain;
     private Slide slide;
-    private SensorColor sensorColor;
+//    private SensorColor sensorColor;
     private TurnServo turnServo;
 
     @Override
@@ -48,15 +48,15 @@ public class BlueUpTeleOp extends MatchOpMode {
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
 
-        sensorColor = new SensorColor(hardwareMap, telemetry);
-        claw.setDefaultCommand(new BlueIntakeTeleopCommand(slide, claw, sensorColor, arm));
+//        sensorColor = new SensorColor(hardwareMap, telemetry);
+//        claw.setDefaultCommand(new BlueIntakeTeleopCommand(slide, claw, sensorColor, arm));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false, choice));
     }
 
 
     @Override
     public void configureButtons() {
-        new ButtonCommand(driverGamepad, operatorGamepad, drivetrain,  arm, slide, turnServo, claw,sensorColor, choice);
+        new ButtonCommand(driverGamepad, operatorGamepad, drivetrain,  arm, slide, turnServo, claw, choice);
     }
 
     @Override
