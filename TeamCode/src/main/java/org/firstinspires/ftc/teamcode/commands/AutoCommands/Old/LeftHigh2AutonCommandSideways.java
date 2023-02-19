@@ -80,7 +80,7 @@ public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
 //                new WaitCommand(600),
 //                new TurnToCommand(drivetrain, 270),
 //
-//                new SlideResetFCommandT(slide, arm, claw),
+//                new SlideIntakeFCommandT(slide, arm, claw),
 //                new WaitCommand(200),
 //                new InstantCommand(arm::moveReset, arm),
 //                new DriveForwardCommand(drivetrain, 50)

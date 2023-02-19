@@ -31,14 +31,6 @@ public class Drivetrain extends SubsystemBase {
             LRVal = 1,
             RFVal = 2,
             RRVal = 3;
-//    private final int AUTOFIXLEFTANGLE = 90,
-//    AUTOFIXUPANGLE = 270,
-//    AUTOFIXRIGHTANGLE = -90;
-
-    private final int AUTOFIXLEFTANGLE = -90,
-            AUTOFIXUPANGLE = 0,
-            AUTOFIXRIGHTANGLE = 90;
-
     double[] powers = new double[4];
 
 
@@ -93,19 +85,9 @@ public class Drivetrain extends SubsystemBase {
         drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
     }
 
-    public void  fieldCentric(double y, double x, double rx, int choice){
-        double theta = 0;
-        switch(choice){
-            case 1:
-                theta = -imu.getAngularOrientation().firstAngle+(AUTOFIXLEFTANGLE);
-                break;
-            case 2:
-                theta = -imu.getAngularOrientation().firstAngle+(AUTOFIXUPANGLE);
-                break;
-            case 3:
-                theta = -imu.getAngularOrientation().firstAngle+(AUTOFIXRIGHTANGLE);
-                break;
-        }
+    public void  fieldCentric(double y, double x, double rx){
+        double theta = -imu.getAngularOrientation().firstAngle;
+
         double rotX = x * Math.cos(theta) - y * Math.sin(theta);
         double rotY = x * Math.sin(theta) + y * Math.cos(theta);
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);

@@ -5,8 +5,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitUntilCommand;
 
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.Pick.PickCBCommand;
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.Pick.PickCFCommand;
+import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PickConeCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
@@ -28,7 +27,7 @@ public class IntakeAutoCommand extends SequentialCommandGroup {
                             ),
                             ()-> ((sensorColor.grabbedBlueCone()||sensorColor.grabbedRedCone()) && claw.isClawOpen())
                     ),
-                    new PickCBCommand(slide, claw)
+                    new PickConeCommand(slide, claw)
             );
         } else{
             addCommands(
@@ -42,7 +41,7 @@ public class IntakeAutoCommand extends SequentialCommandGroup {
                             ),
                             ()-> ((sensorColor.grabbedBlueCone()||sensorColor.grabbedRedCone()) && claw.isClawOpen())
                     ),
-                    new PickCFCommand(slide, claw)
+                    new PickConeCommand(slide, claw)
             );
         }
     }

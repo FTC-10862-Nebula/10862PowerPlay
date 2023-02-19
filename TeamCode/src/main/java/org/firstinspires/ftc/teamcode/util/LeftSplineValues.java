@@ -10,7 +10,7 @@ public class LeftSplineValues {
         public static double x1 = 63.5,
                 y1 =-1,
                 heading1 =313.6;
-        public static Vector2d aHighVector = new Vector2d(x1, y1);
+//        public static Vector2d aHighVector = new Vector2d(x1, y1);
     }
 
 
@@ -21,14 +21,14 @@ public class LeftSplineValues {
         public static double x = 56.9,
                 y2 =35.2,
                 heading2 =90;
-        public static Vector2d aConeVector = new Vector2d(x, y2);
+//        public static Vector2d aConeVector = new Vector2d(x, y2);
     }
     public static BToMid b3ToMidTwo;
     public static class BToMid {
         public static double x3 = 51.4,
                 y3 = -0.8,
                 heading3 =219;
-        public static Vector2d bMidVector = new Vector2d(x3, y3);
+//        public static Vector2d bMidVector = new Vector2d(x3, y3);
     }
 
 
@@ -39,14 +39,14 @@ public class LeftSplineValues {
         public static double x2 = 56.455,
                 y2 =37.355,
                 heading2 =90;
-        public static Vector2d bConeVector = new Vector2d(x2, y2);
+//        public static Vector2d bConeVector = new Vector2d(x2, y2);
     }
     public static CToMid c5ToMid;
     public static class CToMid {
         public static double x3 = 51.6,
                 y3 = 0.95,
                 heading3 =219;
-        public static Vector2d cMidVector = new Vector2d(x3, y3);
+//        public static Vector2d cMidVector = new Vector2d(x3, y3);
     }
 
 

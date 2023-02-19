@@ -4,10 +4,10 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PrePickBConeCommands.PrePickB5Command;
+import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PickConeCommand;
+import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PrePickB.PrePickB5Command;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplineCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.Pick.PickCBCommand;
+import org.firstinspires.ftc.teamcode.commands.IntakeAndOutake.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
@@ -30,7 +30,7 @@ public class RightSpline extends SequentialCommandGroup{
                         new PrePickB5Command(slide, claw, arm, turnServo),
                         new SplineCommand(drivetrain, new Vector2d(52.5, -23), Math.toRadians(268), true)   //Load
                 ),
-                new PickCBCommand(slide, claw),
+                new PickConeCommand(slide, claw),
 
 
                 new ParallelCommandGroup(
@@ -42,7 +42,7 @@ public class RightSpline extends SequentialCommandGroup{
                         new PrePickB5Command(slide, claw, arm, turnServo),
                         new SplineCommand(drivetrain, new Vector2d(52.5, -23), Math.toRadians(268), PoseStorage.load, true)   //Load
                 ),
-                new PickCBCommand(slide, claw)
+                new PickConeCommand(slide, claw)
 
 
 //                new ParallelCommandGroup(

@@ -3,15 +3,15 @@ package org.firstinspires.ftc.teamcode.commands.AutoCommands.Old;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.Pick.PickCBCommand;
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PrePickBConeCommands.PrePickB3Command;
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PrePickBConeCommands.PrePickB4Command;
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PrePickBConeCommands.PrePickB5Command;
+import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PickConeCommand;
+import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PrePickB.PrePickB3Command;
+import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PrePickB.PrePickB4Command;
+import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PrePickB.PrePickB5Command;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.TurnToCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
+import org.firstinspires.ftc.teamcode.commands.IntakeAndOutake.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Drive.Drivetrain;
@@ -39,7 +39,7 @@ public class RightHighJunctionCommand extends SequentialCommandGroup{
 
 
                 /***Cone 5***/
-                new PickCBCommand(slide, claw),
+                new PickConeCommand(slide, claw),
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo, true),
                         new DriveForwardCommand(drivetrain, 29.9)
@@ -59,7 +59,7 @@ public class RightHighJunctionCommand extends SequentialCommandGroup{
 
 
                 /***Cone 4***/
-                new PickCBCommand(slide, claw),
+                new PickConeCommand(slide, claw),
                 new ParallelCommandGroup(
                         new SlideHighFCommand(slide, arm, claw, turnServo, true),
                         new DriveForwardCommand(drivetrain, 30.9)
@@ -79,7 +79,7 @@ public class RightHighJunctionCommand extends SequentialCommandGroup{
 
 
 //                /***Cone 3***/
-//                new PickCBCommand(slide, claw),
+//                new PickConeCommand(slide, claw),
 //                new ParallelCommandGroup(
 //                        new SlideHighFCommand(slide, arm, claw, true),
 //                        new DriveForwardCommand(drivetrain, 29.3)

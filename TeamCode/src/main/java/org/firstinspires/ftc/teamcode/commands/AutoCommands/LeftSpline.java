@@ -4,11 +4,11 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
+import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PickConeCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SlowSplineCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.SplineCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndDropConeCommands.DropAutoConeCommand;
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.Pick.PickCFCommand;
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PrePickBConeCommands.PrePickB5Command;
+import org.firstinspires.ftc.teamcode.commands.IntakeAndOutake.DropAutoConeCommand;
+import org.firstinspires.ftc.teamcode.commands.AutoCommands.AutoConeCommands.PrePickB.PrePickB5Command;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideResetUpAutonCommand;
@@ -34,7 +34,7 @@ public class LeftSpline extends SequentialCommandGroup{
                         new PrePickB5Command(slide, claw, arm, turnServo)  ,
                         new SlowSplineCommand(drivetrain, new Vector2d(LeftSplineValues.BToConeOne.x, LeftSplineValues.BToConeOne.y2), Math.toRadians(LeftSplineValues.BToConeOne.heading2), true)   //Load
                 ),
-                new PickCFCommand(slide, claw),
+                new PickConeCommand(slide, claw),
 //        new IntakeAutoCommand(drivetrain, slide, claw, sensorColor, true),
 
 
@@ -47,7 +47,7 @@ public class LeftSpline extends SequentialCommandGroup{
                         new PrePickB5Command(slide, claw, arm, turnServo),
                         new SlowSplineCommand(drivetrain, new Vector2d(LeftSplineValues.CToConeOne.x2,LeftSplineValues.CToConeOne.y2), Math.toRadians(LeftSplineValues.CToConeOne.heading2), true)   //Load
                 ),
-                new PickCFCommand(slide, claw),
+                new PickConeCommand(slide, claw),
 //        new IntakeAutoCommand(drivetrain, slide, claw, sensorColor, true),
 
 
