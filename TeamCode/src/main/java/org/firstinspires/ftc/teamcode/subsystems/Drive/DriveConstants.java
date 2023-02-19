@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystems.Drive;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 /*
@@ -56,7 +57,7 @@ public class DriveConstants {
      * motor encoders or have elected not to use them for velocity control, these values should be
      * empirically tuned.
      */
-    public static double kV = 0.011;
+    public static double kV = 0.011; //1.0 / rpmToVelocity(MAX_RPM);
     public static double kA = 0.0025;
     public static double kStatic = 0.01;
 //    public static double kV = 0.0181;//0.0185
@@ -93,8 +94,18 @@ public class DriveConstants {
      */
     public static double MAX_VEL = 44;  //57-54
     public static double MAX_ACCEL = 44;    //57-54
-    public static double MAX_ANG_VEL = Math.toRadians(300.704976);  //According to guide make 180 deg - 300.704976
+    public static double MAX_ANG_VEL = Math.toRadians(300.704976);  //According to guide make 180 deg - 300.704976 // were did this 300 number come from? can it really turn that fast?
     public static double MAX_ANG_ACCEL = Math.toRadians(300.704976);  //According to guide make 180 deg - 300.704976
+
+    /*
+     * Adjust the orientations here to match your robot. See the FTC SDK documentation for details.
+     */
+    public static RevHubOrientationOnRobot.LogoFacingDirection LOGO_FACING_DIR =
+            RevHubOrientationOnRobot.LogoFacingDirection.UP;
+    public static RevHubOrientationOnRobot.UsbFacingDirection USB_FACING_DIR =
+            RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
+
+    public static double NOMINAL_VOLTAGE = 12.0;
 
 
     public static double encoderTicksToInches(double ticks) {
@@ -109,8 +120,4 @@ public class DriveConstants {
         // see https://docs.google.com/document/d/1tyWrXDfMidwYyP_5H4mZyVgaEswhOC35gvdmP-V-5hA/edit#heading=h.61g9ixenznbx
         return 32767 / ticksPerSecond;
     }
-
-//    public static PIDCoefficients AXIAL_PID = new PIDCoefficients(0, 0, 0);
-//    public static PIDCoefficients CROSS_TRACK_PID = new PIDCoefficients(0, 0, 0);
-//    public static PIDCoefficients HEADING_PID = new PIDCoefficients(0, 0, 0);
 }

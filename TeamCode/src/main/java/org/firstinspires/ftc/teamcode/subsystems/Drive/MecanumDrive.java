@@ -18,11 +18,13 @@ import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
 import com.acmerobotics.roadrunner.trajectory.constraints.*;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.lynx.LynxModule;
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.*;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
@@ -42,11 +44,8 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
 
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(8, 0, 0); //6,1,0
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(9, 0, 0);//0,0,0
-//    public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(10, 0, 0); //6,1,0
-//    public static PIDCoefficients HEADING_PID = new PIDCoefficients(4.8, 0, 1);//0,0,0
 
     public static double LATERAL_MULTIPLIER = 1;
-    public static double BATTERY_BASE_VOLTAGE = 13;
 
     public static double VX_WEIGHT = 1;
     public static double VY_WEIGHT = 1;
@@ -63,10 +62,12 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     private final List<DcMotorEx> motors;
 
     private final ElapsedTime voltageResetTimer = new ElapsedTime();
-    private final BNO055IMU imu;
+    private final IMU imu;
     private final VoltageSensor batteryVoltageSensor;
     private final Telemetry telemetry;
     private StandardTrackingWheelLocalizer wheelLocalizer;
+    private List<Integer> lastEncPositions = new ArrayList<>();
+    private List<Integer> lastEncVels = new ArrayList<>();
     private double voltage;
 
     public MecanumDrive(HardwareMap hardwareMap, Telemetry telemetry, boolean deprecatedParameter) {
@@ -83,32 +84,10 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
 
-        imu = hardwareMap.get(BNO055IMU.class, "imu");
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+        imu = hardwareMap.get(IMU.class, "imu");
+        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
+                DriveConstants.LOGO_FACING_DIR, DriveConstants.USB_FACING_DIR));
         imu.initialize(parameters);
-
-        /* TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
-         not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
-
-                     | +Z axis
-                     |
-                     |
-                     |
-              _______|_____________     +Y axis
-             /       |_____________/|__________
-            /   REV / EXPANSION   //
-           /       / HUB         //
-          /_______/_____________//
-         |_______/_____________|/
-                /
-               / +X axis
-
-         This diagram is derived from the axes in section 3.4 https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf
-         and the placement of the dot/orientation from https://docs.revrobotics.com/rev-control-system/control-system-overview/dimensions#imu-location
-
-         For example, if +Y in this diagram faces downwards, you would use AxisDirection.NEG_Y.
-         BNO055IMUUtil.remapZAxis(imu, AxisDirection.NEG_Y);*/
 
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
@@ -139,35 +118,16 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         rightFront.setDirection(FORWARD);
         rightRear.setDirection(FORWARD);
 
+        List<Integer> lastTrackingEncPositions = new ArrayList<>();
+        List<Integer> lastTrackingEncVels = new ArrayList<>();
+
         // Using drive encoder (put odo here if you use it)
         this.telemetry = telemetry;
 
-        trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
-    }
-
-    @Override
-    public void setDriveSignal(@NonNull DriveSignal driveSignal) {
-        if(voltageResetTimer.seconds() > 0.5) {
-            voltage = batteryVoltageSensor.getVoltage();
-            voltageResetTimer.reset();
-        }
-
-        List<Double> velocities = MecanumKinematics.robotToWheelVelocities(
-                driveSignal.getVel(), TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
-
-        List<Double> accelerations = MecanumKinematics.robotToWheelAccelerations(
-                driveSignal.getAccel(), TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
-
-        double multiplier = BATTERY_BASE_VOLTAGE / voltage;
-        List<Double> powers = Kinematics.calculateMotorFeedforward(
-                velocities,
-                accelerations,
-                kV * multiplier,
-                kA * multiplier,
-                kStatic * multiplier
+        trajectorySequenceRunner = new TrajectorySequenceRunner(
+                follower, HEADING_PID, batteryVoltageSensor,
+                lastEncPositions, lastEncVels, lastTrackingEncPositions, lastTrackingEncVels
         );
-
-        setMotorPowers(powers.get(0), powers.get(1), powers.get(2), powers.get(3));
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
@@ -295,18 +255,26 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     @NonNull
     @Override
     public List<Double> getWheelPositions() {
+        lastEncPositions.clear();
+
         List<Double> wheelPositions = new ArrayList<>();
         for (DcMotorEx motor : motors) {
-            wheelPositions.add(encoderTicksToInches(motor.getCurrentPosition()));
+            int position = motor.getCurrentPosition();
+            lastEncPositions.add(position);
+            wheelPositions.add(encoderTicksToInches(position));
         }
         return wheelPositions;
     }
 
     @Override
     public List<Double> getWheelVelocities() {
+        lastEncVels.clear();
+
         List<Double> wheelVelocities = new ArrayList<>();
         for (DcMotorEx motor : motors) {
-            wheelVelocities.add(encoderTicksToInches(motor.getVelocity()));
+            int vel = (int) motor.getVelocity();
+            lastEncVels.add(vel);
+            wheelVelocities.add(encoderTicksToInches(vel));
         }
         return wheelVelocities;
     }
@@ -321,13 +289,12 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
 
     @Override
     public double getRawExternalHeading() {
-        return imu.getAngularOrientation().firstAngle;
-//        return 0;
+        return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
     }
 
     @Override
     public Double getExternalHeadingVelocity() {
-        return (double) imu.getAngularVelocity().zRotationRate;
+        return (double) imu.getRobotAngularVelocity(AngleUnit.RADIANS).zRotationRate;
     }
 
     public static TrajectoryVelocityConstraint getVelocityConstraint(double maxVel, double maxAngularVel, double trackWidth) {

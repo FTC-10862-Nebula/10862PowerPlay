@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.opmode.roadrunner;
 
 import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.MAX_ACCEL;
 import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.MAX_VEL;
+import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.NOMINAL_VOLTAGE;
 import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.RUN_USING_ENCODER;
 import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.kA;
 import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.kStatic;
@@ -19,6 +20,7 @@ import com.acmerobotics.roadrunner.profile.MotionState;
 import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -75,6 +77,8 @@ public class ManualFeedforwardTuner extends LinearOpMode {
 
         drive = new MecanumDrive(hardwareMap, telemetry, false);
 
+        final VoltageSensor voltageSensor = hardwareMap.voltageSensor.iterator().next();
+
         mode = Mode.TUNING_MODE;
 
         NanoClock clock = NanoClock.system();
@@ -114,7 +118,8 @@ public class ManualFeedforwardTuner extends LinearOpMode {
                     MotionState motionState = activeProfile.get(profileTime);
                     double targetPower = Kinematics.calculateMotorFeedforward(motionState.getV(), motionState.getA(), kV, kA, kStatic);
 
-                    drive.setDrivePower(new Pose2d(targetPower, 0, 0));
+                    final double voltage = voltageSensor.getVoltage();
+                    drive.setDrivePower(new Pose2d(NOMINAL_VOLTAGE / voltage * targetPower, 0, 0));
                     drive.updatePoseEstimate();
 
                     Pose2d poseVelo = Objects.requireNonNull(drive.getPoseVelocity(), "poseVelocity() must not be null. Ensure that the getWheelVelocities() method has been overridden in your localizer.");

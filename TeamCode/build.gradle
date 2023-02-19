@@ -34,4 +34,6 @@ dependencies {
 
     implementation 'org.openftc:easyopencv:1.5.2'   //Camera
     implementation 'org.openftc:apriltag:1.1.0'     //April Tag
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7'
 }
