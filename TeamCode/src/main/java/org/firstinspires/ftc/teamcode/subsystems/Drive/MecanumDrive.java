@@ -11,6 +11,8 @@ import com.acmerobotics.roadrunner.drive.DriveSignal;
 import com.acmerobotics.roadrunner.followers.HolonomicPIDVAFollower;
 import com.acmerobotics.roadrunner.followers.TrajectoryFollower;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
+import com.acmerobotics.roadrunner.kinematics.Kinematics;
+import com.acmerobotics.roadrunner.kinematics.MecanumKinematics;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
 import com.acmerobotics.roadrunner.trajectory.constraints.*;
@@ -18,6 +20,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.*;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
@@ -35,7 +38,7 @@ import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.*;
  * Simple mecanum drive hardware implementation for REV hardware.
  */
 @Config
-public class MecanumDrive extends ImprovedMecDrive {
+public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive {
 
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(8, 0, 0); //6,1,0
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(9, 0, 0);//0,0,0
@@ -43,6 +46,7 @@ public class MecanumDrive extends ImprovedMecDrive {
 //    public static PIDCoefficients HEADING_PID = new PIDCoefficients(4.8, 0, 1);//0,0,0
 
     public static double LATERAL_MULTIPLIER = 1;
+    public static double BATTERY_BASE_VOLTAGE = 13;
 
     public static double VX_WEIGHT = 1;
     public static double VY_WEIGHT = 1;
@@ -58,14 +62,16 @@ public class MecanumDrive extends ImprovedMecDrive {
     private final DcMotorEx leftFront, leftRear, rightRear, rightFront;
     private final List<DcMotorEx> motors;
 
-    private BNO055IMU imu;
-    private VoltageSensor batteryVoltageSensor;
-    private Telemetry telemetry;
+    private final ElapsedTime voltageResetTimer = new ElapsedTime();
+    private final BNO055IMU imu;
+    private final VoltageSensor batteryVoltageSensor;
+    private final Telemetry telemetry;
     private StandardTrackingWheelLocalizer wheelLocalizer;
+    private double voltage;
 
     public MecanumDrive(HardwareMap hardwareMap, Telemetry telemetry, boolean isUsingImu) {
 //        super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);//TODO:FIX THIS!
-        super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER, hardwareMap.voltageSensor.iterator().next());
+        super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
                 new Pose2d(0.5, 0.5, Math.toRadians(5.0)), 0.5);
 
@@ -145,6 +151,31 @@ public class MecanumDrive extends ImprovedMecDrive {
 //        setLocalizer(wheelLocalizer);//TODO:REMOVAE COMPLETELY
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
+    }
+
+    @Override
+    public void setDriveSignal(@NonNull DriveSignal driveSignal) {
+        if(voltageResetTimer.seconds() > 0.5) {
+            voltage = batteryVoltageSensor.getVoltage();
+            voltageResetTimer.reset();
+        }
+
+        List<Double> velocities = MecanumKinematics.robotToWheelVelocities(
+                driveSignal.getVel(), TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
+
+        List<Double> accelerations = MecanumKinematics.robotToWheelAccelerations(
+                driveSignal.getAccel(), TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
+
+        double multiplier = BATTERY_BASE_VOLTAGE / voltage;
+        List<Double> powers = Kinematics.calculateMotorFeedforward(
+                velocities,
+                accelerations,
+                kV * multiplier,
+                kA * multiplier,
+                kStatic * multiplier
+        );
+
+        setMotorPowers(powers.get(0), powers.get(1), powers.get(2), powers.get(3));
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
