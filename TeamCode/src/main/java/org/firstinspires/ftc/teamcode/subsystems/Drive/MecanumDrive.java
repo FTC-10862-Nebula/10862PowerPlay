@@ -69,7 +69,7 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     private StandardTrackingWheelLocalizer wheelLocalizer;
     private double voltage;
 
-    public MecanumDrive(HardwareMap hardwareMap, Telemetry telemetry, boolean isUsingImu) {
+    public MecanumDrive(HardwareMap hardwareMap, Telemetry telemetry, boolean deprecatedParameter) {
 //        super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);//TODO:FIX THIS!
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
@@ -83,13 +83,10 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
 
-        //Remove following Lines for Auto
-//        if(isUsingImu) {
-            imu = hardwareMap.get(BNO055IMU.class, "imu");
-            BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-            parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
-            imu.initialize(parameters);
-//        }
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+        imu.initialize(parameters);
 
         /* TODO: If the hub containing the IMU you are using is mounted so that the "REV" logo does
          not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
@@ -124,15 +121,13 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
             MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();
             motorConfigurationType.setAchieveableMaxRPMFraction(1.0);
             motor.setMotorType(motorConfigurationType);
-
-            setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //Made not be brake mode
-//        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         }
 
         if (RUN_USING_ENCODER) {
             setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
 
+        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         if (RUN_USING_ENCODER && MOTOR_VELO_PID != null) {
             setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, MOTOR_VELO_PID);
@@ -144,11 +139,8 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         rightFront.setDirection(FORWARD);
         rightRear.setDirection(FORWARD);
 
-        // TODO: if desired, use setLocalizer() to change the localization method
-        // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
+        // Using drive encoder (put odo here if you use it)
         this.telemetry = telemetry;
-//        wheelLocalizer = new StandardTrackingWheelLocalizer(hardwareMap, telemetry);
-//        setLocalizer(wheelLocalizer);//TODO:REMOVAE COMPLETELY
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(follower, HEADING_PID);
     }
@@ -231,6 +223,11 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
     public void followTrajectorySequence(TrajectorySequence trajectorySequence) {
         followTrajectorySequenceAsync(trajectorySequence);
         waitForIdle();
+    }
+
+    // Break Following
+    public void breakFollowing() {
+        trajectorySequenceRunner.breakFollowing();
     }
 
     public Pose2d getLastError() {
