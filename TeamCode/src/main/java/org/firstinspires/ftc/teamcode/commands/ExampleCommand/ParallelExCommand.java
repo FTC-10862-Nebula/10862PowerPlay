@@ -2,8 +2,7 @@ package org.firstinspires.ftc.teamcode.commands.ExampleCommand;
 
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 
-import org.firstinspires.ftc.teamcode.subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.MecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.Drive.Drivetrain;
 
 public class ParallelExCommand extends ParallelCommandGroup{
     public ParallelExCommand(Drivetrain drivetrain){
