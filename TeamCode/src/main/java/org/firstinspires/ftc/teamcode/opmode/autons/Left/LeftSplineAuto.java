@@ -24,7 +24,7 @@ package org.firstinspires.ftc.teamcode.opmode.autons.Left;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.LeftSpline;
+import org.firstinspires.ftc.teamcode.commands.Auto.LeftSpline;
 import org.firstinspires.ftc.teamcode.subsystems.Drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;

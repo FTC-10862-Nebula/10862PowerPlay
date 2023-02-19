@@ -5,8 +5,8 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultArmCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.DefaultDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.Drive.TeleopCommands.DefaultArmCommand;
+import org.firstinspires.ftc.teamcode.commands.Drive.TeleopCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Drive.MecanumDrive;

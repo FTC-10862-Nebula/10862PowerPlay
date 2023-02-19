@@ -8,7 +8,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 
 import org.firstinspires.ftc.teamcode.GamepadTrigger;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.TeleopCommands.SlowDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.Drive.TeleopCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndOutake.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeAndOutake.PickConeCommand;
 import org.firstinspires.ftc.teamcode.commands.Slide.SlideBCommands.SlideIntakeBCommandT;

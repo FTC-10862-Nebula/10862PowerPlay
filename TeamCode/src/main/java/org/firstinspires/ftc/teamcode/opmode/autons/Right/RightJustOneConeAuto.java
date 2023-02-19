@@ -25,9 +25,9 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-import org.firstinspires.ftc.teamcode.commands.AutoCommands.JustONECone;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeLeftCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommands.AutoCommands.StrafeRightCommand;
+import org.firstinspires.ftc.teamcode.commands.Auto.JustONECone;
+import org.firstinspires.ftc.teamcode.commands.Drive.AutoCommands.StrafeLeftCommand;
+import org.firstinspires.ftc.teamcode.commands.Drive.AutoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
