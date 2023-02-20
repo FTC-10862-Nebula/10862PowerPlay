@@ -14,11 +14,10 @@ import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
 @Config
 public class SplineCommand extends CommandBase{
-    private static int num =1;//BAD BAD BAD
 
     Drivetrain drive;
     Trajectory trajectory;
-    boolean reverse = false;
+    boolean reverse;
     Vector2d splinePos;
     double endHeading;
     Pose2d poseToUse;

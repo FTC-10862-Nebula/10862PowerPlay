@@ -29,8 +29,8 @@ public class  Slide extends SubsystemBase {
     public static double UP_SPEED = -0.8;
     public static double DOWN_SPEED = 0.8;
 
-    private double encoderOffset = 0;
-    private double encoderOffset2 = 0;
+    private final double encoderOffset = 0;
+    private final double encoderOffset2 = 0;
 
     public static int RESTING_POS = 5;
     public static int GROUND_POS = -30;
@@ -53,11 +53,6 @@ public class  Slide extends SubsystemBase {
     double output = 0;
 
     public static boolean lowBool = false;
-//    private static double POWER = 1.4;
-//    LOW_POWER =0.7;
-
-//    private static int liftPos = 0;
-
     public enum LiftPos{
         REST,
         GROUND, LOW, MID, HIGH,
@@ -65,19 +60,17 @@ public class  Slide extends SubsystemBase {
 
         CONE_STACK, FIVE, FOUR, THREE, TWO, ONE
     }
-    LiftPos liftPos = LiftPos.REST;
+    LiftPos liftPos;
 
 
     public Slide( Telemetry tl, HardwareMap hw) {
-//        this.slideM1 = slideM1;
-//        this.slideM2 = slideM2;
 
         slideM1 = new MotorEx(hw, "lift");
         slideM2 = new MotorEx(hw, "lift2");
 
         //Reverse lift motor
         slideM1.setInverted(true);
-        //this.slideMotor2.setInverted(true);
+        //slideMotor2.setInverted(true);
 
         slideM1.resetEncoder();
         slideM2.resetEncoder();
@@ -103,9 +96,8 @@ public class  Slide extends SubsystemBase {
 //            if (output >= 1) output = 1;
 //            if (output <= -1) output = -1;
 
-            slideM1.set(output );
-            slideM2.set(output);
-
+            slideM1.set(output);
+            slideM2.set(-output);//TODO: Probably shouldn't be like this
 //            if (lowBool) {
 //                slideM1.set(output * LOW_POWER);
 //                slideM2.set(output * LOW_POWER);
@@ -117,6 +109,8 @@ public class  Slide extends SubsystemBase {
         }
         telemetry.addLine("Slide - ");
         telemetry.addData("     Lift Motor Output:", output);
+        telemetry.addData("     Lift Motor 1 Power", slideM1.getVelocity());
+        telemetry.addData("     Lift Motor 2 Power:", slideM2.getVelocity());
 
         telemetry.addData("     Lift1 Encoder: ", slideM1.getCurrentPosition());
         telemetry.addData("     Lift2 Encoder: ", slideM2.getCurrentPosition());
@@ -134,18 +128,12 @@ public class  Slide extends SubsystemBase {
     public void upSlideManual(){
         slideAutomatic = false;
         slideM1.set(UP_SPEED);
-        slideM2.set(UP_SPEED);
-//        slideAutomatic = true;
-////        if((HIGH_POS<slideM1.getCurrentPosition())){
-//            upController.setSetPoint(slideM1.getCurrentPosition()-20);
-////        }
-////        else return;
-
+        slideM2.set(-UP_SPEED);
     }
     public void downSlideManual() {
         slideAutomatic = false;
         slideM1.set(DOWN_SPEED);
-        slideM2.set(DOWN_SPEED);
+        slideM2.set(-DOWN_SPEED);
 //        slideAutomatic = true;
 ////        if((-15>slideM1.getCurrentPosition())){
 //            upController.setSetPoint(slideM1.getCurrentPosition()+20);
@@ -328,4 +316,7 @@ public class  Slide extends SubsystemBase {
                 break;
         }
     }
+//    public void setPower(double power){
+//        slideM1.set(power);
+//    }
 }
