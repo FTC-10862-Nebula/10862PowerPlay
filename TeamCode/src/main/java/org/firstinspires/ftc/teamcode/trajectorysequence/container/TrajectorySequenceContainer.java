@@ -15,7 +15,7 @@ public class TrajectorySequenceContainer {
         this.pathSegments = pathSegments;
     }
 
-    public TrajectorySequence build(TrajectorySequenceBuilder trajectorySequenceBuilder) {
+    public TrajectorySequenceBuilder getBuilder(TrajectorySequenceBuilder trajectorySequenceBuilder) {
         for (PathSegment pathSegment : pathSegments) {
             if (pathSegment.getClass() == LineTo.class) {
                 LineTo lineTo = (LineTo) pathSegment;
@@ -136,8 +136,11 @@ public class TrajectorySequenceContainer {
             }
 
         }
-        trajectorySequence = trajectorySequenceBuilder.build();
-        return trajectorySequence;
+        return trajectorySequenceBuilder;
+    }
+
+    public TrajectorySequence build(TrajectorySequenceBuilder trajectorySequenceBuilder) {
+        return getBuilder(trajectorySequenceBuilder).build();
     }
 
     public TrajectorySequence build(
