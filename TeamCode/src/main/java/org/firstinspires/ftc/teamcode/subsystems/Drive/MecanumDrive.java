@@ -25,6 +25,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceRunner;
@@ -63,15 +65,14 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
 
     private final ElapsedTime voltageResetTimer = new ElapsedTime();
     private final IMU imu;
+//    private final BNO055IMU imu;
     private final VoltageSensor batteryVoltageSensor;
     private final Telemetry telemetry;
-    private StandardTrackingWheelLocalizer wheelLocalizer;
     private List<Integer> lastEncPositions = new ArrayList<>();
     private List<Integer> lastEncVels = new ArrayList<>();
     private double voltage;
 
     public MecanumDrive(HardwareMap hardwareMap, Telemetry telemetry, boolean deprecatedParameter) {
-//        super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);//TODO:FIX THIS!
         super(kV, kA, kStatic, TRACK_WIDTH, TRACK_WIDTH, LATERAL_MULTIPLIER);
         follower = new HolonomicPIDVAFollower(TRANSLATIONAL_PID, TRANSLATIONAL_PID, HEADING_PID,
                 new Pose2d(0.5, 0.5, Math.toRadians(5.0)), 0.5);
@@ -308,18 +309,17 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         return new ProfileAccelerationConstraint(maxAccel);
     }
 
-    public int getRightAngle(){
-        return wheelLocalizer.returnRightPos();
-    }
-    public int getLeftAngle(){
-        return wheelLocalizer.returnLeftPos();
-    }
+//    public int getRightAngle(){
+//        return wheelLocalizer.returnRightPos();
+//    }
+//    public int getLeftAngle(){
+//        return wheelLocalizer.returnLeftPos();
+//    }
 
-    public void returnData(){
-        this.telemetry.addData("leftFront", leftFront.getCurrentPosition());
-        this.telemetry.addData("leftrear", leftRear.getCurrentPosition());
-        this.telemetry.addData("rightFront", rightFront.getCurrentPosition());
-        this.telemetry.addData("rightrear", rightRear.getCurrentPosition());
-
-    }
+//    public void returnData(){
+//        this.telemetry.addData("leftFront", leftFront.getCurrentPosition());
+//        this.telemetry.addData("leftrear", leftRear.getCurrentPosition());
+//        this.telemetry.addData("rightFront", rightFront.getCurrentPosition());
+//        this.telemetry.addData("rightrear", rightRear.getCurrentPosition());
+//    }
 }

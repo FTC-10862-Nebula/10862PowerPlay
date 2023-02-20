@@ -89,6 +89,7 @@ public class  Arm extends SubsystemBase {
         //TODO: isAuto for Brake Mode
         armMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE); //Remove for practice and stuff
 //        armPos = ArmPos.RESET;
+
 //        potentiometer = hw.get(AnalogInput.class, "Potentiometer");
 //        potentiometer = new AnalogInput(null, 0);
     }
@@ -109,9 +110,8 @@ public class  Arm extends SubsystemBase {
             armMotor.set(output * POWER);
 
         }
-        Util.logger(this, telemetry, Level.INFO, "Arm Encoder Pos: ", armMotor.getCurrentPosition());
+//        Util.logger(this, telemetry, Level.INFO, "Arm Encoder Pos: ", armMotor.getCurrentPosition());
         Util.logger(this, telemetry, Level.INFO, "Arm Pos: ", armPos);
-//        telemetry.addData("Current Voltage", potentiometer.getVoltage());
 
     }
 
