@@ -9,6 +9,7 @@ import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -26,7 +27,8 @@ public class Drivetrain extends SubsystemBase {
 
     private final MecanumDrive drive;
     private Telemetry telemetry;
-    private BNO055IMU imu;
+//    private BNO055IMU imu;
+    private IMU imu;
     private final int LFVal = 0,
             LRVal = 1,
             RFVal = 2,
@@ -38,7 +40,7 @@ public class Drivetrain extends SubsystemBase {
     public Drivetrain(MecanumDrive drive, Telemetry tl, HardwareMap hardwareMap) {
         this.drive = drive;
         this.telemetry = tl;
-        imu = hardwareMap.get(BNO055IMU.class, "imu");
+//        imu = hardwareMap.get(BNO055IMU.class, "imu");
     }
 
     public void init() {
@@ -51,7 +53,7 @@ public class Drivetrain extends SubsystemBase {
     //TODO: TEST!
     public void reInitializeIMU(){
 //            imu = hardwareMap.get(BNO055IMU.class, "imu");
-        imu.initialize(new BNO055IMU.Parameters());
+        imu.resetYaw();
     }
 
 
@@ -60,33 +62,18 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void mecDrive(double y, double x, double rx) {
-        // Denominator is the largest motor power (absolute value) or 1
-        // This ensures all the powers maintain the same ratio, but only when
-        // at least one is out of the range [-1, 1]
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
 
-//        Orginal Comp1
         powers [LFVal] = (y + x + rx) / denominator;    //fLPower
         powers [LRVal] = (y - x + rx) / denominator;    //bLPower
         powers [RFVal] = (y - x - rx) / denominator;    //fRPower
         powers [RRVal] = (y + x - rx) / denominator;    //bRPower
-//        Original Comp1 for normal mec drive
-
-//         powers [LFVal] =    (y + x + rx) / denominator;
-//         powers [LRVal] =     (y - x + rx) / denominator;
-//         powers [RFVal] =   (y - x - rx) / denominator;
-//         powers [RRVal] =     (y + x - rx) / denominator;
-//        //Everything but turning works- Test
-//
-//        double frontLPower = (-y - x - rx) / denominator;
-//        double frontRPower = (y - x - rx) / denominator;
-//        double backLPower = (-y + x - rx) / denominator;
-//        double backRPower = (y + x - rx) / denominator;
         drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
     }
 
     public void  fieldCentric(double y, double x, double rx){
-        double theta = -imu.getAngularOrientation().firstAngle;
+//        double theta = -imu.getAngularOrientation().firstAngle;
+        double theta = -drive.getExternalHeadingVelocity();//Ok?
 
         double rotX = x * Math.cos(theta) - y * Math.sin(theta);
         double rotY = x * Math.sin(theta) + y * Math.cos(theta);
@@ -121,10 +108,9 @@ public class Drivetrain extends SubsystemBase {
     public double getHeading() {
         return Math.toDegrees(drive.getExternalHeading());
     }
-    public double getAngle() {
-        return imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
-        //works
-    }
+//    public double getAngle() {
+//        return imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+//    }
 
 //    public void stop() {
 //        setPowers(0, 0, 0, 0);
@@ -181,7 +167,7 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         update();
-        drive.returnData();
+//        drive.returnData();//TODO:What does this do?
     }
 
 
@@ -336,12 +322,11 @@ public class Drivetrain extends SubsystemBase {
         drive.followTrajectorySequence(trajectorySequence);
     }
 
-    public int getRightAngle(){
-        return drive.getRightAngle();
-    }
-    public int getLeftAngle(){
-        return drive.getLeftAngle();
-
-    }
+//    public int getRightAngle(){
+//        return drive.getRightAngle();
+//    }
+//    public int getLeftAngle(){
+//        return drive.getLeftAngle();
+//    }
 
 }
