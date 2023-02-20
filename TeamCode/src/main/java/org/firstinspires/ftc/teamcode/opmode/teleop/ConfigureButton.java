@@ -8,17 +8,17 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 
 import org.firstinspires.ftc.teamcode.GamepadTrigger;
-import org.firstinspires.ftc.teamcode.commands.Drive.TeleopCommands.SlowDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndOutake.DropConeCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeAndOutake.PickConeCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideBCommands.SlideIntakeBCommandT;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideGroundFCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideHighFCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideLowFCommand;
-import org.firstinspires.ftc.teamcode.commands.Slide.SlideFCommands.SlideMidFCommand;
+import org.firstinspires.ftc.teamcode.commands.driveCommands.teleopCommands.SlowDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.intakeAndOutake.DropConeCommand;
+import org.firstinspires.ftc.teamcode.commands.intakeAndOutake.PickConeCommand;
+import org.firstinspires.ftc.teamcode.commands.slide.slideBCommands.SlideIntakeBCommandT;
+import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideGroundFCommand;
+import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideHighFCommand;
+import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideLowFCommand;
+import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideMidFCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
-import org.firstinspires.ftc.teamcode.subsystems.Drive.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 

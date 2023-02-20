@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.subsystems.Drive.MecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.drive.MecanumDrive;
 
 /*
  * This is a simple routine to test translational drive capabilities.

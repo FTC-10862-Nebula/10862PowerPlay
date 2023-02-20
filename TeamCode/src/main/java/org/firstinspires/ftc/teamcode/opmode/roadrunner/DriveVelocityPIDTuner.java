@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.opmode.roadrunner;
 
-import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.*;
+import static org.firstinspires.ftc.teamcode.subsystems.drive.DriveConstants.*;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -17,7 +17,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.subsystems.Drive.MecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.drive.MecanumDrive;
 
 import java.util.List;
 
