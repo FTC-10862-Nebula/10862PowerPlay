@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.opmode.roadrunner;
 
 
 import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.MAX_RPM;
+import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.NOMINAL_VOLTAGE;
 import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.RUN_USING_ENCODER;
 import static org.firstinspires.ftc.teamcode.subsystems.Drive.DriveConstants.rpmToVelocity;
 
@@ -13,6 +14,7 @@ import com.acmerobotics.roadrunner.util.NanoClock;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.RobotLog;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -34,7 +36,7 @@ import java.util.List;
  *   4. Adjust the encoder data based on the velocity tuning data and find kA with another linear
  *      regression.
  */
-@Disabled
+//@Disabled
 @Config
 @Autonomous(group = "drive")
 public class AutomaticFeedforwardTuner extends LinearOpMode {
@@ -47,6 +49,7 @@ public class AutomaticFeedforwardTuner extends LinearOpMode {
             RobotLog.setGlobalErrorMsg("Feedforward constants usually don't need to be tuned " +
                     "when using the built-in drive motor velocity PID.");
         }
+        final VoltageSensor voltageSensor = hardwareMap.voltageSensor.iterator().next();
 
         Telemetry telemetry = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -124,7 +127,8 @@ public class AutomaticFeedforwardTuner extends LinearOpMode {
             positionSamples.add(drive.getPoseEstimate().getX());
             powerSamples.add(power);
 
-            drive.setDrivePower(new Pose2d(power, 0.0, 0.0));
+            final double voltage = voltageSensor.getVoltage();
+            drive.setDrivePower(new Pose2d(NOMINAL_VOLTAGE / voltage * power, 0.0, 0.0));
             drive.updatePoseEstimate();
         }
         drive.setDrivePower(new Pose2d(0.0, 0.0, 0.0));

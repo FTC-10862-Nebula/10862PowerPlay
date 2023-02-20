@@ -52,7 +52,6 @@ public class Drivetrain extends SubsystemBase {
 
     //TODO: TEST!
     public void reInitializeIMU(){
-//            imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.resetYaw();
     }
 
