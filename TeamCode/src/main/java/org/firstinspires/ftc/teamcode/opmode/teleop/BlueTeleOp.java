@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 @Config
-@TeleOp(name = "BLUE Up")
+@TeleOp(name = "BLUE")
 public class BlueTeleOp extends MatchOpMode {
 
     // Gamepad
