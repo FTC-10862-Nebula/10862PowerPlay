@@ -32,24 +32,25 @@ public class  Slide extends SubsystemBase {
     private final double encoderOffset = 0;
     private final double encoderOffset2 = 0;
 
-    public static int RESTING_POS = 5;
-    public static int GROUND_POS = -30;
-    public static int LOW_POS = -315;
-    public static int MID_POS = -735;
-    public static int HIGH_POS = -1240;
+    //REMEMBER THAT IF ENCODER POSITIONS GET SWITCHED, SWITCH THE DROP SLIDE VALUES TOO
+    public static int RESTING_POS = -5;
+    public static int GROUND_POS = 30;
+    public static int LOW_POS = 315;
+    public static int MID_POS = 735;
+    public static int HIGH_POS = 1240;
 
-    public static int AUTO_MID_POS = -898;
-    public static int AUTO_HIGH_POS = -1261;
+    public static int AUTO_MID_POS = 898;
+    public static int AUTO_HIGH_POS = 1260;
 
 
     //Auto Slide Positions
-    public static int CONE_STACK_POS = -265;
+    public static int CONE_STACK_POS = 265;
 
-    public static int CONE_1_POS = -20;
-    public static int CONE_2_POS = -100;
-    public static int CONE_3_POS = -135;
-    public static int CONE_4_POS = -156;
-    public static int CONE_5_POS = -315;
+    public static int CONE_1_POS = 20;
+    public static int CONE_2_POS = 100;
+    public static int CONE_3_POS = 135;
+    public static int CONE_4_POS = 155;
+    public static int CONE_5_POS = 312;
     double output = 0;
 
     public static boolean lowBool = false;
@@ -306,13 +307,13 @@ public class  Slide extends SubsystemBase {
 //                upController.setSetPoint(MID_POS+200);
 //                break;
             case HIGH:
-                upController.setSetPoint(HIGH_POS+740);
+                upController.setSetPoint(HIGH_POS-740);
                 break;
             case AUTO_MID:
-                upController.setSetPoint(AUTO_MID_POS+290);
+                upController.setSetPoint(AUTO_MID_POS-290);
                 break;
             case AUTO_HIGH:
-                upController.setSetPoint(AUTO_HIGH_POS+650);
+                upController.setSetPoint(AUTO_HIGH_POS-650);
                 break;
         }
     }

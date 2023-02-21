@@ -7,8 +7,8 @@ import com.acmerobotics.roadrunner.geometry.Vector2d;
 public class LeftSplineValues {
     public static AToHighOne a1ToHighOne;
     public static class AToHighOne {
-        public static double x1 = 63.5,
-                y1 =-1,
+        public static double x1 = 63.2,
+                y1 =-1.3,
                 heading1 =313.6;
 //        public static Vector2d aHighVector = new Vector2d(x1, y1);
     }
@@ -18,15 +18,15 @@ public class LeftSplineValues {
 
     public static BToConeOne b2ToConeTwo;
     public static class BToConeOne {
-        public static double x = 56.9,
-                y2 =35.2,
+        public static double x = 56.3,
+                y2 =34.2,
                 heading2 =90;
 //        public static Vector2d aConeVector = new Vector2d(x, y2);
     }
     public static BToMid b3ToMidTwo;
     public static class BToMid {
         public static double x3 = 51.4,
-                y3 = -0.8,
+                y3 = 1.4,
                 heading3 =219;
 //        public static Vector2d bMidVector = new Vector2d(x3, y3);
     }
@@ -36,15 +36,15 @@ public class LeftSplineValues {
 
     public static CToConeOne c4ToCone;
     public static class CToConeOne {
-        public static double x2 = 56.455,
-                y2 =37.355,
+        public static double x2 = 56.3,
+                y2 =34.2,
                 heading2 =90;
 //        public static Vector2d bConeVector = new Vector2d(x2, y2);
     }
     public static CToMid c5ToMid;
     public static class CToMid {
         public static double x3 = 51.6,
-                y3 = 0.95,
+                y3 = 2.4,
                 heading3 =219;
 //        public static Vector2d cMidVector = new Vector2d(x3, y3);
     }
@@ -54,8 +54,8 @@ public class LeftSplineValues {
 
     public static DToConeOne d6ToCone;
     public static class DToConeOne {
-        public static double x2 = 55,
-                y2 =37.5,
+        public static double x2 = 56.3,
+                y2 =34.2,
                 heading2 =90;
         public static Vector2d cConeVector = new Vector2d(x2, y2);
     }
