@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode.subsystems.drive;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.canvas.Canvas;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.CommandOpMode;
+import com.arcrobotics.ftclib.command.InstantCommand;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,4 +55,7 @@ public abstract class MatchOpMode extends CommandOpMode {
     public abstract void matchStart();
     public void matchLoop() {};
     public void robotPeriodic() {};
+    protected Command run(Runnable runnable) {
+        return new InstantCommand(runnable);
+    }
 }
