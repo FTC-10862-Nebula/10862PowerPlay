@@ -198,8 +198,9 @@ public class RightRegionalAuto extends MatchOpMode {
                                 new SlideResetUpAutonCommand(slide, arm, claw, turnServo)
                         ),
 
-                        /* Save Pose */
-                        run(() -> PoseStorage.currentPose = drivetrain.getPoseEstimate())
+                        /* Save Pose and end opmode*/
+                        run(() -> PoseStorage.currentPose = drivetrain.getPoseEstimate()),
+                        run(this::stop)
                 )
         );
     }
