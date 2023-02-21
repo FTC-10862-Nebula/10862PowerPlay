@@ -5,7 +5,7 @@ import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.commands.Drive.AutoCommands.TrajectorySequenceContainerFollowCommand;
+import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.trajectoryCommands.TrajectorySequenceContainerFollowCommand;
 import org.firstinspires.ftc.teamcode.commands.auto.autoConeCommands.PickConeCommand;
 import org.firstinspires.ftc.teamcode.commands.auto.autoConeCommands.prePickB.PrePickB4Command;
 import org.firstinspires.ftc.teamcode.commands.auto.autoConeCommands.prePickB.PrePickB5Command;
