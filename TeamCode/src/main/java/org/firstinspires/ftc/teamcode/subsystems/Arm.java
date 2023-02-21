@@ -1,17 +1,13 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 
-import androidx.annotation.NonNull;
-
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.util.Util;
@@ -19,7 +15,7 @@ import org.firstinspires.ftc.teamcode.util.Util;
 import java.util.logging.Level;
 
 @Config
-public class  Arm extends Subsystem {
+public class  Arm extends SubsystemBase {
 
     public static PIDFCoefficients pidfCoefficients = new PIDFCoefficients(.005, 0.00, 0.0,0);
     private final PIDFController controller;
@@ -73,10 +69,8 @@ public class  Arm extends Subsystem {
     Telemetry telemetry;
     private final MotorEx armMotor;
 
-    public Arm(@NonNull OpMode opMode) {
-        super(opMode);
-        //armMotor = new MotorEx(hw, "clawM");
-        armMotor = opMode.hardwareMap.get(MotorEx.class, "armMotor");
+    public Arm(Telemetry tl, HardwareMap hw) {
+        armMotor = new MotorEx(hw, "clawM");
 
         //Reverse claw motor
         armMotor.setInverted(true);
@@ -89,7 +83,7 @@ public class  Arm extends Subsystem {
         controller = new PIDFController(pidfCoefficients.p, pidfCoefficients.i, pidfCoefficients.d, pidfCoefficients.f, getAngle(), getAngle());
         controller.setTolerance(10);
 
-        //this.telemetry = tl;
+        this.telemetry = tl;
         armAutomatic = false;
         setOffset();
         //TODO: isAuto for Brake Mode
@@ -117,11 +111,6 @@ public class  Arm extends Subsystem {
         }
         Util.logger(this, telemetry, Level.INFO, "Arm Encoder Pos: ", armMotor.getCurrentPosition());
         Util.logger(this, telemetry, Level.INFO, "Arm Pos: ", armPos);
-
-    }
-
-    @Override
-    protected void manualControl() {
 
     }
 

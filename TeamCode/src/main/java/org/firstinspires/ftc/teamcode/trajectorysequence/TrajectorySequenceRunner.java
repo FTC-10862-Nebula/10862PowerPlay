@@ -67,7 +67,8 @@ public class TrajectorySequenceRunner {
     private List<Integer> lastDriveEncPositions, lastDriveEncVels, lastTrackingEncPositions, lastTrackingEncVels;
 
     public TrajectorySequenceRunner(
-            TrajectoryFollower follower, PIDCoefficients headingPIDCoefficients
+            TrajectoryFollower follower, PIDCoefficients headingPIDCoefficients, VoltageSensor voltageSensor,
+            List<Integer> lastDriveEncPositions, List<Integer> lastDriveEncVels, List<Integer> lastTrackingEncPositions, List<Integer> lastTrackingEncVels
     ) {
         this.follower = follower;
 

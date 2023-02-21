@@ -12,8 +12,6 @@ public abstract class Subsystem {
         this.opMode = opmode;
     }
 
-    public abstract void periodic();
-
     protected abstract void manualControl();
     protected void iterative() {};
 
