@@ -9,7 +9,6 @@ import org.firstinspires.ftc.teamcode.commands.Command;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Lift;
-import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class Sensor extends Command {
     private enum SensorState {
@@ -22,7 +21,7 @@ public class Sensor extends Command {
         public static double LIFT_WAIT_SECONDS = 0.3;
     }
 
-    private final Slide lift;
+    private final Lift lift;
     private final Arm arm;
     private final Claw claw;
 
