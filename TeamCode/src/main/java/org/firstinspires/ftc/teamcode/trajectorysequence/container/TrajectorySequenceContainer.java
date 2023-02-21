@@ -2,16 +2,19 @@ package org.firstinspires.ftc.teamcode.trajectorysequence.container;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
-import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryAccelerationConstraint;
-import com.acmerobotics.roadrunner.trajectory.constraints.TrajectoryVelocityConstraint;
 
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequenceBuilder;
+import org.firstinspires.ftc.teamcode.util.PoseStorage;
+
+import java.util.function.Supplier;
 
 public class TrajectorySequenceContainer {
     private final PathSegment[] pathSegments;
     private TrajectorySequence trajectorySequence;
-    public TrajectorySequenceContainer (PathSegment... pathSegments) {
+    private final Supplier<TrajectorySequenceConstraints> trajectorySequenceConstraints;
+    public TrajectorySequenceContainer(Supplier<TrajectorySequenceConstraints> trajectorySequenceConstraints, PathSegment... pathSegments) {
+        this.trajectorySequenceConstraints = trajectorySequenceConstraints;
         this.pathSegments = pathSegments;
     }
 
@@ -139,55 +142,30 @@ public class TrajectorySequenceContainer {
         return trajectorySequenceBuilder;
     }
 
+    public TrajectorySequenceBuilder getBuilder() {
+        return getBuilder(
+                new TrajectorySequenceBuilder(
+                        PoseStorage.trajectoryPose,
+                        trajectorySequenceConstraints.get().baseVelConstraint,
+                        trajectorySequenceConstraints.get().baseAccelConstraint,
+                        trajectorySequenceConstraints.get().baseTurnConstraintMaxAngVel,
+                        trajectorySequenceConstraints.get().baseTurnConstraintMaxAngAccel
+                ));
+    }
+
     public TrajectorySequence build(TrajectorySequenceBuilder trajectorySequenceBuilder) {
         return getBuilder(trajectorySequenceBuilder).build();
     }
 
-    public TrajectorySequence build(
-            Pose2d startPose,
-            Double startTangent,
-            TrajectoryVelocityConstraint baseVelConstraint,
-            TrajectoryAccelerationConstraint baseAccelConstraint,
-            double baseTurnConstraintMaxAngVel,
-            double baseTurnConstraintMaxAngAccel
-    ) {
-        return this.build(new TrajectorySequenceBuilder(
-                startPose,
-                startTangent,
-                baseVelConstraint,
-                baseAccelConstraint,
-                baseTurnConstraintMaxAngVel,
-                baseTurnConstraintMaxAngAccel
-        ));
-    }
-
-    public TrajectorySequence build(
-            Pose2d startPose,
-            double baseVelConstraint,
-            double baseAccelConstraint,
-            double baseTurnConstraintMaxAngVel,
-            double baseTurnConstraintMaxAngAccel
-    ) {
-        return this.build(new TrajectorySequenceBuilder(
-                startPose,
-                (v, pose2d, pose2d1, pose2d2) -> baseVelConstraint,
-                (v, pose2d, pose2d1, pose2d2) -> baseAccelConstraint,
-                baseTurnConstraintMaxAngVel,
-                baseTurnConstraintMaxAngAccel
-        ));
-    }
-
-    public TrajectorySequence build(
-            Pose2d startPose,
-            TrajectorySequenceConstraints constraints
-    ) {
-        return this.build(
-                startPose,
-                constraints.baseVelConstraint,
-                constraints.baseAccelConstraint,
-                constraints.baseTurnConstraintMaxAngVel,
-                constraints.baseTurnConstraintMaxAngAccel
-        );
+    public TrajectorySequence build() {
+        return getBuilder(
+                new TrajectorySequenceBuilder(
+                        PoseStorage.trajectoryPose,
+                        trajectorySequenceConstraints.get().baseVelConstraint,
+                        trajectorySequenceConstraints.get().baseAccelConstraint,
+                        trajectorySequenceConstraints.get().baseTurnConstraintMaxAngVel,
+                        trajectorySequenceConstraints.get().baseTurnConstraintMaxAngAccel
+                )).build();
     }
 
     public Pose2d end() {
