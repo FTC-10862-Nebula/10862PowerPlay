@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.auto.autoConeCommands.PickConeCommand;
+import org.firstinspires.ftc.teamcode.commands.auto.autoConeCommands.prePickB.PrePickB4Command;
 import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.SlowSplineCommand;
 import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.SplineCommand;
 import org.firstinspires.ftc.teamcode.commands.intakeAndOutake.DropAutoConeCommand;
@@ -32,7 +33,7 @@ public class LeftSpline extends SequentialCommandGroup{
                 ),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
-                        new PrePickB5Command(slide, claw, arm, turnServo)  ,
+                        new PrePickB5Command(slide, claw, arm, turnServo),
                         new SlowSplineCommand(drivetrain, new Vector2d(LeftSplineValues.BToConeOne.x, LeftSplineValues.BToConeOne.y2), Math.toRadians(LeftSplineValues.BToConeOne.heading2), true)   //Load
                 ),
                 new PickConeCommand(slide, claw),
@@ -46,7 +47,7 @@ public class LeftSpline extends SequentialCommandGroup{
                 new WaitCommand(400),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
-                        new PrePickB5Command(slide, claw, arm, turnServo),
+                        new PrePickB4Command(slide, claw, arm, turnServo),
                         new SlowSplineCommand(drivetrain, new Vector2d(LeftSplineValues.CToConeOne.x2,LeftSplineValues.CToConeOne.y2), Math.toRadians(LeftSplineValues.CToConeOne.heading2), true)   //Load
                 ),
                 new PickConeCommand(slide, claw),
