@@ -1,20 +1,21 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.opMode;
+import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.config.Config;
-import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorRangeSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @Config
-public class Claw extends SubsystemBase {
+public class Claw extends Subsystem {
     //Claw Variables
     public final static double CLOSE_POS_S1 = 0.1,
                                 AUTO_CLOSE_S1 = 0.12,
@@ -24,19 +25,18 @@ public class Claw extends SubsystemBase {
 
 
     Telemetry telemetry;
-    private final ServoEx clawS1;     //Claw
+    private final Servo clawS1;     //Claw
     private final ColorRangeSensor distanceSensor;
 
     private boolean ignoreSensor = false;
     public double SENSOR_DISTANCE = 35;
 
 
-    public Claw(Telemetry tl, HardwareMap hw) {
-        this.clawS1 = new SimpleServo(hw, "clawS2", 0, 360);
+    public Claw(@NonNull OpMode opMode) {
+        super(opMode);
+        clawS1 = opMode.hardwareMap.get(Servo.class, "claws1");
         distanceSensor = opMode.hardwareMap.get(ColorRangeSensor.class, "distanceSensor");
         this.clawS1.setPosition(CLOSE_POS_S1);  //Port 3
-
-        this.telemetry = tl;
     }
 
     @Override

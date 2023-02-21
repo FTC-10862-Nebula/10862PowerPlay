@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.commands.Command;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
+import org.firstinspires.ftc.teamcode.subsystems.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class Sensor extends Command {
@@ -30,7 +31,7 @@ public class Sensor extends Command {
     private final ElapsedTime waitTimer = new ElapsedTime();
 
 
-    public Sensor(@NonNull LinearOpMode opMode, Arm arm, Slide lift, Claw claw) {
+    public Sensor(@NonNull LinearOpMode opMode, Arm arm, Lift lift, Claw claw) {
         super(opMode);
         this.arm = arm;
         this.lift = lift;

@@ -121,8 +121,7 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         this.telemetry = telemetry;
 
         trajectorySequenceRunner = new TrajectorySequenceRunner(
-                follower, HEADING_PID, batteryVoltageSensor,
-                lastEncPositions, lastEncVels, lastTrackingEncPositions, lastTrackingEncVels
+                follower, HEADING_PID
         );
     }
 
