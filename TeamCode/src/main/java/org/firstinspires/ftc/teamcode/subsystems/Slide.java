@@ -164,6 +164,10 @@ public class  Slide extends SubsystemBase {
 //        liftEncoderReset();
     }
 
+    public boolean isDown() {
+        return slideM1.getCurrentPosition() <= RESTING_POS;
+    }
+
     public double getAngle() {
         return getEncoderDistance();
     }
