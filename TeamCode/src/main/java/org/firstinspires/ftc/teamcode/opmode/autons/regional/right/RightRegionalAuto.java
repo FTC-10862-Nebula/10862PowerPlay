@@ -156,6 +156,7 @@ public class RightRegionalAuto extends MatchOpMode {
         schedule(
                 new SequentialCommandGroup(
                         run(() -> drivetrain.setPoseEstimate(RightRegionalAutoConstants.Path.PreLoad.startPose.getPose())),
+                        run(() -> PoseStorage.trajectoryPose = RightRegionalAutoConstants.Path.PreLoad.startPose.getPose()),
 
                         /* Preload */
                         new ParallelCommandGroup(

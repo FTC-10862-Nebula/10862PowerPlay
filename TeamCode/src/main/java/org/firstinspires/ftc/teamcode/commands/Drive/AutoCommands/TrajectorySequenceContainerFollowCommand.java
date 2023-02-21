@@ -19,7 +19,7 @@ public class TrajectorySequenceContainerFollowCommand extends CommandBase implem
 
     public TrajectorySequenceContainerFollowCommand(Drivetrain drivetrain, TrajectorySequenceContainer trajectorySequenceContainer, MarkerCommand... markerCommands) {
         this.drivetrain = drivetrain;
-        TrajectorySequenceBuilder trajectorySequenceBuilder = trajectorySequenceContainer.getBuilder();
+        TrajectorySequenceBuilder trajectorySequenceBuilder = trajectorySequenceContainer.getBuilder(PoseStorage.trajectoryPose);
         for (MarkerCommand markerCommand: markerCommands) {
             if (markerCommand.getClass() == DisplacementCommand.class) {
                 DisplacementCommand displacementCommand = (DisplacementCommand) markerCommand;
@@ -39,6 +39,7 @@ public class TrajectorySequenceContainerFollowCommand extends CommandBase implem
             m_requirements.addAll(markerCommand.getRequirements());
         }
         trajectorySequence = trajectorySequenceBuilder.build();
+        PoseStorage.trajectoryPose = trajectorySequence.end();
     }
 
     @Override
@@ -85,7 +86,7 @@ public class TrajectorySequenceContainerFollowCommand extends CommandBase implem
             }
         }
         drivetrain.stop();
-        PoseStorage.trajectoryPose = trajectorySequence.end();
+
     }
 
     @Override
