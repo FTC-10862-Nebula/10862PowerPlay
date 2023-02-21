@@ -45,8 +45,7 @@ public class Drivetrain extends SubsystemBase {
         PoseStorage.currentPose = (new Pose2d(0, 0, Math.toRadians(0)));
     }
 
-    //TODO: TEST!
-    public void reInitializeIMU(){
+    public void reInitializeIMU() {
         drive.resetImu();
     }
 
@@ -92,28 +91,16 @@ public class Drivetrain extends SubsystemBase {
         drive.setMotorPowers(powers[LFVal], powers[LRVal], powers[RFVal], powers[RRVal]);
     }
 
-    private double squareInput(double input) {
-        return input * Math.abs(input);
+    private double squareInput(double power) {
+        return power * Math.abs(power);
     }
-    private double cubeInput(double input) {
-        return input * Math.abs(input)*Math.abs(input);
+    private double cubeInput(double power) {
+        return power*Math.abs(power)*Math.abs(power);
     }
 
     public double getHeading() {
         return Math.toDegrees(drive.getExternalHeading());
     }
-//    public double getAngle() {
-//        return imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
-//    }
-
-//    public void stop() {
-//        setPowers(0, 0, 0, 0);
-//    }
-
-//    private double clamp(double val, double min, double max) {
-//        return Math.max(min, Math.min(max, val));
-//    }
-
     /**
      * Returns minimum range value if the given value is less than
      * the set minimum. If the value is greater than the set maximum,

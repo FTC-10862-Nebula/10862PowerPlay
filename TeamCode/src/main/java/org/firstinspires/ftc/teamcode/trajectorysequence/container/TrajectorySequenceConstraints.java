@@ -27,8 +27,8 @@ public class TrajectorySequenceConstraints {
             double baseTurnConstraintMaxAngVel,
             double baseTurnConstraintMaxAngAccel
     ) {
-        this.baseVelConstraint = (v, pose2d, pose2d1, pose2d2) -> baseVelConstraint;
-        this.baseAccelConstraint = (v, pose2d, pose2d1, pose2d2) -> baseAccelConstraint;
+        this.baseVelConstraint = (s, pose2d, pose2d1, pose2d2) -> baseVelConstraint;
+        this.baseAccelConstraint = (s, pose2d, pose2d1, pose2d2) -> baseAccelConstraint;
         this.baseTurnConstraintMaxAngVel = baseTurnConstraintMaxAngVel;
         this.baseTurnConstraintMaxAngAccel = baseTurnConstraintMaxAngAccel;
     }

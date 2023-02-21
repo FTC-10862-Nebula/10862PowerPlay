@@ -12,7 +12,7 @@ public class SlideMoveManual extends CommandBase {
     public SlideMoveManual(Slide slide, Supplier<Double> doubleSupplier) {
         this.slide = slide;
         this.doubleSupplier = doubleSupplier;
-//        addRequirements(slide);
+        addRequirements(slide);
     }
     @Override
     public void execute() {

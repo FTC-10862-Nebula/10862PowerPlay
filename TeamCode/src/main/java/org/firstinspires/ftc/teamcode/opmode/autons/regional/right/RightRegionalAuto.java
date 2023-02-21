@@ -54,6 +54,21 @@ public class RightRegionalAuto extends MatchOpMode {
             public static double slowAccel = baseAccel * 0.8; // value
             public static double slowTurnVel = turnVel * 0.8; // value
             public static double slowTurnAccel = turnAccel * 0.8; // value
+            static TrajectorySequenceConstraints getPickupConstraints() {
+                return new TrajectorySequenceConstraints(
+                        (s, a, b, c) -> {
+                            if (s > 5) {
+                                return baseVel * 0.5;
+                            } else {
+                                return baseVel;
+                            }
+
+                        },
+                        (s, a, b, c) -> baseAccel,
+                        turnVel,
+                        turnAccel
+                );
+            }
             static TrajectorySequenceConstraints getBaseConstraints() {
                 return new TrajectorySequenceConstraints(baseVel, baseAccel, turnVel, turnAccel);
             }
@@ -77,7 +92,7 @@ public class RightRegionalAuto extends MatchOpMode {
                 public static SetReversed a = new SetReversed(true);
                 public static SplineTo b = new SplineTo(42, -12, 0);
                 public static Back c = new Back(20);
-                static TrajectorySequenceContainer cycle1Pickup = new TrajectorySequenceContainer(Speed::getBaseConstraints, a, b, c);
+                static TrajectorySequenceContainer cycle1Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
             public static Cycle1Drop cycle1Drop;

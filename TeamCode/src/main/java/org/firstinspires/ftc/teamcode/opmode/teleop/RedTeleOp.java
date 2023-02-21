@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
 import org.firstinspires.ftc.teamcode.commands.driveCommands.teleopCommands.DefaultDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.slide.SlideMoveManual;
 import org.firstinspires.ftc.teamcode.subsystems.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
@@ -46,6 +47,7 @@ public class RedTeleOp extends MatchOpMode {
 //
 //        claw.setDefaultCommand(new RedIntakeTeleopCommand(slide, claw, sensorColor,arm));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
+        slide.setDefaultCommand(new SlideMoveManual(slide, operatorGamepad::getRightY));
     }
 
 
