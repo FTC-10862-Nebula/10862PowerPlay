@@ -115,17 +115,17 @@ public class TrajectorySequenceContainer {
 
             if (pathSegment.getClass() == Back.class) {
                 Back back = (Back) pathSegment;
-                trajectorySequenceBuilder = trajectorySequenceBuilder.forward(back.distance);
+                trajectorySequenceBuilder = trajectorySequenceBuilder.back(back.distance);
             }
 
             if (pathSegment.getClass() == StrafeRight.class) {
                 StrafeRight strafeRight = (StrafeRight) pathSegment;
-                trajectorySequenceBuilder = trajectorySequenceBuilder.forward(strafeRight.distance);
+                trajectorySequenceBuilder = trajectorySequenceBuilder.strafeRight(strafeRight.distance);
             }
 
             if (pathSegment.getClass() == StrafeLeft.class) {
                 StrafeLeft strafeLeft = (StrafeLeft) pathSegment;
-                trajectorySequenceBuilder = trajectorySequenceBuilder.forward(strafeLeft.distance);
+                trajectorySequenceBuilder = trajectorySequenceBuilder.strafeLeft(strafeLeft.distance);
             }
 
             if (pathSegment.getClass() == SetReversed.class) {
