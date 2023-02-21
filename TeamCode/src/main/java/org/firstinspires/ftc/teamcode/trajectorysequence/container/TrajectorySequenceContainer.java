@@ -142,10 +142,10 @@ public class TrajectorySequenceContainer {
         return trajectorySequenceBuilder;
     }
 
-    public TrajectorySequenceBuilder getBuilder() {
+    public TrajectorySequenceBuilder getBuilder(Pose2d startPose) {
         return getBuilder(
                 new TrajectorySequenceBuilder(
-                        PoseStorage.trajectoryPose,
+                        startPose,
                         trajectorySequenceConstraints.get().baseVelConstraint,
                         trajectorySequenceConstraints.get().baseAccelConstraint,
                         trajectorySequenceConstraints.get().baseTurnConstraintMaxAngVel,
