@@ -1,17 +1,13 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.opMode;
-
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
-import com.qualcomm.robotcore.hardware.ColorRangeSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @Config
 public class Claw extends SubsystemBase {
@@ -25,15 +21,9 @@ public class Claw extends SubsystemBase {
 
     Telemetry telemetry;
     private final ServoEx clawS1;     //Claw
-    private final ColorRangeSensor distanceSensor;
-
-    private boolean ignoreSensor = false;
-    public double SENSOR_DISTANCE = 35;
-
 
     public Claw(Telemetry tl, HardwareMap hw) {
         this.clawS1 = new SimpleServo(hw, "clawS2", 0, 360);
-        distanceSensor = opMode.hardwareMap.get(ColorRangeSensor.class, "distanceSensor");
         this.clawS1.setPosition(CLOSE_POS_S1);  //Port 3
 
         this.telemetry = tl;
@@ -48,30 +38,6 @@ public class Claw extends SubsystemBase {
         clawS1.setPosition(clawServo1Pos);
     }
 
-    protected void manualControl() {
-        ignoreSensor = true;
-        if (opMode.gamepad2.b) open();
-        else if (opMode.gamepad2.a) close();
-        else ignoreSensor = false;
-    }
-
-    public void open() {
-        clawS1.setPosition(OPEN_POS_S1);
-    }
-
-    public void close() {
-        clawS1.setPosition(CLOSE_POS_S1);
-    }
-
-    public boolean ignoreSensor() {
-        return ignoreSensor;
-    }
-
-    public boolean isInRange() {
-        double distance = distanceSensor.getDistance(DistanceUnit.MM);
-        opMode.telemetry.addData("Distance", distance);
-        return (distance) < SENSOR_DISTANCE;
-    }
 
     public void clawAutoClose() {
         setClawS1(AUTO_CLOSE_S1);
