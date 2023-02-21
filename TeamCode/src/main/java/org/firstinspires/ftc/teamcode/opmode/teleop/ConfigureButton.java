@@ -24,19 +24,20 @@ import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
-public class ConfigureButton extends SequentialCommandGroup{
-    public ConfigureButton(GamepadEx driverGamepad, GamepadEx operatorGamepad, Drivetrain drivetrain, Arm arm, Slide slide, TurnServo turnServo, Claw claw){
+public class ConfigureButton extends SequentialCommandGroup {
+    public ConfigureButton(GamepadEx driverGamepad, GamepadEx operatorGamepad, Drivetrain drivetrain, Arm arm, Slide slide, TurnServo turnServo, Claw claw) {
 
         //Drive Stuff - D1
-        Button reinializeIMUButton= (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
-                .whenPressed( new InstantCommand(drivetrain::reInitializeIMU));
-
-//        Button fieldDriveButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.BACK))
-//                .whenPressed(new DefaultDriveCommand(drivetrain, driverGamepad, true));
+        Button reinializeIMUButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
+                .whenPressed(new InstantCommand(drivetrain::reInitializeIMU));
 
         //Slowmode - D1
-        Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER))
+        Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                 .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
+
+        /****************/
+
+
 
         Button intakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
                 .whenPressed(new PickConeCommand(claw, slide, arm));
@@ -74,41 +75,10 @@ public class ConfigureButton extends SequentialCommandGroup{
                 .whileHeld(arm::lowerClawManual)
                 .whenReleased(arm::stopArm);
 
-        //Claw Servo 3 Buttons - D1
-            /*Button s3FButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.Y))
-                    .whenPressed(claw::setFClawPos);
-            Button s3BButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
-                    .whenPressed(claw::setBClawPos);*/
-
-
-
 //            PIDF Controllers Resets
         Button armMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
                 .whenPressed(arm::encoderReset);
         Button slideEncoderResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
                 .whenPressed(slide::encoderReset);
-
-            /*
-            Button groundFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                    .whenPressed(new SlideGroundFCommand(slide, clawMotors, claw)));
-            Button lowFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
-                    .whenPressed(new SlideLowFCommand(slide, clawMotors, claw)));
-            Button midFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
-                    .whenPressed(new SlideMidFCommand(slide, clawMotors, claw)));
-            Button highFSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                    .whenPressed(new SlideHighFCommand(slide, clawMotors, claw)));
-
-
-            //Claw Servo Manual Rotation - D1
-            Button plusClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP))
-                    .whenPressed(claw::addClaw3Pos);
-            Button subClaw3Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN))
-                    .whenPressed(claw::subClaw3Pos);
-            //Claw Servo Manual In/Out - D1
-            Button plusClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_RIGHT))
-                    .whenPressed(claw::addClaw1Pos);
-            Button subClaw1Button = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT))
-                    .whenPressed(claw::subClaw1Pos);
-            */
     }
 }
