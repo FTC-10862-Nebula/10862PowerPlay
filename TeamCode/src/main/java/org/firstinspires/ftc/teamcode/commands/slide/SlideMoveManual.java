@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.commands.slide;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 import java.util.function.Supplier;
@@ -18,7 +19,7 @@ public class SlideMoveManual extends CommandBase {
     public void execute() {
         double position = doubleSupplier.get();
         if (Math.abs(position) > 0.1) {
-            slide.setPosition(slide.getPosition() + position * 1);
+            slide.setPosition(slide.getPosition() + position * -10);
         }
     }
 }
