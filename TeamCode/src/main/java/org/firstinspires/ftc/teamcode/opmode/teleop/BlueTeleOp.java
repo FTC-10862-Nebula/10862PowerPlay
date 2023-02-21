@@ -47,6 +47,7 @@ public class BlueTeleOp extends MatchOpMode {
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
 
         slide.setDefaultCommand(new SlideMoveManual(slide, operatorGamepad::getRightY));
+//        slide.setDefaultCommand(new SlideMoveManual(slide, operatorGamepad::getLeftY));
     }
 
 
