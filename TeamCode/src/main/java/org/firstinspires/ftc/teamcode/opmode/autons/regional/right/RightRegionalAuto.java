@@ -153,11 +153,10 @@ public class RightRegionalAuto extends MatchOpMode {
                 finalX = RightRegionalAutoConstants.Path.Park.rightX;
                 break;
         }
+        drivetrain.setPoseEstimate(RightRegionalAutoConstants.Path.PreLoad.startPose.getPose());
+        PoseStorage.trajectoryPose = RightRegionalAutoConstants.Path.PreLoad.startPose.getPose();
         schedule(
                 new SequentialCommandGroup(
-                        run(() -> drivetrain.setPoseEstimate(RightRegionalAutoConstants.Path.PreLoad.startPose.getPose())),
-                        run(() -> PoseStorage.trajectoryPose = RightRegionalAutoConstants.Path.PreLoad.startPose.getPose()),
-
                         /* Preload */
                         new ParallelCommandGroup(
                                 new TrajectorySequenceContainerFollowCommand(drivetrain, RightRegionalAutoConstants.Path.PreLoad.preload),
