@@ -5,6 +5,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.commands.driveCommands.teleopCommands.DefaultDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.slide.SlideMoveManual;
 import org.firstinspires.ftc.teamcode.subsystems.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
@@ -44,6 +45,8 @@ public class BlueTeleOp extends MatchOpMode {
 //        sensorColor = new SensorColor(hardwareMap, telemetry);
 //        claw.setDefaultCommand(new BlueIntakeTeleopCommand(slide, claw, sensorColor, arm));
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
+
+        slide.setDefaultCommand(new SlideMoveManual(slide, operatorGamepad::getRightY));
     }
 
 

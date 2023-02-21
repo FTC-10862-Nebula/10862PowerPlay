@@ -317,6 +317,12 @@ public class  Slide extends SubsystemBase {
                 break;
         }
     }
+    public void setPosition(double position) {
+        upController.setSetPoint(position);
+    }
+    public double getPosition() {
+        return upController.getSetPoint();
+    }
 //    public void setPower(double power){
 //        slideM1.set(power);
 //    }
