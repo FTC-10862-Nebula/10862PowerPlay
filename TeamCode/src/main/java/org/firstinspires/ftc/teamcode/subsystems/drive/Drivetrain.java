@@ -24,7 +24,6 @@ public class Drivetrain extends SubsystemBase {
     private final MecanumDrive drive;
     private Telemetry telemetry;
 //    private BNO055IMU imu;
-    private IMU imu;
     private final int LFVal = 0,
             LRVal = 1,
             RFVal = 2,
@@ -48,7 +47,7 @@ public class Drivetrain extends SubsystemBase {
 
     //TODO: TEST!
     public void reInitializeIMU(){
-        imu.resetYaw();
+        drive.resetImu();
     }
 
 
@@ -68,7 +67,7 @@ public class Drivetrain extends SubsystemBase {
 
     public void  fieldCentric(double y, double x, double rx){
 //        double theta = -imu.getAngularOrientation().firstAngle;
-        double theta = -drive.getExternalHeadingVelocity();//Ok?
+        double theta = -drive.getExternalHeading();//Ok?
 
         double rotX = x * Math.cos(theta) - y * Math.sin(theta);
         double rotY = x * Math.sin(theta) + y * Math.cos(theta);

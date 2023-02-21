@@ -293,6 +293,10 @@ public class MecanumDrive extends com.acmerobotics.roadrunner.drive.MecanumDrive
         return (double) imu.getRobotAngularVelocity(AngleUnit.RADIANS).zRotationRate;
     }
 
+    public void resetImu() {
+        imu.resetYaw();
+    }
+
     public static TrajectoryVelocityConstraint getVelocityConstraint(double maxVel, double maxAngularVel, double trackWidth) {
         return new MinVelocityConstraint(Arrays.asList(
                 new AngularVelocityConstraint(maxAngularVel),
