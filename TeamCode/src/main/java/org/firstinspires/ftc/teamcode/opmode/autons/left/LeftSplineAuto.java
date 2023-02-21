@@ -19,20 +19,21 @@
  * SOFTWARE.
  */
 
-package org.firstinspires.ftc.teamcode.opmode.autons.Left;
+package org.firstinspires.ftc.teamcode.opmode.autons.left;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.commands.Auto.LeftSpline;
-import org.firstinspires.ftc.teamcode.subsystems.Drive.MatchOpMode;
+import org.firstinspires.ftc.teamcode.commands.auto.LeftSpline;
+import org.firstinspires.ftc.teamcode.subsystems.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
-import org.firstinspires.ftc.teamcode.subsystems.Drive.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.Drive.MecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.Misc.TagVision;
+import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.drive.MecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.misc.TagVision;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
+import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
 //@Disabled
 @Autonomous
@@ -49,6 +50,7 @@ public class LeftSplineAuto extends MatchOpMode
     private TurnServo turnServo;
 //    private SensorColor sensorColor;
 
+    private TrajectorySequence high;
 
     @Override
     public void robotInit() {
@@ -58,9 +60,9 @@ public class LeftSplineAuto extends MatchOpMode
         drivetrain.init();
         slide = new Slide( telemetry, hardwareMap);
         turnServo = new TurnServo(telemetry, hardwareMap);
-//        sensorColor = new SensorColor(hardwareMap, telemetry);
-        tagVision = new TagVision(hardwareMap, telemetry);
-//        sensorColor = new SensorColor(hardwareMap, telemetry);
+        tagVision = new TagVision(hardwareMap, telemetry);;
+
+//        high = LeftRegionalsPath.Constants.preLoad.toHigh.build(LeftRegionalsPath.Constants.PreLoad.startPose.getPose());
         while (!isStarted() && !isStopRequested())
         {
             tagVision.updateTagOfInterest();

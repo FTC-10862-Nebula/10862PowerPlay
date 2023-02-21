@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.commands.auto;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.commands.auto.autoConeCommands.PickConeCommand;
 import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.SlowSplineCommand;
@@ -42,6 +43,7 @@ public class LeftSpline extends SequentialCommandGroup{
                         new SlideMidFCommand(slide, arm, claw, turnServo,true),
                         new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.BToMid.x3,LeftSplineValues.BToMid.y3), Math.toRadians(LeftSplineValues.BToMid.heading3))   //Cycle
                 ),
+                new WaitCommand(400),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new PrePickB5Command(slide, claw, arm, turnServo),
@@ -56,6 +58,7 @@ public class LeftSpline extends SequentialCommandGroup{
                         new SlideMidFCommand(slide, arm, claw, turnServo,true),
                         new SplineCommand(drivetrain, new Vector2d(LeftSplineValues.CToMid.x3,LeftSplineValues.CToMid.y3), Math.toRadians(LeftSplineValues.CToMid.heading3))   //Cycle
                 ),
+                new WaitCommand(400),
                 new DropAutoConeCommand(claw, slide, arm, true),
                 new ParallelCommandGroup(
                         new SlideResetUpAutonCommand(slide, arm, claw, turnServo),

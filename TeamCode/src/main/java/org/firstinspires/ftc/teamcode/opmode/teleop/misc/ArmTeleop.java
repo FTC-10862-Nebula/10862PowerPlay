@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.subsystems.drive.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
-@Disabled
+//@Disabled
 @Config
 @TeleOp
 public class ArmTeleop extends MatchOpMode {

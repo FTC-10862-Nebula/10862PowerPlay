@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 public class SlideResetUpAutonCommand extends SequentialCommandGroup{
     public SlideResetUpAutonCommand(Slide slide, Arm arm, Claw claw, TurnServo turnServo){
         addCommands(
-                new WaitCommand(10),
+                new WaitCommand(67),
                 new InstantCommand(claw::clawAutoClose),
                 new InstantCommand(turnServo::setFClawPos),
                 new InstantCommand(
