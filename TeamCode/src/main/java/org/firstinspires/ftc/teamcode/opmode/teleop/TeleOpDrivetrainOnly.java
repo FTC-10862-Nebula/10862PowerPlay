@@ -4,7 +4,7 @@ import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.commands.driveCommands.teleopCommands.DefaultDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.teleopCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.util.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.drive.MecanumDrive;

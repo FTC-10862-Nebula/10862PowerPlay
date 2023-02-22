@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.commands.example;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
-import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.autoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;

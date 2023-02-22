@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.opmode.autons.misc;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.commands.auto.JustONECone;
+import org.firstinspires.ftc.teamcode.commands.trajectory.JustONECone;
 import org.firstinspires.ftc.teamcode.util.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;

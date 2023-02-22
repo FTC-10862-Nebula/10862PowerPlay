@@ -5,11 +5,11 @@ import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.trajectoryCommands.TrajectorySequenceContainerFollowCommand;
-import org.firstinspires.ftc.teamcode.commands.auto.autoConeCommands.PickConeCommand;
-import org.firstinspires.ftc.teamcode.commands.auto.autoConeCommands.prePickB.PrePickB4Command;
-import org.firstinspires.ftc.teamcode.commands.auto.autoConeCommands.prePickB.PrePickB5Command;
-import org.firstinspires.ftc.teamcode.commands.intakeAndOutake.DropAutoConeCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.autoCommands.trajectoryCommands.TrajectorySequenceContainerFollowCommand;
+import org.firstinspires.ftc.teamcode.commands.trajectory.autoConeCommands.PickConeCommand;
+import org.firstinspires.ftc.teamcode.commands.trajectory.autoConeCommands.prePickB.PrePickB4Command;
+import org.firstinspires.ftc.teamcode.commands.trajectory.autoConeCommands.prePickB.PrePickB5Command;
+import org.firstinspires.ftc.teamcode.commands.outtake.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideMidFCommand;

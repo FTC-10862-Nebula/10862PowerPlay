@@ -8,10 +8,10 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.commands.driveCommands.teleopCommands.DefaultDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.driveCommands.teleopCommands.SlowDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.intakeAndOutake.DropConeCommand;
-import org.firstinspires.ftc.teamcode.commands.intakeAndOutake.PickConeCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.teleopCommands.DefaultDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.teleopCommands.SlowDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.outtake.DropConeCommand;
+import org.firstinspires.ftc.teamcode.commands.intake.PickConeCommand;
 import org.firstinspires.ftc.teamcode.commands.slide.SlideMoveManual;
 import org.firstinspires.ftc.teamcode.commands.slide.slideBCommands.SlideIntakeBCommandT;
 import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideGroundFCommand;

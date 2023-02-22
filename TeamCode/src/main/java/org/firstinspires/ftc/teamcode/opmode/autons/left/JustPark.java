@@ -4,9 +4,9 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.DriveForwardCommand;
-import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.StrafeLeftCommand;
-import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.StrafeRightCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.autoCommands.DriveForwardCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.autoCommands.StrafeLeftCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.autoCommands.StrafeRightCommand;
 import org.firstinspires.ftc.teamcode.util.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
