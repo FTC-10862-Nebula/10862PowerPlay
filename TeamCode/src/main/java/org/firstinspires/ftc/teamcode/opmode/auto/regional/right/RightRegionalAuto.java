@@ -94,52 +94,52 @@ public class RightRegionalAuto extends MatchOpMode {
 
         public static Path path;
         public static class Path {
-            public static PreLoad preLoad;
+            public static PreLoad apreLoad;
             public static class PreLoad {
                 public static Pose2dContainer startPose = new Pose2dContainer(35, -65, 90);
                 public static Forward a = new Forward(36);
-                public static SplineTo b = new SplineTo(27.5, -4, 135);
+                public static SplineTo b = new SplineTo(28, -4, 134);
                 static TrajectorySequenceContainer preload = new TrajectorySequenceContainer(Speed::getBaseConstraints, a, b);
             }
 
-            public static Cycle1Pickup cycle1Pickup;
+            public static Cycle1Pickup bcycle1Pickup;
             public static class Cycle1Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(42, -10, 0);
-                public static Back c = new Back(21);
+                public static SplineTo b = new SplineTo(44.5, -9.3, 0);
+                public static Back c = new Back(16);
                 static TrajectorySequenceContainer cycle1Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
-            public static Cycle1Drop cycle1Drop;
+            public static Cycle1Drop ccycle1Drop;
             public static class Cycle1Drop {
                 public static SetReversed a = new SetReversed(true);
-                public static Forward b = new Forward(20);
-                public static SplineTo c = new SplineTo(28, -14, -135);
+                public static Forward b = new Forward(16);
+                public static SplineTo c = new SplineTo(31, -12.5, -135);
                 static TrajectorySequenceContainer cycle1Drop = new TrajectorySequenceContainer(Speed::getBaseConstraints, a, b, c);
             }
 
-            public static Cycle2Pickup cycle2Pickup;
+            public static Cycle2Pickup dcycle2Pickup;
             public static class Cycle2Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(42, -10, 0);
-                public static Back c = new Back(22);
+                public static SplineTo b = new SplineTo(45.5, -9, 0);
+                public static Back c = new Back(16);
                 static TrajectorySequenceContainer cycle2Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
-            public static Cycle2Drop cycle2Drop;
+            public static Cycle2Drop ecycle2Drop;
             public static class Cycle2Drop {
                 public static SetReversed a = new SetReversed(true);
-                public static Forward b = new Forward(20);
-                public static SplineTo c = new SplineTo(29, -15, -135);
+                public static Forward b = new Forward(16);
+                public static SplineTo c = new SplineTo(33.5, -12.5, -135);
                 static TrajectorySequenceContainer cycle2Drop = new TrajectorySequenceContainer(Speed::getBaseConstraints, a, b, c);
             }
 
-            public static Park park;
+            public static Park fpark;
             public static class Park {
                 public static double leftX = 12;
                 public static double midX = 24;
                 public static double rightX = 36;
-                public static double y = -12;
+                public static double y = -10;
                 public static double heading = -90;
                 static TrajectorySequenceContainer getPark(double x) {
                     return new TrajectorySequenceContainer(
