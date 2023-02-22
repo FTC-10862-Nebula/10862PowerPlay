@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.StrafeLeftCommand;
 import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.StrafeRightCommand;
-import org.firstinspires.ftc.teamcode.subsystems.drive.MatchOpMode;
+import org.firstinspires.ftc.teamcode.util.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;

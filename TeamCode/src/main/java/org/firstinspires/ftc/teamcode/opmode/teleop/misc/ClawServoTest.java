@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 //@Disabled
-@TeleOp
+@TeleOp(group = "Subsystem test")
 public class ClawServoTest extends OpMode {
     Servo servo2;
     double pos = OPEN_POS_S1, pos2 = CLOSE_POS_S1;

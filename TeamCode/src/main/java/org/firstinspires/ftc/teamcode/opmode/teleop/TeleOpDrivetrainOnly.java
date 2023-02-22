@@ -6,12 +6,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.commands.driveCommands.teleopCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
-import org.firstinspires.ftc.teamcode.subsystems.drive.MatchOpMode;
+import org.firstinspires.ftc.teamcode.util.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.drive.MecanumDrive;
 
 @Config
-@TeleOp
-public class DriveTeleop extends MatchOpMode {
+@TeleOp(group = "Subsystem test")
+public class TeleOpDrivetrainOnly extends MatchOpMode {
 
     // Gamepad
     private GamepadEx driverGamepad;

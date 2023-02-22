@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.TurnTo
 import org.firstinspires.ftc.teamcode.commands.intakeAndOutake.DropAutoConeCommand;
 import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.slide.SlideResetUpAutonCommand;
-import org.firstinspires.ftc.teamcode.subsystems.drive.MatchOpMode;
+import org.firstinspires.ftc.teamcode.util.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.drive.MecanumDrive;

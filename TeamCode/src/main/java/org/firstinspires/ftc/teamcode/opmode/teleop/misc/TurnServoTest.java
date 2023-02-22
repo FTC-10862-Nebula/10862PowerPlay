@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 //@Disabled
-@TeleOp
+@TeleOp(group = "Subsystem test")
 public class TurnServoTest extends OpMode {
     //hardware initialization stuff
     Servo servo;

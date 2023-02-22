@@ -1,14 +1,14 @@
 package org.firstinspires.ftc.teamcode.opmode.teleop;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.InstantCommand;
-import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
-import com.arcrobotics.ftclib.command.button.Trigger;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.GamepadTrigger;
+import org.firstinspires.ftc.teamcode.commands.driveCommands.teleopCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.driveCommands.teleopCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.intakeAndOutake.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.intakeAndOutake.PickConeCommand;
@@ -18,17 +18,54 @@ import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideGroundF
 import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideHighFCommand;
 import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideLowFCommand;
 import org.firstinspires.ftc.teamcode.commands.slide.slideFCommands.SlideMidFCommand;
+import org.firstinspires.ftc.teamcode.util.GamepadTrigger;
+import org.firstinspires.ftc.teamcode.util.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
+import org.firstinspires.ftc.teamcode.subsystems.drive.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
-public class ConfigureButton extends SequentialCommandGroup {
-    public ConfigureButton(GamepadEx driverGamepad, GamepadEx operatorGamepad, Drivetrain drivetrain, Arm arm, Slide slide, TurnServo turnServo, Claw claw) {
+@Config
+@TeleOp
+public class TeleOpMain extends MatchOpMode {
+
+    // Gamepad
+    private GamepadEx driverGamepad, operatorGamepad;
+
+
+    // Subsystems
+    private Arm arm;
+    private Claw claw;
+    private Drivetrain drivetrain;
+    private Slide slide;
+//    private SensorColor sensorColor;
+    private TurnServo turnServo;
+
+    @Override
+    public void robotInit() {
+        driverGamepad = new GamepadEx(gamepad1);
+        operatorGamepad = new GamepadEx(gamepad2);
+
+        arm = new Arm(telemetry, hardwareMap);
+        claw = new Claw(telemetry, hardwareMap);
+        turnServo = new TurnServo(telemetry, hardwareMap);
+        drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, true), telemetry, hardwareMap);
+        drivetrain.init();
+        slide = new Slide(telemetry, hardwareMap);
+    }
+
+
+    @Override
+    public void configureButtons() {
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
+
+        slide.setDefaultCommand(new SlideMoveManual(slide, operatorGamepad::getRightY));
+//        arm.setDefaultCommand();
 
         //Drive Stuff - D1
-        Button reinializeIMUButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
+        Button recenterIMUButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
                 .whenPressed(new InstantCommand(drivetrain::reInitializeIMU));
 
         //Slowmode - D1
@@ -80,5 +117,16 @@ public class ConfigureButton extends SequentialCommandGroup {
                 .whenPressed(arm::encoderReset);
         Button slideEncoderResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
                 .whenPressed(slide::encoderReset);
+    }
+
+    @Override
+    public void matchLoop() {
+    }
+    @Override
+    public void disabledPeriodic() { }
+    @Override
+    public void matchStart() { }
+    @Override
+    public void robotPeriodic(){
     }
 }

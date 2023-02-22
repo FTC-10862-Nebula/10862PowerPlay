@@ -6,15 +6,14 @@ import com.arcrobotics.ftclib.command.button.Button;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.subsystems.drive.MatchOpMode;
+import org.firstinspires.ftc.teamcode.util.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 //@Disabled
 @Config
-@TeleOp
-public class ArmTeleop extends MatchOpMode {
+@TeleOp(group = "Subsystem test")
+public class TeleOpArmOnly extends MatchOpMode {
     // Gamepad
     private GamepadEx operatorGamepad;
     // Subsystems

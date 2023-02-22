@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.opmode.autons.misc.vision;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-import org.firstinspires.ftc.teamcode.subsystems.drive.MatchOpMode;
+import org.firstinspires.ftc.teamcode.util.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.misc.JunctionVision;
 import org.firstinspires.ftc.teamcode.subsystems.misc.TagVision;
 @Disabled

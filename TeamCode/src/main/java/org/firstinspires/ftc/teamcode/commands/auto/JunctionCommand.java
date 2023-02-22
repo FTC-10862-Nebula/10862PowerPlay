@@ -6,7 +6,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.commands.driveCommands.autoCommands.TurnCommand;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
-import org.firstinspires.ftc.teamcode.pipelines.TeamMarkerPipeline;
+import org.firstinspires.ftc.teamcode.subsystems.pipelines.TeamMarkerPipeline;
 import org.firstinspires.ftc.teamcode.subsystems.misc.JunctionVision;
 
 import java.util.HashMap;
