@@ -8,6 +8,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.commands.arm.ArmMoveManual;
 import org.firstinspires.ftc.teamcode.commands.drive.teleopCommands.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.teleopCommands.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.outtake.DropConeCommand;
@@ -40,7 +41,6 @@ public class TeleOpMain extends MatchOpMode {
     private Claw claw;
     private Drivetrain drivetrain;
     private Slide slide;
-//    private SensorColor sensorColor;
     private TurnServo turnServo;
 
     @Override
@@ -59,62 +59,53 @@ public class TeleOpMain extends MatchOpMode {
 
     @Override
     public void configureButtons() {
-        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
+        /*
+         *  DRIVER
+         */
+        drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, true));
 
-        slide.setDefaultCommand(new SlideMoveManual(slide, operatorGamepad::getRightY));
-//        arm.setDefaultCommand();
-
-        //Drive Stuff - D1
-        Button recenterIMUButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
+        Button recenterIMU = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
                 .whenPressed(new InstantCommand(drivetrain::reInitializeIMU));
 
-        //Slowmode - D1
-        Button slowModeBumper = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
+        Button slowMode = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
                 .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
-        /****************/
+        /*
+         * OPERATOR
+         */
 
+        slide.setDefaultCommand(new SlideMoveManual(slide, operatorGamepad::getRightY));
 
+        arm.setDefaultCommand(new ArmMoveManual(arm, operatorGamepad::getLeftY));
 
-        Button intakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
+        Button intake = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
                 .whenPressed(new PickConeCommand(claw, slide, arm));
-        Button outtakeD2Trigger = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
+
+        Button outtake = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
                 .whenPressed(new DropConeCommand(claw, slide, arm));
 
-        //Slide positions - D2
-        Button groundBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
+        Button slideGround = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
                 .whenPressed(new SlideGroundFCommand(slide, arm, claw, turnServo, false)));
-        Button lowBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
+
+        Button slideLow = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
                 .whenPressed(new SlideLowFCommand(slide, arm, claw, turnServo, false)));
-        Button midBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
+
+        Button slideMid = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
                 .whenPressed(new SlideMidFCommand(slide, arm, claw, turnServo, false)));
-        Button highBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
+
+        Button slideHigh = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
                 .whenPressed(new SlideHighFCommand(slide, arm, claw, turnServo, false)));
 
-        Button resetBSlideButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
+        Button slideReset = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
                 .whenPressed(new SlideIntakeBCommandT(slide, arm, claw, turnServo)));
-        Button resetArmUp = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
+
+        Button armReset = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
                 .whenPressed(arm::moveReset));
-
-        //Slide Manual - D2
-        Button slideUpButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT))
-                .whileHeld(slide::upSlideManual)
-                .whenReleased(slide::stopSlide);
-        Button slideDownButton = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_LEFT))
-                .whileHeld(slide::downSlideManual)
-                .whenReleased(slide::stopSlide);
-
-        //Arm Manual - D2
-        Button armRaiseButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                .whileHeld(arm::raiseClawManual)
-                .whenReleased(arm::stopArm);
-        Button armLowerButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.LEFT_BUMPER))
-                .whileHeld(arm::lowerClawManual)
-                .whenReleased(arm::stopArm);
 
 //            PIDF Controllers Resets
         Button armMotorResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
                 .whenPressed(arm::encoderReset);
+
         Button slideEncoderResetButton = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
                 .whenPressed(slide::encoderReset);
     }

@@ -339,7 +339,10 @@ public class  Arm extends SubsystemBase {
 //        return Range.scale(potentiometer.getVoltage(), 0, potentiometer.getMaxVoltage(), 0, 270);
 //    }
 
-    public void setArm(int point){
+    public void setPosition(double point){
         controller.setSetPoint(point);
+    }
+    public double getPosition(){
+        return controller.getSetPoint();
     }
 }
