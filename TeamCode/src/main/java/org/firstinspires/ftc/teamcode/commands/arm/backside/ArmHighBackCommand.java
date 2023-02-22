@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
-public class SlideHighBackCommand extends SequentialCommandGroup {
-    public SlideHighBackCommand(Slide slide, Pivot pivot, Claw claw, TurnServo turnServo, boolean auto){
+public class ArmHighBackCommand extends SequentialCommandGroup {
+    public ArmHighBackCommand(Slide slide, Pivot pivot, Claw claw, TurnServo turnServo, boolean auto){
         if (auto){
             addCommands(
                     new ParallelCommandGroup(

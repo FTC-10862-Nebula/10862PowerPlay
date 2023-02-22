@@ -9,8 +9,8 @@ import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
-public class SlideIntakeBackCommand extends SequentialCommandGroup {
-    public SlideIntakeBackCommand(Slide slide, Pivot pivot, Claw claw, TurnServo turnServo){
+public class ArmIntakeBackCommand extends SequentialCommandGroup {
+    public ArmIntakeBackCommand(Slide slide, Pivot pivot, Claw claw, TurnServo turnServo){
         addCommands(
                 new InstantCommand(turnServo::setBClawPos),
 

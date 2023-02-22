@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.commands.drive.teleop.SlowDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.outtake.DropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.intake.PickConeCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.slide.SlideMoveManual;
-import org.firstinspires.ftc.teamcode.commands.arm.backside.SlideIntakeBackCommand;
+import org.firstinspires.ftc.teamcode.commands.arm.backside.ArmIntakeBackCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.frontside.ArmGroundFrontCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.frontside.ArmHighFrontCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.frontside.ArmLowFrontCommand;
@@ -98,7 +98,7 @@ public class TeleOpMain extends MatchOpMode {
                 .whenPressed(new ArmHighFrontCommand(slide, pivot, claw, turnServo, false)));
 
         Button armIntakeBack = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
-                .whenPressed(new SlideIntakeBackCommand(slide, pivot, claw, turnServo)));
+                .whenPressed(new ArmIntakeBackCommand(slide, pivot, claw, turnServo)));
 
         Button pivotInitializationPosition = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
                 .whenPressed(pivot::moveInitializationPosition));
