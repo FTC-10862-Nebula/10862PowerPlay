@@ -13,8 +13,8 @@ import org.firstinspires.ftc.teamcode.commands.arm.outtake.AutoDropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.backside.auto.cone.ArmCone3BackCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.backside.auto.cone.ArmCone4BackCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.frontside.old.auto.ArmCone5FrontCommand;
-import org.firstinspires.ftc.teamcode.commands.arm.backside.SlideHighBackCommand;
-import org.firstinspires.ftc.teamcode.commands.arm.backside.SlideMidBackCommand;
+import org.firstinspires.ftc.teamcode.commands.arm.backside.ArmHighBackCommand;
+import org.firstinspires.ftc.teamcode.commands.arm.backside.ArmMidBackCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Pivot;
@@ -28,7 +28,7 @@ public class LeftHighJunctionCommand extends SequentialCommandGroup{
         /*Turn is Counterclockwise*/
         addCommands(
                 new ParallelCommandGroup(
-                        new SlideMidBackCommand(slide, pivot, claw, turnServo, true),
+                        new ArmMidBackCommand(slide, pivot, claw, turnServo, true),
                         new StrafeRightCommand(drivetrain, 51.9)
                 ),
                 new AutoDropConeCommand(claw, slide, pivot,true),
@@ -43,7 +43,7 @@ public class LeftHighJunctionCommand extends SequentialCommandGroup{
                 /***Cone 5***/
                 new AutoPickConeCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideHighBackCommand(slide, pivot, claw, turnServo, true),
+                        new ArmHighBackCommand(slide, pivot, claw, turnServo, true),
                         new DriveForwardCommand(drivetrain, 29)
                 ),
                 new SequentialCommandGroup(
@@ -63,7 +63,7 @@ public class LeftHighJunctionCommand extends SequentialCommandGroup{
                 /***Cone 4***/
                 new AutoPickConeCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideHighBackCommand(slide, pivot, claw, turnServo, true),
+                        new ArmHighBackCommand(slide, pivot, claw, turnServo, true),
                         new DriveForwardCommand(drivetrain, -30)
                 ),
                 new SequentialCommandGroup(
@@ -83,7 +83,7 @@ public class LeftHighJunctionCommand extends SequentialCommandGroup{
                 /***Cone 3***/
                 new AutoPickConeCommand(slide, claw),
                 new ParallelCommandGroup(
-                        new SlideHighBackCommand(slide, pivot, claw, turnServo, true),
+                        new ArmHighBackCommand(slide, pivot, claw, turnServo, true),
                         new DriveForwardCommand(drivetrain, -28.8)
                 ),
                 new TurnCommand(drivetrain, -46.5),//oprg:300 to -60
