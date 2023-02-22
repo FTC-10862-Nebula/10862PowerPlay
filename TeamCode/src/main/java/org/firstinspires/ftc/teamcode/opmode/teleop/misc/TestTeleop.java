@@ -5,12 +5,12 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.commands.drive.teleopCommands.DefaultArmCommand;
-import org.firstinspires.ftc.teamcode.commands.drive.teleopCommands.DefaultDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.teleop.DefaultArmCommand;
+import org.firstinspires.ftc.teamcode.commands.drive.teleop.DefaultDriveCommand;
+import org.firstinspires.ftc.teamcode.subsystems.Pivot;
 import org.firstinspires.ftc.teamcode.util.MatchOpMode;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.drive.MecanumDrive;
-import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 @Disabled
@@ -23,7 +23,7 @@ public class TestTeleop extends MatchOpMode {
 
 
     // Subsystems
-    private Arm arm;
+    private Pivot pivot;
     private Claw claw;
     private Drivetrain drivetrain;
     private Slide slide;
@@ -36,7 +36,7 @@ public class TestTeleop extends MatchOpMode {
         driverGamepad = new GamepadEx(gamepad1);
         operatorGamepad = new GamepadEx(gamepad2);
 
-        arm = new Arm(telemetry, hardwareMap);
+        pivot = new Pivot(telemetry, hardwareMap);
         claw = new Claw(telemetry, hardwareMap);
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, false), telemetry, hardwareMap);
         drivetrain.init();
@@ -46,7 +46,7 @@ public class TestTeleop extends MatchOpMode {
 //        drivetrain.setPoseEstimate(new Pose2d(startPoseX, startPoseY, Math.toRadians(startPoseHeading)));
 //        drivetrain.setPoseEstimate(PoseStorage.currentPose);
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, false));
-        arm.setDefaultCommand(new DefaultArmCommand(arm, operatorGamepad));
+        pivot.setDefaultCommand(new DefaultArmCommand(pivot, operatorGamepad));
     }
 
 

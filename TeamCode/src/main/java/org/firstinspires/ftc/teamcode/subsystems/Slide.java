@@ -4,7 +4,6 @@ import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import com.arcrobotics.ftclib.hardware.motors.MotorEx;
-import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
@@ -182,7 +181,7 @@ public class  Slide extends SubsystemBase {
         liftPos = LiftPos.REST;
     }
 
-    public void encoderReset() {
+    public void encoderRecenter() {
         slideM1.resetEncoder();
         slideM2.resetEncoder();
         telemetry.addLine("SLIDE RESET");
