@@ -88,19 +88,19 @@ public class TeleOpMain extends MatchOpMode {
         Button armGroundFront = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
                 .whenPressed(new ArmGroundFrontCommand(slide, pivot, claw, turnServo, false)));
 
-        Button armLowFront = (new GamepadButton(operatorGamepad, GamepadKeys.Button.Y)
+        Button armLowFront = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
                 .whenPressed(new ArmLowFrontCommand(slide, pivot, claw, turnServo, false)));
 
-        Button armMidFront = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B)
+        Button armMidFront = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_RIGHT)
                 .whenPressed(new ArmMidFrontCommand(slide, pivot, claw, turnServo, false)));
 
-        Button armHighFront = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
+        Button armHighFront = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
                 .whenPressed(new ArmHighFrontCommand(slide, pivot, claw, turnServo, false)));
 
         Button armIntakeBack = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_DOWN)
                 .whenPressed(new ArmIntakeBackCommand(slide, pivot, claw, turnServo)));
 
-        Button pivotInitializationPosition = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_UP)
+        Button pivotInitializationPosition = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
                 .whenPressed(pivot::moveInitializationPosition));
 
         Button slideRecenter = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
