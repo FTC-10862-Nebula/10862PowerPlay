@@ -15,6 +15,7 @@ public class ArmMidBackCommand extends SequentialCommandGroup {
         if (auto){
             addCommands(
                     new ParallelCommandGroup(
+                            new WaitCommand(200),
                             new InstantCommand(() ->
                                     new Thread(() -> {
                                         claw.clawClose();

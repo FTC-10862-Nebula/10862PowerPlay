@@ -15,6 +15,7 @@ public class ArmMidFrontCommand extends SequentialCommandGroup {
     public ArmMidFrontCommand(Slide slide, Pivot pivot, Claw claw, TurnServo turnServo, boolean auto) {
         if (auto){
             addCommands(
+                    new WaitCommand(200),
                     new ParallelCommandGroup(
                             new InstantCommand(() ->
                                     new Thread(() -> {
