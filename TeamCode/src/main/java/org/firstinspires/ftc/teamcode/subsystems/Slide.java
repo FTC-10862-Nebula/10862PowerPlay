@@ -32,7 +32,7 @@ public class  Slide extends SubsystemBase {
     private final double encoderOffset2 = 0;
 
     //REMEMBER THAT IF ENCODER POSITIONS GET SWITCHED, SWITCH THE DROP SLIDE VALUES TOO
-    public static int RESTING_POS = -5;
+    public static int RESTING_POS = -15;
     public static int GROUND_POS = 30;
     public static int LOW_POS = 315;
     public static int MID_POS = 735;
@@ -266,12 +266,12 @@ public class  Slide extends SubsystemBase {
         upController.setSetPoint(AUTO_MID_POS);
         liftPos = LiftPos.AUTO_MID;
     }
-    public void slideConeStack() {
-        slideAutomatic = true;
-        lowBool = false;
-        upController.setSetPoint(CONE_STACK_POS);
-        liftPos = LiftPos.CONE_STACK;
-    }
+//    public void slideConeStack() {
+//        slideAutomatic = true;
+//        lowBool = false;
+//        upController.setSetPoint(CONE_STACK_POS);
+//        liftPos = LiftPos.CONE_STACK;
+//    }
     public void slideAutoHigh() {
         slideAutomatic = true;
         lowBool = false;
