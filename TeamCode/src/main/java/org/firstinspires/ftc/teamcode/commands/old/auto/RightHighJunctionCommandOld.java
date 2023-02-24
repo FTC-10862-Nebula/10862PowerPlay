@@ -24,7 +24,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
-
+@Deprecated
 public class RightHighJunctionCommandOld extends SequentialCommandGroup{
     public RightHighJunctionCommandOld(Drivetrain drivetrain, Slide slide, Pivot pivot, Claw claw, TurnServo turnServo){
         /*

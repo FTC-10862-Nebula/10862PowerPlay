@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
-
+@Deprecated
 public class RightSpline extends SequentialCommandGroup{
     public RightSpline(Drivetrain drivetrain, Slide slide, Pivot pivot, Claw claw, TurnServo turnServo){
         /*Turn is Counterclockwise*/

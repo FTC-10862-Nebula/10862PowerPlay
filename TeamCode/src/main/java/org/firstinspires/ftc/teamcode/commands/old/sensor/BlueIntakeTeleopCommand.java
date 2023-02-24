@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Pivot;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
-
+@Deprecated
 public class BlueIntakeTeleopCommand extends SequentialCommandGroup {
 
     public BlueIntakeTeleopCommand(Slide slide, Claw claw, SensorColor sensorColor, Pivot pivot) {

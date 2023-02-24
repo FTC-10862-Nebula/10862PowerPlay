@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Pivot;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
-
+@Deprecated
 public class LeftHighAutonCommandSidewaysJUnctions extends SequentialCommandGroup{
     public LeftHighAutonCommandSidewaysJUnctions(Drivetrain drivetrain, Slide slide, Pivot pivot, Claw claw){
         addCommands(    //Turn is Counterclockwise

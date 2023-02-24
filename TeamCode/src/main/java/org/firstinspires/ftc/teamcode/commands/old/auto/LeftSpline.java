@@ -22,7 +22,7 @@ import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 import org.firstinspires.ftc.teamcode.util.LeftSplineValues;
 import org.firstinspires.ftc.teamcode.util.PoseStorage;
 
-
+@Deprecated
 public class LeftSpline extends SequentialCommandGroup{
     public LeftSpline(Drivetrain drivetrain, Slide slide, Pivot pivot, Claw claw, TurnServo turnServo){
         /*Turn is Counterclockwise*/

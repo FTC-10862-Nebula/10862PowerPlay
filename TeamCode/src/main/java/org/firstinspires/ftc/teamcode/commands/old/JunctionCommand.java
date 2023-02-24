@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.subsystems.pipelines.TeamMarkerPipeline;
 import org.firstinspires.ftc.teamcode.subsystems.misc.JunctionVision;
 
 import java.util.HashMap;
-
+@Deprecated
 public class JunctionCommand extends SequentialCommandGroup {
     public  JunctionCommand (JunctionVision junctionVision, Drivetrain drivetrain){
         addCommands(

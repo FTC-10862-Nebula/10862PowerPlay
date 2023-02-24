@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
-
+@Deprecated
 public class LeftHigh2AutonCommandSideways extends SequentialCommandGroup{
     public LeftHigh2AutonCommandSideways(Drivetrain drivetrain, Slide slide, Pivot pivot, Claw claw, TurnServo turnServo){
         addCommands(    //Turn is Counterclockwise

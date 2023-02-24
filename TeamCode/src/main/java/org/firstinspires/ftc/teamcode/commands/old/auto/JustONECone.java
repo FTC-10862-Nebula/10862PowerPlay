@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.subsystems.SensorColor;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
-
+@Deprecated
 public class JustONECone extends SequentialCommandGroup{
     public JustONECone(Drivetrain drivetrain, Slide slide, Pivot pivot, Claw claw, TurnServo turnServo, SensorColor sensorColor){
         /*Turn is Counterclockwise*/
