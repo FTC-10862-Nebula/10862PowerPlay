@@ -15,7 +15,7 @@ public class ArmIntakeBackCommand extends SequentialCommandGroup {
                 new InstantCommand(turnServo::setBClawPos),
 
                 new InstantCommand(claw::clawClose),
-                new InstantCommand(pivot::moveIntakeB),
+                new InstantCommand(pivot::moveInitializationPosition),
 
                 new WaitCommand(500),
 
