@@ -55,6 +55,8 @@ public class TeleOpMain extends MatchOpMode {
         drivetrain = new Drivetrain(new MecanumDrive(hardwareMap, telemetry, true), telemetry, hardwareMap);
         drivetrain.init();
         slide = new Slide(telemetry, hardwareMap);
+//        pivot.resetOffset();
+        pivot.moveInitializationPosition();
     }
 
 
@@ -65,11 +67,11 @@ public class TeleOpMain extends MatchOpMode {
          */
         drivetrain.setDefaultCommand(new DefaultDriveCommand(drivetrain, driverGamepad, true));
 
-        Button recenterIMU = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
+        Button recenterIMU = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
                 .whenPressed(new InstantCommand(drivetrain::reInitializeIMU));
-
-        Button slowMode = (new GamepadButton(driverGamepad, GamepadKeys.Button.RIGHT_BUMPER))
-                .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
+//
+//        Button slowMode = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER))
+//                .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
 
         /*
          * OPERATOR
