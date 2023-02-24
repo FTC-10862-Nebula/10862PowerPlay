@@ -308,11 +308,16 @@ public class RightRegionalAuto extends MatchOpMode {
                         /* Park */
                         new ParallelCommandGroup(
                                 new TrajectorySequenceContainerFollowCommand(drivetrain, RightRegionalAutoConstants.Path.Park.getPark(finalX)),
-                                new SlideResetUpAutonCommand(slide, pivot, claw, turnServo)
+                                new SequentialCommandGroup(
+                                        new SlideResetUpAutonCommand(slide, pivot, claw, turnServo),
+                                        new WaitCommand(200),
+                                        run(pivot::stopArm)
+                                )
                         ),
+                        run(() -> PoseStorage.currentPose = drivetrain.getPoseEstimate()),
 
                         /* Save Pose and end opmode*/
-                        run(() -> PoseStorage.currentPose = drivetrain.getPoseEstimate()),
+
                         run(this::stop)
                 )
         );

@@ -21,7 +21,9 @@ public class SlideResetUpAutonCommand extends SequentialCommandGroup{
                             slide.slideResting();
                             turnServo.setFClawPos();
                         }).start()
-                )
+                ),
+                new WaitCommand(200),
+                new InstantCommand(pivot::stopArm)
         );
     }
 }
