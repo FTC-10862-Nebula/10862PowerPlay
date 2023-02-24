@@ -23,6 +23,7 @@ package org.firstinspires.ftc.teamcode.opmode.auto.old.left;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.commands.old.auto.LeftSpline;
 import org.firstinspires.ftc.teamcode.util.MatchOpMode;
@@ -35,7 +36,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 
-//@Disabled
+@Disabled
 @Autonomous
 public class LeftSplineAuto extends MatchOpMode
 {
