@@ -18,7 +18,7 @@ public class PivotMoveManual extends CommandBase {
     public void execute() {
         double position = doubleSupplier.get();
         if (Math.abs(position) > 0.1) {
-            pivot.setPosition(pivot.getPosition() + position * -3);
+            pivot.setPosition(pivot.getPosition() + position * 12);
         }
     }
 }
