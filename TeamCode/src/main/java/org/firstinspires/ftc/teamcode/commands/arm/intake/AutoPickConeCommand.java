@@ -13,7 +13,7 @@ public class AutoPickConeCommand extends SequentialCommandGroup  {
                 new InstantCommand(claw::clawClose),
 //                new InstantCommand(claw::clawAutoClose),
                 new WaitCommand(600),
-                new InstantCommand(slide:: slideLow)
+                new InstantCommand(slide::slideLow)
         );
     }
 }
