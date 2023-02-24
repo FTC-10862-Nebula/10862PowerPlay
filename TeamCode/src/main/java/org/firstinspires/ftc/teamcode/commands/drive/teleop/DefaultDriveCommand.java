@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.commands.drive.teleop;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 
@@ -25,6 +26,11 @@ public class DefaultDriveCommand extends CommandBase {
 
     @Override
     public void execute() {
+        if(driverGamepad.getButton(GamepadKeys.Button.LEFT_BUMPER)) {
+            multiplier = 0.3;
+        } else {
+            multiplier = 1;
+        }
         if(isFieldCentric) {
             drive.fieldCentric(
                     driverGamepad.getLeftY() * multiplier,
