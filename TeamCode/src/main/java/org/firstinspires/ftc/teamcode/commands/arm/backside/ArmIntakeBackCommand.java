@@ -20,7 +20,10 @@ public class ArmIntakeBackCommand extends SequentialCommandGroup {
                 new WaitCommand(500),
 
                 new InstantCommand(claw::clawOpen),
-                new InstantCommand(slide::slideResting)
+                new InstantCommand(slide::slideResting),
+
+                new WaitCommand(700),
+                new InstantCommand(pivot::encoderReset)
 
         );
     }
