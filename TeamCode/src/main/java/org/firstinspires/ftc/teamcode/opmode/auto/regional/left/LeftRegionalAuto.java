@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmode.auto.regional.right;
+package org.firstinspires.ftc.teamcode.opmode.auto.regional.left;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
@@ -96,7 +96,6 @@ public class LeftRegionalAuto extends MatchOpMode {
                             } else {
                                 return baseVel;
                             }
-
                         },
                         (s, a, b, c) -> baseAccel,
                         turnVel,
