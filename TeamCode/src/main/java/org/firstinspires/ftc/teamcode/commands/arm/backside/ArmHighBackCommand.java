@@ -13,14 +13,10 @@ import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 public class ArmHighBackCommand extends SequentialCommandGroup {
     public ArmHighBackCommand(Slide slide, Pivot pivot, Claw claw, TurnServo turnServo, boolean auto){
         if (auto){
-            addCommands(
+            addCommands(new InstantCommand(claw::clawClose),
                     new ParallelCommandGroup(
-                            new InstantCommand(() ->
-                                    new Thread(() -> {
-                                        claw.clawClose();
-                                        slide.slideHigh();
-                                        pivot.moveHighBAuto();
-                                    }).start())
+                            new InstantCommand(slide::slideHigh),
+                            new InstantCommand(pivot::moveBAuto)
                     ),
                     new WaitCommand(200),
                     new InstantCommand(turnServo::setBClawPos)

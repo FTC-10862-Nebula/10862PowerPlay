@@ -76,7 +76,7 @@ public class RightRegionalAuto extends MatchOpMode {
             static TrajectorySequenceConstraints getDropConstraints() {
                 return new TrajectorySequenceConstraints(
                         (s, a, b, c) -> {
-                            if (s > 24) {
+                            if (s > 22) {
                                 return baseVel * 0.5;
                             } else {
                                 return baseVel;
@@ -134,8 +134,8 @@ public class RightRegionalAuto extends MatchOpMode {
             public static Cycle1Pickup bcycle1Pickup;
             public static class Cycle1Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(47, -8.65, 0);
-                public static Back c = new Back(16);
+                public static SplineTo b = new SplineTo(47, -8.9, 0);
+                public static Back c = new Back(14.2);
                 static TrajectorySequenceContainer cycle1Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -150,8 +150,8 @@ public class RightRegionalAuto extends MatchOpMode {
             public static Cycle2Pickup dcycle2Pickup;
             public static class Cycle2Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(49.5, -8.8, 0);
-                public static Back c = new Back(15.5);
+                public static SplineTo b = new SplineTo(49.5, -9.2, 0);
+                public static Back c = new Back(14.2);
                 static TrajectorySequenceContainer cycle2Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -159,15 +159,15 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle2Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(16);
-                public static SplineTo c = new SplineTo(34.8, -13.9, -135);
+                public static SplineTo c = new SplineTo(34.6, -14, -135);
                 static TrajectorySequenceContainer cycle2Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 
             public static Cycle3Pickup fcycle3Pickup;
             public static class Cycle3Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(51, -8.8, 0);
-                public static Back c = new Back(15.5);
+                public static SplineTo b = new SplineTo(51, -9.1, 0);
+                public static Back c = new Back(14.2);
                 static TrajectorySequenceContainer cycle3Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -175,15 +175,15 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle3Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(16);
-                public static SplineTo c = new SplineTo(35.9, -14.1, -135);
+                public static SplineTo c = new SplineTo(35.9, -14.5, -135);
                 static TrajectorySequenceContainer cycle3Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 
             public static Cycle4Pickup hcycle4Pickup;
             public static class Cycle4Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(53.6, -8.3, 0);
-                public static Back c = new Back(15);
+                public static SplineTo b = new SplineTo(53.6, -8.6, 0);
+                public static Back c = new Back(14.3);
                 static TrajectorySequenceContainer cycle4Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 

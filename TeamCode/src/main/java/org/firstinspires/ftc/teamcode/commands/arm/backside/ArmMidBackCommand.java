@@ -14,14 +14,11 @@ public class ArmMidBackCommand extends SequentialCommandGroup {
     public ArmMidBackCommand(Slide slide, Pivot pivot, Claw claw, TurnServo turnServo, boolean auto) {
         if (auto){
             addCommands(
+
+                    new InstantCommand(claw::clawClose),
                     new ParallelCommandGroup(
-                            new WaitCommand(200),
-                            new InstantCommand(() ->
-                                    new Thread(() -> {
-                                        claw.clawClose();
-                                        slide.slideMid();
-                                        pivot.moveBAuto();
-                                    }).start())
+                            new InstantCommand(slide::slideMid),
+                            new InstantCommand(pivot::moveBAuto)
                     ),
                     new WaitCommand(200),
                     new InstantCommand(turnServo::setBClawPos)

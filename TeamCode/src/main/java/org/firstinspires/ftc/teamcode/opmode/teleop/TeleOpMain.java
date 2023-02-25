@@ -108,8 +108,8 @@ public class TeleOpMain extends MatchOpMode {
         Button slideRecenter = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
                 .whenPressed(slide::encoderRecenter);
 
-        Button pivotRecenter = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
-                .whenPressed(pivot::encoderReset);
+//        Button pivotRecenter = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))
+//                .whenPressed(pivot::encoderReset);
     }
 
     @Override

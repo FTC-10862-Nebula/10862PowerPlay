@@ -16,13 +16,10 @@ public class ArmMidFrontCommand extends SequentialCommandGroup {
         if (auto){
             addCommands(
                     new WaitCommand(200),
+                    new InstantCommand(claw::clawClose),
                     new ParallelCommandGroup(
-                            new InstantCommand(() ->
-                                    new Thread(() -> {
-                                        claw.clawClose();
-                                        slide.slideAutoMid();
-                                        pivot.moveFAuto();
-                                    }).start())
+                            new InstantCommand(slide::slideAutoMid),
+                            new InstantCommand(pivot::moveFAuto)
                     ),
                     new WaitCommand(250),
                     new InstantCommand(turnServo::setFClawPos)
@@ -32,12 +29,9 @@ public class ArmMidFrontCommand extends SequentialCommandGroup {
         else {
             addCommands(
                     new ParallelCommandGroup(
-                            new InstantCommand(() ->
-                                    new Thread(() -> {
-                                        claw.clawClose();
-                                        slide.slideMid();
-                                        pivot.moveF();
-                                    }).start())
+                            new InstantCommand(claw::clawClose),
+                            new InstantCommand(slide::slideMid),
+                            new InstantCommand(pivot::moveFAuto)
                     ),
                     new WaitCommand(800),
                     new InstantCommand(turnServo::setFClawPos)

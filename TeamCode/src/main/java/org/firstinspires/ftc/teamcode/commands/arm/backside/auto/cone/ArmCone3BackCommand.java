@@ -25,7 +25,7 @@ public class ArmCone3BackCommand extends SequentialCommandGroup   {
                         new InstantCommand(slide::slideCone3),
                         new InstantCommand(turnServo::setBClawPos)
                 ),
-                new WaitCommand(150),
+                new WaitCommand(210),
                 new InstantCommand(claw::clawOpen)
         );
     }

@@ -14,13 +14,10 @@ public class ArmLowBackCommand extends SequentialCommandGroup {
     public ArmLowBackCommand(Slide slide, Pivot pivot, Claw claw, TurnServo turnServo, boolean auto) {
         if (auto){
             addCommands(
+                    new InstantCommand(claw::clawClose),
                     new ParallelCommandGroup(
-                            new InstantCommand(() ->
-                                    new Thread(() -> {
-                                        claw.clawClose();
-                                        slide.slideLow();
-                                        pivot.moveBAuto();
-                                    }).start())
+                            new InstantCommand(slide::slideLow),
+                            new InstantCommand(pivot::moveBAuto)
                     ),
                     new WaitCommand(200),
                     new InstantCommand(turnServo::setBClawPos)

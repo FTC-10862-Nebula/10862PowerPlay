@@ -133,8 +133,8 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static Cycle1Pickup bcycle1Pickup;
             public static class Cycle1Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(-47, -8.65, 180);
-                public static Back c = new Back(16);
+                public static Back b = new Back(16);
+                public static SplineTo c = new SplineTo(-47, -8.65, 180);
                 static TrajectorySequenceContainer cycle1Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -149,8 +149,8 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static Cycle2Pickup dcycle2Pickup;
             public static class Cycle2Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(-49.5, -8.8, 180);
-                public static Back c = new Back(15.5);
+                public static Back b = new Back(15.5);
+                public static SplineTo c = new SplineTo(-49.5, -8.8, 180);
                 static TrajectorySequenceContainer cycle2Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -165,8 +165,8 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static Cycle3Pickup fcycle3Pickup;
             public static class Cycle3Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(-51, -8.8, 180);
-                public static Back c = new Back(15.5);
+                public static Back b = new Back(15.5);
+                public static SplineTo c = new SplineTo(-51, -8.8, 180);
                 static TrajectorySequenceContainer cycle3Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -181,16 +181,22 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static Cycle4Pickup hcycle4Pickup;
             public static class Cycle4Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(-53.6, -8.3, 180);
-                public static Back c = new Back(15);
+                public static Back b = new Back(15);
+                public static SplineTo c = new SplineTo(-53.6, -8.3, 180);
+
                 static TrajectorySequenceContainer cycle4Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
             public static Cycle4Drop icycle4Drop;
             public static class Cycle4Drop {
+//                public static SetReversed a = new SetReversed(true);
+//                public static Forward b = new Forward(16);
+//                public static SplineTo c = new SplineTo(-36.25, -14.1, -45);
+//                static TrajectorySequenceContainer cycle4Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
+
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(16);
-                public static SplineTo c = new SplineTo(-36.25, -14.1, -45);
+                public static SplineTo c = new SplineTo(-47, -8.65, 180);
                 static TrajectorySequenceContainer cycle4Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 

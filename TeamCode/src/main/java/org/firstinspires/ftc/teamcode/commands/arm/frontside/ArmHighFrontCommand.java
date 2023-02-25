@@ -14,13 +14,10 @@ public class ArmHighFrontCommand extends SequentialCommandGroup {
     public ArmHighFrontCommand(Slide slide, Pivot pivot, Claw claw, TurnServo turnServo, boolean auto){
         if (auto){
             addCommands(
+                    new InstantCommand(claw::clawClose),
                     new ParallelCommandGroup(
-                            new InstantCommand(() ->
-                                    new Thread(() -> {
-                                        claw.clawClose();
-                                        slide.slideAutoHigh();
-                                        pivot.moveHighFAuto();
-                                    }).start())
+                            new InstantCommand(slide::slideAutoHigh),
+                            new InstantCommand(pivot::moveFAuto)
                     ),
                     new WaitCommand(250),
                     new InstantCommand(turnServo::setFClawPos)

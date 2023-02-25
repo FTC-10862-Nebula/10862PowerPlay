@@ -15,15 +15,6 @@ public class ArmIntakeFrontCommand extends SequentialCommandGroup {
         addRequirements(pivot);
         addCommands(
                 new InstantCommand(turnServo::setFClawPos),
-                new ParallelCommandGroup(
-                        new InstantCommand(
-                            () -> new Thread(() -> {
-                                claw.clawClose();
-                                pivot.moveIntakeF();
-                                slide.slideResting();
-                        }).start()
-                    )
-                ),
                 new WaitCommand(800),
                 new InstantCommand(claw::clawOpen)
         );

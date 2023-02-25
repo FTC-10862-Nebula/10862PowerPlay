@@ -14,13 +14,10 @@ public class ArmGroundBackCommand extends SequentialCommandGroup {
     public ArmGroundBackCommand(Slide slide, Pivot pivot, Claw claw, TurnServo turnServo, boolean auto) {
         if (auto){
             addCommands(
+                    new InstantCommand(claw::clawClose),
                     new ParallelCommandGroup(
-                            new InstantCommand(() ->
-                                    new Thread(() -> {
-                                        claw.clawClose();
-                                        slide.slideGround();
-                                        pivot.moveBAuto();
-                                    }).start())
+                            new InstantCommand(slide::slideGround),
+                            new InstantCommand(pivot::moveBAuto)
                     ),
                     new WaitCommand(200),
                     new InstantCommand(turnServo::setBClawPos)
