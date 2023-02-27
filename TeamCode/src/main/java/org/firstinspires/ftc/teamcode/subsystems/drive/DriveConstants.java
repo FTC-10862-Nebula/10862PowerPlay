@@ -92,8 +92,8 @@ public class DriveConstants {
      * You are free to raise this on your own if you would like. It is best determined through experimentation.
 
      */
-    public static double MAX_VEL = 40;  //57-54
-    public static double MAX_ACCEL = 40;    //57-54
+    public static double MAX_VEL = 32;  //57-54
+    public static double MAX_ACCEL = 32;    //57-54
     public static double MAX_ANG_VEL = Math.toRadians(300.704976);  //According to guide make 180 deg - 300.704976 // were did this 300 number come from? can it really turn that fast?
     public static double MAX_ANG_ACCEL = Math.toRadians(300.704976);  //According to guide make 180 deg - 300.704976
 
