@@ -69,6 +69,9 @@ public class TeleOpMain extends MatchOpMode {
 
         Button recenterIMU = (new GamepadButton(driverGamepad, GamepadKeys.Button.A))
                 .whenPressed(new InstantCommand(drivetrain::reInitializeIMU));
+
+        Button recenterIMU2 = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
+                .whenPressed(new InstantCommand(drivetrain::reInitializeIMU));
 //
 //        Button slowMode = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER))
 //                .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
@@ -87,8 +90,8 @@ public class TeleOpMain extends MatchOpMode {
         Button armOuttake = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
                 .whenPressed(new DropConeCommand(claw, slide, pivot));
 
-        Button armGroundFront = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
-                .whenPressed(new ArmGroundFrontCommand(slide, pivot, claw, turnServo, false)));
+//        Button armGroundFront = (new GamepadButton(operatorGamepad, GamepadKeys.Button.X)
+//                .whenPressed(new ArmGroundFrontCommand(slide, pivot, claw, turnServo, false)));
 
         Button armLowFront = (new GamepadButton(operatorGamepad, GamepadKeys.Button.DPAD_LEFT)
                 .whenPressed(new ArmLowFrontCommand(slide, pivot, claw, turnServo, false)));
@@ -103,9 +106,9 @@ public class TeleOpMain extends MatchOpMode {
                 .whenPressed(new ArmIntakeBackCommand(slide, pivot, claw, turnServo)));
 
         Button pivotInitializationPosition = (new GamepadButton(operatorGamepad, GamepadKeys.Button.A)
-                .whenPressed(pivot::moveInitializationPosition));
+                .whenPressed(pivot::encoderReset));
 
-        Button slideRecenter = (new GamepadButton(operatorGamepad, GamepadKeys.Button.BACK))
+        Button slideRecenter = (new GamepadButton(operatorGamepad, GamepadKeys.Button.B))
                 .whenPressed(slide::encoderRecenter);
 
 //        Button pivotRecenter = (new GamepadButton(operatorGamepad, GamepadKeys.Button.START))

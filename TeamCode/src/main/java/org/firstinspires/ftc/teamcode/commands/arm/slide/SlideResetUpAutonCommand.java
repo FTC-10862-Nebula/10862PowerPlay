@@ -17,7 +17,8 @@ public class SlideResetUpAutonCommand extends SequentialCommandGroup{
                 new InstantCommand(turnServo::setFClawPos),
                 new InstantCommand(
                         () -> new Thread(() -> {
-                            pivot.moveInitializationPosition();
+//                            pivot.moveInitializationPosition();
+                            pivot.moveIntakeBAuto();
                             slide.slideResting();
                             turnServo.setFClawPos();
                         }).start()

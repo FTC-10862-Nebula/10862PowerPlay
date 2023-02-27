@@ -38,7 +38,7 @@ public class  Slide extends SubsystemBase {
     public static int MID_POS = 735;
     public static int HIGH_POS = 1240;
 
-    public static int AUTO_MID_POS = 840;
+    public static int AUTO_MID_POS = 970;
     public static int AUTO_HIGH_POS = 1259;
 
 
@@ -47,7 +47,7 @@ public class  Slide extends SubsystemBase {
 
     public static int CONE_1_POS = 0;
     public static int CONE_2_POS = 100;
-    public static int CONE_3_POS = 180;
+    public static int CONE_3_POS = 150;
     public static int CONE_4_POS = 210;
     public static int CONE_5_POS = 260;
     double output = 0;
