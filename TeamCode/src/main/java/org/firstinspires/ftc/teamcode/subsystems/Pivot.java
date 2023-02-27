@@ -31,13 +31,13 @@ public class Pivot extends SubsystemBase {
     public int TELE_OP_START_POS = -350;
 
     public static int INTAKE_POS_BACK = -0,
-                        POS_BACK = -450,
-                        HIGH_POS_BACK = -450 ,
+                        POS_BACK = -455,
+                        HIGH_POS_BACK = -455 ,
                         GROUND_POS_BACK = -480,
                         DROP_BACK = -700;
-    public static int HIGH_POS_AUTO_BACK = -114,
+    public static int HIGH_POS_AUTO_BACK = -150,
                         INTAKE_POS_AUTO_BACK = -275,
-                        POS_AUTO_BACK = -140,
+                        POS_AUTO_BACK = -233,
                         DROP_AUTO_BACK = -390;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
