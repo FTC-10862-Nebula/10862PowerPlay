@@ -31,7 +31,7 @@ public class ArmMidFrontCommand extends SequentialCommandGroup {
                     new ParallelCommandGroup(
                             new InstantCommand(claw::clawClose),
                             new InstantCommand(slide::slideMid),
-                            new InstantCommand(pivot::moveFAuto)
+                            new InstantCommand(pivot::moveF)
                     ),
                     new WaitCommand(800),
                     new InstantCommand(turnServo::setFClawPos)

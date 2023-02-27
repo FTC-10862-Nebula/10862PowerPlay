@@ -17,7 +17,7 @@ public class ArmHighFrontCommand extends SequentialCommandGroup {
                     new InstantCommand(claw::clawClose),
                     new ParallelCommandGroup(
                             new InstantCommand(slide::slideAutoHigh),
-                            new InstantCommand(pivot::moveFAuto)
+                            new InstantCommand(pivot::moveHighFAuto)
                     ),
                     new WaitCommand(250),
                     new InstantCommand(turnServo::setFClawPos)
