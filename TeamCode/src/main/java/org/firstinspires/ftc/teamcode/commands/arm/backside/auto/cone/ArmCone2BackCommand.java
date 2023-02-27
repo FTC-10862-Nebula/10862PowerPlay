@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 public class ArmCone2BackCommand extends SequentialCommandGroup   {
     public ArmCone2BackCommand(Slide slide, Claw claw, Pivot pivot, TurnServo turnServo){
         addCommands(
-                new WaitCommand(370),
+                new WaitCommand(420),
                 new ParallelCommandGroup(
                         new InstantCommand(claw::clawClose),
 //                        new InstantCommand(claw::clawAutoClose),
