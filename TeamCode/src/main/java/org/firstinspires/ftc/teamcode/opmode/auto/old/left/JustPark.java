@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.subsystems.Slide;
 import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 
 @Autonomous
-@Disabled
+//@Disabled
 public class JustPark extends MatchOpMode {
     private int tagNum = 0;
 
@@ -56,8 +56,8 @@ public class JustPark extends MatchOpMode {
             case 1: { //Left
                 schedule(
                         new SequentialCommandGroup(
-                                new DriveForwardCommand(drivetrain, 30),
-                                new StrafeLeftCommand(drivetrain, 19.5)
+                                new DriveForwardCommand(drivetrain, 34.5),
+                                new StrafeLeftCommand(drivetrain, 22.5)
                         )
 
 
@@ -83,7 +83,7 @@ public class JustPark extends MatchOpMode {
                 schedule(
                         new SequentialCommandGroup(
                                 new DriveForwardCommand(drivetrain, 30),
-                                 new StrafeRightCommand(drivetrain, 20.2)
+                                 new StrafeRightCommand(drivetrain, 23)
 
 
 //                new StrafeRightCommand(drivetrain, 30),
