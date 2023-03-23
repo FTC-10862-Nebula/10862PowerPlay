@@ -312,7 +312,6 @@ public class Pivot extends SubsystemBase {
                 break;
         }
     }
-    //TODO:Seperate Teleop and Auto
 
     public void setSetPoint(double setPoint) {
         controller.setSetPoint(setPoint + encoderOffset);
@@ -331,9 +330,9 @@ public class Pivot extends SubsystemBase {
 //
 //        armAutomatic = true;
 //    }
-    public void clawEncoderReset() {
-        armPos = ArmPos.RESET;
-    }
+//    public void clawEncoderReset() {
+//        armPos = ArmPos.RESET;
+//    }
 //    public void resetEncoder() {
 //        clawEncoderReset();
 //    }
