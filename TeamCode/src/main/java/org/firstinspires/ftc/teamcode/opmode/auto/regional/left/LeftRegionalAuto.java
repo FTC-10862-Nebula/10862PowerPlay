@@ -109,7 +109,7 @@ public class LeftRegionalAuto extends MatchOpMode {
             static TrajectorySequenceConstraints getParkConstraint() {
                 return new TrajectorySequenceConstraints(
                         (s, a, b, c) -> {
-                            return baseVel * 0.4;
+                            return baseVel * 0.55;
                         },
                         (s, a, b, c) -> baseAccel,
                         turnVel,
@@ -137,8 +137,8 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static Cycle1Pickup bcycle1Pickup;
             public static class Cycle1Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(-47, -9.5, 180);
-                public static Back c = new Back(14.15);
+                public static SplineTo b = new SplineTo(-48, -9.5 , 180);
+                public static Back c = new Back(14.11);
                 static TrajectorySequenceContainer cycle1Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -154,7 +154,7 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static class Cycle2Pickup {
                 public static SetReversed a = new SetReversed(true);
                 public static SplineTo b = new SplineTo(-49.1, -9, 180);
-                public static Back c = new Back(13.25);
+                public static Back c = new Back(13.0);
                 static TrajectorySequenceContainer cycle2Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -170,7 +170,7 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static class Cycle3Pickup {
                 public static SetReversed a = new SetReversed(true);
                 public static SplineTo b = new SplineTo(-51.5, -8.9, 180);
-                public static Back c = new Back(12.2);
+                public static Back c = new Back(12);
                 static TrajectorySequenceContainer cycle3Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -215,18 +215,18 @@ public class LeftRegionalAuto extends MatchOpMode {
                     MID,
                     RIGHT
                 }
-                public static AutoPosition autoPosition = AutoPosition.lEFT;
+                public static AutoPosition autoPosition = AutoPosition.MID;
                 static TrajectorySequenceContainer getPark(double x) {
                     switch (autoPosition) {
                         case lEFT:
                             return new TrajectorySequenceContainer(
                                     Speed::getParkConstraint,
-                                    new Back(6),
+                                    new Back(4),
                                     new Turn(-45),
 
                                     new Back(2),
                                     new StrafeRight(30),
-                                    new Forward(5)
+                                    new Forward(7)
                             );
 
                         case MID:
@@ -234,7 +234,7 @@ public class LeftRegionalAuto extends MatchOpMode {
                                     Speed::getParkConstraint,
                                     new Back(6),
                                     new Turn(-45),
-                                    new Forward(5)
+                                    new Forward(7)
                             );
                         default:
                         case RIGHT:
@@ -245,7 +245,7 @@ public class LeftRegionalAuto extends MatchOpMode {
 
                                     new Back(2),
                                     new StrafeLeft(29),
-                                    new Forward(5)
+                                    new Forward(7)
                             );
                     }
                 }
