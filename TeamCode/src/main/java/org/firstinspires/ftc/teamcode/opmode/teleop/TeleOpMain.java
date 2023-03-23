@@ -85,7 +85,7 @@ public class TeleOpMain extends MatchOpMode {
         pivot.setDefaultCommand(new PivotMoveManual(pivot, operatorGamepad::getLeftY));
 
         Button armIntake = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.LEFT_TRIGGER))
-                .whenPressed(new PickConeCommand(claw, slide, pivot));
+                .whenPressed(new PickConeCommand(claw));
 
         Button armOuttake = (new GamepadTrigger(operatorGamepad, GamepadKeys.Trigger.RIGHT_TRIGGER))
                 .whenPressed(new DropConeCommand(claw, slide, pivot));

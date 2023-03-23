@@ -9,11 +9,11 @@ import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
 
 public class PickConeCommand extends SequentialCommandGroup {
-    public PickConeCommand(Claw claw, Slide slide, Pivot pivot){
+    public PickConeCommand(Claw claw){
         addCommands(
-                new InstantCommand(claw::clawClose, claw),
-                new WaitCommand(700),
-                new InstantCommand(slide::slidePickUp)
+                new InstantCommand(claw::clawClose, claw)
+//                new WaitCommand(500),
+//                new InstantCommand(slide::slidePickUp)
 //                new InstantCommand(() ->
 //                        new Thread(() -> {
 //                            slide.slidePickUp();
