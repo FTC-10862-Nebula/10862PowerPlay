@@ -72,9 +72,9 @@ public class TeleOpMain extends MatchOpMode {
 
         Button recenterIMU2 = (new GamepadButton(driverGamepad, GamepadKeys.Button.START))
                 .whenPressed(new InstantCommand(drivetrain::reInitializeIMU));
-//
-//        Button slowMode = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER))
-//                .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad));
+
+        Button slowMode = (new GamepadButton(driverGamepad, GamepadKeys.Button.LEFT_BUMPER))
+                .whileHeld(new SlowDriveCommand(drivetrain, driverGamepad, true));
 
         /*
          * OPERATOR

@@ -5,8 +5,8 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 
 public class SlowDriveCommand extends DefaultDriveCommand {
-    public SlowDriveCommand(Drivetrain drive, GamepadEx driverGamepad) {
-        super(drive, driverGamepad, false);
+    public SlowDriveCommand(Drivetrain drive, GamepadEx driverGamepad, boolean isFieldCentric) {
+        super(drive, driverGamepad, isFieldCentric);
         this.multiplier = 0.3;
     }
 }
