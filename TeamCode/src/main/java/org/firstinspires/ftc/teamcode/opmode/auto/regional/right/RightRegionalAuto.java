@@ -17,6 +17,7 @@ import org.firstinspires.ftc.teamcode.commands.arm.outtake.AutoDropConeCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.frontside.ArmHighFrontCommand;
 import org.firstinspires.ftc.teamcode.commands.arm.frontside.ArmMidFrontCommand;
+import org.firstinspires.ftc.teamcode.opmode.auto.regional.left.LeftRegionalAuto;
 import org.firstinspires.ftc.teamcode.subsystems.Pivot;
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.Slide;
@@ -24,6 +25,7 @@ import org.firstinspires.ftc.teamcode.subsystems.TurnServo;
 import org.firstinspires.ftc.teamcode.subsystems.drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.subsystems.drive.Drivetrain;
 import org.firstinspires.ftc.teamcode.trajectorysequence.container.SplineToSplineHeading;
+import org.firstinspires.ftc.teamcode.trajectorysequence.container.StrafeLeft;
 import org.firstinspires.ftc.teamcode.trajectorysequence.container.StrafeRight;
 import org.firstinspires.ftc.teamcode.trajectorysequence.container.Turn;
 import org.firstinspires.ftc.teamcode.util.MatchOpMode;
@@ -37,7 +39,7 @@ import org.firstinspires.ftc.teamcode.trajectorysequence.container.SplineTo;
 import org.firstinspires.ftc.teamcode.trajectorysequence.container.TrajectorySequenceConstraints;
 import org.firstinspires.ftc.teamcode.trajectorysequence.container.TrajectorySequenceContainer;
 import org.firstinspires.ftc.teamcode.util.PoseStorage;
-//438247
+//438247 - Justin's Password bn
 
 @Autonomous
 public class RightRegionalAuto extends MatchOpMode {
@@ -137,8 +139,8 @@ public class RightRegionalAuto extends MatchOpMode {
             public static Cycle1Pickup bcycle1Pickup;
             public static class Cycle1Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(47, -9.5, 0);
-                public static Back c = new Back(13.2);
+                public static SplineTo b = new SplineTo(48, -9.5, 0);
+                public static Back c = new Back(14.11);
                 static TrajectorySequenceContainer cycle1Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -146,15 +148,15 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle1Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(16);
-                public static SplineTo c = new SplineTo(30.9, -12.7, -135);
+                public static SplineTo c = new SplineTo(30.9, -13.2, -138);
                 static TrajectorySequenceContainer cycle1Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 
             public static Cycle2Pickup dcycle2Pickup;
             public static class Cycle2Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(49.1, -9.25, 0);
-                public static Back c = new Back(12.7);
+                public static SplineTo b = new SplineTo(49.1, -9., 0);
+                public static Back c = new Back(13.0);
                 static TrajectorySequenceContainer cycle2Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -162,15 +164,15 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle2Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(16);
-                public static SplineTo c = new SplineTo(30.89, -12.7, -135);
+                public static SplineTo c = new SplineTo(30.89, -13.3, -135);
                 static TrajectorySequenceContainer cycle2Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 
             public static Cycle3Pickup fcycle3Pickup;
             public static class Cycle3Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(51.5, -8.8, 0);
-                public static Back c = new Back(12.7);
+                public static SplineTo b = new SplineTo(51.5, -8.9, 0);
+                public static Back c = new Back(12.);
                 static TrajectorySequenceContainer cycle3Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -178,7 +180,7 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle3Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(16);
-                public static SplineTo c = new SplineTo(30.6, -12.5, -135);
+                public static SplineTo c = new SplineTo(30.6, -12.8, -1);
                 static TrajectorySequenceContainer cycle3Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 
@@ -221,26 +223,33 @@ public class RightRegionalAuto extends MatchOpMode {
                         case lEFT:
                             return new TrajectorySequenceContainer(
                                     Speed::getParkConstraint,
-                                    new Back(6),
+                                    new Back(4),
                                     new Turn(45),
 
                                     new Back(2),
-                                    new StrafeRight(29),
-                                    new Forward(5)
+                                    new StrafeRight(30),
+                                    new Forward(7)
                             );
                         case MID:
                             return new TrajectorySequenceContainer(
                                     Speed::getParkConstraint,
                                     new Back(6),
                                     new Turn(45),
-                                    new Forward(5)
+                                    new Forward(7)
                             );
                         default:
                         case RIGHT:
                             return new TrajectorySequenceContainer(
                                     Speed::getParkConstraint,
-                                    new Back(5),
-                                    new SplineToSplineHeading(x, y, heading, endHeading)
+                                    new Back(6),
+                                    new Turn(45),
+
+                                    new Back(2),
+                                    new StrafeLeft(29),
+                                    new Forward(7)
+//                                    Speed::getParkConstraint,
+//                                    new Back(5),
+//                                    new SplineToSplineHeading(x, y, heading, endHeading)
                             );
                     }
                 }
