@@ -1,9 +1,10 @@
-package org.firstinspires.ftc.teamcode.opmode.auto.old.left;
+package org.firstinspires.ftc.teamcode.opmode.auto.regional;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
+import org.firstinspires.ftc.teamcode.commands.arm.slide.SlideResetUpAutonCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.trajectory.DriveForwardCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.trajectory.StrafeLeftCommand;
 import org.firstinspires.ftc.teamcode.commands.drive.trajectory.StrafeRightCommand;
@@ -56,40 +57,36 @@ public class JustPark extends MatchOpMode {
             case 1: { //Left
                 schedule(
                         new SequentialCommandGroup(
-                                new DriveForwardCommand(drivetrain, 34.5),
-                                new StrafeLeftCommand(drivetrain, 22.5)
+                                new DriveForwardCommand(drivetrain, 20),
+                                new SlideResetUpAutonCommand(slide, pivot, claw, turnServo),
+                                new DriveForwardCommand(drivetrain, 12.25),
+                                new StrafeLeftCommand(drivetrain, 29),
+                                new SlideResetUpAutonCommand(slide, pivot, claw, turnServo),
+                                new DriveForwardCommand(drivetrain, 6)
                         )
-
-
-//                new StrafeRightCommand(drivetrain, 30),
-//                new DriveForwardCommand(drivetrain, 15)
-
                 );
                 return;
             }
             case 2: { //Mid
                 schedule(
-
                         new SequentialCommandGroup(
-                                new DriveForwardCommand(drivetrain, 33)
+                                new DriveForwardCommand(drivetrain, 35),
+                                new SlideResetUpAutonCommand(slide, pivot, claw, turnServo)
                         )
-
-
-//                new StrafeRightCommand(drivetrain, 30)
-                        );
+                );
                 return;
             }
-            default: { //High
+            case 3:
+            default: { //Right
                 schedule(
                         new SequentialCommandGroup(
-                                new DriveForwardCommand(drivetrain, 30),
-                                 new StrafeRightCommand(drivetrain, 23)
-
-
-//                new StrafeRightCommand(drivetrain, 30),
-//                        new DriveForwardCommand(drivetrain, 15)
-                                )
-                        );
+                                new DriveForwardCommand(drivetrain, 20),
+                                new SlideResetUpAutonCommand(slide, pivot, claw, turnServo),
+                                new DriveForwardCommand(drivetrain, 12.25),
+                                new StrafeRightCommand(drivetrain, 29),
+                                new DriveForwardCommand(drivetrain, 6)
+                        )
+                );
                 return;
             }
         }
