@@ -14,7 +14,7 @@ public class AutoDropConeCommand extends SequentialCommandGroup {
 //        if(auto){
             addCommands(
                     new InstantCommand(pivot::dropArmAuto),
-                    new WaitCommand(10),
+                    new WaitCommand(15),
                     new InstantCommand(claw::clawOpen),
                     new WaitCommand(20),
                     new InstantCommand(slide::dropSlide),
