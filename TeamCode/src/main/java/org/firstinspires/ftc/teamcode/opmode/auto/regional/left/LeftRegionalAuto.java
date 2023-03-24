@@ -109,7 +109,7 @@ public class LeftRegionalAuto extends MatchOpMode {
             static TrajectorySequenceConstraints getParkConstraint() {
                 return new TrajectorySequenceConstraints(
                         (s, a, b, c) -> {
-                            return baseVel * 0.55;
+                            return baseVel * 0.6;
                         },
                         (s, a, b, c) -> baseAccel,
                         turnVel,
