@@ -137,7 +137,7 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static Cycle1Pickup bcycle1Pickup;
             public static class Cycle1Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(-48, -9.5 , 180);
+                public static SplineTo b = new SplineTo(-48, -9.2,180);
                 public static Back c = new Back(13.75);
                 static TrajectorySequenceContainer cycle1Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
@@ -153,7 +153,7 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static Cycle2Pickup dcycle2Pickup;
             public static class Cycle2Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(-49.1, -9.6, 180);
+                public static SplineTo b = new SplineTo(-49.1, -9.1, 180);
                 public static Back c = new Back(12.2);
                 static TrajectorySequenceContainer cycle2Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
@@ -169,7 +169,7 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static Cycle3Pickup fcycle3Pickup;
             public static class Cycle3Pickup {
                 public static SetReversed a = new SetReversed(true);
-                public static SplineTo b = new SplineTo(-51.5, -9.65, 180);
+                public static SplineTo b = new SplineTo(-51.5, -9., 180);
                 public static Back c = new Back(11.5);
                 static TrajectorySequenceContainer cycle3Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
@@ -276,15 +276,15 @@ public class LeftRegionalAuto extends MatchOpMode {
         double finalX = 0;
         switch (tagVision.getTag()) {
             case 1:
-                finalX = RightRegionalAutoConstants.Path.Park.leftX;
+//                finalX = RightRegionalAutoConstants.Path.Park.leftX;
                 RightRegionalAutoConstants.Path.Park.autoPosition = RightRegionalAutoConstants.Path.Park.AutoPosition.lEFT;
                 break;
             case 2:
-                finalX = RightRegionalAutoConstants.Path.Park.midX;
+//                finalX = RightRegionalAutoConstants.Path.Park.midX;
                 RightRegionalAutoConstants.Path.Park.autoPosition = RightRegionalAutoConstants.Path.Park.AutoPosition.MID;
                 break;
             case 3:
-                finalX = RightRegionalAutoConstants.Path.Park.rightX;
+//                finalX = RightRegionalAutoConstants.Path.Park.rightX;
                 RightRegionalAutoConstants.Path.Park.autoPosition = RightRegionalAutoConstants.Path.Park.AutoPosition.RIGHT;
                 break;
         }
