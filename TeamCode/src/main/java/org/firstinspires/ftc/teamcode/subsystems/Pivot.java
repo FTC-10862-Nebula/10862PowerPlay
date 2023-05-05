@@ -35,9 +35,9 @@ public class Pivot extends SubsystemBase {
                         HIGH_POS_BACK = -455 ,
                         GROUND_POS_BACK = -480,
                         DROP_BACK = -700;
-    public static int HIGH_POS_AUTO_BACK = -150,
+    public static int HIGH_POS_AUTO_BACK = -140,
                         INTAKE_POS_AUTO_BACK = -275,
-                        POS_AUTO_BACK = -233,
+                        POS_AUTO_BACK = -220,
                         DROP_AUTO_BACK = -390;
 
     public static int INTAKE_POS_FRONT = -INTAKE_POS_BACK,
