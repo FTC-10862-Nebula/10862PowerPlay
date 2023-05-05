@@ -349,4 +349,12 @@ public class Pivot extends SubsystemBase {
     public double getPosition(){
         return controller.getSetPoint();
     }
+
+    public void pivotDown(){
+        setPosition(getPosition()-10);
+    }
+    public void pivotUp(){
+        setPosition(getPosition()+10);
+    }
 }
+
