@@ -140,7 +140,7 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle1Pickup {
                 public static SetReversed a = new SetReversed(true);
                 public static SplineTo b = new SplineTo(48, -9.5, 0);
-                public static Back c = new Back(13.5);
+                public static Back c = new Back(12.6);
                 static TrajectorySequenceContainer cycle1Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -148,7 +148,7 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle1Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(16);
-                public static SplineTo c = new SplineTo(35, -14.1, -138);
+                public static SplineTo c = new SplineTo(34.93, -14.15, -138);
                 static TrajectorySequenceContainer cycle1Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 
@@ -156,7 +156,7 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle2Pickup {
                 public static SetReversed a = new SetReversed(true);
                 public static SplineTo b = new SplineTo(49.1, -9.5, 0);
-                public static Back c = new Back(13.5);
+                public static Back c = new Back(13.65);
                 static TrajectorySequenceContainer cycle2Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -164,7 +164,7 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle2Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(16);
-                public static SplineTo c = new SplineTo(34.3, -13.9, -135);//255
+                public static SplineTo c = new SplineTo(34.52, -13.95, -135);//255
                 static TrajectorySequenceContainer cycle2Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 
@@ -172,7 +172,7 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle3Pickup {
                 public static SetReversed a = new SetReversed(true);
                 public static SplineTo b = new SplineTo(51.5, -9.1, 0);
-                public static Back c = new Back(13.5);
+                public static Back c = new Back(13.08);
                 static TrajectorySequenceContainer cycle3Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -180,30 +180,9 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle3Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(15.5);//16
-                public static SplineTo c = new SplineTo(34.3, -13.9, -135);
+                public static SplineTo c = new SplineTo(34.72, -13.95, -135);
                 static TrajectorySequenceContainer cycle3Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
-
-//            public static Cycle4Pickup hcycle4Pickup;
-//            public static class Cycle4Pickup {
-//                public static SetReversed a = new SetReversed(true);
-//                public static SplineTo b = new SplineTo(51, -8.83, 0);
-//                public static Back c = new Back(14.45);
-//                static TrajectorySequenceContainer cycle4Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
-//            }
-//
-//            public static Cycle4Drop icycle4Drop;
-//            public static class Cycle4Drop {
-//                public static SetReversed a = new SetReversed(true);
-//                public static Forward b = new Forward(16);
-//                public static SplineTo c = new SplineTo(28, -3.5, 132);
-//                static TrajectorySequenceContainer cycle4Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
-////                public static SetReversed a = new SetReversed(true);
-////                public static Forward b = new Forward(16);
-////                public static SplineTo c = new SplineTo(35.88, -14.34, -135);
-////                static TrajectorySequenceContainer cycle4Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
-//            }
-
             public static Park jpark;
             public static class Park {
                 public static double leftX = 7;
@@ -256,8 +235,6 @@ public class RightRegionalAuto extends MatchOpMode {
             }
         }
     }
-
-
 
     @Override
     public void robotInit() {
@@ -331,7 +308,7 @@ public class RightRegionalAuto extends MatchOpMode {
                         new ParallelCommandGroup(
                                 new ArmCone4BackCommand(slide, claw, pivot, turnServo),
                                 new TrajectorySequenceContainerFollowCommand(drivetrain, RightRegionalAutoConstants.Path.Cycle2Pickup.cycle2Pickup,
-                                        new DisplacementCommand(29, new AutoPickConeCommand(slide, claw)))
+                                        new DisplacementCommand(28.7, new AutoPickConeCommand(slide, claw)))
                         ),
 //                        new AutoPickConeCommand(slide, claw),
 
@@ -346,7 +323,7 @@ public class RightRegionalAuto extends MatchOpMode {
                         new ParallelCommandGroup(
                                 new ArmCone3BackCommand(slide, claw, pivot, turnServo),
                                 new TrajectorySequenceContainerFollowCommand(drivetrain, RightRegionalAutoConstants.Path.Cycle3Pickup.cycle3Pickup,
-                                        new DisplacementCommand(30.5, new AutoPickConeCommand(slide, claw)))
+                                        new DisplacementCommand(29.5, new AutoPickConeCommand(slide, claw)))
                         ),
 //                        new AutoPickConeCommand(slide, claw),
 
