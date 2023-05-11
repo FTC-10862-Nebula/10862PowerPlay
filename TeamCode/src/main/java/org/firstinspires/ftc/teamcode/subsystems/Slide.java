@@ -46,10 +46,10 @@ public class  Slide extends SubsystemBase {
     public static int CONE_STACK_POS = 265;
 
     public static int CONE_1_POS = 0;
-    public static int CONE_2_POS = 100;
-    public static int CONE_3_POS = 150;
-    public static int CONE_4_POS = 210;
-    public static int CONE_5_POS = 260;
+    public static int CONE_2_POS = 98;
+    public static int CONE_3_POS = 142;
+    public static int CONE_4_POS = 198;
+    public static int CONE_5_POS = 245;
     double output = 0;
 
     public static boolean lowBool = false;
