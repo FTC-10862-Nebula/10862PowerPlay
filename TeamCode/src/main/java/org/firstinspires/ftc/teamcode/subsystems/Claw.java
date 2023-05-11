@@ -25,6 +25,7 @@ public class Claw extends SubsystemBase {
     public Claw(Telemetry tl, HardwareMap hw) {
         this.clawS1 = new SimpleServo(hw, "clawS2", 0, 360);
         this.clawS1.setPosition(CLOSE_POS_S1);  //Port 3
+//        this.clawS1.setInverted(true);
 
         this.telemetry = tl;
     }

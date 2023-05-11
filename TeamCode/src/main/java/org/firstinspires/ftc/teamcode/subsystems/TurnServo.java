@@ -13,7 +13,6 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class TurnServo extends SubsystemBase {
     public static final double F_POS_S3 = 0.01,
             B_POS_S3 = 0.7;
-
     Telemetry telemetry;
     private final ServoEx clawS3;     //Servo that turns claw
 
@@ -21,6 +20,7 @@ public class TurnServo extends SubsystemBase {
         this.clawS3 = new SimpleServo(hw, "clawS3", 0, 360);
         this.clawS3.setPosition(F_POS_S3);      //Port 5
 
+            this.clawS3.setInverted(false );
         this.telemetry = tl;
     }
 
@@ -31,6 +31,8 @@ public class TurnServo extends SubsystemBase {
 
     public void setClawS3(double clawServo3Pos) {
         clawS3.setPosition(clawServo3Pos);
+    }public double getPos() {
+        return clawS3.getPosition();
     }
 
 

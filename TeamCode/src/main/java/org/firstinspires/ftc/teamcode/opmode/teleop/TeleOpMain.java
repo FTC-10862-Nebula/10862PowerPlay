@@ -62,6 +62,11 @@ public class TeleOpMain extends MatchOpMode {
 
     @Override
     public void configureButtons() {
+//        Button up = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_UP)
+//                .whenPressed(new InstantCommand(()->turnServo.setClawS3(turnServo.getPos()+0.05))));
+//
+//        Button down = (new GamepadButton(driverGamepad, GamepadKeys.Button.DPAD_DOWN)
+//                .whenPressed(new InstantCommand(()->turnServo.setClawS3(turnServo.getPos()-0.05))));
         /*
          *  DRIVER
          */
