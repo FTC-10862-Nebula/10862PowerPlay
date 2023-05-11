@@ -154,7 +154,7 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static class Cycle2Pickup {
                 public static SetReversed a = new SetReversed(true);
                 public static SplineTo b = new SplineTo(-49.1, -8.6, 180);
-                public static Back c = new Back(12.2);
+                public static Back c = new Back(12.1);
                 static TrajectorySequenceContainer cycle2Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -170,7 +170,7 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static class Cycle3Pickup {
                 public static SetReversed a = new SetReversed(true);
                 public static SplineTo b = new SplineTo(-51.5, -8.5, 180);
-                public static Back c = new Back(11.5);
+                public static Back c = new Back(11.36);
                 static TrajectorySequenceContainer cycle3Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
             }
 
@@ -178,7 +178,7 @@ public class LeftRegionalAuto extends MatchOpMode {
             public static class Cycle3Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(16);
-                public static SplineTo c = new SplineTo(-30.9, -12.8, -45);
+                public static SplineTo c = new SplineTo(-30.95, -12.7, -45);
                 static TrajectorySequenceContainer cycle3Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 
