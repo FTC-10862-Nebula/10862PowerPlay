@@ -182,26 +182,6 @@ public class LeftRegionalAuto extends MatchOpMode {
                 static TrajectorySequenceContainer cycle3Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 
-//            public static Cycle4Pickup hcycle4Pickup;
-//            public static class Cycle4Pickup {
-//                public static SetReversed a = new SetReversed(true);
-//                public static SplineTo b = new SplineTo(51, -8.83, 0);
-//                public static Back c = new Back(14.45);
-//                static TrajectorySequenceContainer cycle4Pickup = new TrajectorySequenceContainer(Speed::getPickupConstraints, a, b, c);
-//            }
-//
-//            public static Cycle4Drop icycle4Drop;
-//            public static class Cycle4Drop {
-//                public static SetReversed a = new SetReversed(true);
-//                public static Forward b = new Forward(16);
-//                public static SplineTo c = new SplineTo(28, -3.5, 132);
-//                static TrajectorySequenceContainer cycle4Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
-////                public static SetReversed a = new SetReversed(true);
-////                public static Forward b = new Forward(16);
-////                public static SplineTo c = new SplineTo(35.88, -14.34, -135);
-////                static TrajectorySequenceContainer cycle4Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
-//            }
-
             public static Park jpark;
             public static class Park {
                 public static double leftX = -7;
