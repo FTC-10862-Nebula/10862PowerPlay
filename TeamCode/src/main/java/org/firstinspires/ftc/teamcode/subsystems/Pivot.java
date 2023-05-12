@@ -35,7 +35,7 @@ public class Pivot extends SubsystemBase {
                         HIGH_POS_BACK = -455 ,
                         GROUND_POS_BACK = -480,
                         DROP_BACK = -700;
-    public static int HIGH_POS_AUTO_BACK = -157,
+    public static int HIGH_POS_AUTO_BACK = -156,
                         INTAKE_POS_AUTO_BACK = -275,
                         POS_AUTO_BACK = -222,
                         DROP_AUTO_BACK = -390;
@@ -49,7 +49,7 @@ public class Pivot extends SubsystemBase {
                         INTAKE_POS_AUTO_FRONT = -INTAKE_POS_AUTO_BACK,
                         POS_AUTO_FRONT = -POS_AUTO_BACK,
                         DROP_AUTO_FRONT = -DROP_AUTO_BACK;
-    public enum ArmPos{
+    public enum ArmPos {
         RESET,
         INTAKE_BACK, BACK, HIGH_BACK, GROUND_BACK, DROP_BACK,
         INTAKE_FRONT, FRONT, HIGH_FRONT, GROUND_FRONT, DROP_FRONT,
