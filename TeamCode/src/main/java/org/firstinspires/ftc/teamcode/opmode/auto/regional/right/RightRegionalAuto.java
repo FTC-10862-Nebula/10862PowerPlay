@@ -148,7 +148,7 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle1Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(16);
-                public static SplineTo c = new SplineTo(34.93, -14.15, -138);
+                public static SplineTo c = new SplineTo(34.75, -14.15, -138);
                 static TrajectorySequenceContainer cycle1Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 
@@ -164,7 +164,7 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle2Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(16);
-                public static SplineTo c = new SplineTo(34.52, -13.95, -135);//255
+                public static SplineTo c = new SplineTo(34.75, -13.95, -135);//255
                 static TrajectorySequenceContainer cycle2Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
 
@@ -180,7 +180,7 @@ public class RightRegionalAuto extends MatchOpMode {
             public static class Cycle3Drop {
                 public static SetReversed a = new SetReversed(true);
                 public static Forward b = new Forward(15.5);//16
-                public static SplineTo c = new SplineTo(34.72, -13.95, -135);
+                public static SplineTo c = new SplineTo(34.75, -13.95, -135);
                 static TrajectorySequenceContainer cycle3Drop = new TrajectorySequenceContainer(Speed::getDropConstraints, a, b, c);
             }
             public static Park jpark;
@@ -325,7 +325,7 @@ public class RightRegionalAuto extends MatchOpMode {
                                 new TrajectorySequenceContainerFollowCommand(drivetrain, RightRegionalAutoConstants.Path.Cycle3Pickup.cycle3Pickup,
                                         new DisplacementCommand(29.52, new AutoPickConeCommand(slide, claw)))
                         ),
-//                        new AutoPickConeCommand(slide, claw),
+//                                        new AutoPickConeCommand(slide, claw),
 
                         /* Cycle 3 Drop */
                         new ParallelCommandGroup(
