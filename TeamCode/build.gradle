@@ -15,7 +15,7 @@
 apply from: '../build.common.gradle'
 apply from: '../build.dependencies.gradle'
 
-apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android' //Kotlin
 
 android {
     namespace = 'org.firstinspires.ftc.teamcode'
@@ -28,16 +28,11 @@ android {
 dependencies {
     implementation project(':FtcRobotController')
     annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
-    implementation 'org.ftclib.ftclib:core:1.2.0'
 
-    // the following is optional if you want vision
-    // implementation 'org.ftclib.ftclib:vision:1.2.0'     //FTClib Vision - Delete
-
-    implementation 'com.acmerobotics.roadrunner:core:0.5.6'     //Roadrunner
-
-    implementation 'org.apache.commons:commons-math3:3.6.1'
-
-    implementation 'org.openftc:easyopencv:1.5.2'   //Camera
-    implementation 'org.openftc:apriltag:1.1.0'     //April Tag
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7' // For Faster Build Time:
+    implementation 'org.apache.commons:commons-math3:3.6.1' //Roadrunner-Math
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7' //Roadrunner-Faster Builds
+    implementation 'com.acmerobotics.roadrunner:core:0.5.6' //Roadrunner
+    implementation 'org.openftc:easyopencv:1.7.0'   //Camera
+    implementation 'org.openftc:apriltag:2.0.0'     //April Tag
+    implementation 'org.ftclib.ftclib:core:2.0.1' //FTC Core Things
 }
